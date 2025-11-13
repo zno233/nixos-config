@@ -4,6 +4,6 @@
     #./waybar.nix
     #./settings.nix
     #./style.nix
-    ./new8.nix
+    ./new9.nix
   ];
 }

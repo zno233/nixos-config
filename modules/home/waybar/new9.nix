@@ -1,39 +1,40 @@
 { config, ... }:
 let
-  # --- 1. 集中颜色定义 ---
-  # Base16 Aurora 调色板 (使用的颜色)
-  base00 = "09030B"; # 背景色 (Background)
-  base08 = "BD0952"; # 红色 (Red) - 用于 Critical Battery, Power Menu, 通知图标
-  base0A = "E6C218"; # 黄色 (Yellow) - 用于 Launcher, Disconnected Network
-  base0B = "a1c999"; # 绿色 (Green) - 用于 Battery Gradient 1
-  base0D = "238DC0"; # 蓝色 (Blue) - 用于 Backlight, Charging/Full Gradient 2
-  base0E = "78598D"; # 洋红色 (Magenta) - 用于 Battery 正常状态, Charging/Full Gradient 1
+  # --- 1. Centralized color definitions ---
+  # Base16 Aurora palette (used colors)
+  base00 = "09030B"; # Background
+  base08 = "BD0952"; # Red - Used for Critical Battery, Power Menu, notification icons
+  base0A = "E6C218"; # Yellow - Used for Launcher, Disconnected Network
+  base09 = "D08770"; # Orange - NEW: Used for Temperature Icon
+  base0B = "a1c999"; # Green - Used for Battery Gradient 1
+  base0D = "238DC0"; # Blue - Used for Backlight, Charging/Full Gradient 2
+  base0E = "8fbcbb"; # Magenta - Used for Battery normal state, Charging/Full Gradient 1
   
-  # 非 Base16/模块特定硬编码颜色
-  color_cpu_icon = "fb958b";   # CPU 图标颜色
-  color_memory_icon = "a1c999"; # Memory 图标颜色
-  color_workspaces_default = "7a95c9"; # Workspaces 默认按钮/Launcher/Window 边框
-  color_workspaces_active = "ecd3a0"; # Workspaces 激活按钮/Window 文本
-  color_power_menu_icon = "e78284"; # Power Menu 图标颜色
-  color_backlight_text = "e5e5e5"; # Backlight 文本颜色
+  # Non-Base16/module-specific hardcoded colors
+  color_cpu_icon = "fb958b";   # CPU icon color
+  color_memory_icon = "a1c999"; # Memory icon color
+  color_workspaces_default = "7a95c9"; # Workspaces default button/Launcher/Window border
+  color_workspaces_active = "ecd3a0"; # Workspaces active button/Window text
+  color_power_menu_icon = "e78284"; # Power Menu icon color
+  color_backlight_text = "e5e5e5"; # Backlight text color
   
-  # 通用 UI 颜色
-  color_waybar_text = "e5e5e5";    # Waybar 模块默认文本颜色
-  color_module_bg = "252733";      # Waybar 模块背景颜色
-  color_window_bg_alpha = "1A1B26"; # Waybar 窗口背景 (rgba(26, 27, 38, 0.5) 对应的 RGB)
+  # General UI colors
+  color_waybar_text = "e5e5e5";    # Waybar module default text color
+  color_module_bg = "252733";      # Waybar module background color
+  color_window_bg_alpha = "1A1B26"; # Waybar window background (rgba(26, 27, 38, 0.5) equivalent RGB)
   
-  # 从 Base16 中引入但在 CSS 中未使用的颜色变量 (用于 tooltip)
+  # Imported from Base16 but unused in CSS (for tooltip)
   color_tooltip_bg = "100518";      # base01: Lighter Background (Tooltip BG)
   color_tooltip_border = "F8F8F0";  # base07: Brightest Foreground (Tooltip Border)
   
-  # Battery 渐变颜色 (Base0F 对应 Base16 Aurora 的 Cyan)
+  # Battery gradient colors (Base0F corresponds to Base16 Aurora's Cyan)
   color_battery_grad_1 = "18A121"; # base0B
-  color_battery_grad_2 = "7755B8"; # base0F (Cyan, 用于 Battery Gradient 2)
+  color_battery_grad_2 = "7755B8"; # base0F (Cyan, used for Battery Gradient 2)
 
   trayBackgroundColor = "#${base00}";
-  # **硬编码主显示器名称**
+  # **Hardcoded main monitor name**
   mainMonitorName = "eDP-1";
-  # --- 2. 模块配置 (Module Definitions) ---
+  # --- 2. Module configuration (Module Definitions) ---
   moduleConfiguration =
     # jsonc
     ''
@@ -43,16 +44,37 @@ let
         "on-click" : "random-wallpaper",
         "on-click-right" : "rofi -show drun",
         "tooltip" : "true",
-        "tooltip-format" : "Random Wallpaper",
+        "tooltip-format" : "Random Wallpaper"
       },
-     
+      
+      "mpris": {
+        "format": "<span foreground='#${base0D}'>{icon}</span> {title} - {artist}", 
+        "format-paused": "<span foreground='#${base0A}'>{icon}</span> {title} - {artist}", 
+        "format-stopped": "<span foreground='#${base08}'>{icon}</span>",
+        "interval": 0,
+        "tooltip": true,
+        "artist-len": 15,
+        "title-len": 25,
+    
+        "format-icons": {
+        "Playing": "",
+        "Paused": "",
+        "Stopped": "",
+        "default": ""   
+      },
+    
+      "on-click": "playerctl play-pause",
+      "on-scroll-up": "playerctl next",
+      "on-scroll-down": "playerctl previous"
+      },
+      
       "custom/power-menu": {
         "tooltip": true,
         "tooltip-format": "Power menu",
         "format": "<span foreground='#${base08}'> </span>",
         "on-click": "power-menu"
       },
-     
+      
       "custom/notification": {
         "tooltip": true,
         "tooltip-format": "Notifications",
@@ -74,27 +96,37 @@ let
         "on-click-right": "swaync-client -d -sw",
         "escape": true
       },
-     
+      
+      "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 80,
+        "format": "<span foreground='#${base09}'> </span>{temperatureC}°C",
+        "format-alt": "<span foreground='#${base09}'> </span>{temperatureF}°F",
+        "tooltip-format": "Temperature: {temperatureC}°C",
+        "on-click-right": "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'"
+      },
+      
       "cpu": {
         "format": "<span foreground='#${color_cpu_icon}'> </span> {usage}%",
         "format-alt": "<span foreground='#${color_cpu_icon}'> </span> {avg_frequency} GHz",
         "interval": 2,
         "on-click-right": "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'"
       },
-     
+      
       "hyprland/workspaces": {
           "on-click": "activate",  
           "format": "{icon}",
           "format-icons": {
-               "active": "󰮯",
-               "default": "",
-               //"empty": ""
-          },
+              "active": "󰮯",
+              "default": "",
+              //"empty": ""
+          }
       },
 
       "hyprland/window": {
         "format": "{}",
         "separate-outputs": true,
+        "max-length": 25,
         "icon": true,
         "icon-size": 18
       },
@@ -108,11 +140,13 @@ let
         "device": "intel_backlight",
         "on-scroll-up": "light -A 1",
         "on-scroll-down": "light -U 1",
-        "format": "<span size='13000' foreground='#${base0D}'>{icon} </span> {percent}%",
-        "format-icons": [
-          "",
-          ""
-        ]
+        "format": "<span foreground='#${base0D}'>{icon}</span>",
+        "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"], 
+        "tooltip-format":"{percent}%" 
+      },
+      "tray": {
+        "icon-size": 16,
+        "spacing": 10
       },
       "clock": {
         "format": "<span foreground='#ecd3a0'> </span> {:%a %d %H:%M}",
@@ -122,27 +156,29 @@ let
       "battery": {
         "states": {
           "warning": 30,
-          "critical": 15,
+          "critical": 15
         },
-        "format": "<span size='13000' foreground='#${base0E}'>{icon} </span>{capacity}%",
-        "format-warning": "<span size='13000' foreground='#${base0E}'>{icon} </span>{capacity}%",
-        "format-critical": "<span size='13000' foreground='#${base08}'>{icon} </span>{capacity}%",
-        "format-charging": "<span size='13000' foreground='#${base0E}'> </span>{capacity}%",
-        "format-plugged": "<span size='13000' foreground='#${base0E}'> </span>{capacity}%",
-        "format-alt": "<span size='13000' foreground='#${base0E}'>{icon} </span>{time}",
-        "format-full": "<span size='13000' foreground='#${base0E}'> </span>{capacity}%",
+        "format": "<span foreground='#${base0E}'>{icon}</span>",
+        "format-warning": "<span foreground='#${base0E}'>{icon}</span>",
+        "format-critical": "<span foreground='#${base08}'>{icon}</span>",
+        "format-charging": "<span foreground='#${base0E}'></span>",
+        "format-plugged": "<span foreground='#${base0E}'></span>",
+        "format-alt": "<span foreground='#${base0E}'>{icon}</span>",
+        "format-full": "<span foreground='#${base0E}'></span>",
         "format-icons": [
           "", "", "", "", ""
         ],
-        "tooltip-format": "{time}",
+        "tooltip-format": "{capacity}%",
         "interval": 5
       },
       "network": {
-        "format-wifi": "<span size='13000' foreground='#5E81AC'>󰖩 </span>{essid}",
-        "format-ethernet": "<span size='13000' foreground='#${base0A}'>󰤭</span> Disconnected",
-        "format-linked": "{ifname} (No IP) 󱚵",
-        "format-disconnected": "<span size='13000' foreground='#fb958b'> </span>Disconnected", 
-        "tooltip-format-wifi": "Signal Strenght: {signalStrength}%",
+        "format-wifi": "<span foreground='#5E81AC'>󰖩</span>",
+        "format-ethernet": "<span foreground='#${base0A}'>󰤭</span>",
+        "format-linked": "󱚵",
+        "format-disconnected": "<span foreground='#fb958b'></span>", 
+        "tooltip-format-wifi": "{essid} \nSignal Strenght: {signalStrength}%",
+        "tooltip-format-ethernet": "Ethernet: {ipaddr}\nInterface: {ifname}",
+        "tooltip-format-disconnected": "Network Disconnected"
         //"on-click": "kitty --class nmtui,nmtui --title=nmtui -o remember_window_size=no -o initial_window_width=400 -o initial_window_height=400 -e doas nmtui"
       },
       "pulseaudio": {
@@ -150,8 +186,8 @@ let
         "on-click-right" : "pavucontrol",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01-",
-        "format": "<span size='13000' foreground='#81A1C1'>{icon} </span>{volume}%",
-        "format-muted": "<span size='13000' foreground='#fb958b'> </span>Muted",
+        "format": "<span foreground='#81A1C1'>{icon}</span>",
+        "format-muted": "<span foreground='#fb958b'></span>",
         "format-icons": {
           "headphone": "󱡏",
           "hands-free": "",
@@ -162,20 +198,19 @@ let
           "default": [
             "󰕿", "󰖀", "󰕾", "󰕾"
           ]
-        }
+        },
+        "tooltip-format":"{volume}%",
+        "tooltip-format-muted": "Volume: Muted"
       },
       "group/meters": {
         "orientation": "inherit",
-        "drawer": {
-          "transition-duration": 500,
-          "transition-left-to-right": false,
-        },
+        "spacing": 10,
         "modules": [
           "battery",
-          "memory",
           "network",
           "pulseaudio",
-          "backlight"
+          "backlight",
+          "custom/notification"
         ]
       }
     '';
@@ -185,7 +220,7 @@ in
     enable = true;
   };
   home.file = {
-    # --- 3. 配置文件：config.jsonc (仅包含主显示器布局) ---
+    # --- 3. Config file: config.jsonc (includes group module config) ---
     ".config/waybar/config.jsonc".text =
       # json
       ''
@@ -196,28 +231,25 @@ in
             "output": "${mainMonitorName}",
             "modules-left": [
               "custom/launcher",
-              "hyprland/workspaces",
-              "clock",
+              "hyprland/workspaces",       
               "cpu",
-              "memory"
+              "memory",
+              "temperature"
             ],
             "modules-center": [
               "hyprland/window"
             ],
             "modules-right": [
               "tray",
-              "network",
-              "pulseaudio",
-              "backlight",
-              "custom/notification",
-              "battery",
+              "group/meters",
+              "clock",
               "custom/power-menu"
             ],
             ${moduleConfiguration}
           }
         ]
       '';
-    # --- 4. 颜色定义：colors.css ---
+    # --- 4. Color definitions: colors.css ---
     ".config/waybar/colors.css".text =
       # css
       ''
@@ -228,6 +260,7 @@ in
         @define-color base0D #${base0D}; /* Charging Grad 2 */
         @define-color base0E #${base0E}; /* Charging Grad 1 */
         @define-color base0F #${color_battery_grad_2}; /* Battery Grad 2 (Cyan) */
+        @define-color base09 #${base09};
         
         @define-color color_waybar_text #${color_waybar_text};
         @define-color color_module_bg #${color_module_bg};
@@ -239,7 +272,7 @@ in
         @define-color color_backlight_text #${color_backlight_text};
         @define-color color_window_bg_alpha #${color_window_bg_alpha};
       '';
-    # --- 5. 托盘样式：tray.css (使用 base00) ---
+    # --- 5. Tray styles: tray.css (using base00) ---
     ".config/waybar/tray.css".text =
       # css
       ''
@@ -247,7 +280,7 @@ in
           background: alpha(@base00, 0.7);
         }
       '';
-     # --- 6. 主样式：style.css (包含所有模块的视觉样式) ---
+     # --- 6. Main styles: style.css (includes visual styles for all modules) ---
     ".config/waybar/style.css".text =
       # css
       ''
@@ -256,12 +289,12 @@ in
         @import "tray.css";
         * {
           /* all: unset; */
-          font-size: 14px;
+          font-size: 15px;
           font-family: "Maple Mono", "lxgw-wenkai";
           min-height: 0;
         }
         window#waybar {
-          background-color: rgba(26, 27, 38, 0.5); /* 目标颜色 */
+          background-color: rgba(26, 27, 38, 0.5); /* target color */
           color: #ffffff;
           transition-property: all;
           transition-duration: 0.5s;
@@ -276,30 +309,52 @@ in
           border-style: solid;
           border-color: @base07;
         }
-        /* --------------------------------- 通用模块样式 (深色背景，圆角，阴影) --------------------------------- */
-        #network,
+        /* --------------------------------- General module styles (dark background, rounded corners, shadows) --------------------------------- */
         #clock,
-        #pulseaudio,
-        #backlight,
         #memory,
         #tray,
+        #meters,
         #cpu,
+        #temperature,
+        #mpris,
         #custom-launcher,
-        #custom-power-menu,
-        #custom-notification
+        #custom-power-menu
         {
           color: @color_waybar_text;
           border-radius: 8px;
-          padding: 2px 10px;
+          padding: 3px 10px;
           background-color: @color_module_bg; 
           margin-left: 4px;
           margin-right: 4px;
           margin-top: 8.5px;
           margin-bottom: 8.5px;
-          
+          font-size: 16px;    
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.377);
         }
-        /* --------------------------------- Hyprland/workspaces 样式 (#workspaces) --------------------------------- */
+        
+        /* --------------------------------- Unified styles within the group (key rules) --------------------------------- */
+        /* Ensure sub-modules in the group (battery, network, pulseaudio, backlight) have no independent background or animation */
+        #meters > * {
+          background-color: transparent;
+          box-shadow: none;
+          margin: 0;
+          padding: 0 3px;
+          border-radius: 0;
+          animation: none;
+          background: none;
+          border: none;
+          font-size: 16px;
+        }
+
+        #meters > * label {
+          font-size: 16px;
+          min-width: 25px;
+          padding: 0;
+          margin: 0;
+          
+        }
+     
+        /* --------------------------------- Hyprland/workspaces styles (#workspaces) --------------------------------- */
         #workspaces {
           background: transparent;
           box-shadow: none;
@@ -327,26 +382,27 @@ in
           background-size: 400% 400%;
           color: @color_workspaces_active;
         }
-        /* --------------------------------- Hyprland/window 样式 (#window) --------------------------------- */
+        /* --------------------------------- Hyprland/window styles (#window) --------------------------------- */
         #window {
           background: transparent;
           box-shadow: none;
-         
-          border: 1px solid @color_workspaces_default; /* 保持线条边框 */
+          
+          border: 1px solid @color_workspaces_default; /* Keep line border */
           border-radius: 10px;
-         
-          padding: 2px 10px;
+          
+          padding: 1px 10px;
           margin-top: 8.5px;
           margin-bottom: 8.5px;
           margin-left: 5px;
           margin-right: 5px;
-         
+          
           color: @color_workspaces_active;
-         
+          
           text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9),
                        -1px -1px 3px rgba(0, 0, 0, 0.9);
-                      
+                        
           transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+
         }
         window#waybar.empty #window {
           border: none;
@@ -354,59 +410,7 @@ in
           background-color: transparent;
           box-shadow: none;
         }
-        /* --------------------------------- battery 样式 (渐变背景) --------------------------------- */
-        #battery {
-          padding: 2px 10px;
-          border-radius: 10px;
-          box-shadow: 1px 2px 2px #101010;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.377);
-          margin-top: 8.5px;
-          margin-bottom: 8.5px;
-          margin-left: 5px;
-          margin-right: 5px;
-         
-          background: @base0F;
-          background: linear-gradient(
-            118deg,
-            @base0B 5%, @base0F 5%,
-            @base0F 20%, @base0B 20%,
-            @base0B 40%, @base0F 40%,
-            @base0F 60%, @base0B 60%,
-            @base0B 80%, @base0F 80%,
-            @base0F 95%, @base0B 95%
-          );
-          background-size: 200% 300%;
-          animation: gradient_f_nh 4s linear infinite;
-          color: @base01;
-        }
-        #battery.charging,
-        #battery.plugged {
-          background: linear-gradient(
-            118deg,
-            @base0E 5%, @base0D 5%,
-            @base0D 20%, @base0E 20%,
-            @base0E 40%, @base0D 40%,
-            @base0D 60%, @base0E 60%,
-            @base0E 80%, @base0D 80%,
-            @base0D 95%, @base0E 95%
-          );
-          background-size: 200% 300%;
-          animation: gradient_rv 4s linear infinite;
-        }
-        #battery.full {
-          background: linear-gradient(
-            118deg,
-            @base0E 5%, @base0D 5%,
-            @base0D 20%, @base0E 20%,
-            @base0E 40%, @base0D 40%,
-            @base0D 60%, @base0E 60%,
-            @base0E 80%, @base0D 80%,
-            @base0D 95%, @base0E 95%
-          );
-          background-size: 200% 300%;
-          animation: gradient_rv 20s linear infinite;
-        }
-       
+        
         #tray > .passive {
           -gtk-icon-effect: dim;
         }
@@ -420,6 +424,10 @@ in
         #memory {
           color: @color_memory_icon;
         }
+        
+        #temperature {
+          color: @base09; /* 确保模块主文本是通用白色 */
+        }
 
         #backlight {
           color: @color_backlight_text;
@@ -432,8 +440,11 @@ in
         #custom-power-menu {
           color: @color_power_menu_icon;
         }
+        #meters {
+          padding: 3px 10px;
+      }
       '';
-    # --- 7. 动画样式：animation.css ---
+    # --- 7. Animation styles: animation.css ---
     ".config/waybar/animation.css".text =
       # css
       ''

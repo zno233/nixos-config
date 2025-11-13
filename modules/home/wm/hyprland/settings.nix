@@ -16,7 +16,7 @@
       mouse_refocus = 0;
       sensitivity = 0;
       touchpad = {
-        natural_scroll = true;
+        natural_scroll = false;
       };
     };
     
@@ -65,7 +65,7 @@
     };
 
     decoration = {
-      rounding = 18;
+      rounding = 5;
 
       blur = {
         enabled = true;

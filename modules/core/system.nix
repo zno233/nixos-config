@@ -72,6 +72,7 @@
       rime-data
       fcitx5-gtk
       libsForQt5.fcitx5-qt
+      fcitx5-lua
     ];
   };
 
@@ -81,6 +82,8 @@
     XMODIFIERS = "@im=fcitx";
     INPUT_METHOD = "fcitx5";
   };
+  
+  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
   # ------------------------------------------------------------------------
   # 字体配置

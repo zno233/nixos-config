@@ -29,6 +29,7 @@
     translate-shell                   # cli translator
     woomer
     yt-dlp-light
+    light
 
     ## TUI
     epy                               # ebook reader
@@ -41,7 +42,8 @@
     htop
     onefetch                          # fetch utility for git repo
     wavemon                           # monitoring for wireless network devices
-
+    lm_sensors
+    
     ## Fun / screensaver
     asciiquarium-transparent
     cbonsai
@@ -60,6 +62,9 @@
     imv
     lowfi
     mpv
+    
+    # Waybar 媒体控制依赖
+    playerctl
 
     ## Utilities
     entr                              # perform action when file change
