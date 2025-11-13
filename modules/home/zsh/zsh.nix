@@ -174,6 +174,9 @@
         zle -N zle-line-init
         zle -N zle-line-finish
       fi
+
+      #  Run Fastfetch on Zsh startup
+      fastfetch
     '';
   };
 
