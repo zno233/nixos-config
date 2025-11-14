@@ -11,8 +11,8 @@
 
       # keybindings
       "$mainMod, Return, exec, ghostty --gtk-single-instance=true"
-      "ALT, Return, exec, [float; size 1111 700] ghostty"
-      "$mainMod SHIFT, Return, exec, [fullscreen] ghostty"
+      "ALT, Return, exec, [float; size 1111 700] kitty"
+      "$mainMod SHIFT, Return, exec, [fullscreen] kitty"
       "$mainMod, B, exec, [workspace 1 silent] zen-beta"
       "$mainMod, Q, killactive,"
       "$mainMod, F, fullscreen, 0"

@@ -15,6 +15,11 @@
       font_features MapleMono-Bold +ss01 +ss02 +ss04
       font_features MapleMono-Italic +ss01 +ss02 +ss04
       font_features MapleMono-Light +ss01 +ss02 +ss04
+      
+      cursor_trail 3
+      cursor_trail_decay 0.1 0.4
+      cursor_trail_start_threshold 2
+      cursor_trail_color none
     '';
 
     settings = {
@@ -35,6 +40,7 @@
       active_tab_background = "#7C6F64";
       inactive_tab_foreground = "#FBF1C7";
       inactive_tab_background = "#3C3836";
+      
     };
 
     keybindings = {
