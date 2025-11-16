@@ -18,9 +18,11 @@
   ];
 
   services = {
+    #intel温控
+    thermald.enable = true;
+  
     # 已注释 power-profiles-daemon，避免与 TLP 冲突，这是正确的做法。
     # power-profiles-daemon.enable = true;
-
     upower = {
       enable = true;
       percentageLow = 20;
