@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    #microsoft-edge 
     tsukimi                     #emby
     #tauon                       #local music player
     qbittorrent-enhanced        #bt
@@ -19,6 +18,8 @@
     wpsoffice-cn
     snipaste
     google-chrome
+    #microsoft-edge 
     font-manager
+    localsend
   ];
 }
