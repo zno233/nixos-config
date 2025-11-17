@@ -3,8 +3,7 @@
   wayland.windowManager.hyprland.settings.exec-once = [
     # D-Bus/Systemd 环境变量：保留，确保 Wayland/QT/Electron 应用正常运行
     "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-    "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-    "systemctl --user import-environment QT_SCALE_FACTOR ELECTRON_OZONE_PLATFORM_HINT"
+    "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP GDK_BACKEND QT_QPA_PLATFORM QT_AUTO_SCREEN_SCALE_FACTOR QT_QPA_PLATFORMTHEME QT_WAYLAND_DISABLE_WINDOWDECORATION ELECTRON_OZONE_PLATFORM_HINT NIXOS_OZONE_WL MOZ_ENABLE_WAYLAND SDL_VIDEODRIVER CLUTTER_BACKEND _JAVA_AWT_WM_NONREPARENTING"
 
     # Caelestia Shell 通常包含自己的锁屏逻辑，故注释掉
      "hyprlock" 
@@ -33,7 +32,7 @@
 
     # 应用启动
     "ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
-    #"[workspace 1 silent] zen-beta"
+    "[workspace 1 silent] google-chrome-stable"
     "[workspace 2 silent] kitty"
     
     # 启动 Caelestia Shell

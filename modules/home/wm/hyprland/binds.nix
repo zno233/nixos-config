@@ -13,7 +13,7 @@
       "$mainMod, Return, exec, ghostty --gtk-single-instance=true"
       "ALT, Return, exec, [float; size 1111 700] kitty"
       "$mainMod SHIFT, Return, exec, [fullscreen] kitty"
-      "$mainMod, B, exec, [workspace 1 silent] zen-beta"
+      "$mainMod, B, exec, [workspace 1 silent] google-chrome-stable"
       "$mainMod, Q, killactive,"
       "$mainMod, F, fullscreen, 0"
       "$mainMod SHIFT, F, fullscreen, 1"
