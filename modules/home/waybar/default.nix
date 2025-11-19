@@ -4,6 +4,6 @@
     #./waybar.nix
     #./settings.nix
     #./style.nix
-    ./3.nix
+    ./2.nix
   ];
 }
