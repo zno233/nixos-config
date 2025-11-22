@@ -1,0 +1,7 @@
+{ ... }:
+{
+  imports = [
+    ./de
+    ./programs
+  ];
+}

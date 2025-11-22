@@ -1,0 +1,19 @@
+{
+  "name": "crystal_clean",
+  "displayName": "Crystal Clean - by 1kick234too",
+  "description": "A minimalistic blocky theme, inspired by Consistently Cubed and The Inconvenient Platformer",
+  "version": "1.0",
+  "author": { "name": "1kick234too", "email": "ethan_orcut88403@yahoo.com", "url": "https://ko-fi.com/1kick234too" },
+  "publisher": "1kick234too",
+  "license": "CC-BY-4.0",
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      { "id": "evening-emerald", "path": ".", "variant": "Evening Emerald" },
+      { "id": "midnight-diamond", "path": "./midnight-diamond", "variant": "Midnight Diamond" },
+      { "id": "afternoon-amethyst", "path": "./afternoon-amethyst", "variant": "Afternoon Amethyst" }
+    ]
+  }
+}
