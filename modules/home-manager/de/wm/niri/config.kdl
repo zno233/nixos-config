@@ -68,7 +68,7 @@ layout {
     }
     // Set gaps around windows in logical pixels. (设置窗口周围的间隙，以逻辑像素为单位。)
     gaps 8
-    background-color "rgb(60, 56, 54)"
+    background-color "transparent"
     center-focused-column "never"
 
     preset-column-widths { // 你可以通过按 (Mod+R) 来更改列的宽度。
@@ -351,6 +351,8 @@ window-rule { // 浮动窗口
     match app-id="xdg-desktop-portal-gtk"
     match app-id="waypaper"
     match app-id="mpv"
+    match app-id="wechat"
+    match app-id="imv"
     open-floating true
     // opacity 0.8
 }
@@ -423,16 +425,10 @@ overview {
 }
 
 layer-rule {
-    // 桌面壁纸
-    match namespace="^wallpaper$"
+    // 壁纸
+    match namespace="^wallpaper|swww-daemon$"
     place-within-backdrop true
 }
-
-//layer-rule {
-    // 概览视图（backdrop）壁纸
- //   match namespace="^swww-daemon$"
- //   place-within-backdrop true
-//}
 
 environment {
     // XDG/桌面环境标识符
