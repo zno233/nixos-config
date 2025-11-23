@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs = {
+    xwayland.enable = true;
     dconf.enable = true;
     zsh.enable = true;
 
@@ -10,7 +11,6 @@
       # pinentryFlavor = "";
     };
 
-    xwayland.enable = true;
     nix-ld.enable = true;
     nix-ld.libraries = with pkgs; [ ];
   };

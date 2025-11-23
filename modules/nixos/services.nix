@@ -24,8 +24,7 @@
       };
     };
 
-    udisks2.enable = true;
-    
+    udisks2.enable = true;   
     seatd.enable = true;
   };
 }

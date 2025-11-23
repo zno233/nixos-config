@@ -24,8 +24,8 @@
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "critical-threshold": 80,
-    "format": "<span> </span>{temperatureC}°C",
-    "format-alt": "<span> </span>{temperatureF}°F",
+    "format": "{temperatureC}°C <span></span>",
+    "format-alt": "{temperatureF}°F <span></span>",
     "tooltip-format": "Temperature: {temperatureC}°C",
     "on-click-right": "kitty btop"
    },

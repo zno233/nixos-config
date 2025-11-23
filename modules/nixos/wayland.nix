@@ -1,24 +1,20 @@
 { pkgs, ... }:
-{
 
+{
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
+
     config = {
-      common.default = [ "gtk" ];
-      hyprland.default = [
-        "gtk"
-        "hyprland"
-      ];
-      wlroots.default = [ 
-      "gtk"
-      "wlr" 
-      ];
+      common.default = [ "gtk" "gnome" ];
+      hyprland.default = [ "gtk" "hyprland" ];
+      niri.default = [ "gtk" "gnome" ];
     };
 
-    extraPortals = with pkgs; [ 
+    extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gnome
     ];
   };
 }
+

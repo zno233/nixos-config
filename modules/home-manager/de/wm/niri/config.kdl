@@ -6,7 +6,7 @@ input {
         }
         numlock
     }
-
+        
     touchpad {
         // off (关闭)
         tap
@@ -14,7 +14,7 @@ input {
         // dwtp (禁用输入时移动和指针)
         // drag false (拖动禁用)
         // drag-lock (拖动锁定)
-        natural-scroll
+        //natural-scroll
         // accel-speed 0.2 (加速度)
         // accel-profile "flat" (加速度配置文件)
         // scroll-method "two-finger" (滚动方法)
@@ -41,7 +41,8 @@ input {
     }
 
     // warp-mouse-to-focus (将鼠标定位到焦点窗口)
-    // focus-follows-mouse max-scroll-amount="0%" (焦点跟随鼠标)
+    // focus-follows-mouse (焦点跟随鼠标)
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 output "eDP-1" {
@@ -50,7 +51,6 @@ output "eDP-1" {
     //transform "normal"
     scale 1.5
     position x=0 y=0
-    focus-at-startup
 }
 
 /-output "HDMI-A-1" {
@@ -59,7 +59,6 @@ output "eDP-1" {
    // mode "2560x1080@60.000"
     position x=-1366 y=0
 }
-
 layout {
     /-blur {
       // on (开启)
@@ -96,10 +95,10 @@ layout {
 
     shadow {
         on
-        softness 30
-        spread 5
+        softness 15
+        spread 2
         offset x=0 y=5
-        color "#0007"
+        color "#00000044"
     }
 }
 
@@ -109,12 +108,16 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
     // off (关闭)
-    slowdown 1.65
+    slowdown 2
 }
 
 window-rule {
     geometry-corner-radius 10
     clip-to-geometry true
+}
+
+hotkey-overlay {
+    skip-at-startup
 }
 
 binds {
@@ -306,10 +309,9 @@ binds {
 
     // ========================= 截图 =========================
 
-    Print       { screenshot; }
-    Ctrl+Print  { screenshot-screen; }
-    Alt+Print   { screenshot-window; }
-
+    Print                    { screenshot; }         // 全屏
+    Mod+Print                { screenshot-screen; } // 当前输出
+    Ctrl+Print               { screenshot-window; } // 当前窗口
 
     // ========================= 滚动绑定 =========================
 
@@ -348,8 +350,17 @@ window-rule { // 浮动窗口
     match app-id="org.pulseaudio.pavucontrol"
     match app-id="xdg-desktop-portal-gtk"
     match app-id="waypaper"
+    match app-id="mpv"
     open-floating true
     // opacity 0.8
+}
+
+window-rule {
+    match title="btop++"
+    match app-id="btop"
+    open-floating true
+    default-column-width { fixed 1000; }
+    default-window-height { proportion 0.7; }
 }
 
 window-rule { // 终端
@@ -360,7 +371,7 @@ window-rule { // 终端
 
 window-rule { // waypaper
     match app-id="waypaper"
-    default-window-height {fixed 440; }
+    default-window-height {fixed 660; }
     default-column-width {fixed 850; }
     open-floating true
 //    opacity 0.8
@@ -387,7 +398,7 @@ spawn-at-startup "nm-applet"           // 网络管理器 Applet
 spawn-at-startup "poweralertd"         // 电源警报守护进程
 spawn-at-startup "blueman-applet"      // 蓝牙 Applet
 spawn-at-startup "udiskie --automount --notify --smart-tray" // 磁盘挂载工具
-spawn-at-startup "swaync"              // 通知中心
+spawn-at-startup "swaynsc"              // 通知中心
 spawn-at-startup "swww-daemon"
 spawn-at-startup "init-wallpaper"      // 启动壁纸设置脚本/程序 (如果需要)
 
@@ -396,9 +407,16 @@ overview {
 }
 
 layer-rule {
+    // 桌面壁纸
     match namespace="^wallpaper$"
     place-within-backdrop true
 }
+
+//layer-rule {
+    // 概览视图（backdrop）壁纸
+ //   match namespace="^swww-daemon$"
+ //   place-within-backdrop true
+//}
 
 environment {
     // XDG/桌面环境标识符
@@ -406,16 +424,11 @@ environment {
     XDG_SESSION_TYPE "wayland"
     XDG_SESSION_DESKTOP "niri"
 
-    // Wayland 通用设置 (从 Hyprland 复制)
-    GDK_BACKEND "wayland,x11"
-    SDL_VIDEODRIVER "wayland,x11"
-    CLUTTER_BACKEND "wayland"
 
     // Qt 应用设置
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "qt6ct"
     QT_QPA_PLATFORMTHEME_5 "qt5ct"
-    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     QT_AUTO_SCREEN_SCALE_FACTOR "1" // 启用 HiDPI 缩放
 
     // Electron (VSC) 和 Firefox 设置
@@ -425,4 +438,5 @@ environment {
     
     // Java 应用设置
     _JAVA_AWT_WM_NONREPARENTING "1"
+    
 }

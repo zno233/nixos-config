@@ -43,7 +43,6 @@
   environment.systemPackages = with pkgs; [
     wget
     git
-    xwayland
   ];
 
   time.timeZone = "Asia/Shanghai";
@@ -76,13 +75,15 @@
       fcitx5-lua
     ];
   };
+  
+  environment.variables = {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    INPUT_METHOD = "fcitx5";
+  };
 
-  /* environment.variables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-    INPUT_METHOD = "fcitx5";
-  }; */
+  
   
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
