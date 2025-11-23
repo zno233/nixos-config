@@ -382,6 +382,22 @@ window-rule { // 移除所有窗口的边框背景 + 透明度
 //    opacity 0.89
 }
 
+window-rule {
+    match app-id="google-chrome"
+    match app-id="obsidian"
+    match app-id="code" 
+    match app-id="org.telegram.desktop"
+    match app-id="moe.tsuna.tsukimi"
+    // 设置默认列宽度为 100% (占据整个屏幕)
+    default-column-width { proportion 1.0; }
+    
+    // 如果你想要浮动窗口，保留这个
+    // open-floating true
+    
+    // 如果你想要窗口占据整个屏幕高度，可以加上
+    // default-window-height { proportion 1.0; }
+}
+
 // niri 启动时运行的程序
 // 后台守护进程 (使用 spawn-sh-at-startup 启动需要 & 的服务)
 spawn-sh-at-startup "wl-clip-persist --clipboard both &" // 剪贴板持久化
