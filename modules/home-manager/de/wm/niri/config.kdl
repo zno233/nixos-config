@@ -358,11 +358,11 @@ window-rule { // 浮动窗口
 }
 
 window-rule {
-    match title="btop++"
-    match app-id="btop"
+    match title="btop"
+    match app-id="kitty"
     open-floating true
-    default-column-width { fixed 1000; }
-    default-window-height { proportion 0.7; }
+    //default-column-width { fixed 1000; }
+    //default-window-height { proportion 0.7; }
 }
 
 window-rule { // 终端
@@ -390,6 +390,7 @@ window-rule {
     match app-id="code" 
     match app-id="org.telegram.desktop"
     match app-id="moe.tsuna.tsukimi"
+    match app-id="QQ"
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }
     

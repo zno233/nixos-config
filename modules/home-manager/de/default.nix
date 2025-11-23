@@ -7,7 +7,7 @@
     #./caelestia.nix
     #./fish.nix
     ./fastfetch/fastfetch.nix         # fetch tool
-    #./fzf.nix                         # fuzzy finder
+    ./fzf.nix                         # fuzzy finder
     ./ghostty/ghostty.nix             # terminal
     ./gnome.nix                       # gnome apps
     ./gtk.nix                         # gtk theme
