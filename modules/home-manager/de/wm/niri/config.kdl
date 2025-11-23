@@ -144,8 +144,9 @@ binds {
     Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
     Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "gtklock"; }
     Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
-    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "zeditor $HOME/.config/niri/config.kdl"; }
-
+    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/.config/niri/config.kdl"; }
+    Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
+    
     // ========================= 音量控制 =========================
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "5"; }
@@ -359,7 +360,6 @@ window-rule { // 浮动窗口
 
 window-rule {
     match title="btop"
-    match app-id="kitty"
     open-floating true
     //default-column-width { fixed 1000; }
     //default-window-height { proportion 0.7; }
@@ -368,7 +368,7 @@ window-rule {
 window-rule { // 终端
     match app-id="kitty"
 //   opacity 0.80
- //  default-column-width { fixed 850; }
+   default-column-width { fixed 1000; }
 }
 
 window-rule { // waypaper

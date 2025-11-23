@@ -51,12 +51,15 @@ window#waybar.hidden {
     padding-right: 2px;
 }
 
-#niri-window button {
-    margin-left: 3px;
-    border-radius: 12px;
+#niri-window {
+    margin-right: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 12px;
     transition: all 0.3s;
-    background: #383c4a;
     color: @white;
+    background: @black;
+    border-bottom: 3px solid @orange;
 }
 
 #workspaces button {
@@ -225,7 +228,29 @@ window#waybar.hidden {
     margin-right: 14px;
 }
 
+#mpris {
+    margin-right: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 12px;
+    transition: none;
+    color: @white;
+    background: @black;
+    border-bottom: 3px solid @orange;
+}
+
 /*
+#custom-cava {
+    margin-right: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 12px;
+    transition: none;
+    color: @white;
+    background: @black;
+    border-bottom: 3px solid @orange;
+}
+
 #pulseaudio {
     margin-right: 5px;
     padding-left: 10px;

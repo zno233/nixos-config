@@ -9,9 +9,9 @@
   "position": "top",
   "spacing": 3,
 
-  "modules-left": ["custom/menu", "niri/workspaces", "niri/window"],
+  "modules-left": ["custom/menu", "niri/workspaces", "niri/window" ],
   "modules-center": ["clock"],
-  "modules-right": ["cpu", "memory", "temperature", "battery", "tray", "group/anln","custom/power-menu"],
+  "modules-right": ["mpris", "cpu", "memory", "temperature", "battery", "tray", "group/anln","custom/power-menu"],
   "group/anln": {
     "orientation": "horizontal",
     "modules": [
@@ -20,7 +20,28 @@
       "custom/notification",
     ],
   },
-
+  //多媒体
+  "mpris": {
+    "format": "{player_icon}",
+    "format-paused": "{status_icon}",
+    "player-icons": {
+      "default": "",
+    },
+    "status-icons": {
+      "paused": "",
+    },
+    "toooltip": "{dynamic}",
+    "enable-tooltip-len-limits": true,
+  },
+  
+  //音频可视化
+  //"custom/cava": {
+   // "exec": "$HOME/.config/waybar/scripts/cava-waybar.sh",
+   // "return-type": "plain",
+  //  "interval": 100,
+  //  "escape": false
+  //},
+  
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "critical-threshold": 80,

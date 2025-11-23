@@ -21,7 +21,7 @@
     ./swaylock.nix                    # lock screen
     ./swayosd.nix                     # brightness / volume wiget
     ./swaync/swaync.nix               # notification deamon
-    ./vicinae/vicinae.nix             # launcher
+    #./vicinae/vicinae.nix             # launcher
     ./waybar                          # status bar
     ./waypaper.nix                    # GUI wallpaper picker
     ./wm                              # window manager
