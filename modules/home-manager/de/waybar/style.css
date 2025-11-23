@@ -51,7 +51,7 @@ window#waybar.hidden {
     padding-right: 2px;
 }
 
-#niri-window {
+#niri-window button {
     margin-right: 3px;
     padding-left: 10px;
     padding-right: 10px;
