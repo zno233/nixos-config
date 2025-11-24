@@ -59,34 +59,7 @@
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
   };
-
-  # ------------------------------------------------------------------------
-  # 输入法配置 (Fcitx5)
-  # ------------------------------------------------------------------------
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      qt6Packages.fcitx5-chinese-addons
-      fcitx5-rime
-      rime-data
-      fcitx5-gtk
-      libsForQt5.fcitx5-qt
-      fcitx5-lua
-    ];
-  };
   
-  environment.variables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-    INPUT_METHOD = "fcitx5";
-  };
-
-  
-  
-  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
-
   # ------------------------------------------------------------------------
   # 字体配置
   # ------------------------------------------------------------------------

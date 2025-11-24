@@ -61,7 +61,6 @@
     ## Multimedia
     imv
     lowfi
-    mpv
     
     # Waybar 媒体控制依赖
     playerctl
