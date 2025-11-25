@@ -10,7 +10,7 @@
     # 将 VA-API 包和 Mesa (OpenGL/Vulkan) 包合并到同一个 extraPackages 列表
     extraPackages = with pkgs; [
       intel-media-driver               # VA-API
-      intel-vaapi-driver               # VA-API
+      #intel-vaapi-driver               # VA-API
       libvdpau-va-gl                   # VA-API
 
       mesa                             # OpenGL/Vulkan 驱动 (替代旧的 hardware.opengl.extraPackages)
