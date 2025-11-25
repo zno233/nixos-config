@@ -146,6 +146,7 @@ binds {
     Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/.config/niri/config.kdl"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
+    Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
     
     // ========================= 音量控制 =========================
 
