@@ -10,8 +10,8 @@
   "spacing": 3,
 
   "modules-left": ["custom/menu", "niri/workspaces", "niri/window" ],
-  "modules-center": ["clock"],
-  "modules-right": ["mpris", "cpu", "memory", "temperature", "battery", "tray", "group/anln","custom/power-menu"],
+  "modules-center": ["mpris","clock"],
+  "modules-right": ["cpu", "memory", "temperature", "battery", "tray", "group/anln","custom/power-menu"],
   "group/anln": {
     "orientation": "horizontal",
     "modules": [

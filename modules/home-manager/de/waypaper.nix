@@ -7,7 +7,7 @@
     language = en
     folder = ~/Pictures/wallpapers/others
     monitors = All
-    wallpaper = ~/Pictures/wallpapers/others/red.jpg
+    wallpaper = ~/Pictures/wallpapers/others/Kita.png
     backend = swww
     fill = fill
     sort = name

@@ -421,7 +421,7 @@ spawn-at-startup "blueman-applet"      // 蓝牙 Applet
 spawn-at-startup "udiskie --automount --notify --smart-tray" // 磁盘挂载工具
 spawn-at-startup "swaynsc"              // 通知中心
 spawn-at-startup "swww-daemon"
-spawn-at-startup "init-wallpaper"      // 启动壁纸设置脚本/程序 (如果需要)
+//spawn-at-startup "init-wallpaper"      // 初始化壁纸脚本
 
 overview {
      zoom 0.6
