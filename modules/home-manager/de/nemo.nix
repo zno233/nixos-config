@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ nemo ];
+  home.packages = with pkgs; [ nemo-with-extensions ];
 
   dconf.settings = {
     "org/nemo/preferences" = {

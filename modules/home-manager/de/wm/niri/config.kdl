@@ -128,7 +128,6 @@ binds {
     Mod+Shift+E { quit; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+Escape hotkey-overlay-title="电源菜单" { spawn "power-menu"; }
-    // 恢复并修正 Ctrl+Alt+Delete (虽然用户只要求 Fix 1, 2，但此行必须修复，否则会执行不存在的 nwg-bar 或缺失)
     Ctrl+Alt+Delete { spawn "power-menu"; } 
 
     Mod+Shift+P { power-off-monitors; } // 关闭显示器
@@ -142,10 +141,11 @@ binds {
     Mod+E hotkey-overlay-title="文件管理器: nemo" { spawn "nemo"; }
     Alt+E hotkey-overlay-title="浮动文件管理器: nemo" { spawn "nemo"; }
     Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
-    Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "gtklock"; }
+    Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
     Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
     Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/.config/niri/config.kdl"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
+    Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
     
     // ========================= 音量控制 =========================
 

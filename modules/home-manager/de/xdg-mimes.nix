@@ -2,14 +2,14 @@
 with lib;
 let
   defaultApps = {
-    text = [ "org.gnome.TextEditor.desktop" ];
+    text = [ "code.desktop" ];
     image = [ "imv-dir.desktop" ];
-    audio = [ "mpv.desktop" ];
+    audio = [ "org.fooyin.fooyin" ];
     video = [ "mpv.desktop" ];
     directory = [ "nemo.desktop" ];
     office = [ "libreoffice.desktop" ];
     pdf = [ "org.gnome.Evince.desktop" ];
-    terminal = [ "ghostty.desktop" ];
+    terminal = [ "kitty.desktop" ];
     archive = [ "org.gnome.FileRoller.desktop" ];
     discord = [ "webcord.desktop" ];
   };
