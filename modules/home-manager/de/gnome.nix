@@ -6,6 +6,7 @@
       evince # pdf
       file-roller # archive
       gnome-text-editor # gedit
+      nautilus
     ]
   );
 

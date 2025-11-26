@@ -5,6 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
+    # 最新 stable 分支的 nixpkgs，用于回退个别软件包的版本
+    # 当前最新版本为 25.05
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,13 +56,19 @@
   };
 
   outputs =
-    { nixpkgs, self, ... }@inputs:
+    { nixpkgs, self, nixpkgs-stable, ... }@inputs:
     let
       username = "zno";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+      };
+      pkgs-stable = import nixpkgs-stable {
+            inherit system;
+            # 为了拉取 chrome 等软件包，
+            # 这里我们需要允许安装非自由软件
+            config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
     in
@@ -69,7 +79,7 @@
           modules = [ ./hosts/desktop ];
           specialArgs = {
             host = "desktop";
-            inherit self inputs username;
+            inherit self inputs username pkgs-stable;
           };
         };
         laptop = nixpkgs.lib.nixosSystem {
@@ -77,7 +87,7 @@
           modules = [ ./hosts/laptop ];
           specialArgs = {
             host = "laptop";
-            inherit self inputs username;
+            inherit self inputs username pkgs-stable;
           };
         };
         vm = nixpkgs.lib.nixosSystem {
@@ -85,7 +95,7 @@
           modules = [ ./hosts/vm ];
           specialArgs = {
             host = "vm";
-            inherit self inputs username;
+            inherit self inputs username pkgs-stable;
           };
         };
       };

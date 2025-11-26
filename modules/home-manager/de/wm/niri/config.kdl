@@ -435,11 +435,6 @@ layer-rule {
 }
 
 environment {
-    // XDG/桌面环境标识符
-    XDG_CURRENT_DESKTOP "niri" 
-    XDG_SESSION_TYPE "wayland"
-    XDG_SESSION_DESKTOP "niri"
-
     // Qt 应用设置
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "qt6ct"
@@ -453,5 +448,12 @@ environment {
     
     // Java 应用设置
     _JAVA_AWT_WM_NONREPARENTING "1"
+
+    //
+    WLR_RENDERER "vulkan"
     
+    //输入法
+    XIM "fcitx"
+    GTK_IM_MODULE "fcitx"
+    QT_IM_MODULE "fcitx"
 }

@@ -12,7 +12,6 @@
     calibre
     vscode
     aria2
-    fooyin                     #like FB2K
     android-studio 
     spotify
     wpsoffice-cn

@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-stable, ... }:
 {
-  home.packages = with pkgs; [
-    tsukimi                     #emby
-    fooyin                     #like FB2K
-    spotify
-    mpv
+  home.packages = [
+    pkgs.tsukimi
+    pkgs-stable.fooyin # like fb2k
+    pkgs.spotify
+    pkgs.mpv
   ];
 }

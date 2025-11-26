@@ -6,13 +6,13 @@
     config = {
       common = {
         # Use xdg-desktop-portal-gtk for every portal interface...
-        default = [
-          "gtk"
-          "gnome"
-        ];
+        default = ["gnome" "gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+        "org.freedesktop.impl.portal.Screenshot" = "gnome";
+        "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
       };
-      hyprland.default = [ "gtk" "hyprland" ];
-      niri.default = [ "gtk" "gnome" ];
+      #hyprland.default = [ "gtk" "hyprland" ];
+      #niri.default = [ "gtk" "gnome"];
     };
 
     # Sets environment variable NIXOS_XDG_OPEN_USE_PORTAL to 1
