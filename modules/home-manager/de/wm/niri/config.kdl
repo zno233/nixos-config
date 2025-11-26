@@ -51,6 +51,7 @@ output "eDP-1" {
     //transform "normal"
     scale 1.5
     position x=0 y=0
+    //focus-at-startup
 }
 
 /-output "HDMI-A-1" {
@@ -132,7 +133,6 @@ binds {
 
     Mod+Shift+P { power-off-monitors; } // 关闭显示器
 
-
     // ========================= 启动应用程序 =========================
 
     Mod+Return hotkey-overlay-title="终端: kitty" { spawn "kitty"; }
@@ -147,7 +147,8 @@ binds {
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
     Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
-    
+    Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn "hyprpicker"; }
+
     // ========================= 音量控制 =========================
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "5"; }

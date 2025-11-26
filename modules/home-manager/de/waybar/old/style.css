@@ -1,0 +1,286 @@
+@import "../omarchy/current/theme/waybar.css";
+
+/* ============================================
+   Variables
+   ============================================ */
+/* @define-color active #f5a97f; */
+@define-color active #E6C384;
+@define-color button-background #2A2A37;
+
+/* ============================================
+   Global Styles
+   ============================================ */
+* {
+  border-radius: 0;
+  font-family: "Hack Nerd Font";
+  min-height: 0;
+}
+
+
+/* ============================================
+   Container Styles
+   ============================================ */
+#waybar {
+  background-color: @background;
+  border: 2px solid shade(@background, 0.8);
+}
+
+.modules-left {
+  /* background-color: @background; */
+  font-size: 14px;
+}
+
+.modules-center {
+  /* background-color: @background; */
+}
+.modules-right {
+  /* background-color: @background; */
+  color: @foreground;
+  font-size: 13px;
+}
+
+/* ============================================
+   Workspaces
+   ============================================ */
+#workspaces {
+  font-size: 15px;
+  margin-bottom: 1px;
+}
+
+
+#workspaces button:hover {
+  background: none;
+  color: shade(@foreground, 1.1);
+  box-shadow: none;
+  text-shadow: none;
+  transition: none;
+}
+
+
+#workspaces button {
+  color: @foreground;
+  min-width: 8px;
+  padding: 0 5px;
+}
+
+#workspaces button.active {
+  color: @active;
+  font-weight: bold;
+}
+
+#workspaces button.active:hover {
+  color: shade(@active, 1.15);
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
+/* ============================================
+   System Modules
+   ============================================ */
+#temperature.cpu,
+#battery,
+#bluetooth,
+#mpris,
+#network,
+#wireplumber,
+#idle_inhibitor,
+#custom-dnd,
+#custom-vpn {
+  background-color: @button-background;
+  border: 1px solid shade(@background, 0.8);
+  margin: 6px 3px;
+  min-width: 10px;
+  padding: 1px 6px;
+}
+
+#temperature.cpu:hover,
+#battery:hover,
+#bluetooth:hover,
+#mpris:hover,
+#idle_inhibitor:hover,
+#network:hover,
+#wireplumber:hover,
+#custom-dnd:hover,
+#custom-vpn:hover {
+  color: shade(@foreground, 1.05);
+  background-color: shade(@button-background, 1.1);
+}
+
+#wireplumber.volume {
+  padding-right: 10px;
+}
+
+/* Mic specific */
+#wireplumber.microphone.muted {
+  background-color: #8b4d36;
+}
+
+/* Battery specific */
+#battery.discharging.critical {
+  background-color: #9b1010;
+}
+
+#battery.discharging.critical:hover {
+  color: shade(@foreground, 1.05);
+  background-color: shade(#9b1010, 0.9);
+}
+
+#battery.discharging.warning {
+  background-color: #b47621;
+}
+
+#battery.discharging.warning:hover {
+  color: shade(@foreground, 1.05);
+  background-color: shade(#b47621, 0.9);
+}
+
+/* Idle inhibitor specific */
+#idle_inhibitor.deactivated {
+  padding-right: 9px;
+}
+
+#idle_inhibitor.activated {
+  /* padding-left: 7px; */
+  padding-right: 9px;
+  background-color: #7d5e4c;
+}
+
+/* Do not disturb specific */
+
+#custom-dnd.dnd-off {
+  padding-right: 8px;
+}
+
+#custom-dnd.dnd-on {
+  padding-left: 5px;
+  padding-right: 9px;
+  background-color: #535397;
+}
+
+#custom-vpn.vpn-off {
+  /* padding-left: 5px; */
+  padding-right: 9px;
+}
+
+#custom-vpn.vpn-on {
+  /* padding-left: 5px; */
+  padding-right: 8px;
+}
+
+#mpris {
+  padding: 9px;
+}
+
+#network.wifi,
+#network.disconnected {
+  padding-right: 9px;
+}
+
+#temperature.cpu {
+  padding-right: 9px;
+}
+
+/* ============================================
+   Clock
+   ============================================ */
+#clock {
+  color: @foreground;
+  /* font-size: 14px; */
+  margin: 1px 10px 0 6px;
+}
+
+#clock:hover {
+  color: shade(@foreground, 1.05);
+}
+
+/* ============================================
+   Separator
+   ============================================ */
+#custom-sep {
+  margin-left: 2px;
+  margin-bottom: 2px;
+}
+
+/* ============================================
+   Window
+   ============================================ */
+#window {
+  color: @foreground;
+  margin: 0 4px;
+}
+
+/* ============================================
+   Tray
+   ============================================ */
+#tray-expand {
+  margin: 0 2px;
+}
+
+#custom-expand-icon {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 4px 5px 4px;
+}
+
+#tray {
+  padding: 0 8px;
+  margin-top: 2px;
+}
+
+/* ============================================
+   Custom Modules
+   ============================================ */
+#custom-omarchy {
+  background-color: shade(@background, 1.4);
+  border: 2px solid shade(@background, 1.1);
+  border-right: 2px solid shade(@background, 0.8);
+  color: @foreground;
+  font-size: 16px;
+  margin-left: 0;
+  margin-right: 4px;
+  padding: 0 7px;
+  min-width: 12px;
+}
+
+#custom-omarchy:hover {
+  color: shade(@foreground, 1.05);
+  background-color: shade(@background, 1.6);
+}
+
+
+#custom-expand-icon:hover {
+  color: shade(@foreground, 1.2);
+}
+
+#custom-screenrecording-indicator {
+  font-size: 10px;
+  margin-right: 10px;
+  min-width: 10px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
+
+#custom-update {
+  font-size: 10px;
+  margin-right: 8px;
+}
+
+/* ============================================
+   Tooltip
+   ============================================ */
+tooltip {
+  background-color: @background;
+  color: @foreground;
+  padding: 2px;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.hidden {
+  opacity: 0;
+}

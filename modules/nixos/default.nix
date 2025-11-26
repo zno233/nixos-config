@@ -18,7 +18,7 @@
     ./system.nix
     ./flatpak.nix
     ./user.nix
-    ./wayland.nix
+    ./xdg.nix
     ./virtualization.nix
     ./bluetooth.nix
     ./docker.nix

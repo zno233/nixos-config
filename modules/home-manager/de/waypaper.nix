@@ -7,7 +7,7 @@
     language = en
     folder = ~/Pictures/wallpapers/others
     monitors = All
-    wallpaper = ~/Pictures/wallpapers/others/Kita.png
+    wallpaper = ~/Pictures/wallpapers/others/Nilou - Lilypads around.png
     backend = swww
     fill = fill
     sort = name
