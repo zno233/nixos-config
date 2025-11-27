@@ -341,8 +341,8 @@ binds {
 // 我在配置中添加的内容
 
 cursor {
-    xcursor-theme "Bibata-Modern-Ice"
-    xcursor-size 24
+    xcursor-theme "phinger-cursors-light"
+    xcursor-size 22
 }
 
 // 窗口规则

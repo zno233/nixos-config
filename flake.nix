@@ -65,10 +65,10 @@
         config.allowUnfree = true;
       };
       pkgs-stable = import nixpkgs-stable {
-            inherit system;
-            # 为了拉取 chrome 等软件包，
-            # 这里我们需要允许安装非自由软件
-            config.allowUnfree = true;
+        inherit system;
+        # 为了拉取 chrome 等软件包，
+        # 这里我们需要允许安装非自由软件
+        config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
     in
