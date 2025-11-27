@@ -20,5 +20,6 @@
     #microsoft-edge 
     font-manager
     localsend
+    maa-assistant-arknights
   ];
 }

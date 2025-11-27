@@ -23,6 +23,9 @@
         swtpm.enable = true;
       };
     };
+
+    waydroid.enable = true;
+    
     spiceUSBRedirection.enable = true;
   };
   services.spice-vdagentd.enable = true;
