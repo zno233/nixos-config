@@ -24,6 +24,10 @@
       ipython
       jupyterlab
       matplotlib
+      numpy
+      pandas
+      mlxtend
+      seaborn
     ]))   
     ##java
     jdk

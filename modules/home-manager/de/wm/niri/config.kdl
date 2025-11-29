@@ -14,7 +14,7 @@ input {
         // dwtp (禁用输入时移动和指针)
         // drag false (拖动禁用)
         // drag-lock (拖动锁定)
-        //natural-scroll
+        natural-scroll
         // accel-speed 0.2 (加速度)
         // accel-profile "flat" (加速度配置文件)
         // scroll-method "two-finger" (滚动方法)
@@ -354,17 +354,23 @@ window-rule { // 浮动窗口
     match app-id="xdg-desktop-portal-gtk"
     match app-id="waypaper"
     match app-id="mpv"
-    match app-id="wechat"
     match app-id="imv"
     open-floating true
     // opacity 0.8
 }
 
 window-rule {
-    match title="btop"
+    match title="wechat"
+    match app-id="QQ"
     open-floating true
-    //default-column-width { fixed 1000; }
-    //default-window-height { proportion 0.7; }
+    default-column-width { proportion 0.75; }
+    default-window-height { proportion 0.75; }
+}
+
+window-rule {
+    match app-id="waydroid"
+    open-floating true
+    open-maximized false
 }
 
 //window-rule { // 终端
@@ -392,7 +398,6 @@ window-rule {
     match app-id="code" 
     match app-id="org.telegram.desktop"
     match app-id="moe.tsuna.tsukimi"
-    match app-id="QQ"
     match app-id="kitty"
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }
