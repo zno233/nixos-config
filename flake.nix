@@ -1,9 +1,12 @@
 {
-  description = "FrostPhoenix's nixos configuration";
+  description = "zno's nixos configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # 最新 stable 分支的 nixpkgs，用于回退个别软件包的版本
     # 当前最新版本为 25.05
@@ -56,7 +59,7 @@
   };
 
   outputs =
-    { nixpkgs, self, nixpkgs-stable, ... }@inputs:
+    { nixpkgs, self, nixpkgs-stable, nur, ... }@inputs:
     let
       username = "zno";
       system = "x86_64-linux";
@@ -70,13 +73,23 @@
         # 这里我们需要允许安装非自由软件
         config.allowUnfree = true;
       };
+      # 集中管理所有外部 Flake 提供的 NixOS 模块
+      # 这是一个包含所有外部依赖模块的列表
+      externalModules = [
+        # Adds the NUR overlay
+        inputs.nur.modules.nixos.default
+        # NUR modules to import
+        inputs.nur.legacyPackages."${system}".repos.iopq.modules.xraya
+        
+        # ... 其他需要导入的 Flake 模块 ...
+      ];
       lib = nixpkgs.lib;
     in
     {
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/desktop ];
+          modules = [ ./hosts/desktop ] ++ externalModules;
           specialArgs = {
             host = "desktop";
             inherit self inputs username pkgs-stable;
@@ -84,7 +97,7 @@
         };
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/laptop ];
+          modules = [ ./hosts/laptop ] ++ externalModules;
           specialArgs = {
             host = "laptop";
             inherit self inputs username pkgs-stable;
@@ -92,7 +105,7 @@
         };
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/vm ];
+          modules = [ ./hosts/vm ] ++ externalModules;
           specialArgs = {
             host = "vm";
             inherit self inputs username pkgs-stable;
