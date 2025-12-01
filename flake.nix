@@ -82,6 +82,7 @@
         inputs.nur.legacyPackages."${system}".repos.iopq.modules.xraya
         
         # ... 其他需要导入的 Flake 模块 ...
+        # inputs.stylix.nixosModules.stylix
       ];
       lib = nixpkgs.lib;
     in

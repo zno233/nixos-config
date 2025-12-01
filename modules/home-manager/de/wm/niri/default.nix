@@ -9,9 +9,10 @@
   #./binds.nix 
   #./rules.nix
   ];
-  
+
   programs.niri = {
     enable = true;
+    package = pkgs.niri-unstable;
   };
 
   home = {
