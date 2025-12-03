@@ -20,6 +20,25 @@
       "custom/notification",
     ],
   },
+
+  //获取屏幕颜色colorpicker
+  //"custom/colorpicker": {
+  //  "tooltip": false,
+  //  "format": "󱏜",
+  //  "on-click": "hyprpicker | wl-copy",
+  //},
+  
+  //wf-recorder
+  //"custom/wfrec": {
+  //  "exec": "wf-recorder status-json",
+  //  "return-type": "json",
+  //  "interval": 1,                 // 每秒刷新一次
+  //  "signal": 9,                   // 与脚本里的 WAYBAR_SIG 对应
+  //  "tooltip": true,
+  //  "on-click": "wf-recorder toggle",  // 左键：开始/停止
+  //  "on-click-right": "wf-recorder stop"
+  //},
+
   //多媒体
   "mpris": {
     "format": "{player_icon}",
@@ -36,9 +55,8 @@
   
   //音频可视化
   //"custom/cava": {
-   // "exec": "$HOME/.config/waybar/scripts/cava-waybar.sh",
-   // "return-type": "plain",
-  //  "interval": 100,
+  //  "exec": "$HOME/.config/waybar/scripts/cava-waybar.sh",
+  //  "return-type": "plain",
   //  "escape": false
   //},
   

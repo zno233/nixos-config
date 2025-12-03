@@ -176,7 +176,7 @@
       fi
 
       #  Run Fastfetch on Zsh startup
-      fastfetch
+      #fastfetch
     '';
   };
 

@@ -146,7 +146,7 @@ binds {
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
     Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
-    Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn "hyprpicker"; }
+    Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
     Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" { 
     spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy"; 
     }
@@ -370,7 +370,7 @@ window-rule {
 
 window-rule {
     match app-id="waydroid"
-    open-floating true
+    //open-floating true
     open-maximized false
 }
 

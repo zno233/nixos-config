@@ -1,0 +1,129 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "type": "kitty",
+    //"source": "/home/shorin/Pictures/picture.png",
+    "width": 25,
+    // "height":20,
+    "padding": {
+      "top": 1, // Top padding
+      "left": 2, // Left padding
+      "right": 2 // Right padding
+    },
+  },
+  "display": {
+    "separator": " ", // Separator between keys and values
+    "color": {
+      //"keys": "#cdc2db", // Key color module名字的颜色
+      "title": "#cbc4cf", // Title color 主机名的颜色
+      "output": "#cbc4cf"
+    },
+  },
+  "modules": [
+    "break",
+    {
+      "type": "os", //这是哪个module
+      "key": "OS", //module名字的显示
+      // "keyColor": "#00ff00",      //module名字颜色
+      // "format": "{name} {version}",    //具体内容
+      "keyColor": "#d3bbfd",
+   
+    },
+    {
+      "type": "kernel",
+      "key": " ├   KER ",
+      "keyColor": "#d3bbfd",
+
+    },
+    {
+      "type": "packages",
+      "key": " ├   PAK ",
+      "format": "{all}",
+      "keyColor": "#d3bbfd",
+    },
+    {
+      "type": "title",
+      "key": " └   USR ",
+      "keyColor": "#d3bbfd",
+    },
+    "break",
+    "break",
+    {
+      "type": "wm",
+      "key": "WM",
+      "keyColor": "#f1b7c5",
+   },
+    {
+      "type": "de",
+      "key": " ├ 󱈹  DES ",
+      "keyColor": "#f1b7c5",
+     //"outputColor": "#f1b7c5"
+    },
+    {
+      "type": "shell",
+      "key": " ├   SHE ",
+      "keyColor": "#f1b7c5",
+      //"outputColor": "#f1b7c5"
+    },
+    {
+      "type": "terminal",
+      "key": " ├   TER ",
+      "keyColor": "#f1b7c5",
+      //"outputColor": "#f1b7c5"
+    },
+    {
+      "type": "terminalfont",
+      "key": " └   TFO ",
+      "keyColor": "#f1b7c5",
+      //"outputColor": "#f1b7c5"
+    },
+    "break",
+    "break",
+    {
+      "type": "host",
+      "key": "PC ",
+      "keyColor": "#eadef8",
+      //"outputColor": "#cdc2db"
+    },
+    {
+      "type": "cpu",
+      "key": " ├   CPU ",
+      "keyColor": "#eadef8",
+      //"outputColor": "#cdc2db"
+    },
+    {
+      "type": "memory",
+      "key": " ├   MEM ",
+      "keyColor": "#eadef8",
+      //"outputColor": "#cdc2db"
+    },
+    {
+      "type": "gpu",
+      "key": " ├ 󰢮  GPU ",
+      "format": "{1} {2}",
+      "keyColor": "#eadef8",
+      //"outputColor": "#cdc2db"
+    },
+    {
+      "type": "display",
+      "key": " ├   MON ",
+      "format": "{name} {width}x{height}@{refresh-rate} ",
+      "keyColor": "#eadef8",
+      //"outputColor": "#cdc2db"
+    },
+    {
+      "type": "disk",
+      "key": " ├ 󰋊  DIS ",
+      "keyColor": "#eadef8",
+      //"outputColor": "#cdc2db"
+    },
+    {
+      "type": "battery",
+      "key": "  └ 󰂋",
+      "keyColor": "green"
+    },
+    "break",
+    "break",
+    "colors"
+  ]
+}

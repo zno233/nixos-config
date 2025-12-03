@@ -13,7 +13,7 @@ config_file="/tmp/waybar_cava_config"
 cat > "$config_file" <<EOF
 [general]
 framerate = 60
-bars = 20
+bars = 14
 
 [output]
 method = raw
