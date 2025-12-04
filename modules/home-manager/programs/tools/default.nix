@@ -6,5 +6,6 @@
     ./p10k/p10k.nix
     ./ssh.nix
     ./tools.nix
+    ./glance.nix
   ];
 }
