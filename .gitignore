@@ -1,0 +1,8 @@
+# Log files and compiled outputs
+*.log
+dist/
+node_modules/
+unused/
+
+# Sensitive files
+glance.yml
