@@ -1,4 +1,12 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.niri;
+in
 {
   xdg.portal = {
     enable = true;
@@ -12,7 +20,10 @@
         "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
       };
       #hyprland.default = [ "gtk" "hyprland" ];
-      #niri.default = [ "gtk" "gnome"];
+      niri.default = [ "gnome" "gtk"];
+      config.niri = lib.mkIf (!cfg.useNautilus) {
+            "org.freedesktop.impl.portal.FileChooser" = lib.mkDefault "gtk";
+          };
     };
 
     # Sets environment variable NIXOS_XDG_OPEN_USE_PORTAL to 1

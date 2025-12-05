@@ -28,7 +28,8 @@
       pandas
       mlxtend
       seaborn
-    ]))   
+      opencv4
+    ]))  
     ##java
     jdk
   ];
