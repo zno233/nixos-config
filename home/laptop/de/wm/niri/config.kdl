@@ -400,6 +400,7 @@ window-rule {
     match app-id="org.telegram.desktop"
     match app-id="moe.tsuna.tsukimi"
     match app-id="kitty"
+    match app-id="com.mitchellh.ghostty"
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }
     
