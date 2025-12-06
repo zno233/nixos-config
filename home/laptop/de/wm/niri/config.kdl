@@ -142,9 +142,10 @@ binds {
     Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
     Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
     Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
-    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/.config/niri/config.kdl"; }
+    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/home/laptop/de/wm/niri/config.kdl"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
+    Alt+M hotkey-overlay-title="音乐播放器： SPlayer" { spawn "splayer"; }
     Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
     Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
     Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" { 
@@ -401,6 +402,7 @@ window-rule {
     match app-id="moe.tsuna.tsukimi"
     match app-id="kitty"
     match app-id="com.mitchellh.ghostty"
+    match app-id="SPlayer"
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }
     

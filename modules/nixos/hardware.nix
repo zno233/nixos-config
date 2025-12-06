@@ -1,19 +1,19 @@
 { pkgs, ... }:
 {
   hardware.graphics = {
-    # 启用图形支持 (新的通用选项)
+    # 启用图形支持
     enable = true; 
     
-    # 启用 32 位支持 (新的通用选项)
-    enable32Bit = true; # 替代旧的 hardware.opengl.driSupport32Bit
+    # 启用 32 位支持
+    enable32Bit = true;
     
     # 将 VA-API 包和 Mesa (OpenGL/Vulkan) 包合并到同一个 extraPackages 列表
     extraPackages = with pkgs; [
       intel-media-driver               # VA-API
-      #intel-vaapi-driver               # VA-API
       libvdpau-va-gl                   # VA-API
-
-      mesa                             # OpenGL/Vulkan 驱动 (替代旧的 hardware.opengl.extraPackages)
+      libva-utils                      # 推荐添加，确保 VA-API 同步
+      mesa                             # OpenGL/Vulkan 驱动
+      ffmpeg                           # 推荐添加，支持音视频加速
     ];
 
     # 32 位包也合并到 extraPackages32
@@ -28,5 +28,8 @@
   # 调试工具 (保持不变)
   environment.systemPackages = with pkgs; [
     vulkan-tools
+    mesa-demos
+    libva-utils
+    vdpauinfo
   ];
 }

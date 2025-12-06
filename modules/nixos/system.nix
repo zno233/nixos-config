@@ -45,6 +45,12 @@
     git
     kdePackages.qttools
   ];
+  
+  environment.sessionVariables = {
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    LIBVA_DRIVER_NAME = "iHD";                  # Intel VAAPI 驱动
+    VDPAU_DRIVER = "va_gl";                     # 兼容老软件
+  };
 
   time.timeZone = "Asia/Shanghai";
 

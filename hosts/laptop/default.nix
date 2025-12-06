@@ -35,7 +35,7 @@
       enable = true;
       settings = {
         # 核心CPU能耗性能策略：
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
         # CPU 睿频 (Turbo Boost)：
@@ -50,20 +50,12 @@
         PLATFORM_PROFILE_ON_AC = "performance";
         PLATFORM_PROFILE_ON_BAT = "low-power";
 
-        # Intel 核显最低频率：
-        INTEL_GPU_MIN_FREQ_ON_AC = 500;
-        INTEL_GPU_MIN_FREQ_ON_BAT = 200;
-
-        # Intel 核显最大频率：
-        INTEL_GPU_MAX_FREQ_ON_AC = 1450; # 允许最高频率
-        INTEL_GPU_MAX_FREQ_ON_BAT = 1450; # 电池模式下也允许最高频率（可调低以节能）
-
         # PCIE (PCI Express) 主动状态电源管理 (ASPM)：
         PCIE_ASPM_ON_AC = "default";
-        PCIE_ASPM_ON_BAT = "powersave"; # 调整为"powersave"以兼容NVMe
+        PCIE_ASPM_ON_BAT = "powersupersave"; # 调整为"powersave"以兼容NVMe
 
         # 新增：CPU频率缩放Governor
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
         # 新增：CPU最小/最大性能百分比
