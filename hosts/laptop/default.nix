@@ -35,7 +35,7 @@
       enable = true;
       settings = {
         # 核心CPU能耗性能策略：
-        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
         # CPU 睿频 (Turbo Boost)：
