@@ -13,7 +13,7 @@
     ./gtk.nix                         # gtk theme
     ./hyprlock.nix
     ./kitty.nix                       # terminal
-    ./micro.nix                       # nano replacement
+    #./micro.nix                       # nano replacement
     ./nemo.nix                        # file manager
     ./rofi/rofi.nix                   # launcher
     ./scripts/scripts.nix             # personal scripts

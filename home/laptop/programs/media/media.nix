@@ -6,5 +6,6 @@
     pkgs.spotify
     pkgs.mpv
     pkgs.splayer
+    pkgs.kazumi  #anime online
   ];
 }

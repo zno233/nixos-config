@@ -43,7 +43,6 @@
   environment.systemPackages = with pkgs; [
     wget
     git
-    kdePackages.qttools
   ];
   
   environment.sessionVariables = {
