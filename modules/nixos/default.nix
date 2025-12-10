@@ -3,8 +3,8 @@
   imports = [
     ./appImage.nix
     ./nixpkgs.nix
-    #./bootloader.nix
-    ./oldBootloader.nix
+    #./grub-bootr.nix
+    ./systemd-boot.nix
     ./greetd.nix
     ./hardware.nix
     ./xserver.nix

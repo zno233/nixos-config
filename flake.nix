@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +17,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -63,16 +66,19 @@
     let
       username = "zno";
       system = "x86_64-linux";
+
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
+
       pkgs-stable = import nixpkgs-stable {
         inherit system;
         # 为了拉取 chrome 等软件包，
         # 这里我们需要允许安装非自由软件
         config.allowUnfree = true;
       };
+
       # 集中管理所有外部 Flake 提供的 NixOS 模块
       # 这是一个包含所有外部依赖模块的列表
       externalModules = [
@@ -84,6 +90,7 @@
         # ... 其他需要导入的 Flake 模块 ...
         # inputs.stylix.nixosModules.stylix
       ];
+
       lib = nixpkgs.lib;
     in
     {
