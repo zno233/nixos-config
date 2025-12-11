@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./ai
     ./browsers                     # based browser
     ./dev
     ./media
