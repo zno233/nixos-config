@@ -6,7 +6,8 @@
 @define-color foreground rgba(235, 219, 178, 1);
 @define-color black rgba(50, 48, 47, 1);
 @define-color red rgba(204, 36, 29, 1);
-@define-color green rgba(152, 151, 26, 1);
+@define-color green-light rgba(184, 187, 38, 1);
+@define-color green rgba(169, 182, 101, 1);
 @define-color yellow rgba(215, 153, 33, 1);
 @define-color blue rgba(69, 133, 136, 1);
 @define-color magenta rgba(177, 98, 134, 1);
@@ -25,13 +26,13 @@
 
 window#waybar {
     background: @background09;
-    /* border-bottom: 3px solid @orange; */
+    /* border-bottom: 3px solid @green-light; */
     color: @white;
 }
 
 tooltip {
     background: @background05;
-    border: 1px solid @orange;
+    border: 1px solid @green-light;
 }
 tooltip label {
     color: @white;
@@ -44,7 +45,7 @@ window#waybar.hidden {
 #workspaces {
     transition: none;
     color: @white;
-    background: @black;
+    background: transparent;
     margin-right: 3px;
     transition: all 0.3s;
     padding-left: 2px;
@@ -58,8 +59,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: all 0.3s;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #workspaces button {
@@ -90,8 +91,8 @@ window#waybar.hidden {
     padding-right: 2px;
     transition: all 0.3s;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @yellow;
+    background: transparent;
+    border-bottom: 3px solid @green;
     /*color: #000000;*/
     transition: all 0s;
 }
@@ -103,8 +104,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #clock {
@@ -114,8 +115,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #custom-power {
@@ -125,8 +126,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #cpu {
@@ -136,8 +137,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #memory {
@@ -147,8 +148,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #custom-menu {
@@ -158,8 +159,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #temperature {
@@ -169,8 +170,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #battery {
@@ -180,8 +181,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #tray {
@@ -190,8 +191,8 @@ window#waybar.hidden {
     padding-right: 5px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #anln {
@@ -199,8 +200,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #pulseaudio {
@@ -219,8 +220,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #custom-notification {
@@ -235,8 +236,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 /*
@@ -247,8 +248,8 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: @black;
-    border-bottom: 3px solid @orange;
+    background: transparent;
+    border-bottom: 3px solid @green-light;
 }
 
 #pulseaudio {
@@ -289,7 +290,7 @@ window#waybar.hidden {
     transition: none;
     color: #ffffff;
     background: #383c4a;
-    border-bottom: 3px solid @orange;
+    border-bottom: 3px solid @green-light;
 }
 */
 @keyframes blink {

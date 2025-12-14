@@ -13,6 +13,7 @@
       less = "bat";
       copy = "wl-copy";
       f = "superfile";
+      ff = "fastfetch";
       py = "python";
       ipy = "ipython";
       icat = "kitten icat";

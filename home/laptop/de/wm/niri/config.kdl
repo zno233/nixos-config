@@ -89,9 +89,9 @@ layout {
     border {
         // off (关闭)
         width 2
-        active-color "#fe8019"
-        inactive-color "#d65d0e"
-        urgent-color "#9b0000"
+        active-color "#B8BB26"
+        inactive-color "#689D6A"
+        urgent-color "#FB4934"
     }
 
     shadow {
