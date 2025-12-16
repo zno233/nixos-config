@@ -20,8 +20,6 @@
         "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
         "https://mirrors.ustc.edu.cn/nix-channels/store"
         "https://cache.nixos.org"
-        "https://nix-community.cachix.org"
-        "https://hyprland.cachix.org"
         "https://niri.cachix.org"
         "https://nixpkgs-wayland.cachix.org"
       ];

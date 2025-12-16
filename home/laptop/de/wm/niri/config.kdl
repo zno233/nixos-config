@@ -89,8 +89,8 @@ layout {
     border {
         // off (关闭)
         width 2
-        active-color "#B8BB26"
-        inactive-color "#689D6A"
+        active-color "#B8BA25"
+        inactive-color "#444C2E"
         urgent-color "#FB4934"
     }
 

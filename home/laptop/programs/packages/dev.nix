@@ -35,6 +35,8 @@
       numpy
       pandas
       seaborn
+      statsmodels
+      shap
   
       # 机器学习与数据科学
       scikit-learn 
