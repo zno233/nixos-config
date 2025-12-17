@@ -1,11 +1,11 @@
 { pkgs, pkgs-stable, ... }:
 {
-  home.packages = [
-    pkgs.tsukimi
-    pkgs-stable.fooyin # like fb2k
-    pkgs.spotify
-    pkgs.mpv
-    pkgs.splayer
-    pkgs.kazumi  #anime online
+  home.packages = with pkgs; [
+    tsukimi
+    fooyin # like fb2k
+    spotify
+    mpv
+    splayer
+    kazumi  #anime online
   ];
 }
