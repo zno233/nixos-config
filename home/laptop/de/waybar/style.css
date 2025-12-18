@@ -6,9 +6,10 @@
 @define-color foreground rgba(235, 219, 178, 1);
 @define-color black rgba(50, 48, 47, 1);
 @define-color red rgba(204, 36, 29, 1);
-@define-color green-light rgba(184, 187, 38, 1);
-@define-color green rgba(142,192,124,1);
-@define-color yellow rgba(215, 153, 33, 1);
+@define-color green rgba(184, 187, 38, 1);
+@define-color green-light rgba(142,192,124,1);
+@define-color yellow rgba(235,219,178,1);
+@define-color gray rgba(168,153,132,1);
 @define-color blue rgba(69, 133, 136, 1);
 @define-color magenta rgba(177, 98, 134, 1);
 @define-color cyan rgba(104, 157, 106, 1);
@@ -16,6 +17,7 @@
 @define-color orange rgba(214, 93, 14, 1);
 
 * {
+    background-color: rgba(0,0,0,0);
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
@@ -25,14 +27,14 @@
 }
 
 window#waybar {
-    background: @background09;
+    background: @background;
     /* border-bottom: 3px solid @green-light; */
     color: @white;
 }
 
 tooltip {
     background: @background05;
-    border: 1px solid @green-light;
+    border: 1px solid @green;
 }
 tooltip label {
     color: @white;
@@ -45,28 +47,15 @@ window#waybar.hidden {
 #workspaces {
     transition: none;
     color: @white;
-    background: transparent;
     margin-right: 3px;
     transition: all 0.3s;
     padding-left: 2px;
     padding-right: 2px;
 }
 
-#niri-window button {
-    margin-right: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-top: 12px;
-    transition: all 0.3s;
-    color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
-}
-
 #workspaces button {
     transition: all 0.3s;
     color: @foreground;
-    background: transparent;
     padding: 2px;
     transition: all 0s;
 }
@@ -83,18 +72,25 @@ window#waybar.hidden {
     box-shadow: inherit;
     text-shadow: inherit;
     color: @foreground;
-    background: @background-light;
 }
 
 #workspaces button.active {
     padding-left: 2px;
     padding-right: 2px;
     transition: all 0.3s;
-    color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green;
+    color: @green;
     /*color: #000000;*/
     transition: all 0s;
+}
+
+#niri-window {
+    margin-right: 3px;
+    margin-left: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 12px;
+    transition: all 0.3s;
+    color: @green-light;
 }
 
 #submap {
@@ -104,8 +100,7 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
+    border-bottom: 3px solid @green;
 }
 
 #clock {
@@ -114,9 +109,7 @@ window#waybar.hidden {
     padding-right: 10px;
     border-top: 12px;
     transition: none;
-    color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
+    color: @yellow;
 }
 
 #custom-power {
@@ -126,8 +119,6 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
 }
 
 #cpu {
@@ -137,8 +128,6 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
 }
 
 #memory {
@@ -148,8 +137,6 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
 }
 
 #custom-menu {
@@ -158,9 +145,7 @@ window#waybar.hidden {
     padding-right: 13px;
     border-top: 12px;
     transition: none;
-    color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
+    color: @blue;
 }
 
 #temperature {
@@ -170,8 +155,6 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
 }
 
 #battery {
@@ -181,8 +164,6 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
 }
 
 #tray {
@@ -191,27 +172,40 @@ window#waybar.hidden {
     padding-right: 5px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
 }
 
-#anln {
+#tray menu {
+    background-color: @background09;
+    border: 1px solid @green;
+}
+
+#tray menu menuitem {
+    color: @white;
+    transition: none;
+}
+
+
+#tray menu menuitem:hover {
+    background-color: @green;
+    color: @background;
+    border-radius: 3px;
+}
+
+#system {
     padding-left: 10px;
     border-top: 12px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
 }
 
 #pulseaudio {
     margin-right: 7px;
 }
 
-#network {
+/* #network {
     margin-right: 10px;
     margin-left: 7px;
-}
+} */
 
 #custom-power-menu {
     margin-left: 3px;
@@ -219,9 +213,7 @@ window#waybar.hidden {
     padding-right: 9px;
     border-top: 12px;
     transition: none;
-    color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
+    color: @red;
 }
 
 #custom-notification {
@@ -236,8 +228,6 @@ window#waybar.hidden {
     border-top: 12px;
     transition: none;
     color: @white;
-    background: transparent;
-    border-bottom: 3px solid @green-light;
 }
 
 /*

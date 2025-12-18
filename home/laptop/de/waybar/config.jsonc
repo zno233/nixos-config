@@ -9,16 +9,25 @@
   "position": "top",
   "spacing": 3,
 
-  "modules-left": ["custom/menu", "niri/workspaces", "niri/window" ],
-  "modules-center": ["mpris","clock"],
-  "modules-right": ["cpu", "memory", "temperature", "battery", "tray", "group/anln","custom/power-menu"],
-  "group/anln": {
-    "orientation": "horizontal",
-    "modules": [
-      "pulseaudio",
-      "network",
-      "custom/notification",
-    ],
+  "modules-left": ["custom/menu","custom/separator", "niri/workspaces","custom/separator", "niri/window" ],
+  "modules-center": ["mpris", "custom/separator", "clock", "custom/separator", "custom/notification"],
+  "modules-right": ["group/system", "custom/separator", "tray", "custom/separator", "custom/power-menu"],
+
+  "group/system": {
+	"orientation": "horizontal",
+	"modules": [
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "pulseaudio", 
+	]
+  },
+
+  "custom/separator": {
+        "format": "┃",
+        "interval": "once",
+        "tooltip": false
   },
 
   //获取屏幕颜色colorpicker
@@ -59,15 +68,6 @@
   //  "return-type": "plain",
   //  "escape": false
   //},
-  
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
-    "critical-threshold": 80,
-    "format": "{temperatureC}°C <span></span>",
-    "format-alt": "{temperatureF}°F <span></span>",
-    "tooltip-format": "Temperature: {temperatureC}°C",
-    "on-click-right": "kitty btop"
-   },
   
   "custom/power-menu": {
     "tooltip": true,
@@ -127,31 +127,9 @@
     },
   },
 
-  "cpu": {
-    "format": "{usage}% ",
-    "on-click-right": "kitty btop"
-  },
-
-  "memory": {
-    "format": "{}% ",
-    "on-click-right": "kitty btop"
-  },
-
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15,
-    },
-    "format": "{capacity}% {icon}",
-    "format-full": "{capacity}% {icon}",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% ",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-  },
-
   "pulseaudio": {
-    "format": "{icon}",
-    "format-bluetooth": "{icon}",
+    "format": "{volume}% <span>{icon}</span>",
+    "format-bluetooth": "{volume}% <span>{icon}</span>",
     "format-icons": {
       "default": ["", "", "", ""],
     },
@@ -162,20 +140,51 @@
     "tooltip-format": "{desc}\t{volume}%\t{icon}",
   },
 
-  "network": {
-    "format": "{icon}",
-    "format-disconnected": "󰖪",
-    "format-ethernet": "󰈀 /{ifname}",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "format-linked": "󰖩",
-    "format-wifi": "{icon}",
-    "interval": 30,
-    //"on-click": "nmgui",
-    "on-click-right": "rfkill toggle wifi",
-    "tooltip": true,
-    "tooltip-format": "interface:\t{ifname}\nconnected to {essid} at {signalStrength}% strength",
-    "tooltip-format-disconnected": "interface: {ifname}\nconnected to {essid}\nat {signalStrength}% strength",
+  "cpu": {
+    "format": "{usage}% <span></span>",
+    "on-click-right": "kitty btop",
   },
+
+  "memory": {
+    "format": "{}% <span></span>",
+    "on-click-right": "kitty btop",
+  },
+
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C <span></span>",
+    "format-alt": "{temperatureC}°C <span></span>",
+    "tooltip-format": "Temperature: {temperatureC}°C",
+    "on-click-right": "kitty btop",
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{capacity}% <span>{icon}</span>",
+    "format-full": "{capacity}% <span>{icon}</span>",
+    "format-charging": "{capacity}% <span></span>",
+    "format-plugged": "{capacity}% <span></span>",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+
+  // "network": {
+  //   "format": "{icon}",
+  //   "format-disconnected": "󰖪",
+  //   "format-ethernet": "󰈀 /{ifname}",
+  //   "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+  //   "format-linked": "󰖩",
+  //   "format-wifi": "{icon}",
+  //   "interval": 30,
+  //   //"on-click": "nmgui",
+  //   "on-click-right": "rfkill toggle wifi",
+  //   "tooltip": true,
+  //   "tooltip-format": "interface:\t{ifname}\nconnected to {essid} at {signalStrength}% strength",
+  //   "tooltip-format-disconnected": "interface: {ifname}\nconnected to {essid}\nat {signalStrength}% strength",
+  // },
 
   "custom/notification": {
     "tooltip": false,
