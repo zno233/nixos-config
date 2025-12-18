@@ -32,10 +32,10 @@
     ];
   };
   xdg.configFile."niri/config.kdl" = {
-  source = config.lib.file.mkOutOfStoreSymlink
-    "/home/zno/zno-config/home/laptop/de/wm/niri/config.kdl";
-  # 关键选项：告诉 Home Manager 创建一个直接链接到源文件
-  # 而不是先复制到 Store 再链接。
-  force = true;
+    source = config.lib.file.mkOutOfStoreSymlink
+      "/home/zno/zno-config/home/laptop/de/wm/niri/config.kdl";
+    # 关键选项：告诉 Home Manager 创建一个直接链接到源文件
+    # 而不是先复制到 Store 再链接。
+    force = true;
   };
 }

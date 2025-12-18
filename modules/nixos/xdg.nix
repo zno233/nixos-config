@@ -21,9 +21,9 @@ in
       };
       #hyprland.default = [ "gtk" "hyprland" ];
       niri.default = [ "gnome" "gtk"];
-      config.niri = lib.mkIf (!cfg.useNautilus) {
-            "org.freedesktop.impl.portal.FileChooser" = lib.mkDefault "gtk";
-          };
+      #config.niri = lib.mkIf (!cfg.useNautilus) {
+      #      "org.freedesktop.impl.portal.FileChooser" = lib.mkDefault "gtk";
+      #    };
     };
 
     # Sets environment variable NIXOS_XDG_OPEN_USE_PORTAL to 1

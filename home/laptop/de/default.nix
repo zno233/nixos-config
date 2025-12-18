@@ -11,7 +11,7 @@
     ./ghostty/ghostty.nix             # terminal
     ./gnome.nix                       # gnome apps
     ./gtk.nix                         # gtk theme
-    ./hyprlock.nix
+    ./hyprlock/hyprlock.nix
     ./kitty.nix                       # terminal
     #./micro.nix                       # nano replacement
     ./nemo.nix                        # file manager
