@@ -4,7 +4,7 @@
     with pkgs;
     [
       evince # pdf
-      file-roller # archive
+      #file-roller # archive
       gnome-text-editor # gedit
       nautilus
     ]

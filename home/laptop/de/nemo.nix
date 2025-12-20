@@ -1,6 +1,33 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ nemo-with-extensions ];
+  home.packages = with pkgs; [ nemo ];
+
+  xdg.dataFile = {
+    # 1. 在当前目录打开 Kitty 的 Action
+    "nemo/actions/kitty_here.nemo_action".text = ''
+      [Nemo Action]
+      Name=Open in Kitty
+      Comment=Open kitty terminal in the current directory
+      Exec=kitty --directory %F
+      Icon-Name=utilities-terminal
+      Selection=any
+      Extensions=dir;
+      Quote=double
+    '';
+
+    # 2. 使用 unar 解压文件的 Action
+    "nemo/actions/unar_extract.nemo_action".text = ''
+      [Nemo Action]
+      Name=Extract with unar
+      Comment=Extract archive with automatic encoding detection using unar
+      Exec=unar -o %P %F
+      Icon-Name=archive-extract
+      Selection=s
+      Extensions=zip;7z;rar;tar;gz;bz2;
+      Quote=double
+      Terminal=false
+    '';
+  };
 
   dconf.settings = {
     "org/nemo/preferences" = {
