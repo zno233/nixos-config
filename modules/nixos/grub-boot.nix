@@ -1,6 +1,13 @@
 { pkgs, ... }:
 {
   boot = {
+    #开启cake+bbr
+    kernel.sysctl = {
+      "net.core.default_qdisc" = "cake"; # Zen 内核完美支持
+      "net.ipv4.tcp_congestion_control" = "bbr";
+      "net.ipv4.tcp_fastopen" = 3; # 额外加成：减少网页握手延迟
+    };
+    
     kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = ["ntfs"];
     kernelParams = [
