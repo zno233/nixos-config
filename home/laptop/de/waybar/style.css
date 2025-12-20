@@ -17,7 +17,7 @@
 @define-color orange rgba(214, 93, 14, 1);
 
 * {
-    background-color: rgba(0,0,0,0);
+    /* background-color: rgba(0,0,0,0); */
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
@@ -174,7 +174,7 @@ window#waybar.hidden {
     color: @white;
 }
 
-#tray menu {
+/* #tray menu {
     background-color: @background09;
     border: 1px solid @green;
 }
@@ -189,7 +189,7 @@ window#waybar.hidden {
     background-color: @green;
     color: @background;
     border-radius: 3px;
-}
+} */
 
 #system {
     padding-left: 10px;
