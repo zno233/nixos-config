@@ -19,13 +19,12 @@
     "nemo/actions/unar_extract.nemo_action".text = ''
       [Nemo Action]
       Name=Extract with unar
-      Comment=Extract archive with automatic encoding detection using unar
-      Exec=unar -o %P %F
+      Comment=Extract archive (supports passwords in terminal)
+      Exec=kitty --hold sh -c "unar -o %P %F"
       Icon-Name=archive-extract
       Selection=s
       Extensions=zip;7z;rar;tar;gz;bz2;
       Quote=double
-      Terminal=false
     '';
   };
 

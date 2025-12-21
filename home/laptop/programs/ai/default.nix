@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./ollama.nix
+    #./ollama.nix
     ./gemini-cli.nix
   ];
 }
