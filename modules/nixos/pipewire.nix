@@ -1,7 +1,4 @@
-# /etc/nixos/modules/audio.nix
-
 { config, pkgs, ... }:
-
 {
   # 禁用旧的 PulseAudio，避免冲突
   services.pulseaudio.enable = false;
@@ -24,7 +21,5 @@
   # ALSA 持久化 (保留)
   hardware.alsa.enablePersistence = true;
 
-  # 修正：既然使用 PipeWire，就不需要安装 pulseaudioFull
-  # 移除此行，使其为空列表
   environment.systemPackages = [ ];
 }

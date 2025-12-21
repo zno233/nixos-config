@@ -13,7 +13,6 @@
     vscode
     aria2
     android-studio 
-    spotify
     wpsoffice-cn
     snipaste
     google-chrome

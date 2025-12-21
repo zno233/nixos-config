@@ -59,6 +59,8 @@
     #vicinae.url = "github:vicinaehq/vicinae";
     zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
     daeuniverse.url = "github:daeuniverse/flake.nix";
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs =

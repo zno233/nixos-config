@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     tsukimi
     fooyin # like fb2k
-    spotify
+    #spotify
     mpv
     splayer
     kazumi  #anime online
