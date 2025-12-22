@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ nemo ];
+  home.packages = with pkgs; [ nemo-with-extensions ];
 
   xdg.dataFile = {
     # 1. 在当前目录打开 Kitty 的 Action

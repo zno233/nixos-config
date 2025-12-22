@@ -37,6 +37,7 @@
       seaborn
       statsmodels
       shap
+      ipywidgets
   
       # 机器学习与数据科学
       scikit-learn 

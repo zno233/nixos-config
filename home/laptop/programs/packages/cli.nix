@@ -27,9 +27,10 @@
     tdf                               # cli pdf viewer
     tokei                             # project line counter
     translate-shell                   # cli translator
-    woomer
-    yt-dlp-light
-    light
+    woomer                            # CLI tool to control WoW eBook reader
+    yt-dlp-light                      # youtube-dl fork       
+    light                             # backlight controller
+    graphviz                          # graph visualization software
 
     ## TUI
     epy                               # ebook reader
@@ -45,10 +46,10 @@
     lm_sensors
     
     ## Fun / screensaver
-    asciiquarium-transparent
-    cbonsai
-    cmatrix
-    countryfetch
+    asciiquarium-transparent         # aquarium animation in terminal
+    cbonsai                          # create bonsai tree in terminal
+    cmatrix                          # matrix rain effect in terminal
+    countryfetch                    # fetch utility showing country flag and info      
     cowsay
     figlet
     fortune
@@ -62,8 +63,6 @@
     imv
     lowfi
     
-    # Waybar 媒体控制依赖
-    playerctl
 
     ## Utilities
     entr                              # perform action when file change
@@ -83,7 +82,7 @@
     wl-clipboard                      # clipboard utils for wayland (wl-copy, wl-paste)
     xdg-utils
     p7zip-rar
-    unar
+    unar                              # Extract many archive formats
     
 
     winetricks
