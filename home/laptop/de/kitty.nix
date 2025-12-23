@@ -20,6 +20,9 @@
       cursor_trail_decay 0.1 0.4
       cursor_trail_start_threshold 2
       cursor_trail_color none
+      
+      # 即使有余数像素，也让背景色统一
+      resize_draw_strategy static
     '';
 
     settings = {
@@ -28,7 +31,8 @@
       scrollback_lines = 10000;
       enable_audio_bell = false;
       mouse_hide_wait = 60;
-      window_padding_width = if (host == "laptop") then 5 else 10;
+      window_padding_width = 2;
+      resize_draw_strategy = "static";
 
       ## Tabs
       tab_title_template = "{index}";
