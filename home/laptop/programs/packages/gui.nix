@@ -22,7 +22,7 @@
     zenity
 
     ## Level editor
-    ldtk
-    tiled
+    # ldtk
+    # tiled
   ];
 }

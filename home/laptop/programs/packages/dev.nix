@@ -44,6 +44,7 @@
       xgboost
       joblib
       imbalanced-learn
+      chardet
   
       # 其他
       mlxtend

@@ -10,8 +10,8 @@
     };
 
     # 最新 stable 分支的 nixpkgs，用于回退个别软件包的版本
-    # 当前最新版本为 25.05
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    # 当前最新版本为 25.11
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     home-manager = {
       url = "github:nix-community/home-manager";
