@@ -1,25 +1,27 @@
 { config, pkgs, ... }:
-{
-  # 禁用旧的 PulseAudio，避免冲突
-  services.pulseaudio.enable = false;
 
-  # 实时内核访问权限，对 PipeWire 音频性能非常关键
+{
+  # PipeWire 实时调度支持
   security.rtkit.enable = true;
 
+  # PipeWire 栈
   services.pipewire = {
     enable = true;
+
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true; # 启用 PipeWire 的 PulseAudio 兼容层
-    
-    # 启用 PipeWire 对蓝牙设备的支持
+
+    pulse.enable = true;
+    jack.enable = true;
+
     wireplumber.enable = true;
-    
-    # lowLatency.enable = true; # 您原有的注释行
   };
-  
-  # ALSA 持久化 (保留)
+
+  # ALSA 音量持久化（笔记本友好）
   hardware.alsa.enablePersistence = true;
 
-  environment.systemPackages = [ ];
+  # 必要工具
+  environment.systemPackages = with pkgs; [
+    easyeffects
+  ];
 }
