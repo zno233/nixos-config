@@ -394,24 +394,19 @@ window-rule { // 浮动窗口
 }
 
 window-rule {
-    match title="wechat"
+    match app-id="wechat"
     match app-id="QQ"
     open-floating true
     default-column-width { proportion 0.75; }
     default-window-height { proportion 0.75; }
 }
 
+
 window-rule {
     match app-id="waydroid"
     //open-floating true
     open-maximized false
 }
-
-//window-rule { // 终端
-//    match app-id="kitty"
-//   opacity 0.80
- //  default-column-width { fixed 1000; }
-//}
 
 window-rule { // waypaper
     match app-id="waypaper"
@@ -435,6 +430,7 @@ window-rule {
     match app-id="kitty"
     match app-id="com.mitchellh.ghostty"
     match app-id="SPlayer"
+    match app-id="steam"
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }
     

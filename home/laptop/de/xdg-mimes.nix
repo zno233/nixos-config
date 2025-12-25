@@ -15,7 +15,20 @@ let
   };
 
   mimeMap = {
-    text = [ "text/plain" ];
+    text = [ 
+      "text/plain" 
+      "text/markdown"
+      "text/x-shellscript"
+      "text/x-python"
+      "text/x-csrc"
+      "text/x-chdr"
+      "text/x-c++src"
+      "application/json"
+      "application/xml"
+      "application/javascript"
+      "application/x-yaml"
+      "application/toml"
+    ];
     image = [
       "image/bmp"
       "image/gif"

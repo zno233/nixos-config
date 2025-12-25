@@ -4,13 +4,9 @@
   pkgs,
   ...
 }:
-let
-  cfg = config.programs.niri;
-in
 {
   xdg.portal = {
     enable = true;
-
     config = {
       common = {
         # Use xdg-desktop-portal-gtk for every portal interface...
@@ -18,12 +14,8 @@ in
         "org.freedesktop.impl.portal.ScreenCast" = "gnome";
         "org.freedesktop.impl.portal.Screenshot" = "gnome";
         "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
+        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
-      #hyprland.default = [ "gtk" "hyprland" ];
-      niri.default = [ "gnome" "gtk"];
-      #config.niri = lib.mkIf (!cfg.useNautilus) {
-      #      "org.freedesktop.impl.portal.FileChooser" = lib.mkDefault "gtk";
-      #    };
     };
 
     # Sets environment variable NIXOS_XDG_OPEN_USE_PORTAL to 1
