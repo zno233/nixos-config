@@ -21,7 +21,7 @@
     ./xdg.nix
     ./virtualization.nix
     ./bluetooth.nix
-    ./docker.nix
+    #./docker.nix
     ./dae.nix
     ./fcitx5.nix
   ];

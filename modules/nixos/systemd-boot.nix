@@ -9,25 +9,29 @@
     };
 
     # 核心系统配置
-    kernelPackages = pkgs.linuxPackages_zen;
-    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+    #kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
     supportedFilesystems = ["ntfs"];
     kernelParams = [
       "loglevel=3"
       "quiet"
       "splash"
       "console=tty1"
+      "module_blacklist=nova_core,nova,nouveau"
+      "i915.enable_psr=0"
+      "nvidia-drm.modeset=1"
     ];
     consoleLogLevel = 0;
     initrd.verbose = false;
-
+    #initrd.kernelModules = [ "nvidia" ];
+    
     # systemd-boot 引导加载器配置
     loader = {
       systemd-boot.enable = true; 
       grub.enable = false;
 
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint  = "/boot"; # 确保这个设置存在
+      efi.efiSysMountPoint  = "/boot";
 
       systemd-boot.configurationLimit = 10;
     };

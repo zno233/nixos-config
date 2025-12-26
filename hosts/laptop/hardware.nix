@@ -12,13 +12,19 @@
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
   
-  # 2. 屏蔽 nouveau
-  boot.blacklistedKernelModules = [ "nouveau" ];
+  # 2. 屏蔽冲突驱动
+  boot.blacklistedKernelModules = [ 
+    "nouveau"
+    "nova_core" 
+    "nova" 
+    "nvidiafb"
+  ];
+  
   boot.extraModprobeConfig = ''
     blacklist nouveau
     options nouveau modeset=0
   '';
-
+  
   # 3. PRIME 卸载配置
   hardware.nvidia.prime = {
     offload.enable = true;
@@ -26,5 +32,4 @@
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
   };
-
 }

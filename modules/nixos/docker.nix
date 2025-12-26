@@ -1,17 +1,20 @@
 { config, pkgs, ... }:
 
 {
-  # 启用 Docker 虚拟化模块
-  virtualisation.docker.enable = true;
-  
-  # 启用无根模式 (Rootless Mode)
-  virtualisation.docker.rootless = {
-    enable = true;
-    # 启用此项后，NixOS 会自动设置 DOCKER_HOST 环境变量，
-    # 指向用户级别的 Docker 守护进程，方便使用。
-    setSocketVariable = true; 
+  virtualisation.docker = {
+  enable = true;
+  # Customize Docker daemon settings using the daemon.settings option
+  daemon.settings = {
+    dns = [ "1.1.1.1" "8.8.8.8" ];
+    log-driver = "journald";
+    registry-mirrors = [ "https://mirror.gcr.io" ];
+    storage-driver = "overlay2";
   };
-  
-  # 注意：在无根模式下，不需要将用户添加到 "docker" 组。
-  # Docker 守护进程以普通用户身份运行。
+  # Use the rootless mode - run Docker daemon as non-root user
+  rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+};
+
 }

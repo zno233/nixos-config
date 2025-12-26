@@ -431,6 +431,8 @@ window-rule {
     match app-id="com.mitchellh.ghostty"
     match app-id="SPlayer"
     match app-id="steam"
+    match app-id="spotify"
+    
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }
     

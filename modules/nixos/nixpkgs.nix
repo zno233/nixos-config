@@ -12,7 +12,7 @@
       )
 
       # 加入 CachyOS kernel overlay
-      #inputs.nix-cachyos-kernel.overlay
+      inputs.nix-cachyos-kernel.overlays.pinned
       
       inputs.nur.overlays.default
       inputs.niri.overlays.niri
