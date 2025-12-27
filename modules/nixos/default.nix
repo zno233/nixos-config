@@ -4,7 +4,6 @@
     ./appImage.nix
     ./nixpkgs.nix
     #./grub-bootr.nix
-    ./systemd-boot.nix
     ./greetd.nix
     ./hardware.nix
     ./xserver.nix
@@ -17,6 +16,8 @@
     ./services.nix
     ./steam.nix
     ./system.nix
+    ./systemd-boot.nix
+    ./systemd-oomd.nix
     ./flatpak.nix
     ./user.nix
     ./xdg.nix
