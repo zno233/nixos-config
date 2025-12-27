@@ -12,6 +12,7 @@
     ./nh.nix
     ./pipewire.nix
     ./program.nix
+    ./scx.nix
     ./security.nix
     ./services.nix
     ./steam.nix

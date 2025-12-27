@@ -69,7 +69,7 @@
         RUNTIME_PM_ON_BAT = "auto";
         NVIDIA_PM_ENABLED = 1; # 如果使用闭源驱动
 
-        # 新增：USB、声音、WiFi优化（移除SATA_LINKPWR，因为磁盘是NVMe，无效）
+        # 新增：USB、声音、WiFi优化
         USB_AUTOSUSPEND = 1;
         SOUND_POWER_SAVE_ON_AC = 0;
         SOUND_POWER_SAVE_ON_BAT = 1;
@@ -88,6 +88,5 @@
       acpi_call
       cpupower
     ];
-    #++ [ pkgs.cpupower-gui ];
   };
 }

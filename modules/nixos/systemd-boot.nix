@@ -20,6 +20,7 @@
       "module_blacklist=nova_core,nova,nouveau"
       "i915.enable_psr=0"
       "nvidia-drm.modeset=1"
+      "lru_gen=y" #for cachyosKernel
     ];
     consoleLogLevel = 0;
     initrd.verbose = false;
