@@ -20,7 +20,7 @@
 
     ## Python
     #python3
-    (python312.withPackages (p: with p; [
+    (python313.withPackages (p: with p; [
       #ai tools
       # llm
       # llm-ollama
