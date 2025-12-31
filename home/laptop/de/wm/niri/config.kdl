@@ -427,7 +427,7 @@ window-rule {
     match app-id="code" 
     match app-id="org.telegram.desktop"
     match app-id="moe.tsuna.tsukimi"
-    match app-id="kitty"
+    //match app-id="kitty"
     match app-id="com.mitchellh.ghostty"
     match app-id="SPlayer"
     match app-id="steam"

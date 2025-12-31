@@ -19,7 +19,7 @@
 * {
     /* background-color: rgba(0,0,0,0); */
     border: none;
-    border-radius: 0;
+    border-radius: 0px;
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: "Maple Mono", "lxgw-wenkai";
     font-weight: bold;
@@ -29,6 +29,7 @@
 window#waybar {
     background: @background;
     /* border-bottom: 3px solid @green-light; */
+    border-radius: 0px;
     color: @white;
 }
 
@@ -83,21 +84,21 @@ window#waybar.hidden {
     transition: all 0s;
 }
 
-#niri-window {
+#window {
     margin-right: 3px;
     margin-left: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: all 0.3s;
-    color: @green-light;
+    color: @white;
 }
 
 #submap {
     margin-right: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @white;
     border-bottom: 3px solid @green;
@@ -107,7 +108,7 @@ window#waybar.hidden {
     margin-right: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @yellow;
 }
@@ -116,7 +117,7 @@ window#waybar.hidden {
     margin-right: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @white;
 }
@@ -125,7 +126,7 @@ window#waybar.hidden {
     margin-right: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @white;
 }
@@ -134,7 +135,7 @@ window#waybar.hidden {
     margin-right: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @white;
 }
@@ -143,7 +144,7 @@ window#waybar.hidden {
     margin-right: 3px;
     padding-left: 9px;
     padding-right: 13px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @blue;
 }
@@ -152,7 +153,7 @@ window#waybar.hidden {
     margin-right: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @white;
 }
@@ -161,7 +162,7 @@ window#waybar.hidden {
     margin-right: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @white;
 }
@@ -193,7 +194,7 @@ window#waybar.hidden {
 
 #system {
     padding-left: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @white;
 }
@@ -211,7 +212,7 @@ window#waybar.hidden {
     margin-left: 3px;
     padding-left: 9px;
     padding-right: 9px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @red;
 }
@@ -225,7 +226,7 @@ window#waybar.hidden {
     margin-right: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    border-top: 12px;
+    /* border-top: 12px; */
     transition: none;
     color: @white;
 }

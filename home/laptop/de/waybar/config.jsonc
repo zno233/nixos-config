@@ -1,13 +1,14 @@
 // -*- mode: jsonc -*-
 {
   "layer": "top",
+  "height": 24,
   "margin-top": 0,
   "margin-left": 0,
   "margin-bottom": 0,
   "margin-right": 0,
   "exclusive": true,
   "position": "top",
-  "spacing": 3,
+  "spacing": 0,
 
   "modules-left": ["custom/menu","custom/separator", "niri/workspaces","custom/separator", "niri/window" ],
   "modules-center": ["mpris", "custom/separator", "clock", "custom/separator", "custom/notification"],

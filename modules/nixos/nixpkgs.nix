@@ -2,11 +2,21 @@
 {
   nixpkgs = {
     overlays = [
+      # inputs.lix-module.overlays.default
+
+      (final: prev: {
+        inherit (prev.lixPackageSets.stable)
+          nixpkgs-review
+          nix-eval-jobs
+          nix-fast-build
+          colmena;
+      })
+
       (
         final: prev:
         (import ../../pkgs {
           inherit inputs;
-          inherit pkgs;
+          pkgs = final;
           inherit (prev) system;
         })
       )
@@ -18,4 +28,5 @@
       inputs.niri.overlays.niri
     ];
   };
+  nix.package = pkgs.lixPackageSets.stable.lix;
 }
