@@ -1,6 +1,9 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 {
   nixpkgs = {
+    # Android sdk liscense
+    config.android_sdk.accept_license = true;
+
     overlays = [
       # inputs.lix-module.overlays.default
 

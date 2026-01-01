@@ -29,7 +29,6 @@
   environment.systemPackages = with pkgs; [
     lutris  # 支持多游戏平台
     gamemode # 提升游戏性能动态管理
-    vulkan-tools
     mangohud # 游戏 HUD 显示帧率等信息
     steam-run  # 运行非原生Steam游戏
   ];

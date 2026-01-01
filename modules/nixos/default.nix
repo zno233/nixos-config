@@ -5,7 +5,7 @@
     ./nixpkgs.nix
     #./grub-bootr.nix
     ./greetd.nix
-    ./hardware.nix
+    ./graphics.nix
     ./xserver.nix
     ./network.nix
     ./nh.nix
@@ -26,5 +26,6 @@
     #./docker.nix
     ./dae.nix
     ./fcitx5.nix
+    ./font.nix
   ];
 }
