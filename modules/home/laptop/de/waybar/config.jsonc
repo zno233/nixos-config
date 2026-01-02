@@ -129,11 +129,19 @@
   },
 
   "pulseaudio": {
-    "format": "{volume}% <span>{icon}</span>",
-    "format-bluetooth": "{volume}% <span>{icon}</span>",
+    "format": "<span>{icon} </span>{volume}%",
+    "format-bluetooth": "<span>{icon} </span>{volume}%",
     "format-icons": {
-      "default": ["", "", "", ""],
-    },
+          "headphone": "󱡏",
+          "hands-free": "",
+          "headset": "󱡏",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": [
+            "", "", "", ""
+          ]
+        },
     "format-muted": "",
     "on-click": "pavucontrol",
     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
@@ -142,20 +150,20 @@
   },
 
   "cpu": {
-    "format": "{usage}% <span></span>",
+    "format": "<span> </span>{usage}%",
     "on-click-right": "kitty btop",
   },
 
   "memory": {
-    "format": "{}% <span></span>",
+    "format": "<span> </span>{}%",
     "on-click-right": "kitty btop",
   },
 
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "critical-threshold": 80,
-    "format": "{temperatureC}°C <span></span>",
-    "format-alt": "{temperatureC}°C <span></span>",
+    "format": "<span>󰔐 </span>{temperatureC}°C",
+    "format-alt": "<span>󰔐 </span>{temperatureC}°C",
     "tooltip-format": "Temperature: {temperatureC}°C",
     "on-click-right": "kitty btop",
   },
@@ -165,11 +173,17 @@
       "warning": 30,
       "critical": 15,
     },
-    "format": "{capacity}% <span>{icon}</span>",
-    "format-full": "{capacity}% <span>{icon}</span>",
-    "format-charging": "{capacity}% <span></span>",
-    "format-plugged": "{capacity}% <span></span>",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format": "<span>{icon} </span>{capacity}%",
+        "format-warning": "<span>{icon} </span>{capacity}%",
+        "format-critical": "<span>{icon} </span>{capacity}%",
+        "format-charging": "<span> </span>{capacity}%",
+        "format-plugged": "<span> </span>{capacity}%",
+        "format-alt": "<span>{icon} </span>{capacity}%",
+        "format-full": "<span> </span>{capacity}%",
+        "format-icons": [
+          "", "", "", "", ""
+        ],
+        "tooltip-format": "Battery: {capacity}%",
   },
 
   // "network": {

@@ -440,7 +440,7 @@ window-rule {
     match app-id="SPlayer"
     match app-id="steam"
     match app-id="spotify"
-    match app-id="nemo"
+    //match app-id="nemo"
     
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }

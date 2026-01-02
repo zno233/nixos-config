@@ -181,6 +181,7 @@ let
         "tooltip-format-disconnected": "Network Disconnected"
         //"on-click": "kitty --class nmtui,nmtui --title=nmtui -o remember_window_size=no -o initial_window_width=400 -o initial_window_height=400 -e doas nmtui"
       },
+
       "pulseaudio": {
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right" : "pavucontrol",
@@ -202,6 +203,7 @@ let
         "tooltip-format":"{volume}%",
         "tooltip-format-muted": "Volume: Muted"
       },
+      
       "group/meters": {
         "orientation": "inherit",
         "spacing": 10,

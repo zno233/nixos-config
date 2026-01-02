@@ -6,7 +6,7 @@
 
   xdg.configFile."glance/glance.yml" = {
       source = config.lib.file.mkOutOfStoreSymlink
-    "/home/zno/zno-config/home/laptop/programs/tools/glance/glance.yml";
+    "/home/zno/zno-config/modules/home/common/tools/glance/glance.yml";
     # 关键选项：告诉 Home Manager 创建一个直接链接到源文件
     # 而不是先复制到 Store 再链接。
     force = true;
