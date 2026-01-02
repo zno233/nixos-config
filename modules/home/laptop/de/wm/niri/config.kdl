@@ -8,17 +8,25 @@ input {
     }
         
     touchpad {
-        // off (关闭)
+        // off
         tap
-        // dwt (禁用输入时移动)
-        // dwtp (禁用输入时移动和指针)
-        // drag false (拖动禁用)
-        // drag-lock (拖动锁定)
+        // dwt
+        // dwtp
+        // drag false
+        // drag-lock
         natural-scroll
-        // accel-speed 0.2 (加速度)
-        // accel-profile "flat" (加速度配置文件)
-        // scroll-method "two-finger" (滚动方法)
-        // disabled-on-external-mouse (外部鼠标连接时禁用)
+        // accel-speed 0.2
+        // accel-profile "flat"
+        scroll-factor 0.5
+        // scroll-factor vertical=1.0 horizontal=-2.0
+        // scroll-method "two-finger"
+        // scroll-button 273
+        // scroll-button-lock
+        // tap-button-map "left-middle-right"
+        // click-method "clickfinger"
+        // left-handed
+        // disabled-on-external-mouse
+        // middle-emulation
     }
 
     mouse {
@@ -174,7 +182,7 @@ binds {
     Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
     Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
     Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
-    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/home/laptop/de/wm/niri/config.kdl"; }
+    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/modules/home/laptop/de/wm/niri/config.kdl"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
     Alt+M hotkey-overlay-title="音乐播放器： SPlayer" { spawn "splayer"; }
@@ -432,6 +440,7 @@ window-rule {
     match app-id="SPlayer"
     match app-id="steam"
     match app-id="spotify"
+    match app-id="nemo"
     
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }

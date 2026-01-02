@@ -6,6 +6,8 @@ node_modules/
 
 # Sensitive files
 glance.yml
+dotfiles/.config/dae/
+dotfiles/.config/daed/
 
 #trash
 unused/
