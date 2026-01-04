@@ -27,8 +27,8 @@
       swww         # 壁纸
       swaynotificationcenter      # 通知中心
       wf-recorder  # Wayland屏幕录制工具
-      hyprpicker  #取色器
-      grim        #wayland截图工具
+      hyprpicker   # 取色器
+      grim         # wayland截图工具
     ];
   };
   xdg.configFile."niri/config.kdl" = {

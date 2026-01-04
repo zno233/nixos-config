@@ -6,7 +6,7 @@
     settings = {
       user = {
         name = "zno233";
-        email = "2393567502@qq.com";
+        email = "zno233@outlook.com";
       };
 
       init.defaultBranch = "main";
