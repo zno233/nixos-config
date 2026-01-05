@@ -9,5 +9,11 @@ glance.yml
 dotfiles/.config/dae/
 dotfiles/.config/daed/
 
+#have not been used
+overlays/
+secrets/
+lib/
+
 #trash
 unused/
+trash/

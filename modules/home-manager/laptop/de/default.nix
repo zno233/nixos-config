@@ -16,7 +16,7 @@
     #./micro.nix                       # nano replacement
     ./nemo.nix                        # file manager
     ./rofi/rofi.nix                   # launcher
-    ./scripts/scripts.nix             # personal scripts
+    ../../../../scripts/scripts.nix   # personal scripts
     ./superfile/superfile.nix         # terminal file manager
     ./swaylock.nix                    # lock screen
     ./swayosd.nix                     # brightness / volume wiget

@@ -4,7 +4,7 @@
 
   xdg.configFile."fastfetch/config.jsonc" = {
     source = config.lib.file.mkOutOfStoreSymlink
-      "/home/zno/zno-config/modules/home/laptop/de/fastfetch/config.jsonc";
+      "/home/zno/zno-config/modules/home-manager/laptop/de/fastfetch/config.jsonc";
     force = true;
   };
   xdg.configFile."fastfetch/ascii".source = ./ascii;
