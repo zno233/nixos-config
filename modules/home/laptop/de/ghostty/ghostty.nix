@@ -1,4 +1,4 @@
-{ host, ... }:
+{ meta, ... }:
 {
   programs.ghostty = {
     enable = true;
@@ -10,7 +10,7 @@
         "Maple Mono"
         # "DejaVu Sans"
       ];
-      font-size = "${if (host == "laptop") then "16" else "18"}";
+      font-size = "${if (meta.hostName == "laptop") then "16" else "18"}";
       font-feature = [
         "calt"
         "cv66"

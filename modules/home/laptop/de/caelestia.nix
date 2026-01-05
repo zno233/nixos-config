@@ -1,9 +1,8 @@
 { 
   pkgs, 
   inputs,
-  username,
-  host,
   config,
+  meta,
   ... 
 }:
   let

@@ -1,8 +1,8 @@
-{ pkgs, host, ... }:
+{ pkgs, meta, ... }:
 {
   networking = {
     nftables.enable = true;
-    hostName = "${host}";
+    hostName = "${meta.hostName}";
     networkmanager.enable = true;
     nameservers = [
       "8.8.8.8"

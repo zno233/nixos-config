@@ -70,7 +70,7 @@
   outputs =
     { nixpkgs, self, nixpkgs-stable, nur, ... }@inputs:
     let
-      username = "zno";
+      userName = "zno";
       system = "x86_64-linux";
 
       # 全局模块
@@ -101,10 +101,12 @@
         nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/${hostName} ] ++ externalModules;
           specialArgs = {
-            host = hostName;
-            inherit self inputs username system;
+            inherit inputs self;
+            meta = {
+              inherit userName system hostName;
+            };
+          };
         };
-    };
     in
     {
       nixosConfigurations = {

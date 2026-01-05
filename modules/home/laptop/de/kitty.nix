@@ -1,4 +1,4 @@
-{ host, ... }:
+{ meta, ... }:
 {
   programs.kitty = {
     enable = true;
@@ -7,7 +7,7 @@
 
     font = {
       name = "Maple Mono";
-      size = if (host == "laptop") then 15 else 16;
+      size = if (meta.hostName == "laptop") then 15 else 16;
     };
 
     extraConfig = ''

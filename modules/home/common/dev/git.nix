@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, meta, ... }:
 {
   programs.git = {
     enable = true;
@@ -23,7 +23,7 @@
         "git@github.com:zno233/".insteadOf = "fp:";
       };
 
-      core.excludesFile = "/home/${username}/.config/git/.gitignore";
+      core.excludesFile = "/home/${meta.userName}/.config/git/.gitignore";
     };
   };
 

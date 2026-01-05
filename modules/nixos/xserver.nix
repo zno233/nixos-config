@@ -1,4 +1,4 @@
-{ username, ... }:
+{ meat, ... }:
 {
   services = {
     xserver = {
@@ -10,7 +10,7 @@
 
     #displayManager.autoLogin = {
     #  enable = true;
-    #  user = "${username}";
+    #  user = "${meta.userName}";
     #};
     libinput = {
       enable = true;

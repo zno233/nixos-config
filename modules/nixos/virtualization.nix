@@ -1,7 +1,7 @@
-{ pkgs, username, ... }:
+{ pkgs, meta, ... }:
 {
   # Add user to libvirtd group
-  users.users.${username}.extraGroups = [ "libvirtd" ];
+  users.users.${meta.userName}.extraGroups = [ "libvirtd" ];
 
   # Install necessary packages
   environment.systemPackages = with pkgs; [
