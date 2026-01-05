@@ -16,7 +16,7 @@
       port = 12345;  # dae 的 tproxy_port，根据您的 config.dae 调整
     };
     # 可选：如果需要自定义包
-    # package = daeuniverse.packages.${pkgs.system}.dae;  # 默认已使用
+    # package = daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.dae;  # 默认已使用
     disableTxChecksumIpGeneric = false;  # 默认值，根据需要调整
   };
 
@@ -43,7 +43,7 @@
      port = 2025;  # daed 的监听端口
     };
     # 可选：如果需要自定义包
-    # package = daeuniverse.packages.${pkgs.system}.daed;  # 默认已使用
+    # package = daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed;  # 默认已使用
   #};
 
   # 确保 daed 依赖于 dae（模块可能已处理，但显式添加）

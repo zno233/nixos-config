@@ -14,8 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # 最新 stable 分支的 nixpkgs，用于回退个别软件包的版本
-    # 当前最新版本为 25.11
+    # nixpkgs-stable 25.11
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     home-manager = {
@@ -74,58 +73,44 @@
       username = "zno";
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
-      pkgs-stable = import nixpkgs-stable {
-        inherit system;
-        # 为了拉取 chrome 等软件包，
-        # 这里我们需要允许安装非自由软件
-        config.allowUnfree = true;
-      };
-
-      # 集中管理所有外部 Flake 提供的 NixOS 模块
-      # 这是一个包含所有外部依赖模块的列表
+      # 全局模块
       externalModules = [
+        # nixpkgs-stable
+        ({ config, ... }: {
+          nixpkgs.overlays = [
+            (final: prev: {
+              stable = import nixpkgs-stable {
+                localSystem = prev.stdenv.hostPlatform;
+                config.allowUnfree = true;
+              };
+            })
+          ];
+        })
+
         # Adds the NUR overlay
         inputs.nur.modules.nixos.default
         # NUR modules to import
-        inputs.nur.legacyPackages."${system}".repos.iopq.modules.xraya
+        inputs.nur.legacyPackages.${system}.repos.iopq.modules.xraya
         
         # ... 其他需要导入的 Flake 模块 ...
         # inputs.stylix.nixosModules.stylix
       ];
 
-      lib = nixpkgs.lib;
+      # Helper function to create a NixOS system with common modules
+      mkHost = hostName:
+        nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/${hostName} ] ++ externalModules;
+          specialArgs = {
+            host = hostName;
+            inherit self inputs username system;
+        };
+    };
     in
     {
       nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./hosts/desktop ] ++ externalModules;
-          specialArgs = {
-            host = "desktop";
-            inherit self inputs username pkgs-stable;
-          };
-        };
-        laptop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./hosts/laptop ] ++ externalModules;
-          specialArgs = {
-            host = "laptop";
-            inherit self inputs username pkgs-stable;
-          };
-        };
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./hosts/vm ] ++ externalModules;
-          specialArgs = {
-            host = "vm";
-            inherit self inputs username pkgs-stable;
-          };
-        };
+        desktop = mkHost "desktop";
+        laptop  = mkHost "laptop";
+        vm      = mkHost "vm";
       };
     };
 }

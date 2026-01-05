@@ -20,7 +20,7 @@
         (import ../../pkgs {
           inherit inputs;
           pkgs = final;
-          inherit (prev) system;
+          hostPlatform = final.stdenv.hostPlatform;
         })
       )
 

@@ -17,7 +17,7 @@ input {
         natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
-        scroll-factor 0.5
+        scroll-factor 0.3
         // scroll-factor vertical=1.0 horizontal=-2.0
         // scroll-method "two-finger"
         // scroll-button 273

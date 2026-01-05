@@ -20,6 +20,6 @@
     snipaste
     font-manager
     localsend
-    maa-cli
+    # maa-cli
   ];
 }

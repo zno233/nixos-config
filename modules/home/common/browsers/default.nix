@@ -9,7 +9,7 @@
   #   let
   #     value =
   #       let
-  #         zen-browser = inputs.zen-browser.packages.${pkgs.system}.beta;
+  #         zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta;
   #       in
   #       zen-browser.meta.desktopFileName;
 

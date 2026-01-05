@@ -24,7 +24,7 @@
        environment = [];
     };
     # 推荐：with-cli 包 = shell + cli
-    package = caelestia-shell.packages.${pkgs.system}.with-cli;
+    package = caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.with-cli;
 
     # CLI 主题同步
     cli = {
