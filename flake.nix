@@ -40,6 +40,10 @@
       url = "github:sodiboo/niri-flake";
       #inputs.niri-unstable.follows = "niri-unstable";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
     daeuniverse.url = "github:daeuniverse/flake.nix";
 

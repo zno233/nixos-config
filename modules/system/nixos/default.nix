@@ -1,31 +1,7 @@
 { ... }:
 {
   imports = [
-    ./appImage.nix
-    ./nixpkgs.nix
-    #./grub-bootr.nix
-    ./greetd.nix
-    ./graphics.nix
-    ./xserver.nix
-    ./network.nix
-    ./nh.nix
-    ./pipewire.nix
-    ./program.nix
-    ./scx.nix
-    ./security.nix
-    ./services.nix
-    ./steam.nix
-    ./system.nix
-    ./systemd-boot.nix
-    ./systemd-oomd.nix
-    ./flatpak.nix
-    ./user.nix
-    ./xdg.nix
-    ./virtualization.nix
-    ./bluetooth.nix
-    #./docker.nix
-    ./dae.nix
-    ./fcitx5.nix
-    ./font.nix
+    ./core
+    ./optional
   ];
 }

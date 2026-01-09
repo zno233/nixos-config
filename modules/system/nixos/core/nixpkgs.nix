@@ -17,7 +17,7 @@
 
       (
         final: prev:
-        (import ../../../pkgs {
+        (import ../../../../pkgs {
           inherit inputs;
           pkgs = final;
           hostPlatform = final.stdenv.hostPlatform;

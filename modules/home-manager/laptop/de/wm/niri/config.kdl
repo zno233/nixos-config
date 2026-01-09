@@ -165,32 +165,40 @@ binds {
     // ========================= 基本系统功能 =========================
 
     Mod+Shift+Slash hotkey-overlay-title="显示快捷键" { show-hotkey-overlay; }
-
     Mod+Shift+E { quit; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-    Mod+Shift+Escape hotkey-overlay-title="电源菜单" { spawn "power-menu"; }
-    Ctrl+Alt+Delete { spawn "power-menu"; } 
+    //Mod+Shift+Escape hotkey-overlay-title="电源菜单" { spawn "power-menu"; }
+    //Ctrl+Alt+Delete { spawn "power-menu"; } 
 
     Mod+Shift+P { power-off-monitors; } // 关闭显示器
+
+    // -------- Noctalia 特有绑定 --------
+    Mod+S hotkey-overlay-title="控制面板" { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    //Mod+Comma hotkey-overlay-title="设置" { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Super+Alt+L hotkey-overlay-title="锁屏" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    Mod+Shift+Escape hotkey-overlay-title="电源" { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+    Mod+D hotkey-overlay-title="应用启动器" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+V hotkey-overlay-title="剪切板" { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Mod+Shift+W hotkey-overlay-title="桌面小组件" { spawn "noctalia-shell" "ipc" "call" "desktopWidgets" "toggle"; }
 
     // ========================= 启动应用程序 =========================
 
     Mod+Return hotkey-overlay-title="终端: kitty" { spawn "kitty"; }
-    Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
+    //Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
     Mod+B hotkey-overlay-title="浏览器: Chrome" { spawn "google-chrome-stable"; }
     Mod+E hotkey-overlay-title="文件管理器: nemo" { spawn "nemo"; }
-    Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
-    Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
+    //Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
+    //Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
     Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
-    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/modules/home/laptop/de/wm/niri/config.kdl"; }
+    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/modules/home-manager/laptop/de/wm/niri/config.kdl"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
     Alt+M hotkey-overlay-title="音乐播放器： SPlayer" { spawn "splayer"; }
     Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
-    Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
-    Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" { 
-    spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy"; 
-    }
+    //Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
+    //Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" { 
+    //spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy"; 
+   //}
 
     // ========================= 音量控制 =========================
 
@@ -416,6 +424,16 @@ window-rule {
     open-maximized false
 }
 
+window-rule {
+    match app-id="SPlayer" title="桌面歌词"
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-floating-position x=32 y=32 relative-to="bottom"
+    border {
+        off
+    }
+}
+
 window-rule { // waypaper
     match app-id="waypaper"
     default-window-height {fixed 660; }
@@ -454,32 +472,44 @@ window-rule {
 
 // niri 启动时运行的程序
 // 后台守护进程 (使用 spawn-sh-at-startup 启动需要 & 的服务)
-spawn-sh-at-startup "wl-clip-persist --clipboard both &" // 剪贴板持久化
-spawn-sh-at-startup "wl-paste --watch cliphist store &"  // 剪贴板历史记录
-//spawn-sh-at-startup "vicinae server"                     // 应用启动器后端
-//spawn-sh-at-startup "waypaper --restore"                 // 恢复壁纸
-spawn-sh-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1" // 权限认证代理
-spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
-spawn-sh-at-startup "glance --config ~/.config/glance/glance.yml &" //glance
-
 // 普通启动程序 (使用 spawn-at-startup 启动)
-spawn-at-startup "hyprlock"            // 锁屏
-spawn-at-startup "swayosd-server"      // OSD 提示服务
+//shared
+spawn-sh-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1" // 权限认证代理
+spawn-sh-at-startup "glance --config ~/.config/glance/glance.yml &" //glance
+spawn-at-startup "udiskie --automount --notify --smart-tray" // 磁盘挂载工具
 spawn-at-startup "nm-applet"           // 网络管理器 Applet
 spawn-at-startup "poweralertd"         // 电源警报守护进程
 spawn-at-startup "blueman-applet"      // 蓝牙 Applet
-spawn-at-startup "udiskie --automount --notify --smart-tray" // 磁盘挂载工具
-spawn-at-startup "swaynsc"              // 通知中心
-spawn-at-startup "swww-daemon"
-//spawn-at-startup "init-wallpaper"      // 初始化壁纸脚本
+
+// shell
+spawn-at-startup "noctalia-shell"
+
+// de without shell
+//spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
+// spawn-at-startup "hyprlock"            // 锁屏
+// spawn-at-startup "swayosd-server"      // OSD 提示服务
+// spawn-at-startup "swaynsc"              // 通知中心
+// spawn-at-startup "swww-daemon"
+// spawn-at-startup "init-wallpaper"      // 初始化壁纸脚本
+//spawn-sh-at-startup "wl-clip-persist --clipboard both &" // 剪贴板持久化
+//spawn-sh-at-startup "wl-paste --watch cliphist store &"  // 剪贴板历史记录
+//spawn-sh-at-startup "vicinae server"                     // 应用启动器后端
+//spawn-sh-at-startup "waypaper --restore"                 // 恢复壁纸
 
 overview {
      zoom 0.6
 }
 
-layer-rule {
+// swww
+//layer-rule {
     // 壁纸
-    match namespace="^wallpaper|swww-daemon$"
+//    match namespace="^wallpaper|swww-daemon$"
+//    place-within-backdrop true
+//}
+
+// noctalia-wallpaper 
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
 }
 
