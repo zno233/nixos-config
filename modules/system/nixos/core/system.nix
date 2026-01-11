@@ -42,6 +42,7 @@
   environment.systemPackages = with pkgs; [
     wget
     git
+    android-tools
   ];
   
   environment.sessionVariables = {

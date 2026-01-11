@@ -4,6 +4,7 @@
     ./appImage.nix
     #./grub-bootr.nix
     #./sddm.nix 
+    #./fprintd.nix
     ./program.nix
     ./scx.nix
     ./steam.nix

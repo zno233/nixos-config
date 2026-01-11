@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./audacious/audacious.nix
+    #./audacious/audacious.nix
     ./media.nix
     ./spotify.nix
   ];

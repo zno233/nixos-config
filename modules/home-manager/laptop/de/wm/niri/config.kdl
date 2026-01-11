@@ -180,21 +180,33 @@ binds {
     Mod+D hotkey-overlay-title="应用启动器" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+V hotkey-overlay-title="剪切板" { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
     Mod+Shift+W hotkey-overlay-title="桌面小组件" { spawn "noctalia-shell" "ipc" "call" "desktopWidgets" "toggle"; }
+    
+    // Audio controls
+    XF86AudioRaiseVolume { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+
+    // Brightness controls
+    XF86MonBrightnessUp { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
 
     // ========================= 启动应用程序 =========================
 
     Mod+Return hotkey-overlay-title="终端: kitty" { spawn "kitty"; }
-    //Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
     Mod+B hotkey-overlay-title="浏览器: Chrome" { spawn "google-chrome-stable"; }
     Mod+E hotkey-overlay-title="文件管理器: nemo" { spawn "nemo"; }
-    //Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
-    //Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
     Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
     Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/modules/home-manager/laptop/de/wm/niri/config.kdl"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
     Alt+M hotkey-overlay-title="音乐播放器： SPlayer" { spawn "splayer"; }
     Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
+    Mod+Shift+B hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
+
+    // no shell
+    //Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
+    //Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
+    //Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
     //Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
     //Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" { 
     //spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy"; 
@@ -202,16 +214,16 @@ binds {
 
     // ========================= 音量控制 =========================
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "5"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-5"; }
-    XF86AudioMute        allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    //XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "5"; }
+    //XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-5"; }
+    //XF86AudioMute        allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    //XF86AudioMicMute     allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
 
 
     // ========================= 亮度控制 =========================
 
-    XF86MonBrightnessUp allow-when-locked=true   { spawn "swayosd-client" "--brightness" "+5"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "-5"; }
+    //XF86MonBrightnessUp allow-when-locked=true   { spawn "swayosd-client" "--brightness" "+5"; }
+    //XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "-5"; }
 
 
     // ========================= 窗口管理 — 焦点 =========================
@@ -483,6 +495,7 @@ spawn-at-startup "blueman-applet"      // 蓝牙 Applet
 
 // shell
 spawn-at-startup "noctalia-shell"
+spawn-sh-at-startup "sleep 3 && noctalia-shell ipc call lockScreen lock"  //锁屏
 
 // de without shell
 //spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
