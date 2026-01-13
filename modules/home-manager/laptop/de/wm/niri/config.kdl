@@ -181,6 +181,11 @@ binds {
     Mod+V hotkey-overlay-title="剪切板" { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
     Mod+Shift+W hotkey-overlay-title="桌面小组件" { spawn "noctalia-shell" "ipc" "call" "desktopWidgets" "toggle"; }
     
+    // Media controls
+    Mod+Alt+Space {spawn "noctalia-shell" "ipc" "call" "media" "playPause";}
+    Mod+Alt+Left {spawn "noctalia-shell" "ipc" "call" "media" "previous";}
+    Mod+Alt+Right {spawn "noctalia-shell" "ipc" "call" "media" "next";}
+
     // Audio controls
     XF86AudioRaiseVolume { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
     XF86AudioLowerVolume { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
@@ -195,7 +200,6 @@ binds {
     Mod+Return hotkey-overlay-title="终端: kitty" { spawn "kitty"; }
     Mod+B hotkey-overlay-title="浏览器: Chrome" { spawn "google-chrome-stable"; }
     Mod+E hotkey-overlay-title="文件管理器: nemo" { spawn "nemo"; }
-    Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
     Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/modules/home-manager/laptop/de/wm/niri/config.kdl"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
@@ -361,7 +365,7 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     
-    // 用于切换窗口浮动 (匹配 Hyprland toggle-float)
+    // 用于切换窗口浮动
     Mod+Space { toggle-window-floating; } 
     // 用于切换浮动/平铺焦点
     Mod+Shift+V { switch-focus-between-floating-and-tiling; } 
@@ -400,8 +404,7 @@ binds {
 
 }
 
-// 我在配置中添加的内容
-
+// 鼠标指针
 cursor {
     xcursor-theme "phinger-cursors-light"
     xcursor-size 22
@@ -559,7 +562,7 @@ environment {
     QT_QPA_PLATFORMTHEME_5 "qt5ct"
     QT_AUTO_SCREEN_SCALE_FACTOR "1" // 启用 HiDPI 缩放
 
-    // Electron (VSC) 和 Firefox 设置
+    // Electron 和 Firefox 设置
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     NIXOS_OZONE_WL "1"
     MOZ_ENABLE_WAYLAND "1"
