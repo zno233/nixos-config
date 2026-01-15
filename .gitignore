@@ -6,8 +6,7 @@ node_modules/
 
 # Sensitive files
 glance.yml
-dotfiles/.config/dae/
-dotfiles/.config/daed/
+dotfiles/
 modules/home-manager/laptop/de/noctalia/.noctalia
 
 #have not been used
