@@ -9,7 +9,7 @@
   # ------------------------------------------------------------------------
   services.dae = {
     enable = true;
-    configFile = "/home/zno/.config/dae/config.dae";  # 系统级路径，模块默认
+    configFile = "/home/zno/.config/dae/config.dae";
     assets = with pkgs; [ v2ray-geoip v2ray-domain-list-community ];
     openFirewall = {
       enable = true;
@@ -40,7 +40,7 @@
     listen = "127.0.0.1:2025";  # 暴露到所有接口，根据需要调整为 "127.0.0.1:2023" 以限制本地
     openFirewall = {
       enable = true;
-     port = 2025;  # daed 的监听端口
+      port = 2025;  # daed 的监听端口
     };
     # 可选：如果需要自定义包
     # package = daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed;  # 默认已使用

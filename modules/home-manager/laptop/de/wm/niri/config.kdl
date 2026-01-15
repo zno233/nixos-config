@@ -439,6 +439,12 @@ window-rule {
     open-maximized false
 }
 
+window-rule { // 居中
+    match app-id="steam" title="登录 Steam"
+    open-floating true
+    // opacity 0.8
+}
+
 window-rule {
     match app-id="SPlayer" title="桌面歌词"
     open-floating true
@@ -575,6 +581,6 @@ environment {
     
     //输入法
     XIM "fcitx"
-    GTK_IM_MODULE "fcitx"
-    QT_IM_MODULE "fcitx"
+    //GTK_IM_MODULE "fcitx"
+    //QT_IM_MODULE "fcitx"
 }
