@@ -439,17 +439,11 @@ window-rule {
     open-maximized false
 }
 
-window-rule { // 居中
-    match app-id="steam" title="登录 Steam"
-    open-floating true
-    // opacity 0.8
-}
-
 window-rule {
     match app-id="SPlayer" title="桌面歌词"
     open-floating true
     default-column-width { proportion 0.75; }
-    default-floating-position x=32 y=32 relative-to="bottom"
+    default-floating-position x=32 y=64 relative-to="bottom"
     border {
         off
     }
