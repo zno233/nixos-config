@@ -6,7 +6,6 @@
 
     overlays = [
       # inputs.lix-module.overlays.default
-
       (final: prev: {
         inherit (prev.lixPackageSets.stable)
           nixpkgs-review
@@ -15,6 +14,7 @@
           colmena;
       })
 
+      # pkgs
       (
         final: prev:
         (import ../../../../pkgs {

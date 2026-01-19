@@ -46,11 +46,6 @@
   ];
   
   environment.sessionVariables = {
-    # Force GTK apps to use Wayland
-    GDK_BACKEND = "wayland,x11,*";
-  
-    # Force Qt apps to use Wayland
-    QT_QPA_PLATFORM = "wayland;xcb";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     LIBVA_DRIVER_NAME = "iHD";                  # Intel VAAPI 驱动
     VDPAU_DRIVER = "va_gl";                     # 兼容老软件
