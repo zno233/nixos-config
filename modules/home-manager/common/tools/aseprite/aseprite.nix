@@ -1,4 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ aseprite ];
+  home.packages = [
+    pkgs.stable.aseprite 
+  ];
 }

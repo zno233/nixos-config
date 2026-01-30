@@ -11,7 +11,7 @@
     video-trimmer
     vlc
     
-    fooyin # like fb2k
+    stable.fooyin # like fb2k
     #spotify
     mpv
     splayer

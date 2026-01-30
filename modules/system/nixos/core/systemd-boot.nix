@@ -10,7 +10,7 @@
 
     # 核心系统配置
     #kernelPackages = pkgs.linuxPackages_zen;
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
     supportedFilesystems = ["ntfs"];
     kernelParams = [
       "loglevel=3"
