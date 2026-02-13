@@ -11,7 +11,7 @@ in
     
     # 1. 选择主题
     # 使用 Gruvbox 主题
-    theme = spicePkgs.themes.onepunch;
+    theme = spicePkgs.themes.lucid;
     colorScheme = "";
 
     # 2. 添加插件 (包括你刚才问的广告屏蔽)
@@ -19,8 +19,8 @@ in
       adblock            # 屏蔽广告
       shuffle            # 真正的随机播放
       hidePodcasts       # 隐藏播客
-      #fullAppDisplay     # 专辑封面全屏显示
-      beautifulLyrics    # 歌词
+      # fullAppDisplay     # 专辑封面全屏显示
+      # beautifulLyrics    # 歌词
     ];
 
     # 3. 启用自定义功能
