@@ -22,7 +22,6 @@
       "nvidia-drm.modeset=1"
       "lru_gen=y" #for cachyosKernel
     ];
-    consoleLogLevel = 0;
     initrd.verbose = false;
     #initrd.kernelModules = [ "nvidia" ];
     
