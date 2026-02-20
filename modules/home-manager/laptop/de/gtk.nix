@@ -11,6 +11,8 @@
     fantasque-sans-mono
     maple-mono-custom
     bibata-cursors
+    phinger-cursors
+    graphite-cursors
   ];
 
   gtk = {
@@ -36,14 +38,14 @@
       package = pkgs.papirus-icon-theme.override { color = "green"; };
     };
     cursorTheme = {
-        name = "phinger-cursors-light";
-        package = pkgs.phinger-cursors;
+        name = "graphite-dark";
+        package = pkgs.graphite-cursors;
        size = 22;
     };
   };
   home.pointerCursor = {
-    name = "phinger-cursors-light";
-    package = pkgs.phinger-cursors;
+    name = "graphite-dark";
+    package = pkgs.graphite-cursors;
     size = 22;
   };
 }
