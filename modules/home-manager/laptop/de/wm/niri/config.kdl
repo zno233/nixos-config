@@ -411,8 +411,16 @@ cursor {
 }
 
 // 窗口规则
-
+window-rule { // 移除所有窗口的边框背景 + 透明度
+    draw-border-with-background false
+//    opacity 0.89
+}
 window-rule { // 浮动窗口
+    match app-id=r#"^gnome-calculator$"#
+    match app-id=r#"^galculator$"#
+    match app-id=r#"^blueman-manager$"#
+    match app-id=r#"^org\.gnome\.Nautilus$"#
+    match app-id=r#"^xdg-desktop-portal$"#
     match app-id="dynamic_power_user"
     match app-id="com.network.manager"
     match app-id="org.pulseaudio.pavucontrol"
@@ -421,48 +429,9 @@ window-rule { // 浮动窗口
     match app-id="mpv"
     match app-id="imv"
     open-floating true
-    // opacity 0.8
+//  opacity 0.8
 }
-
-window-rule {
-    match app-id="wechat"
-    match app-id="QQ"
-    open-floating true
-    default-column-width { proportion 0.75; }
-    default-window-height { proportion 0.75; }
-}
-
-
-window-rule {
-    match app-id="waydroid"
-    //open-floating true
-    open-maximized false
-}
-
-window-rule {
-    match app-id="SPlayer" title="桌面歌词"
-    open-floating true
-    default-column-width { proportion 0.75; }
-    default-floating-position x=32 y=64 relative-to="bottom"
-    border {
-        off
-    }
-}
-
-window-rule { // waypaper
-    match app-id="waypaper"
-    default-window-height {fixed 660; }
-    default-column-width {fixed 850; }
-    open-floating true
-//    opacity 0.8
-}
-
-window-rule { // 移除所有窗口的边框背景 + 透明度
-    draw-border-with-background false
-//    opacity 0.89
-}
-
-window-rule {
+window-rule { // 全屏
     match app-id="google-chrome"
     match app-id="obsidian"
     match app-id="code" 
@@ -483,6 +452,72 @@ window-rule {
     
     // 如果你想要窗口占据整个屏幕高度，可以加上
     // default-window-height { proportion 1.0; }
+}
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+window-rule {
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+window-rule {
+    match app-id=r#"^gnome-control-center$"#
+    match app-id=r#"^pavucontrol$"#
+    match app-id=r#"^nm-connection-editor$"#
+    default-column-width { proportion 0.5; }
+    open-floating false
+}
+window-rule {
+    match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
+}
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="zoom"
+    open-floating true
+}
+window-rule {
+    match app-id="wechat"
+    match app-id="QQ"
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-window-height { proportion 0.75; }
+}
+window-rule {
+    match app-id="waydroid"
+    //open-floating true
+    open-maximized false
+}
+window-rule {
+    match app-id="SPlayer" title="桌面歌词"
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-floating-position x=32 y=64 relative-to="bottom"
+    border {
+        off
+    }
+}
+window-rule { // waypaper
+    match app-id="waypaper"
+    default-window-height {fixed 660; }
+    default-column-width {fixed 850; }
+    open-floating true
+//    opacity 0.8
 }
 
 // niri 启动时运行的程序
@@ -575,6 +610,8 @@ environment {
     
     //输入法
     XIM "fcitx"
-    //GTK_IM_MODULE "fcitx"
-    //QT_IM_MODULE "fcitx"
+    GTK_IM_MODULE "wayland;fcitx"
+    QT_IM_MODULE "fcitx"
+
+    STEAM_EXTRA_COMPAT_RUNTIME_PROFILES "1"
 }

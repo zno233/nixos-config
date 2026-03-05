@@ -43,11 +43,11 @@
       scikit-learn 
       xgboost
       joblib
-      imbalanced-learn
+      # imbalanced-learn
       chardet
   
       # 其他
-      mlxtend
+      # mlxtend
       opencv4
     ]))  
     

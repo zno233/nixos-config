@@ -29,7 +29,7 @@
     translate-shell                   # cli translator
     woomer                            # CLI tool to control WoW eBook reader
     yt-dlp-light                      # youtube-dl fork       
-    light                             # backlight controller
+    brightnessctl                     # backlight controller
     graphviz                          # graph visualization software
 
     ## TUI
@@ -79,7 +79,6 @@
     udiskie                           # Automounter for removable media
     unzip
     wget
-    wl-clipboard                      # clipboard utils for wayland (wl-copy, wl-paste)
     xdg-utils
     p7zip-rar
     unar                              # Extract many archive formats

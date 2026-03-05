@@ -12,7 +12,7 @@
     ./gtk.nix                         # gtk theme  
     ./kitty.nix                       # terminal
     ./nemo.nix                        # file manager
-    ./superfile/superfile.nix         # terminal file manager
+    # ./superfile/superfile.nix         # terminal file manager
     ./wm                              # window manager
     ./xdg-mimes.nix                   # xdg config
     ./zsh                             # shell
