@@ -12,5 +12,6 @@
     ./flatpak.nix
     #./docker.nix
     ./dae.nix
+    ./zram.nix
   ];
 }
