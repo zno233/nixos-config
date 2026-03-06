@@ -3,9 +3,18 @@
   boot = {
     #开启cake+bbr
     kernel.sysctl = {
-      "net.core.default_qdisc" = "cake"; # Zen 内核完美支持
-      "net.ipv4.tcp_congestion_control" = "bbr";
-      "net.ipv4.tcp_fastopen" = 3; # 额外加成：减少网页握手延迟
+      "net.core.default_qdisc" = "cake"; # 保持原样，低延迟公平分配
+      "net.ipv4.tcp_congestion_control" = "bbr"; # 保持原样，高效利用带宽
+      "net.ipv4.tcp_fastopen" = 3; # 保持原样，减少握手延迟
+      "net.ipv4.tcp_tw_reuse" = 1; # 快速回收 TIME_WAIT 连接，适合频繁的网页访问
+      # 缓冲区调整（跑满带宽+抗波动），无需额外CPU/内存代价
+      "net.ipv4.tcp_rmem" = "4096 131072 16777216"; # min/default/max；16MB max适合大多数链路
+      "net.ipv4.tcp_wmem" = "4096 131072 16777216";
+      "net.core.rmem_max" = 16777216;
+      "net.core.wmem_max" = 16777216;
+      
+      # 启用ECN（稳定性+低延迟），零代价
+      # "net.ipv4.tcp_ecn" = 1;  
     };
 
     # 核心系统配置

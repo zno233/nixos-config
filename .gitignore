@@ -17,3 +17,6 @@ lib/
 #trash
 unused/
 trash/
+
+# test
+test.sh
