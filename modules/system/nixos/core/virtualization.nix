@@ -2,8 +2,7 @@
 {
   # Add user to libvirtd group
   users.users.${meta.userName}.extraGroups = [ "libvirtd" ];
-  systemd.services.virt-secret-init-encryption.enable = false;
-  
+
   # Install necessary packages
   environment.systemPackages = with pkgs; [
     virt-manager
