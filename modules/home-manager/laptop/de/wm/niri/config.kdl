@@ -442,6 +442,7 @@ window-rule { // 全屏
     match app-id="SPlayer"
     match app-id="steam"
     match app-id="spotify"
+    match app-id="jetbrains-idea"
     //match app-id="nemo"
     
     // 设置默认列宽度为 100% (占据整个屏幕)

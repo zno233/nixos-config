@@ -55,7 +55,8 @@
     jdk
 
     # IDE
-    vscode
-    android-studio 
+    vscode-fhs
+    android-studio
+    jetbrains.idea
   ];
 }
