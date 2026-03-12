@@ -94,12 +94,12 @@
       "dimaround, vicinae"
       "dimaround, rofi"
       "dimaround, swaync-control-center"
-      
+
       # 新增：Waybar 模糊
       "blur, waybar"
-      "ignorealpha 0.5, waybar"  # 可选：忽略低透明度像素，提升性能
-      "xray 1, waybar"           # 可选：启用 xray 模式，模糊更精准
-      
+      "ignorealpha 0.5, waybar" # 可选：忽略低透明度像素，提升性能
+      "xray 1, waybar" # 可选：启用 xray 模式，模糊更精准
+
     ];
 
     workspace = [

@@ -7,9 +7,9 @@
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.ipv4.tcp_fastopen" = 3; # 额外加成：减少网页握手延迟
     };
-    
+
     kernelPackages = pkgs.linuxPackages_zen;
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
     kernelParams = [
       "loglevel=3"
       "quiet"
@@ -28,18 +28,18 @@
         #efiInstallAsRemovable = true;
         extraEntriesBeforeNixOS = true;
         extraEntries = ''
-          menuentry "Reboot" {
-            reboot
-        }
-          menuentry "Poweroff" {
-            halt
-        }
-      '';
-      default = "NixOS";
+            menuentry "Reboot" {
+              reboot
+          }
+            menuentry "Poweroff" {
+              halt
+          }
+        '';
+        default = "NixOS";
+      };
+      efi.efiSysMountPoint = "/boot";
+      efi.canTouchEfiVariables = true;
     };
-    efi.efiSysMountPoint  = "/boot";
-    efi.canTouchEfiVariables = true;
+    plymouth.enable = true;
   };
-  plymouth.enable = true; 
- };
 }

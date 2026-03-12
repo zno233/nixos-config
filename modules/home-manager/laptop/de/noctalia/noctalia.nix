@@ -3,10 +3,11 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
-      inputs.noctalia.homeModules.default
-    ];
+    inputs.noctalia.homeModules.default
+  ];
 
   home.packages = [
     pkgs.qt6Packages.qt6ct # for icon theme
@@ -18,8 +19,7 @@
   };
 
   xdg.configFile."noctalia" = {
-    source = config.lib.file.mkOutOfStoreSymlink
-      "/home/zno/zno-config/modules/home-manager/laptop/de/noctalia/.noctalia";
+    source = config.lib.file.mkOutOfStoreSymlink "/home/zno/zno-config/modules/home-manager/laptop/de/noctalia/.noctalia";
     force = true;
   };
 }

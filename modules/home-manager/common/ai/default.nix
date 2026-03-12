@@ -5,4 +5,3 @@
     ./gemini-cli.nix
   ];
 }
-

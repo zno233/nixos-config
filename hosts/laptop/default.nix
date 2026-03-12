@@ -1,4 +1,9 @@
-{ pkgs, config, inputs, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -18,7 +23,7 @@
   services = {
     #intel温控
     thermald.enable = true;
-  
+
     # 已注释 power-profiles-daemon，避免与 TLP 冲突，这是正确的做法。
     # power-profiles-daemon.enable = true;
     upower = {
@@ -61,7 +66,7 @@
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 60; # 根据需求调整
-      
+
         # 掉电保护：电池模式下加快数据刷盘
         MAX_LOST_WORK_SECS_ON_BAT = 15;
 

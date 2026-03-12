@@ -1,10 +1,10 @@
 { ... }:
 {
   imports = [
-    ./browsers.nix                     
+    ./browsers.nix
     ./zen.nix
   ];
-  
+
   # xdg.mimeApps =
   #   let
   #     value =

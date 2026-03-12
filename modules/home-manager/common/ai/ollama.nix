@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = [
-   (pkgs.ollama.override { 
+    (pkgs.ollama.override {
       acceleration = "cuda";
     })
   ];

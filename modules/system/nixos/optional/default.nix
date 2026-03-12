@@ -3,7 +3,7 @@
   imports = [
     ./appImage.nix
     #./grub-bootr.nix
-    #./sddm.nix 
+    #./sddm.nix
     #./fprintd.nix
     ./program.nix
     ./scx.nix

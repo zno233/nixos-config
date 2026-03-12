@@ -6,25 +6,25 @@
     "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP GDK_BACKEND QT_QPA_PLATFORM QT_AUTO_SCREEN_SCALE_FACTOR QT_QPA_PLATFORMTHEME QT_WAYLAND_DISABLE_WINDOWDECORATION ELECTRON_OZONE_PLATFORM_HINT NIXOS_OZONE_WL MOZ_ENABLE_WAYLAND SDL_VIDEODRIVER CLUTTER_BACKEND _JAVA_AWT_WM_NONREPARENTING"
 
     # Caelestia Shell 通常包含自己的锁屏逻辑，故注释掉
-     "hyprlock" 
-    
+    "hyprlock"
+
     # 系统级 Applets/Daemon
     "nm-applet &"
     "poweralertd &"
-    "blueman-applet &" 
-    
+    "blueman-applet &"
+
     # 剪贴板管理器
-     "wl-clip-persist --clipboard both &" 
-     "wl-paste --watch cliphist store &" 
-    
+    "wl-clip-persist --clipboard both &"
+    "wl-paste --watch cliphist store &"
+
     # 桌面面板
-    "waybar &" 
-    
+    "waybar &"
+
     # 通知中心
-     "swaync &" 
-    
-     "vicinae server &" 
-    
+    "swaync &"
+
+    "vicinae server &"
+
     # 系统级 Daemon
     "udiskie --automount --notify --smart-tray &"
     "hyprctl setcursor Bibata-Modern-Ice 24 &"
@@ -34,7 +34,7 @@
     "ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
     "[workspace 1 silent] google-chrome-stable"
     "[workspace 2 silent] kitty"
-    
+
     # 启动 Caelestia Shell
     #"caelestia-shell -d &"
   ];

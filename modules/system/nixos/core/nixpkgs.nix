@@ -1,4 +1,9 @@
-{ pkgs, inputs, config, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 {
   nixpkgs = {
     # Android sdk liscense
@@ -11,7 +16,8 @@
           nixpkgs-review
           nix-eval-jobs
           nix-fast-build
-          colmena;
+          colmena
+          ;
       })
 
       # pkgs
@@ -26,9 +32,9 @@
 
       # 加入 CachyOS kernel overlay
       inputs.nix-cachyos-kernel.overlays.pinned
-      
+
       inputs.nur.overlays.default
-      
+
       inputs.niri.overlays.niri
     ];
   };

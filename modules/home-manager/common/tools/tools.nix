@@ -12,8 +12,8 @@
     # tiled
 
     gnome-calculator
-    
-    qbittorrent-enhanced        #bt
+
+    qbittorrent-enhanced # bt
     #windterm
     calibre
     aria2

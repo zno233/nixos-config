@@ -10,13 +10,13 @@
     soundwireserver
     video-trimmer
     vlc
-    
+
     stable.fooyin # like fb2k
     #spotify
     mpv
     splayer
-    kazumi  #anime online
-    tsukimi                    #emby 
+    kazumi # anime online
+    tsukimi # emby
     #tauon                       #local music player
     gapless
   ];

@@ -4,4 +4,3 @@
     ./gaming.nix
   ];
 }
-

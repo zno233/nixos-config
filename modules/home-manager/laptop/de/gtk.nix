@@ -38,9 +38,9 @@
       package = pkgs.papirus-icon-theme.override { color = "green"; };
     };
     cursorTheme = {
-        name = "graphite-dark";
-        package = pkgs.graphite-cursors;
-       size = 22;
+      name = "graphite-dark";
+      package = pkgs.graphite-cursors;
+      size = 22;
     };
   };
   home.pointerCursor = {

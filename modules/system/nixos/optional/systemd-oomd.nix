@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   # 1. 启用 systemd-oomd 守护进程
   systemd.oomd = {

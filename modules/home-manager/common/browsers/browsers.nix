@@ -2,6 +2,6 @@
 {
   home.packages = with pkgs; [
     google-chrome
-    #microsoft-edge 
+    #microsoft-edge
   ];
 }

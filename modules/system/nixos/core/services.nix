@@ -10,7 +10,7 @@
 
     dbus.enable = true;
     fstrim.enable = true;
-    irqbalance.enable = true;  # 提升 IRQ 响应
+    irqbalance.enable = true; # 提升 IRQ 响应
 
     # needed for GNOME services outside of GNOME Desktop
     dbus.packages = with pkgs; [
@@ -25,8 +25,8 @@
       };
     };
 
-    udisks2.enable = true;   
+    udisks2.enable = true;
     seatd.enable = true;
   };
-  
+
 }

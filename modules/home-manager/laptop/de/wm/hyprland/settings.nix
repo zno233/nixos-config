@@ -1,9 +1,9 @@
 {
   # 完整的 Hyprland 配置，可以直接合并到您的 home-manager 或 NixOS 配置中。
-  # 
+  #
   # 假设您在 Nix 代码的其他地方启用了 Hyprland 模块，例如:
   # programs.hyprland.enable = true;
-  
+
   wayland.windowManager.hyprland.settings = {
 
     input = {
@@ -19,8 +19,8 @@
         natural_scroll = false;
       };
     };
-    
-   gestures = {
+
+    gestures = {
       gesture = [
         "3, horizontal, workspace" # 启用三指水平滑动切换工作区
       ];

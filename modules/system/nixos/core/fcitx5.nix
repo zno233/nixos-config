@@ -20,15 +20,14 @@
       catppuccin-fcitx5
     ];
   };
-  
+
   # environment.variables = {
   #   GTK_IM_MODULE = "fcitx";
   #   QT_IM_MODULE = "fcitx";
   #   XMODIFIERS = "@im=fcitx";
   #   INPUT_METHOD = "fcitx5";
   # };
-  
+
   #修复fcitx在某些软件的显示问题
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 }
-

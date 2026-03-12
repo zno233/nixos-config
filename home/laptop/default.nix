@@ -4,4 +4,3 @@
     ../../modules/home-manager/laptop
   ];
 }
-

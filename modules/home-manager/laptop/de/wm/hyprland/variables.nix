@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   wayland.windowManager.hyprland.extraConfig = ''
     # 在 hyprland.conf 开头添加这些 env 行

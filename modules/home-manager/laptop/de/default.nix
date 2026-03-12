@@ -2,20 +2,20 @@
 {
   imports = [
     ### shared
-    ./bat.nix                         # better cat command
-    ./btop.nix                        # resouces monitor 
-    ./cava.nix                        # audio visualizer
-    ./fastfetch/fastfetch.nix         # fetch tool
-    ./fzf.nix                         # fuzzy finder
-    ./ghostty/ghostty.nix             # terminal
-    ./gnome.nix                       # gnome apps
-    ./gtk.nix                         # gtk theme  
-    ./kitty.nix                       # terminal
-    ./nemo.nix                        # file manager
+    ./bat.nix # better cat command
+    ./btop.nix # resouces monitor
+    ./cava.nix # audio visualizer
+    ./fastfetch/fastfetch.nix # fetch tool
+    ./fzf.nix # fuzzy finder
+    ./ghostty/ghostty.nix # terminal
+    ./gnome.nix # gnome apps
+    ./gtk.nix # gtk theme
+    ./kitty.nix # terminal
+    ./nemo.nix # file manager
     # ./superfile/superfile.nix         # terminal file manager
-    ./wm                              # window manager
-    ./xdg-mimes.nix                   # xdg config
-    ./zsh                             # shell
+    ./wm # window manager
+    ./xdg-mimes.nix # xdg config
+    ./zsh # shell
 
     ### de without shell
     #./hyprlock/hyprlock.nix

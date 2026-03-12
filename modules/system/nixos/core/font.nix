@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   fonts = {
     fontconfig = {
@@ -28,7 +33,7 @@
         # 中文: 黑体
         sansSerif = [
           "Noto Sans CJK SC"
-          "Noto Sans" 
+          "Noto Sans"
         ];
 
         # 等宽字体
@@ -38,22 +43,22 @@
           "Hurmit Nerd Font Mono"
         ];
 
-        emoji = [ 
+        emoji = [
           "Noto Color Emoji"
         ];
       };
 
       # 高 DPI下最好显式关闭stem darkening
       localConf = ''
-      <?xml version="1.0"?>
-      <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
-      <fontconfig>
-        <match target="font">
-          <edit name="stem-darkening" mode="assign">
-            <bool>false</bool>
-          </edit>
-        </match>
-      </fontconfig>
+        <?xml version="1.0"?>
+        <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+        <fontconfig>
+          <match target="font">
+            <edit name="stem-darkening" mode="assign">
+              <bool>false</bool>
+            </edit>
+          </match>
+        </fontconfig>
       '';
     };
 

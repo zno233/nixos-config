@@ -8,24 +8,24 @@ let
   base0B = "a1c999"; # 绿色 (Green) - 用于 Battery Gradient 1
   base0D = "238DC0"; # 蓝色 (Blue) - 用于 Backlight, Charging/Full Gradient 2
   base0E = "78598D"; # 洋红色 (Magenta) - 用于 Battery 正常状态, Charging/Full Gradient 1
-  
+
   # 非 Base16/模块特定硬编码颜色
-  color_cpu_icon = "fb958b";   # CPU 图标颜色
+  color_cpu_icon = "fb958b"; # CPU 图标颜色
   color_memory_icon = "a1c999"; # Memory 图标颜色
   color_workspaces_default = "7a95c9"; # Workspaces 默认按钮/Launcher/Window 边框
   color_workspaces_active = "ecd3a0"; # Workspaces 激活按钮/Window 文本
   color_power_menu_icon = "e78284"; # Power Menu 图标颜色
   color_backlight_text = "e5e5e5"; # Backlight 文本颜色
-  
+
   # 通用 UI 颜色
-  color_waybar_text = "e5e5e5";    # Waybar 模块默认文本颜色
-  color_module_bg = "252733";      # Waybar 模块背景颜色
+  color_waybar_text = "e5e5e5"; # Waybar 模块默认文本颜色
+  color_module_bg = "252733"; # Waybar 模块背景颜色
   color_window_bg_alpha = "1A1B26"; # Waybar 窗口背景 (rgba(26, 27, 38, 0.5) 对应的 RGB)
-  
+
   # 从 Base16 中引入但在 CSS 中未使用的颜色变量 (用于 tooltip)
-  color_tooltip_bg = "100518";      # base01: Lighter Background (Tooltip BG)
-  color_tooltip_border = "F8F8F0";  # base07: Brightest Foreground (Tooltip Border)
-  
+  color_tooltip_bg = "100518"; # base01: Lighter Background (Tooltip BG)
+  color_tooltip_border = "F8F8F0"; # base07: Brightest Foreground (Tooltip Border)
+
   # Battery 渐变颜色 (Base0F 对应 Base16 Aurora 的 Cyan)
   color_battery_grad_1 = "18A121"; # base0B
   color_battery_grad_2 = "7755B8"; # base0F (Cyan, 用于 Battery Gradient 2)
@@ -45,14 +45,14 @@ let
         "tooltip" : "true",
         "tooltip-format" : "Random Wallpaper",
       },
-     
+
       "custom/power-menu": {
         "tooltip": true,
         "tooltip-format": "Power menu",
         "format": "<span foreground='#${base08}'> </span>",
         "on-click": "power-menu"
       },
-     
+
       "custom/notification": {
         "tooltip": true,
         "tooltip-format": "Notifications",
@@ -74,14 +74,14 @@ let
         "on-click-right": "swaync-client -d -sw",
         "escape": true
       },
-     
+
       "cpu": {
         "format": "<span foreground='#${color_cpu_icon}'> </span> {usage}%",
         "format-alt": "<span foreground='#${color_cpu_icon}'> </span> {avg_frequency} GHz",
         "interval": 2,
         "on-click-right": "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'"
       },
-     
+
       "hyprland/workspaces": {
           "on-click": "activate",  
           "format": "{icon}",
@@ -228,7 +228,7 @@ in
         @define-color base0D #${base0D}; /* Charging Grad 2 */
         @define-color base0E #${base0E}; /* Charging Grad 1 */
         @define-color base0F #${color_battery_grad_2}; /* Battery Grad 2 (Cyan) */
-        
+
         @define-color color_waybar_text #${color_waybar_text};
         @define-color color_module_bg #${color_module_bg};
         @define-color color_workspaces_default #${color_workspaces_default};
@@ -247,7 +247,7 @@ in
           background: alpha(@base00, 0.7);
         }
       '';
-     # --- 6. 主样式：style.css (包含所有模块的视觉样式) ---
+    # --- 6. 主样式：style.css (包含所有模块的视觉样式) ---
     ".config/waybar/style.css".text =
       # css
       ''
@@ -406,7 +406,7 @@ in
           background-size: 200% 300%;
           animation: gradient_rv 20s linear infinite;
         }
-       
+
         #tray > .passive {
           -gtk-icon-effect: dim;
         }

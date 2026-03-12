@@ -35,7 +35,7 @@ let
   rosewater = "f4dbd6";
 
   # **硬编码主显示器名称** (可选，如果需要指定输出；这里未使用，因为原config无output)
-  mainMonitorName = "eDP-1"; 
+  mainMonitorName = "eDP-1";
 
   # --- 2. 模块配置 (Module Definitions) ---
   moduleConfiguration =
@@ -259,7 +259,7 @@ let
           "exec": "fish -c check_night_mode",
           "on-click": "fish -c night_mode_toggle",
       },
-      
+
       "custom/dunst": {
           "return-type": "json",
           "exec": "fish -c dunst_pause",
@@ -340,7 +340,7 @@ let
           "on-click": "wezterm start btop",
           "on-click-right": "wezterm start btm",
       },
-      
+
       "memory": {
           "format": "󰍛{percentage}%",
           "tooltip-format": "Main: ({used} GiB/{total} GiB)({percentage}%), available {avail} GiB\nSwap: ({swapUsed} GiB/{swapTotal} GiB)({swapPercentage}%), available {swapAvail} GiB",
@@ -393,7 +393,7 @@ let
           "format-icons": [ "󱃍", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ],
           "tooltip-format": "{timeTo}",
       },
-      
+
       "backlight": {
           "format": "{icon}{percent}%",
           "format-icons": [

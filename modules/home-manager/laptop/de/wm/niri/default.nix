@@ -3,7 +3,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.niri.homeModules.niri
   ];
@@ -19,7 +20,7 @@
       jaq
       xwayland-satellite
       wl-clipboard # 核心剪贴板工具
-      cliphist     # 剪贴板历史记录
+      cliphist # 剪贴板历史记录
 
       # waybar       # 面板
       # swww         # 壁纸
@@ -30,8 +31,7 @@
     ];
   };
   xdg.configFile."niri/config.kdl" = {
-    source = config.lib.file.mkOutOfStoreSymlink
-      "/home/zno/zno-config/modules/home-manager/laptop/de/wm/niri/config.kdl";
+    source = config.lib.file.mkOutOfStoreSymlink "/home/zno/zno-config/modules/home-manager/laptop/de/wm/niri/config.kdl";
     force = true;
   };
 }

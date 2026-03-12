@@ -7,9 +7,7 @@ let
     builtins.attrNames scriptEntries
   );
 
-  shellScripts = builtins.filter (
-    name: builtins.match ".*\\.sh$" name != null
-  ) regularFiles;
+  shellScripts = builtins.filter (name: builtins.match ".*\\.sh$" name != null) regularFiles;
 
   mkScript = name: {
     name = name;

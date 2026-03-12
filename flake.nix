@@ -21,7 +21,7 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,13 +74,24 @@
     # };
   };
 
-  outputs = { nixpkgs, self, nixpkgs-stable, nur, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      self,
+      nixpkgs-stable,
+      nur,
+      ...
+    }@inputs:
     let
       userName = "zno";
       system = "x86_64-linux";
 
       # 全局模块
-      externalModules = [
+      coreModules = [
+        {
+          nixpkgs.config.allowUnfree = true;
+        }
+
         # nixpkgs-stable
         ({ config, ... }: {
           nixpkgs.overlays = [
@@ -93,33 +104,67 @@
           ];
         })
 
+        # nix-index 通常也是全局開啟
+        inputs.nix-index-database.nixosModules.nix-index
+
+        # ... 其他需要导入的 Flake 模块 ...
         # Adds the NUR overlay
         inputs.nur.modules.nixos.default
 
         # NUR modules to import
         inputs.nur.legacyPackages.${system}.repos.iopq.modules.xraya
 
-        # ... 其他需要导入的 Flake 模块 ...
         # inputs.stylix.nixosModules.stylix
       ];
 
-      # Helper function to create a NixOS system with common modules
-      mkHost = hostName:
+      # 具名參數，更安全、更容易閱讀與擴展
+      mkHost =
+        {
+          hostName,
+          extraModules ? [ ],
+        }:
         nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/${hostName} ] ++ externalModules;
+          inherit system;
+
           specialArgs = {
             inherit inputs self;
             meta = {
               inherit userName system hostName;
             };
           };
+
+          modules =
+            coreModules
+            ++ [
+              ./hosts/${hostName}
+            ]
+            ++ extraModules;
         };
+
     in
     {
       nixosConfigurations = {
-        desktop = mkHost "desktop";
-        laptop  = mkHost "laptop";
-        vm      = mkHost "vm";
+        desktop = mkHost {
+          hostName = "desktop";
+          extraModules = [
+            # inputs.nix-gaming.nixosModules.default
+            # inputs.nix-flatpak.nixosModules.nix-flatpak
+            # inputs.niri.nixosModules.default
+          ];
+        };
+
+        laptop = mkHost {
+          hostName = "laptop";
+          # 筆電可能會加入 tlp、auto-cpufreq、brightnessctl 相關設定
+          # extraModules = [ ... ];
+        };
+
+        vm = mkHost {
+          hostName = "vm";
+          # 虛擬機通常最精簡
+        };
       };
+
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
     };
 }

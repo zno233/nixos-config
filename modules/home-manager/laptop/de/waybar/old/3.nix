@@ -9,24 +9,24 @@ let
   base0B = "a1c999"; # Green - Used for Battery Gradient 1
   base0D = "238DC0"; # Blue - Used for Backlight, Charging/Full Gradient 2
   base0E = "8fbcbb"; # Magenta - Used for Battery normal state, Charging/Full Gradient 1
-  
+
   # Non-Base16/module-specific hardcoded colors
-  color_cpu_icon = "fb958b";   # CPU icon color
+  color_cpu_icon = "fb958b"; # CPU icon color
   color_memory_icon = "a1c999"; # Memory icon color
   color_workspaces_default = "7a95c9"; # Workspaces default button/Launcher/Window border
   color_workspaces_active = "ecd3a0"; # Workspaces active button/Window text
   color_power_menu_icon = "e78284"; # Power Menu icon color
   color_backlight_text = "e5e5e5"; # Backlight text color
-  
+
   # General UI colors
-  color_waybar_text = "e5e5e5";    # Waybar module default text color
-  color_module_bg = "252733";      # Waybar module background color
+  color_waybar_text = "e5e5e5"; # Waybar module default text color
+  color_module_bg = "252733"; # Waybar module background color
   color_window_bg_alpha = "1A1B26"; # Waybar window background (rgba(26, 27, 38, 0.5) equivalent RGB)
-  
+
   # Imported from Base16 but unused in CSS (for tooltip)
-  color_tooltip_bg = "100518";      # base01: Lighter Background (Tooltip BG)
-  color_tooltip_border = "F8F8F0";  # base07: Brightest Foreground (Tooltip Border)
-  
+  color_tooltip_bg = "100518"; # base01: Lighter Background (Tooltip BG)
+  color_tooltip_border = "F8F8F0"; # base07: Brightest Foreground (Tooltip Border)
+
   # Battery gradient colors (Base0F corresponds to Base16 Aurora's Cyan)
   color_battery_grad_1 = "18A121"; # base0B
   color_battery_grad_2 = "7755B8"; # base0F (Cyan, used for Battery Gradient 2)
@@ -46,7 +46,7 @@ let
         "tooltip" : "true",
         "tooltip-format" : "Random Wallpaper"
       },
-      
+
       "mpris": {
         "format": "<span foreground='#${base0D}'>{icon}</span> {title} - {artist}", 
         "format-paused": "<span foreground='#${base0A}'>{icon}</span> {title} - {artist}", 
@@ -55,26 +55,26 @@ let
         "tooltip": true,
         "artist-len": 15,
         "title-len": 25,
-    
+
         "format-icons": {
         "Playing": "",
         "Paused": "",
         "Stopped": "",
         "default": ""   
       },
-    
+
       "on-click": "playerctl play-pause",
       "on-scroll-up": "playerctl next",
       "on-scroll-down": "playerctl previous"
       },
-      
+
       "custom/power-menu": {
         "tooltip": true,
         "tooltip-format": "Power menu",
         "format": "<span foreground='#${base08}'> </span>",
         "on-click": "power-menu"
       },
-      
+
       "custom/notification": {
         "tooltip": true,
         "tooltip-format": "Notifications",
@@ -96,7 +96,7 @@ let
         "on-click-right": "swaync-client -d -sw",
         "escape": true
       },
-      
+
       "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
         "critical-threshold": 80,
@@ -105,14 +105,14 @@ let
         "tooltip-format": "Temperature: {temperatureC}°C",
         "on-click-right": "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'"
       },
-      
+
       "cpu": {
         "format": "<span foreground='#${color_cpu_icon}'> </span> {usage}%",
         "format-alt": "<span foreground='#${color_cpu_icon}'> </span> {avg_frequency} GHz",
         "interval": 2,
         "on-click-right": "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'"
       },
-      
+
       "hyprland/workspaces": {
           "on-click": "activate",  
           "format": "{icon}",
@@ -203,7 +203,7 @@ let
         "tooltip-format":"{volume}%",
         "tooltip-format-muted": "Volume: Muted"
       },
-      
+
       "group/meters": {
         "orientation": "inherit",
         "spacing": 10,
@@ -268,7 +268,7 @@ in
         @define-color base0E #${base0E}; /* Charging Grad 1 */
         @define-color base0F #${color_battery_grad_2}; /* Battery Grad 2 (Cyan) */
         @define-color base09 #${base09};
-        
+
         @define-color color_waybar_text #${color_waybar_text};
         @define-color color_module_bg #${color_module_bg};
         @define-color color_workspaces_default #${color_workspaces_default};
@@ -287,170 +287,170 @@ in
           background: alpha(@base00, 0.7);
         }
       '';
-     # --- 6. Main styles: style.css (includes visual styles for all modules) ---
+    # --- 6. Main styles: style.css (includes visual styles for all modules) ---
     ".config/waybar/style.css".text =
       # css
       ''
-        @import "animation.css";
-        @import "colors.css";
-        @import "tray.css";
-        * {
-          /* all: unset; */
-          font-size: 15px;
-          font-family: "Maple Mono", "lxgw-wenkai";
-          min-height: 0;
-        }
-        window#waybar {
-          background-color: rgba(26, 27, 38, 0.5); /* target color */
-          color: #ffffff;
-          transition-property: all;
-          transition-duration: 0.5s;
-          border-radius: 10px;
-        }
-        window#waybar.hidden {
-          opacity: 0.1;
-        }
-        tooltip {
-          background: @base01;
-          border-radius: 5px;
-          border-width: 2px;
-          border-style: solid;
-          border-color: @base07;
-        }
-        /* --------------------------------- General module styles (dark background, rounded corners, shadows) --------------------------------- */
-        #clock,
-        #memory,
-        #tray,
-        #meters,
-        #cpu,
-        #temperature,
-        #mpris,
-        #custom-launcher,
-        #custom-power-menu
-        {
-          color: @color_waybar_text;
-          border-radius: 8px;
-          padding: 3px 10px;
-          background-color: @color_module_bg; 
-          margin-left: 4px;
-          margin-right: 4px;
-          margin-top: 4px;
-          margin-bottom: 4px;
-          font-size: 16px;    
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.377);
-        }
-        
-        /* --------------------------------- Unified styles within the group (key rules) --------------------------------- */
-        /* Ensure sub-modules in the group (battery, network, pulseaudio, backlight) have no independent background or animation */
-        #meters > * {
-          background-color: transparent;
-          box-shadow: none;
-          margin: 0;
-          padding: 0 3px;
-          border-radius: 0;
-          animation: none;
-          background: none;
-          border: none;
-          font-size: 16px;
-        }
-
-        #meters > * label {
-          font-size: 16px;
-          min-width: 25px;
-          padding: 0;
-          margin: 0;
+          @import "animation.css";
+          @import "colors.css";
+          @import "tray.css";
+          * {
+            /* all: unset; */
+            font-size: 15px;
+            font-family: "Maple Mono", "lxgw-wenkai";
+            min-height: 0;
+          }
+          window#waybar {
+            background-color: rgba(26, 27, 38, 0.5); /* target color */
+            color: #ffffff;
+            transition-property: all;
+            transition-duration: 0.5s;
+            border-radius: 10px;
+          }
+          window#waybar.hidden {
+            opacity: 0.1;
+          }
+          tooltip {
+            background: @base01;
+            border-radius: 5px;
+            border-width: 2px;
+            border-style: solid;
+            border-color: @base07;
+          }
+          /* --------------------------------- General module styles (dark background, rounded corners, shadows) --------------------------------- */
+          #clock,
+          #memory,
+          #tray,
+          #meters,
+          #cpu,
+          #temperature,
+          #mpris,
+          #custom-launcher,
+          #custom-power-menu
+          {
+            color: @color_waybar_text;
+            border-radius: 8px;
+            padding: 3px 10px;
+            background-color: @color_module_bg; 
+            margin-left: 4px;
+            margin-right: 4px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            font-size: 16px;    
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.377);
+          }
           
-        }
-     
-        /* --------------------------------- Hyprland/workspaces styles (#workspaces) --------------------------------- */
-        #workspaces {
-          background: transparent;
-          box-shadow: none;
-          border-radius: 0px;
-          margin-top: 4px;
-          margin-bottom: 4px;
-          margin-left: 5px;
-          margin-right: 5px;
-         
-          font-size: 0px;
-          padding: 2px 3px;
-        }
-        #workspaces button {
-         font-size: 0px;
-          padding: 0px 1px;
-          margin: 0px 4px;
-          border-radius: 20px;
-          transition: all 0.25s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-          color: @color_workspaces_default;
-        }
-        #workspaces button.active {
-          font-size: 1px;
-          border-radius: 20px;
-          min-width: 30px;
-          background-size: 400% 400%;
-          color: @color_workspaces_active;
-        }
-        /* --------------------------------- Hyprland/window styles (#window) --------------------------------- */
-        #window {
-          background: transparent;
-          box-shadow: none;
+          /* --------------------------------- Unified styles within the group (key rules) --------------------------------- */
+          /* Ensure sub-modules in the group (battery, network, pulseaudio, backlight) have no independent background or animation */
+          #meters > * {
+            background-color: transparent;
+            box-shadow: none;
+            margin: 0;
+            padding: 0 3px;
+            border-radius: 0;
+            animation: none;
+            background: none;
+            border: none;
+            font-size: 16px;
+          }
+
+          #meters > * label {
+            font-size: 16px;
+            min-width: 25px;
+            padding: 0;
+            margin: 0;
+            
+          }
+
+          /* --------------------------------- Hyprland/workspaces styles (#workspaces) --------------------------------- */
+          #workspaces {
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-left: 5px;
+            margin-right: 5px;
+           
+            font-size: 0px;
+            padding: 2px 3px;
+          }
+          #workspaces button {
+           font-size: 0px;
+            padding: 0px 1px;
+            margin: 0px 4px;
+            border-radius: 20px;
+            transition: all 0.25s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+            color: @color_workspaces_default;
+          }
+          #workspaces button.active {
+            font-size: 1px;
+            border-radius: 20px;
+            min-width: 30px;
+            background-size: 400% 400%;
+            color: @color_workspaces_active;
+          }
+          /* --------------------------------- Hyprland/window styles (#window) --------------------------------- */
+          #window {
+            background: transparent;
+            box-shadow: none;
+            
+            border: 1px solid @color_workspaces_default; /* Keep line border */
+            border-radius: 10px;
+            
+            padding: 1px 10px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-left: 5px;
+            margin-right: 5px;
+            
+            color: @color_workspaces_active;
+            
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9),
+                         -1px -1px 3px rgba(0, 0, 0, 0.9);
+                          
+            transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+
+          }
+          window#waybar.empty #window {
+            border: none;
+            background: none;
+            background-color: transparent;
+            box-shadow: none;
+          }
           
-          border: 1px solid @color_workspaces_default; /* Keep line border */
-          border-radius: 10px;
+          #tray > .passive {
+            -gtk-icon-effect: dim;
+          }
+          #tray > .needs-attention {
+            -gtk-icon-effect: highlight;
+          }
+          #cpu {
+            color: @color_cpu_icon;
+          }
+
+          #memory {
+            color: @color_memory_icon;
+          }
           
-          padding: 1px 10px;
-          margin-top: 4px;
-          margin-bottom: 4px;
-          margin-left: 5px;
-          margin-right: 5px;
-          
-          color: @color_workspaces_active;
-          
-          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9),
-                       -1px -1px 3px rgba(0, 0, 0, 0.9);
-                        
-          transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+          #temperature {
+            color: @base09; /* 确保模块主文本是通用白色 */
+          }
 
-        }
-        window#waybar.empty #window {
-          border: none;
-          background: none;
-          background-color: transparent;
-          box-shadow: none;
-        }
-        
-        #tray > .passive {
-          -gtk-icon-effect: dim;
-        }
-        #tray > .needs-attention {
-          -gtk-icon-effect: highlight;
-        }
-        #cpu {
-          color: @color_cpu_icon;
-        }
+          #backlight {
+            color: @color_backlight_text;
+          }
 
-        #memory {
-          color: @color_memory_icon;
-        }
-        
-        #temperature {
-          color: @base09; /* 确保模块主文本是通用白色 */
-        }
+          #custom-launcher {
+            color: @color_workspaces_default;
+          }
 
-        #backlight {
-          color: @color_backlight_text;
+          #custom-power-menu {
+            color: @color_power_menu_icon;
+          }
+          #meters {
+            padding: 3px 10px;
         }
-
-        #custom-launcher {
-          color: @color_workspaces_default;
-        }
-
-        #custom-power-menu {
-          color: @color_power_menu_icon;
-        }
-        #meters {
-          padding: 3px 10px;
-      }
       '';
     # --- 7. Animation styles: animation.css ---
     ".config/waybar/animation.css".text =

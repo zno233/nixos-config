@@ -10,8 +10,7 @@
   };
 
   xdg.configFile."nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink
-    "/home/zno/zno-config/modules/home-manager/common/dev/nvim/lazyvim";
+    source = config.lib.file.mkOutOfStoreSymlink "/home/zno/zno-config/modules/home-manager/common/dev/nvim/lazyvim";
     # 关键选项：告诉 Home Manager 创建一个直接链接到源文件
     # 而不是先复制到 Store 再链接。
     force = true;

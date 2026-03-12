@@ -5,7 +5,10 @@
       enable = true;
       xkb.layout = "us";
       exportConfiguration = true;
-      videoDrivers = [ "modesetting" "nvidia" ];
+      videoDrivers = [
+        "modesetting"
+        "nvidia"
+      ];
     };
 
     #displayManager.autoLogin = {
