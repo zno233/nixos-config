@@ -378,7 +378,7 @@ binds {
 
     // ========================= 截图 =========================
 
-    Print                    { screenshot; }         // 全屏
+    Print                    { screenshot; }        // 矩形区域
     Mod+Print                { screenshot-screen; } // 当前输出
     Ctrl+Print               { screenshot-window; } // 当前窗口
 
