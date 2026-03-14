@@ -58,7 +58,7 @@
       search-sort-column = "name";
     };
     "org/nemo/window-state" = {
-      maximized = true;
+      # maximized = true;
       network-expanded = true;
       side-pane-view = "places";
       sidebar-bookmark-breakpoint = 2;

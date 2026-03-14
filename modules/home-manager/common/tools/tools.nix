@@ -21,5 +21,7 @@
     font-manager
     localsend
     # maa-cli
+
+    nwg-look
   ];
 }

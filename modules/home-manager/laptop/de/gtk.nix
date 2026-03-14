@@ -10,9 +10,9 @@
     noto-fonts-color-emoji
     fantasque-sans-mono
     maple-mono-custom
-    bibata-cursors
     phinger-cursors
     graphite-cursors
+    vimix-cursors
   ];
 
   gtk = {
@@ -38,14 +38,14 @@
       package = pkgs.papirus-icon-theme.override { color = "green"; };
     };
     cursorTheme = {
-      name = "graphite-dark";
-      package = pkgs.graphite-cursors;
+      name = "phinger-cursors-light";
+      package = pkgs.phinger-cursors;
       size = 22;
     };
   };
   home.pointerCursor = {
-    name = "graphite-dark";
-    package = pkgs.graphite-cursors;
+    name = "phinger-cursors-light";
+    package = pkgs.phinger-cursors;
     size = 22;
   };
 }
