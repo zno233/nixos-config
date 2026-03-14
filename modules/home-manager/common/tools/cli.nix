@@ -83,6 +83,7 @@
     xdg-utils # Desktop integration utilities
     p7zip-rar # Archive utility with RAR support
     unar # Extract many archive formats
+    pandoc # Universal document converter
 
     winetricks # Helper script for Wine
     wineWow64Packages.waylandFull # Windows compatibility layer with Wayland support

@@ -611,8 +611,8 @@ environment {
     
     //输入法
     XIM "fcitx"
-    GTK_IM_MODULE "wayland;fcitx"
-    QT_IM_MODULE "fcitx"
+    //GTK_IM_MODULE "wayland;fcitx"
+    //QT_IM_MODULE "fcitx"
 
     STEAM_EXTRA_COMPAT_RUNTIME_PROFILES "1"
 }
