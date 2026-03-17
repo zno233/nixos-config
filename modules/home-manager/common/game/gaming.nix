@@ -4,7 +4,8 @@
     ## Utils
     # gamemode
     # gamescope
-    # winetricks
+    winetricks # Helper script for Wine
+    wineWow64Packages.waylandFull # Windows compatibility layer with Wayland support
     # inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-ge
 
     ## Minecraft

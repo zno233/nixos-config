@@ -15,31 +15,31 @@
     tldr # Command-line documentation viewer
 
     ## Tools / useful cli
-    aoc-cli # Advent of Code command-line tool
-    asciinema # Terminal session recorder
-    asciinema-agg # asciinema aggregator
+    # aoc-cli # Advent of Code command-line tool
+    # asciinema # Terminal session recorder
+    # asciinema-agg # asciinema aggregator
     binsider # Inspect binaries from the comfort of your terminal
     bitwise # cli tool for bit / hex manipulation
     broot # tree files view
-    caligula # User-friendly, lightweight TUI for disk imaging
+    # caligula # User-friendly, lightweight TUI for disk imaging
     hyperfine # benchmarking tool
-    pastel # cli to manipulate colors
-    swappy # snapshot editing tool
+    # pastel # cli to manipulate colors
+    # swappy # snapshot editing tool
     tdf # cli pdf viewer
     tokei # project line counter
-    translate-shell # cli translator
-    woomer # CLI tool to control WoW eBook reader
+    # translate-shell # cli translator
+    # woomer # CLI tool to control WoW eBook reader
     yt-dlp-light # youtube-dl fork
     brightnessctl # backlight controller
     graphviz # graph visualization software
     pciutils # PCI bus utilities
 
     ## TUI
-    epy # ebook reader
-    gtt # google translate TUI
-    programmer-calculator # Programmer's calculator
-    toipe # typing test in the terminal
-    ttyper # cli typing test
+    # epy # ebook reader
+    # gtt # google translate TUI
+    # programmer-calculator # Programmer's calculator
+    # toipe # typing test in the terminal
+    # ttyper # cli typing test
 
     ## Monitoring / fetch
     htop # Interactive process viewer
@@ -48,22 +48,22 @@
     lm_sensors # Hardware health monitoring
 
     ## Fun / screensaver
-    asciiquarium-transparent # aquarium animation in terminal
+    # asciiquarium-transparent # aquarium animation in terminal
     cbonsai # create bonsai tree in terminal
     cmatrix # matrix rain effect in terminal
-    countryfetch # fetch utility showing country flag and info
+    # countryfetch # fetch utility showing country flag and info
     cowsay # Display messages in cow speech bubbles
-    figlet # Create large letters from ordinary text
+    # figlet # Create large letters from ordinary text
     fortune # Display random quotations
-    lavat # Lava lamp simulation
-    lolcat # Rainbow colorized output
+    # lavat # Lava lamp simulation
+    # lolcat # Rainbow colorized output
     pipes # Pipes screen saver
     sl # Steam locomotive animation
     tty-clock # Digital clock in terminal
 
     ## Multimedia
     imv # Image viewer for Wayland
-    lowfi # Lo-fi music player
+    # lowfi # Lo-fi music player
 
     ## Utilities
     entr # perform action when file change
@@ -84,8 +84,6 @@
     p7zip-rar # Archive utility with RAR support
     unar # Extract many archive formats
     pandoc # Universal document converter
-
-    winetricks # Helper script for Wine
-    wineWow64Packages.waylandFull # Windows compatibility layer with Wayland support
+    usbutils # USB device utilities
   ];
 }

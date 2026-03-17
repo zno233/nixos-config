@@ -60,5 +60,8 @@
     vscode-fhs
     android-studio
     jetbrains.idea
+
+    # JSP
+    tomcat9
   ];
 }

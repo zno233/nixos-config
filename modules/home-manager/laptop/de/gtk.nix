@@ -10,7 +10,7 @@
     noto-fonts-color-emoji
     fantasque-sans-mono
     maple-mono-custom
-    phinger-cursors
+    stable.phinger-cursors
     graphite-cursors
     vimix-cursors
   ];
@@ -47,5 +47,9 @@
     name = "phinger-cursors-light";
     package = pkgs.phinger-cursors;
     size = 22;
+  };
+  xdg.configFile."gtk-4.0/gtk.css" = {
+    force = true;
+    # source = ./gtk.css;
   };
 }

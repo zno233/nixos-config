@@ -12,6 +12,7 @@
     ./flatpak.nix
     #./docker.nix
     ./dae.nix
+    # ./tomcat.nix
     ./zram.nix
   ];
 }
