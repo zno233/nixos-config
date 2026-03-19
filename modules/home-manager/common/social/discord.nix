@@ -5,6 +5,6 @@
     # (discord.override {
     #  withVencord = true;
     # })
-    stable.webcord-vencord
+    webcord-vencord
   ];
 }

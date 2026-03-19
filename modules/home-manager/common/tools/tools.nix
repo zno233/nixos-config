@@ -23,5 +23,6 @@
     # maa-cli
 
     nwg-look
+    bleachbit # System cleaner
   ];
 }

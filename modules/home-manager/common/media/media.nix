@@ -14,6 +14,7 @@
     stable.fooyin # like fb2k
     #spotify
     mpv
+    mpv-handler
     splayer
     kazumi # anime online
     tsukimi # emby
