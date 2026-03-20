@@ -2,6 +2,6 @@
 {
   imports = [
     ../../modules/home-manager/laptop
-    # ../common/default.nix
+    ../common/default.nix
   ];
 }

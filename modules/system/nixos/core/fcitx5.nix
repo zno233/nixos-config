@@ -12,7 +12,9 @@
       # qt6Packages.fcitx5-chinese-addons
       libsForQt5.fcitx5-qt
       kdePackages.fcitx5-qt 
-      fcitx5-rime
+      (fcitx5-rime.override {
+      rimeDataPkgs = [ rime-wanxiang ];
+      })
       #rime-data
       fcitx5-gtk
       fcitx5-lua

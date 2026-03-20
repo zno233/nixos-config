@@ -3,20 +3,22 @@
 dist/
 node_modules/
 
-
 # Sensitive files
 glance.yml
 dotfiles/
 modules/home-manager/laptop/de/noctalia/.noctalia
 
-#have not been used
+# have not been used
 overlays/
 secrets/
 lib/
 
-#trash
+# trash
 unused/
 trash/
 
 # test
 test.sh
+
+# binary
+wanxiang-lts-zh-hans.gram
