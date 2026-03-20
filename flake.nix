@@ -93,16 +93,19 @@
         }
 
         # nixpkgs-stable
-        ({ config, ... }: {
-          nixpkgs.overlays = [
-            (final: prev: {
-              stable = import nixpkgs-stable {
-                localSystem = prev.stdenv.hostPlatform;
-                config.allowUnfree = true;
-              };
-            })
-          ];
-        })
+        (
+          { config, ... }:
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                stable = import nixpkgs-stable {
+                  localSystem = prev.stdenv.hostPlatform;
+                  config.allowUnfree = true;
+                };
+              })
+            ];
+          }
+        )
 
         # nix-index 通常也是全局開啟
         inputs.nix-index-database.nixosModules.nix-index
@@ -112,7 +115,7 @@
         inputs.nur.modules.nixos.default
 
         # NUR modules to import
-        inputs.nur.legacyPackages.${system}.repos.iopq.modules.xraya
+        # inputs.nur.legacyPackages.${system}.repos.iopq.modules.xraya
 
         # inputs.stylix.nixosModules.stylix
       ];
