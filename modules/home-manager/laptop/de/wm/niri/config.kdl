@@ -57,7 +57,7 @@ output "eDP-1" {
     mode "2520x1680@120.000"
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270. (方向)
     //transform "normal"
-    scale 1.5
+    scale 1.75
     position x=0 y=0
     //focus-at-startup
 }
@@ -70,11 +70,12 @@ output "eDP-1" {
 }
 layout {
     /-blur {
-      // on (开启)
+      // on
       passes 4 // number of times to apply the blur effect (应用模糊效果的次数)
       radius 1 // radius of the blur effect (模糊效果的半径)
       noise 0.1 //add grain to the blur (给模糊添加噪点)
     }
+
     // Set gaps around windows in logical pixels. (设置窗口周围的间隙，以逻辑像素为单位。)
     gaps 8
     background-color "transparent"
@@ -493,7 +494,7 @@ window-rule {
     open-floating true
 }
 window-rule {
-    match app-id="wechat"
+    //match app-id="wechat"
     match app-id="QQ"
     open-floating true
     default-column-width { proportion 0.75; }
@@ -508,7 +509,7 @@ window-rule {
     match app-id="SPlayer" title="桌面歌词"
     open-floating true
     default-column-width { proportion 0.75; }
-    default-floating-position x=32 y=64 relative-to="bottom"
+    default-floating-position x=0 y=32 relative-to="bottom"
     border {
         off
     }

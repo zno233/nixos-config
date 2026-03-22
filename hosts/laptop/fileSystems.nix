@@ -6,19 +6,15 @@
 }:
 
 {
-  # 1. 启用 ntfs 支持（NTFS 分区必须）
-  # 确保你启用了对 NTFS 的支持，NixOS 默认可能使用 ntfs-3g 或 ntfs3 模块。
+  # 1. 启用 ntfs 支持
   boot.supportedFilesystems = [
     "ntfs"
-    "ntfs3"
   ];
-  # 或者明确使用 ntfs-3g：
-  # environment.systemPackages = with pkgs; [ ntfs3g ];
 
   # 2. 挂载 Windows 系统分区 (nvme0n1p3)
   fileSystems."/mnt/windows" = {
     device = "/dev/disk/by-uuid/ACA44607A445D48C"; # Windows 系统分区 UUID
-    fsType = "ntfs-3g";
+    fsType = "ntfs3";
     options = [
       "defaults"
       "nofail"
@@ -30,7 +26,7 @@
   # 3. 挂载 Data 数据分区 (nvme0n1p4)
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-uuid/A2F62AC3F62A9815"; # Data 分区 UUID
-    fsType = "ntfs-3g";
+    fsType = "ntfs3";
     options = [
       "defaults"
       "nofail"
@@ -44,7 +40,7 @@
   # 4. 声明 Swap 设备
   swapDevices = [
     {
-      device = "/swapfile"; # 或 "/var/lib/swapfile" 以更好组织
+      device = "/var/lib/swapfile";
       size = 8 * 1024; # 8 GiB (8192 MiB)，单位是 MiB
       # 可选：randomEncryption = true;  # 如果需要加密 swap
     }
