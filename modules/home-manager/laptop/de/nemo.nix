@@ -20,10 +20,10 @@
       [Nemo Action]
       Name=Extract with unar
       Comment=Extract archive (supports passwords in terminal)
-      Exec=kitty --hold sh -c "unar -o %P %F"
+      Exec=kitty --hold unar -o %P %F
       Icon-Name=archive-extract
       Selection=s
-      Extensions=zip;7z;rar;tar;gz;bz2;
+      Extensions=zip;7z;rar;tar;gz;bz2;tar.gz;tar.bz2;tar.xz;xz; # 可以再加几个常见后缀
       Quote=double
     '';
   };
