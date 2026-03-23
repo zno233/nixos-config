@@ -12,6 +12,8 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  # 1.1 启用 NVIDIA 容器工具包
+  hardware.nvidia-container-toolkit.enable = true;
 
   # 2. 屏蔽冲突驱动
   boot.blacklistedKernelModules = [

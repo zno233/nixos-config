@@ -10,6 +10,7 @@
     ./steam.nix
     ./systemd-oomd.nix
     ./flatpak.nix
+    ./distrobox.nix
     #./docker.nix
     ./dae.nix
     # ./tomcat.nix

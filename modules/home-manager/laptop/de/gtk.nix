@@ -10,7 +10,8 @@
     noto-fonts-color-emoji
     fantasque-sans-mono
     maple-mono-custom
-    stable.phinger-cursors
+    bibata-cursors
+    phinger-cursors
     graphite-cursors
     vimix-cursors
   ];
@@ -51,5 +52,8 @@
   xdg.configFile."gtk-4.0/gtk.css" = {
     force = true;
     # source = ./gtk.css;
+  };
+  xdg.configFile."gtk-4.0/settings.ini" = {
+    force = true;
   };
 }
