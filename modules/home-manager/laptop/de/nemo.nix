@@ -26,6 +26,17 @@
       Extensions=zip;7z;rar;tar;gz;bz2;tar.gz;tar.bz2;tar.xz;xz; # 可以再加几个常见后缀
       Quote=double
     '';
+    # 3. 使用 VS Code 打开文件/目录的 Action
+    "nemo/actions/vscode.nemo_action".text = ''
+      [Nemo Action]
+      Name=使用 VS Code 打开
+      Comment=Open with Visual Studio Code
+      Exec=code %F
+      Icon-Name=vscode
+      Selection=any
+      Extensions=any;
+      Quote=double
+    '';
   };
 
   dconf.settings = {

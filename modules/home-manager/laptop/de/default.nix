@@ -20,7 +20,7 @@
     ### de without shell
     #./hyprlock/hyprlock.nix
     #./rofi/rofi.nix                   # launcher
-    #../../../../scripts/scripts.nix   # personal scripts
+    #./wm/hyprland/scripts/scripts.nix # personal scripts
     #./swaylock.nix                    # lock screen
     #./swayosd.nix                     # brightness / volume wiget
     #./swaync/swaync.nix               # notification deamon

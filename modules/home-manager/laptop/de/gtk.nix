@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
@@ -18,6 +18,7 @@
 
   gtk = {
     enable = true;
+    gtk4.theme = config.gtk.theme;
     font = {
       name = "Maple Mono";
       size = 12;
