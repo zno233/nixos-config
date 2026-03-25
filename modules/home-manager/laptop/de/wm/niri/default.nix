@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  niriConfig = "/home/zno/zno-config/modules/home-manager/laptop/de/wm/niri/config.kdl";
+in
 {
   imports = [
     inputs.niri.homeModules.niri
@@ -31,7 +34,7 @@
     ];
   };
   xdg.configFile."niri/config.kdl" = {
-    source = config.lib.file.mkOutOfStoreSymlink "/home/zno/zno-config/modules/home-manager/laptop/de/wm/niri/config.kdl";
+    source = config.lib.file.mkOutOfStoreSymlink "${niriConfig}";
     force = true;
   };
 }

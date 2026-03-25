@@ -29,7 +29,7 @@
     # 3. 使用 VS Code 打开文件/目录的 Action
     "nemo/actions/vscode.nemo_action".text = ''
       [Nemo Action]
-      Name=Open with VS Code
+      Name=Open with VSCode
       Comment=Open with Visual Studio Code
       Exec=code %F
       Icon-Name=vscode

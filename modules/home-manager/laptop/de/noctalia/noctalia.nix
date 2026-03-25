@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  noctaliaConfig = "/home/zno/zno-config/modules/home-manager/laptop/de/noctalia/.noctalia";
+in
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -19,7 +22,7 @@
   };
 
   xdg.configFile."noctalia" = {
-    source = config.lib.file.mkOutOfStoreSymlink "/home/zno/zno-config/modules/home-manager/laptop/de/noctalia/.noctalia";
+    source = config.lib.file.mkOutOfStoreSymlink "${noctaliaConfig}";
     force = true;
   };
 }
