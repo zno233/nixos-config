@@ -428,6 +428,7 @@ window-rule { // 浮动窗口
     match app-id="xdg-desktop-portal-gtk"
     match app-id="waypaper"
     match app-id="mpv"
+    match app-id="vlc"
     match app-id="imv"
     open-floating true
 //  opacity 0.8
