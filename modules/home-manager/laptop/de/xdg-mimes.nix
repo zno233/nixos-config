@@ -38,6 +38,9 @@ let
       "text/x-html"
       "application/sql"
       "text/x-cmake"
+      "text/x-makefile"
+      "application/x-perl"
+      "application/x-php"
     ];
     image = [
       "image/bmp"
@@ -49,15 +52,30 @@ let
       "image/tiff"
       "image/vnd.microsoft.icon"
       "image/webp"
+      "image/avif"
+      "image/heif"
+      "image/jxl"
     ];
     audio = [
       "audio/aac"
       "audio/mpeg"
+      "audio/mpg"
+      "audio/x-mpeg"
+      "audio/mp3"
       "audio/ogg"
       "audio/opus"
       "audio/wav"
+      "audio/x-wav"
+      "audio/flac"
+      "audio/x-flac"
+      "audio/x-ape"
+      "audio/x-ms-wma"
+      "audio/mp4"
+      "audio/x-m4a"
       "audio/webm"
       "audio/x-matroska"
+      "audio/mpegurl"
+      "audio/x-scpls"
     ];
     video = [
       "video/mp2t"
@@ -68,6 +86,9 @@ let
       "video/x-flv"
       "video/x-matroska"
       "video/x-msvideo"
+      "video/quicktime"
+      "video/x-ms-wmv"
+      "video/3gpp"
     ];
     directory = [ "inode/directory" ];
     office = [
@@ -81,14 +102,25 @@ let
       "application/vnd.ms-excel"
       "application/vnd.ms-powerpoint"
       "application/rtf"
+      "text/rtf"
     ];
     pdf = [ "application/pdf" ];
     terminal = [ "terminal" ];
     archive = [
       "application/zip"
       "application/rar"
+      "application/x-rar"
       "application/7z"
-      "application/*tar"
+      "application/x-7z-compressed"
+      "application/x-tar"
+      "application/x-bzip"
+      "application/x-bzip2"
+      "application/x-gzip"
+      "application/x-lzip"
+      "application/x-lzma"
+      "application/x-xz"
+      "application/x-cpio"
+      "application/x-compress"
     ];
     discord = [ "x-scheme-handler/discord" ];
   };

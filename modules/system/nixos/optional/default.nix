@@ -2,6 +2,7 @@
 {
   imports = [
     ./appImage.nix
+    ./aria2.nix
     #./grub-bootr.nix
     #./sddm.nix
     #./fprintd.nix
