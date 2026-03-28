@@ -7,6 +7,7 @@
     ./media
     ./note
     ./office
+    ./scripts
     ./social
     ./tools
     ./game # packages related to gaming
