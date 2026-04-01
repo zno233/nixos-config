@@ -13,32 +13,32 @@
   # ------------------------------------------------------------------------
   # dae 服务（使用官方模块）
   # ------------------------------------------------------------------------
-  services.dae = {
-    enable = true;
-    configFile = "/home/zno/.config/dae/config.dae";
-    assets = with pkgs; [
-      v2ray-geoip
-      v2ray-domain-list-community
-    ];
-    openFirewall = {
-      enable = true;
-      port = 12345; # dae 的 tproxy_port，根据您的 config.dae 调整
-    };
-    # 可选：如果需要自定义包
-    # package = daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.dae;  # 默认已使用
-    disableTxChecksumIpGeneric = false; # 默认值，根据需要调整
-  };
+  # services.dae = {
+  #   enable = true;
+  #   configFile = "/home/zno/.config/dae/config.dae";
+  #   assets = with pkgs; [
+  #     v2ray-geoip
+  #     v2ray-domain-list-community
+  #   ];
+  #   openFirewall = {
+  #     enable = true;
+  #     port = 12345; # dae 的 tproxy_port，根据您的 config.dae 调整
+  #   };
+  #   # 可选：如果需要自定义包
+  #   # package = daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.dae;  # 默认已使用
+  #   disableTxChecksumIpGeneric = false; # 默认值，根据需要调整
+  # };
 
-  systemd.services.dae = lib.mkIf config.services.dae.enable {
-    preStart = ''
-      ${pkgs.coreutils}/bin/mkdir -p /home/zno/.config/dae
-      ${pkgs.coreutils}/bin/ln -f ${pkgs.v2ray-geoip}/share/v2ray/geoip.dat /home/zno/.config/dae/geoip.dat
-      ${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-domain-list-community}/share/v2ray/geosite.dat /home/zno/.config/dae/geosite.dat
-    '';
-    serviceConfig = {
-      WorkingDirectory = "/home/zno/.config/dae";
-    };
-  };
+  # systemd.services.dae = lib.mkIf config.services.dae.enable {
+  #   preStart = ''
+  #     ${pkgs.coreutils}/bin/mkdir -p /home/zno/.config/dae
+  #     ${pkgs.coreutils}/bin/ln -f ${pkgs.v2ray-geoip}/share/v2ray/geoip.dat /home/zno/.config/dae/geoip.dat
+  #     ${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-domain-list-community}/share/v2ray/geosite.dat /home/zno/.config/dae/geosite.dat
+  #   '';
+  #   serviceConfig = {
+  #     WorkingDirectory = "/home/zno/.config/dae";
+  #   };
+  # };
 
   # ------------------------------------------------------------------------
   # daed 服务（使用官方模块）

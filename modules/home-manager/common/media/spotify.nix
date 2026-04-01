@@ -11,7 +11,7 @@ in
 
     # 1. 选择主题
     # 使用 Gruvbox 主题
-    theme = spicePkgs.themes.lucid;
+    theme = spicePkgs.themes.hazy;
     colorScheme = "";
 
     # 2. 添加插件 (包括你刚才问的广告屏蔽)
