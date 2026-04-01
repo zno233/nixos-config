@@ -22,4 +22,3 @@ in
 {
   home.packages = scripts;
 }
-

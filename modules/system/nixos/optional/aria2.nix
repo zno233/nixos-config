@@ -1,4 +1,10 @@
-{ config, pkgs, lib, meta, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  meta,
+  ...
+}:
 {
   # 1. 确保命令行可用
   environment.systemPackages = with pkgs; [
@@ -44,8 +50,8 @@
   };
 
   # 3. 防火墙（模块自动处理）
-  services.aria2.openPorts = true;  # 自动开 RPC 6800 + listen-port
-  networking.firewall.allowedTCPPorts = [ 6881 ];  # BT 下载需要 TCP
+  services.aria2.openPorts = true; # 自动开 RPC 6800 + listen-port
+  networking.firewall.allowedTCPPorts = [ 6881 ]; # BT 下载需要 TCP
 
   # 4. 用户与权限核心配置
   users.users.${meta.userName} = {
@@ -54,19 +60,9 @@
 
   # 5. 精准权限穿透 (ACL 规则)
   # 原理：让 aria2 用户拥有沿途目录的执行权限(x)，但无法读取(r)你的其他文件
- systemd.tmpfiles.rules = [
-    # 1. 路径穿透（只需要 x）
-    "A /home/${meta.userName} - - - - u:aria2:x"
-    "A /home/${meta.userName}/Downloads - - - - u:aria2:x"
-
-    # 2. 递归修正基础所有权和权限
-    "Z /home/${meta.userName}/Downloads/aria2-download 0775 ${meta.userName} aria2 - -"
-    "d /home/${meta.userName}/Downloads/aria2-download 0775 ${meta.userName} aria2 - -"
-
-    # 3. 显式赋予 aria2 用户在该目录的 rwx 权限
-    "A /home/${meta.userName}/Downloads/aria2-download - - - - u:aria2:rwx"
-    
-    # 4. 设置默认 ACL，让未来下载的子文件夹也自动继承 rwx
-    "A /home/${meta.userName}/Downloads/aria2-download - - - - d:u:aria2:rwx"
+  systemd.tmpfiles.rules = [
+    # 给 aria2 用户穿透权限
+    "a /home/${meta.userName} - - - - u:aria2:x"
+    "a /home/${meta.userName}/Downloads - - - - u:aria2:x"
   ];
 }
