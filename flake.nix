@@ -81,7 +81,7 @@
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        ./flake-modules/hosts.nix
+        ./outputs
       ];
 
       systems = [ "x86_64-linux" ];

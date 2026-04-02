@@ -1,0 +1,6 @@
+{ ... }:
+{
+  imports = [
+    ./rime-user-overrides
+  ];
+}
