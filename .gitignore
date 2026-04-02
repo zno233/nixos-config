@@ -6,16 +6,16 @@ node_modules/
 # Sensitive files
 glance.yml
 dotfiles/
-modules/home-manager/laptop/de/noctalia/.noctalia
+.noctalia/
 
 # have not been used
-overlays/
-secrets/
-lib/
+/overlays/
+/secrets/
+/lib/
 
 # trash
 unused/
-trash/
+/trash/
 
 # test
 test.sh
