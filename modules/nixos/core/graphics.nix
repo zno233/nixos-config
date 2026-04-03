@@ -11,9 +11,6 @@
     extraPackages = with pkgs; [
       intel-media-driver # VA-API
       libvdpau-va-gl # VA-API
-      libva-utils # 推荐添加，确保 VA-API 同步
-      mesa # OpenGL/Vulkan 驱动
-      ffmpeg # 推荐添加，支持音视频加速
     ];
 
     # 32 位包也合并到 extraPackages32
