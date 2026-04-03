@@ -4,7 +4,7 @@
   ...
 }:
 let
-  hyprlockConfig = "/home/zno/zno-config/home/common/de/hyprlock";
+  hyprlockConfig = "${config.home.homeDirectory}/zno-config/home/common/de/hyprlock";
 in
 {
   programs.hyprlock = {

@@ -12,7 +12,10 @@
     extraSpecialArgs = { inherit inputs meta; };
     users.${meta.userName} = {
       imports =
-        if (meta.hostName == "desktop") then [ ../../../home/hosts/desktop ] else [ ../../../home/hosts/laptop ];
+        if (meta.hostName == "desktop") then
+          [ ../../../home/hosts/desktop ]
+        else
+          [ ../../../home/hosts/laptop ];
       home.username = "${meta.userName}";
       home.homeDirectory = "/home/${meta.userName}";
       home.stateVersion = "25.05";

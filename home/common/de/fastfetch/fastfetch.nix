@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  fastfetchConfig = "/home/zno/zno-config/home/common/de/fastfetch/config.jsonc";
+  fastfetchConfig = "${config.home.homeDirectory}/zno-config/home/common/de/fastfetch/config.jsonc";
 in
 {
   home.packages = with pkgs; [ fastfetch ];

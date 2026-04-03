@@ -3,7 +3,7 @@
   ...
 }:
 let
-  waybarConfig = "/home/zno/zno-config/home/common/de/waybar";
+  waybarConfig = "${config.home.homeDirectory}/zno-config/home/common/de/waybar";
 in
 {
   programs.waybar = {

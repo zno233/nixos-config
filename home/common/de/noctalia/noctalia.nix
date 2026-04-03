@@ -5,7 +5,7 @@
   ...
 }:
 let
-  noctaliaConfig = "/home/zno/zno-config/home/common/de/noctalia/.noctalia";
+  noctaliaConfig = "${config.home.homeDirectory}/zno-config/home/common/de/noctalia/.noctalia";
 in
 {
   imports = [
