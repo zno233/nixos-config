@@ -5,7 +5,7 @@
   ...
 }:
 let
-  niriConfig = "/home/zno/zno-config/home/common/de/wm/niri/config.kdl";
+  niriConfig = "${config.home.homeDirectory}/zno-config/home/common/de/wm/niri/config.kdl";
 in
 {
   imports = [
@@ -19,7 +19,7 @@ in
 
   home = {
     packages = with pkgs; [
-      seatd
+      # seatd →改成 system-level services.seatd.enable = true;
       jaq
       xwayland-satellite
       wl-clipboard # 核心剪贴板工具

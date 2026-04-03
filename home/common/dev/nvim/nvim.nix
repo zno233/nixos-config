@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  lazyvimConfig = "/home/zno/zno-config/home/common/dev/nvim/lazyvim";
+  lazyvimConfig = "${config.home.homeDirectory}/zno-config/home/common/dev/nvim/lazyvim";
 in
 {
   programs.neovim = {

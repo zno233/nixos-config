@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  glanceConfig = "/home/zno/zno-config/home/common/tools/glance/glance.yml";
+  glanceConfig = "${config.home.homeDirectory}/zno-config/home/common/tools/glance/glance.yml";
 in
 {
   home.packages = with pkgs; [
