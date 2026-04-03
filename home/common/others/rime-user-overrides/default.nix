@@ -10,8 +10,4 @@ in
     source = config.lib.file.mkOutOfStoreSymlink "${rimeOverrides}/default.custom.yaml";
     force = true;
   };
-  xdg.dataFile."fcitx5/rime/wanxiang-lts-zh-hans.gram" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${rimeOverrides}/wanxiang-lts-zh-hans.gram";
-    force = true;
-  };
 }

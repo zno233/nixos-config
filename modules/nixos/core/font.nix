@@ -69,7 +69,7 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      noto-fonts-emoji-blob-bin
+      noto-fonts-color-emoji
       nerd-fonts.hurmit
       lxgw-wenkai
       lxgw-wenkai-screen

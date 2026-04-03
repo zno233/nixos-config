@@ -14,7 +14,7 @@
       "net.core.wmem_max" = 16777216;
 
       # 启用ECN（稳定性+低延迟），零代价
-      # "net.ipv4.tcp_ecn" = 1;
+      "net.ipv4.tcp_ecn" = 1;
     };
 
     # 核心系统配置
