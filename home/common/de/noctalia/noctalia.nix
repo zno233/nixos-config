@@ -20,9 +20,4 @@ in
   programs.noctalia-shell = {
     enable = true;
   };
-
-  xdg.configFile."noctalia" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${noctaliaConfig}";
-    force = true;
-  };
 }

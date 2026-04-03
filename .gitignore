@@ -6,7 +6,7 @@ node_modules/
 # Sensitive files
 glance.yml
 dotfiles/
-.noctalia/
+_noctalia/
 
 # have not been used
 /overlays/
