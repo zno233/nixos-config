@@ -37,226 +37,246 @@ zno-config
 ├─ README.md
 ├─ flake.lock
 ├─ flake.nix
-├─ home
-│  ├─ common
-│  │  ├─ ai
-│  │  │  ├─ default.nix
-│  │  │  ├─ gemini-cli.nix
-│  │  │  └─ ollama.nix
-│  │  ├─ browsers
-│  │  │  ├─ browsers.nix
-│  │  │  ├─ default.nix
-│  │  │  └─ zen.nix
-│  │  ├─ de
-│  │  │  ├─ bat.nix
-│  │  │  ├─ btop.nix
-│  │  │  ├─ caelestia.nix
-│  │  │  ├─ cava.nix
-│  │  │  ├─ default.nix
-│  │  │  ├─ fastfetch
-│  │  │  │  ├─ ascii
-│  │  │  │  ├─ config.jsonc
-│  │  │  │  ├─ fastfetch.nix
-│  │  │  │  └─ png
-│  │  │  ├─ fish.nix
-│  │  │  ├─ fzf.nix
-│  │  │  ├─ ghostty
-│  │  │  │  ├─ ghostty.nix
-│  │  │  │  └─ styles
-│  │  │  ├─ gnome.nix
-│  │  │  ├─ gtk.nix
-│  │  │  ├─ hyprlock
-│  │  │  │  ├─ .hyprlock
-│  │  │  │  ├─ hyprlock.conf
-│  │  │  │  ├─ hyprlock.nix
-│  │  │  ├─ kitty.nix
-│  │  │  ├─ micro.nix
-│  │  │  ├─ nemo.nix
-│  │  │  ├─ noctalia
-│  │  │  │  └─ noctalia.nix
-│  │  │  ├─ rofi
-│  │  │  │  ├─ config.rasi
-│  │  │  │  ├─ powermenu-theme.rasi
-│  │  │  │  ├─ rofi.nix
-│  │  │  │  └─ theme.rasi
-│  │  │  ├─ superfile
-│  │  │  │  ├─ config.toml
-│  │  │  │  └─ superfile.nix
-│  │  │  ├─ swaylock.nix
-│  │  │  ├─ swaync
-│  │  │  │  ├─ config.json
-│  │  │  │  ├─ style.css
-│  │  │  │  └─ swaync.nix
-│  │  │  ├─ swayosd.nix
-│  │  │  ├─ vicinae
-│  │  │  │  ├─ gruvbox-dark-hard.json
-│  │  │  │  ├─ vicinae.json
-│  │  │  │  └─ vicinae.nix
-│  │  │  ├─ waybar
-│  │  │  │  ├─ config.jsonc
-│  │  │  │  ├─ default.nix
-│  │  │  │  ├─ scripts
-│  │  │  │  ├─ style.css
-│  │  │  │  └─ waybar-niri.nix
-│  │  │  ├─ waypaper.nix
-│  │  │  ├─ wm
-│  │  │  │  ├─ default.nix
-│  │  │  │  ├─ hyprland
-│  │  │  │  │  ├─ binds.nix
-│  │  │  │  │  ├─ default.nix
-│  │  │  │  │  ├─ exec-once.nix
-│  │  │  │  │  ├─ hyprland.nix
-│  │  │  │  │  ├─ monitors.nix
-│  │  │  │  │  ├─ scripts
-│  │  │  │  │  ├─ settings.nix
-│  │  │  │  │  ├─ variables.nix
-│  │  │  │  │  └─ windowrules.nix
-│  │  │  │  └─ niri
-│  │  │  │     ├─ config.kdl
-│  │  │  │     └─ default.nix
-│  │  │  ├─ xdg-mimes.nix
-│  │  │  └─ zsh
-│  │  │     ├─ default.nix
-│  │  │     ├─ zsh.nix
-│  │  │     ├─ zsh_alias.nix
-│  │  │     └─ zsh_keybinds.nix
-│  │  ├─ default.nix
-│  │  ├─ dev
-│  │  │  ├─ default.nix
-│  │  │  ├─ dev.nix
-│  │  │  ├─ git.nix
-│  │  │  ├─ lazygit.nix
-│  │  │  └─ nvim
-│  │  │     └─ nvim.nix
-│  │  ├─ game
-│  │  │  ├─ default.nix
-│  │  │  └─ gaming.nix
-│  │  ├─ media
-│  │  │  ├─ audacious
-│  │  │  │  ├─ audacious.nix
-│  │  │  │  ├─ config
-│  │  │  │  └─ eq.preset
-│  │  │  ├─ default.nix
-│  │  │  ├─ media.nix
-│  │  │  └─ spotify.nix
-│  │  ├─ note
-│  │  │  ├─ default.nix
-│  │  │  └─ obsidian.nix
-│  │  ├─ office
-│  │  │  ├─ default.nix
-│  │  │  └─ office.nix
-│  │  ├─ others
-│  │  │  ├─ default.nix
-│  │  │  └─ rime-user-overrides
-│  │  │     ├─ default.nix
-│  │  │     └─ rime-user-overrides
-│  │  │        └─ default.custom.yaml
-│  │  ├─ scripts
-│  │  │  ├─ default.nix
-│  │  │  └─ scripts
-│  │  ├─ social
-│  │  │  ├─ default.nix
-│  │  │  ├─ discord.nix
-│  │  │  └─ social.nix
-│  │  └─ tools
-│  │     ├─ aseprite
-│  │     │  ├─ aseprite.nix
-│  │     │  └─ themes
-│  │     ├─ cli.nix
-│  │     ├─ default.nix
-│  │     ├─ glance
-│  │     │  └─ glance.nix
-│  │     ├─ nix-search
-│  │     │  ├─ config.json
-│  │     │  ├─ nix-search.nix
-│  │     │  └─ nix-search.sh
-│  │     ├─ nix.nix
-│  │     ├─ p10k
-│  │     │  ├─ .p10k.zsh
-│  │     │  └─ p10k.nix
-│  │     ├─ ssh.nix
-│  │     └─ tools.nix
-│  └─ hosts
-│     ├─ desktop
-│     └─ laptop
-│        └─ default.nix
-├─ hosts
-│  ├─ desktop
-│  │  ├─ default.nix
-│  │  └─ hardware-configuration.nix
-│  ├─ laptop
-│  │  ├─ default.nix
-│  │  ├─ fileSystems.nix
-│  │  ├─ hardware-configuration.nix
-│  │  └─ hardware.nix
-│  └─ vm
-│     ├─ default.nix
-│     └─ hardware-configuration.nix
 ├─ modules
-│  ├─ common
-│  └─ nixos
-│     ├─ core
-│     │  ├─ bluetooth.nix
-│     │  ├─ default.nix
-│     │  ├─ fcitx5.nix
-│     │  ├─ font.nix
-│     │  ├─ graphics.nix
-│     │  ├─ greetd.nix
-│     │  ├─ network.nix
-│     │  ├─ nh.nix
-│     │  ├─ nixpkgs.nix
-│     │  ├─ pipewire.nix
-│     │  ├─ security.nix
-│     │  ├─ services.nix
-│     │  ├─ system.nix
-│     │  ├─ systemd-boot.nix
-│     │  ├─ user.nix
-│     │  ├─ virtualization.nix
-│     │  ├─ xdg.nix
-│     │  └─ xserver.nix
-│     ├─ default.nix
-│     └─ optional
-│        ├─ appImage.nix
-│        ├─ aria2.nix
-│        ├─ dae.nix
-│        ├─ default.nix
-│        ├─ distrobox.nix
-│        ├─ docker.nix
-│        ├─ flatpak.nix
-│        ├─ fprintd.nix
-│        ├─ grub-boot.nix
-│        ├─ program.nix
-│        ├─ scx.nix
-│        ├─ sddm.nix
-│        ├─ steam.nix
-│        ├─ systemd-oomd.nix
-│        ├─ tomcat.nix
-│        └─ zram.nix
-├─ outputs
-│  ├─ default.nix
-│  ├─ desktop
-│  ├─ laptop
-│  │  └─ default.nix
-│  └─ vm
+│  ├─ factory
+│  │  ├─ mount-cifs-nixos [N]
+│  │  │  └─ mount-cifs-nixos.nix
+│  │  └─ user [ND]
+│  │     └─ user.nix
+│  ├─ hosts
+│  │  ├─ homeserver [N]
+│  │  │  ├─ configuration.nix
+│  │  │  ├─ filesystem.nix
+│  │  │  ├─ flake-parts.nix
+│  │  │  ├─ hardware.nix
+│  │  │  ├─ network.nix
+│  │  │  ├─ services
+│  │  │  │  ├─ iperf.nix
+│  │  │  │  └─ syncthing
+│  │  │  │     ├─ syncthing.nix
+│  │  │  │     └─ syncthingDevices.nix
+│  │  │  └─ users
+│  │  │     ├─ eve.nix
+│  │  │     └─ mallory.nix
+│  │  ├─ linux-desktop [N]
+│  │  │  ├─ configuration.nix
+│  │  │  ├─ filesystem.nix
+│  │  │  ├─ flake-parts.nix
+│  │  │  ├─ hardware.nix
+│  │  │  └─ users
+│  │  │     └─ bob.nix
+│  │  ├─ linux-laptop [N]
+│  │  │  ├─ _hardware-configuration.nix
+│  │  │  ├─ configuration.nix
+│  │  │  ├─ default.nix
+│  │  │  ├─ fileSystems.nix
+│  │  │  ├─ flake-parts.nix
+│  │  │  ├─ hardware.nix
+│  │  │  └─ users
+│  │  │     └─ zno.nix
+│  │  └─ macbook [D]
+│  │     ├─ configuration.nix
+│  │     ├─ flake-parts.nix
+│  │     └─ users
+│  │        ├─ alice.nix
+│  │        └─ bob.nix
+│  ├─ nix
+│  │  ├─ flake-parts []
+│  │  │  ├─ darwinConfigurations-fix.nix
+│  │  │  ├─ dendritic-tools.nix
+│  │  │  ├─ factory.nix
+│  │  │  ├─ lib.nix
+│  │  │  └─ others.nix
+│  │  └─ tools
+│  │     ├─ determinate [D]
+│  │     │  ├─ determinate.nix
+│  │     │  └─ flake-parts.nix
+│  │     ├─ home-manager [ND]
+│  │     │  ├─ flake-parts.nix
+│  │     │  └─ home-manager.nix
+│  │     ├─ homebrew [D]
+│  │     │  ├─ flake-parts.nix
+│  │     │  └─ homebrew.nix
+│  │     ├─ impermanence [N]
+│  │     │  ├─ flake-parts.nix
+│  │     │  ├─ impermanence.nix
+│  │     │  └─ minimum.nix
+│  │     ├─ pkgs-by-name [G]
+│  │     │  ├─ flake-parts.nix
+│  │     │  └─ pkgs-by-name.nix
+│  │     └─ secrets [NDnd]
+│  │        ├─ flake-parts.nix
+│  │        └─ secrets.nix
+│  ├─ programs
+│  │  ├─ app-sets
+│  │  │  └─ cli-tools [ND]
+│  │  │     ├─ darwin.nix
+│  │  │     ├─ generic.nix
+│  │  │     └─ nixos.nix
+│  │  ├─ apps
+│  │  │  ├─ ai
+│  │  │  │  ├─ ai.nix
+│  │  │  │  ├─ gemini-cli.nix
+│  │  │  │  └─ ollama.nix
+│  │  │  ├─ browsers
+│  │  │  │  ├─ browsers.nix
+│  │  │  │  ├─ chrome.nix
+│  │  │  │  └─ zen.nix
+│  │  │  ├─ de
+│  │  │  │  ├─ _caelestia.nix
+│  │  │  │  ├─ _fish.nix
+│  │  │  │  ├─ _hyprlock
+│  │  │  │  ├─ _micro.nix
+│  │  │  │  ├─ _rofi
+│  │  │  │  ├─ _superfile
+│  │  │  │  ├─ _swaylock.nix
+│  │  │  │  ├─ _swaync
+│  │  │  │  ├─ _swayosd.nix
+│  │  │  │  ├─ _vicinae
+│  │  │  │  ├─ _waybar
+│  │  │  │  ├─ _waypaper.nix
+│  │  │  │  ├─ bat.nix
+│  │  │  │  ├─ btop.nix
+│  │  │  │  ├─ cava.nix
+│  │  │  │  ├─ de.nix
+│  │  │  │  ├─ fastfetch
+│  │  │  │  ├─ fzf.nix
+│  │  │  │  ├─ ghostty
+│  │  │  │  ├─ gnome.nix
+│  │  │  │  ├─ gtk.nix
+│  │  │  │  ├─ kitty.nix
+│  │  │  │  ├─ nemo.nix
+│  │  │  │  ├─ noctalia
+│  │  │  │  │  └─ noctalia.nix
+│  │  │  │  ├─ wm
+│  │  │  │  │  ├─ _hyprland
+│  │  │  │  │  ├─ niri
+│  │  │  │  │  └─ wm.nix
+│  │  │  │  ├─ xdg-mimes.nix
+│  │  │  │  └─ zsh
+│  │  │  ├─ dev
+│  │  │  │  ├─ dev-tools.nix
+│  │  │  │  ├─ dev.nix
+│  │  │  │  ├─ git.nix
+│  │  │  │  ├─ lazygit.nix
+│  │  │  │  └─ nvim
+│  │  │  ├─ game
+│  │  │  ├─ media
+│  │  │  ├─ note
+│  │  │  ├─ office
+│  │  │  ├─ others
+│  │  │  ├─ scripts
+│  │  │  ├─ social
+│  │  │  └─ tools
+│  │  └─ programs.nix
+│  ├─ services
+│  │  ├─ desktop [N]
+│  │  │  ├─ aria2.nix
+│  │  │  ├─ dae.nix
+│  │  │  ├─ flatpak.nix
+│  │  │  ├─ fprintd.nix
+│  │  │  ├─ greetd.nix
+│  │  │  ├─ grub-boot.nix
+│  │  │  ├─ laptop-power.nix
+│  │  │  ├─ pipewire.nix
+│  │  │  ├─ scx.nix
+│  │  │  ├─ sddm.nix
+│  │  │  ├─ service-desktop.nix
+│  │  │  ├─ services.nix
+│  │  │  ├─ tomcat.nix
+│  │  │  └─ xserver.nix
+│  │  ├─ printing [N]
+│  │  │  └─ printing.nix
+│  │  └─ ssh [ND]
+│  │     └─ ssh.nix
+│  ├─ system
+│  │  ├─ settings
+│  │  │  ├─ _network
+│  │  │  │  ├─ subnet-A [networkInterfaces]
+│  │  │  │  │  └─ subnet-A.nix
+│  │  │  │  └─ subnet-B [networkInterfaces]
+│  │  │  │     └─ subnet-B.nix
+│  │  │  ├─ base
+│  │  │  │  ├─ i18n.nix
+│  │  │  │  ├─ network.nix
+│  │  │  │  ├─ nh.nix
+│  │  │  │  ├─ security.nix
+│  │  │  │  └─ system-base.nix
+│  │  │  ├─ desktop [N]
+│  │  │  │  ├─ appImage.nix
+│  │  │  │  ├─ bluetooth.nix
+│  │  │  │  ├─ desktop.nix
+│  │  │  │  ├─ fcitx5.nix
+│  │  │  │  ├─ fonts.nix
+│  │  │  │  ├─ graphics.nix
+│  │  │  │  ├─ sessionVariables.nix
+│  │  │  │  ├─ steam.nix
+│  │  │  │  ├─ system-program.nix
+│  │  │  │  ├─ xdg.nix
+│  │  │  │  └─ zram.nix
+│  │  │  ├─ firmware [N]
+│  │  │  │  └─ firmware.nix
+│  │  │  ├─ systemConstants [NDnd]
+│  │  │  │  └─ systemConstants.nix
+│  │  │  └─ systemd-boot [N]
+│  │  │     └─ systemd-boot.nix
+│  │  └─ system-types
+│  │     ├─ 1 - system-minimal [NDnd]
+│  │     │  ├─ darwin
+│  │     │  │  ├─ darwin-minimal.nix
+│  │     │  │  ├─ flake-parts.nix
+│  │     │  │  └─ macos-apps-fix.nix
+│  │     │  ├─ homeManager
+│  │     │  │  └─ homeManager-minimal.nix
+│  │     │  └─ nixos
+│  │     │     ├─ flake-parts.nix
+│  │     │     └─ nixos-minimal.nix
+│  │     ├─ 2 - system-default [NDnd]
+│  │     │  └─ system-default.nix
+│  │     ├─ 3 - system-cli [NDnd]
+│  │     │  └─ system-cli.nix
+│  │     └─ 4 - system-desktop [NDnd]
+│  │        └─ system-desktop.nix
+│  ├─ users
+│  │  ├─ alice [D]
+│  │  │  ├─ configuration.nix
+│  │  │  └─ homeManager.nix
+│  │  ├─ bob [NDn]
+│  │  │  ├─ bob.nix
+│  │  │  └─ flake-parts.nix
+│  │  ├─ eve [N]
+│  │  │  ├─ configuration.nix
+│  │  │  └─ homeManager.nix
+│  │  ├─ mallory [N]
+│  │  │  └─ malory.nix
+│  │  ├─ meta.nix
+│  │  └─ zno [NDn]
+│  │     ├─ flake-parts.nix
+│  │     └─ zno.nix
+│  └─ virt
+│     ├─ distrobox.nix
+│     ├─ docker.nix
+│     ├─ virt.nix
+│     └─ virtualization.nix
 ├─ pkgs
 │  ├─ 2048
 │  │  └─ default.nix
 │  ├─ default.nix
 │  └─ maple-mono
 │     └─ default.nix
+├─ secrets
+│  └─ homeserver-cred.age
 └─ wallpapers
-   ├─ otherWallpaper
-   │  ├─ nixos
-   │  └─ others
-   └─ wallpaper.png
 
 ```
 
 ---
 ## Credits
 Other dotfiles that I ~~copied~~ learned from:
+ - [dendritic-design-with-flake-parts](https://github.com/Doc-Steve/dendritic-design-with-flake-parts)
  - [ryan4yin/nix-config](https://github.com/ryan4yin/nix-config)
  - [Frost-Phoenix/nixos-config](https://github.com/Frost-Phoenix/nixos-config)
+
 
 
 <!-- Links -->
