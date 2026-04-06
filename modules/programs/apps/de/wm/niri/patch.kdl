@@ -1,0 +1,5 @@
+window-rule {
+    match app-id="waydroid"
+    //open-floating true
+    open-maximized false
+}

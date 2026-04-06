@@ -1,17 +1,12 @@
 # Log files and compiled outputs
 *.log
-dist/
-node_modules/
 
 # Sensitive files
-glance.yml
 dotfiles/
 .noctalia/
+glance.yml
 
 # have not been used
-/overlays/
-/secrets/
-/lib/
 
 # trash
 unused/

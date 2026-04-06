@@ -1,0 +1,624 @@
+include "./patch.kdl"
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            options "grp:alt_shift_toggle,compose:ralt,ctrl:yescaps"
+        }
+        numlock
+    }
+        
+    touchpad {
+        // off
+        tap
+        // dwt
+        // dwtp
+        // drag false
+        // drag-lock
+        natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        scroll-factor 0.3
+        // scroll-factor vertical=1.0 horizontal=-2.0
+        // scroll-method "two-finger"
+        // scroll-button 273
+        // scroll-button-lock
+        // tap-button-map "left-middle-right"
+        // click-method "clickfinger"
+        // left-handed
+        // disabled-on-external-mouse
+        // middle-emulation
+    }
+
+    mouse {
+        // off (关闭)
+        // natural-scroll (自然滚动)
+        // accel-speed 0.2 (加速度)
+        // accel-profile "flat" (加速度配置文件)
+        // scroll-method "no-scroll" (滚动方法)
+    }
+
+    trackpoint {
+        // off (关闭)
+        // natural-scroll (自然滚动)
+        // accel-speed 0.2 (加速度)
+        // accel-profile "flat" (加速度配置文件)
+        // scroll-method "on-button-down" (滚动方法)
+        // scroll-button 273 (滚动按钮)
+        // scroll-button-lock (滚动按钮锁定)
+        // middle-emulation (中键模拟)
+    }
+
+    // warp-mouse-to-focus (将鼠标定位到焦点窗口)
+    // focus-follows-mouse (焦点跟随鼠标)
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+output "eDP-1" {
+    mode "2520x1680@120.000"
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270. (方向)
+    //transform "normal"
+    scale 1.75
+    position x=0 y=0
+    //focus-at-startup
+}
+
+/-output "HDMI-A-1" {
+   //mode "1920x1080@60.000"
+    mode "1600x900@60.000"
+   // mode "2560x1080@60.000"
+    position x=-1366 y=0
+}
+layout {
+    /-blur {
+      // on
+      passes 4 // number of times to apply the blur effect (应用模糊效果的次数)
+      radius 1 // radius of the blur effect (模糊效果的半径)
+      noise 0.1 //add grain to the blur (给模糊添加噪点)
+    }
+
+    // Set gaps around windows in logical pixels. (设置窗口周围的间隙，以逻辑像素为单位。)
+    gaps 8
+    background-color "transparent"
+    center-focused-column "never"
+
+    preset-column-widths { // 你可以通过按 (Mod+R) 来更改列的宽度。
+        // 例如，如果你设置比例为 "0.25"，你可以在屏幕上放置 4 个窗口。
+        // 默认情况下是屏幕的 1/3, 1/2 和 2/3。
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        // off (关闭)
+        width 2
+        active-color "#DACDAA"
+        inactive-color "#444C2E"
+        urgent-color "#FB4934"
+    }
+
+    shadow {
+        on
+        softness 15
+        spread 2
+        offset x=0 y=5
+        color "#00000044"
+    }
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+animations {
+    // off
+    
+    workspace-switch {
+        spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.65 stiffness=923 epsilon=0.001
+    }
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    }
+
+    //slowdown 1.65
+}
+
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+binds {
+    // ========================= 基本系统功能 =========================
+
+    Mod+Shift+Slash hotkey-overlay-title="显示快捷键" { show-hotkey-overlay; }
+    Mod+Shift+E { quit; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    //Mod+Shift+Escape hotkey-overlay-title="电源菜单" { spawn "power-menu"; }
+    //Ctrl+Alt+Delete { spawn "power-menu"; } 
+
+    Mod+Shift+P { power-off-monitors; } // 关闭显示器
+
+    // -------- Noctalia 特有绑定 --------
+    Mod+S hotkey-overlay-title="控制面板" { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    //Mod+Comma hotkey-overlay-title="设置" { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Super+Alt+L hotkey-overlay-title="锁屏" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    Mod+Shift+Escape hotkey-overlay-title="电源" { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+    Mod+D hotkey-overlay-title="应用启动器" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+V hotkey-overlay-title="剪切板" { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Mod+Shift+W hotkey-overlay-title="桌面小组件" { spawn "noctalia-shell" "ipc" "call" "desktopWidgets" "toggle"; }
+    
+    // Media controls
+    Mod+Alt+Space {spawn "noctalia-shell" "ipc" "call" "media" "playPause";}
+    Mod+Alt+Left {spawn "noctalia-shell" "ipc" "call" "media" "previous";}
+    Mod+Alt+Right {spawn "noctalia-shell" "ipc" "call" "media" "next";}
+
+    // Audio controls
+    XF86AudioRaiseVolume { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+
+    // Brightness controls
+    XF86MonBrightnessUp { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+
+    // ========================= 启动应用程序 =========================
+
+    Mod+Return hotkey-overlay-title="终端: kitty" { spawn "kitty"; }
+    Mod+B hotkey-overlay-title="浏览器: Chrome" { spawn "google-chrome-stable"; }
+    Mod+E hotkey-overlay-title="文件管理器: nemo" { spawn "nemo"; }
+    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/home/common/de/wm/niri/config.kdl"; }
+    Mod+Alt+N hotkey-overlay-title="打开 nixos 配置文件" { spawn-sh "code $HOME/zno-config"; }
+    Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
+    Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
+    Alt+M hotkey-overlay-title="音乐播放器： SPlayer" { spawn "splayer"; }
+    Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
+    Mod+Shift+B hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
+
+    // no shell
+    //Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
+    //Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
+    //Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
+    //Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
+    //Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" { 
+    //spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy"; 
+   //}
+
+    // ========================= 音量控制 =========================
+
+    //XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "5"; }
+    //XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-5"; }
+    //XF86AudioMute        allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    //XF86AudioMicMute     allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+
+
+    // ========================= 亮度控制 =========================
+
+    //XF86MonBrightnessUp allow-when-locked=true   { spawn "swayosd-client" "--brightness" "+5"; }
+    //XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "-5"; }
+
+
+    // ========================= 窗口管理 — 焦点 =========================
+
+    Mod+O hotkey-overlay-title="打开概览" repeat=false { toggle-overview; }
+    Mod+Q hotkey-overlay-title="关闭焦点窗口" repeat=false { close-window; }
+
+    Mod+Left  hotkey-overlay-title="将焦点移动到左侧的列"  { focus-column-left; }
+    Mod+Down  hotkey-overlay-title="将焦点移动到下方的窗口"  { focus-window-down; }
+    Mod+Up    hotkey-overlay-title="将焦点移动到上方的窗口" { focus-window-up; }
+    Mod+Right hotkey-overlay-title="将焦点移动到右侧的列" { focus-column-right; }
+
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+
+
+    // ========================= 窗口管理 — 移动 =========================
+
+    Mod+Ctrl+Left  hotkey-overlay-title="将列向左移动"  { move-column-left; }
+    Mod+Ctrl+Down  hotkey-overlay-title="将窗口向下移动"    { move-window-down; }
+    Mod+Ctrl+Up    hotkey-overlay-title="将窗口向上移动"  { move-window-up; }
+    Mod+Ctrl+Right hotkey-overlay-title="将列向右移动" { move-column-right; }
+
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+L { move-column-right; }
+
+
+    // ========================= 列内导航 =========================
+
+    Mod+Home        { focus-column-first; }
+    Mod+End         { focus-column-last; }
+    Mod+Ctrl+Home   { move-column-to-first; }
+    Mod+Ctrl+End    { move-column-to-last; }
+
+
+    // ========================= 显示器 — 焦点与移动 =========================
+
+    // 焦点在显示器之间切换
+    Mod+Shift+Left  { focus-monitor-left; }
+    Mod+Shift+Down  { focus-monitor-down; }
+    Mod+Shift+Up    { focus-monitor-up; }
+    Mod+Shift+Right { focus-monitor-right; }
+
+    Mod+Shift+H { focus-monitor-left; }
+    Mod+Shift+J { focus-monitor-down; }
+    Mod+Shift+K { focus-monitor-up; }
+    Mod+Shift+L { focus-monitor-right; }
+
+    // 在显示器之间移动列
+    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+
+
+    // ========================= 工作空间 =========================
+
+    // 导航
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up   { focus-workspace-up; }
+    Mod+U         { focus-workspace-down; }
+    Mod+I         { focus-workspace-up; }
+    Mod+Tab       { focus-workspace-previous; }
+
+    // 移动列
+    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
+    Mod+Ctrl+U         { move-column-to-workspace-down; }
+    Mod+Ctrl+I         { move-column-to-workspace-up; }
+
+    // 移动工作空间
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+    Mod+Shift+U         { move-workspace-down; }
+    Mod+Shift+I         { move-workspace-up; }
+
+
+    // ========================= 按数字键的工作空间 =========================
+
+    // 焦点
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    // 移动列
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+
+    // ========================= 列和尺寸 =========================
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Comma        { consume-window-into-column; }
+    Mod+Period       { expel-window-from-column; }
+
+    Mod+R        { switch-preset-column-width; }
+    Mod+Shift+R  { switch-preset-window-height; }
+    Mod+Ctrl+R   { reset-window-height; }
+
+    Mod+F        { maximize-column; }
+    Mod+Alt+F    { maximize-window-to-edges; }
+    Mod+Shift+F  { fullscreen-window; }
+
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+C      { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    
+    // 用于切换窗口浮动
+    Mod+Space { toggle-window-floating; } 
+    // 用于切换浮动/平铺焦点
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; } 
+
+
+    // ========================= 标签页模式 =========================
+
+    Mod+W { toggle-column-tabbed-display; }
+
+
+    // ========================= 截图 =========================
+
+    Print                    { screenshot; }        // 矩形区域
+    Mod+Print                { screenshot-screen; } // 当前输出
+    Ctrl+Print               { screenshot-window; } // 当前窗口
+
+    // ========================= 滚动绑定 =========================
+
+    // 垂直移动
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+    // 水平移动列
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+
+    // Shift — 水平滚动
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+}
+
+// 鼠标指针
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 20
+}
+
+// 窗口规则
+window-rule { // 移除所有窗口的边框背景 + 透明度
+    draw-border-with-background false
+//    opacity 0.89
+}
+window-rule { // 浮动窗口
+    match app-id=r#"^gnome-calculator$"#
+    match app-id=r#"^galculator$"#
+    match app-id=r#"^blueman-manager$"#
+    match app-id=r#"^org\.gnome\.Nautilus$"#
+    match app-id=r#"^xdg-desktop-portal$"#
+    match app-id="dynamic_power_user"
+    match app-id="com.network.manager"
+    match app-id="org.pulseaudio.pavucontrol"
+    match app-id="xdg-desktop-portal-gtk"
+    match app-id="waypaper"
+    match app-id="mpv"
+    match app-id="vlc"
+    match app-id="imv"
+    open-floating true
+//  opacity 0.8
+}
+window-rule { // 全屏
+    match app-id="google-chrome"
+    match app-id="obsidian"
+    match app-id="code" 
+    match app-id="org.telegram.desktop"
+    match app-id="moe.tsuna.tsukimi"
+    //match app-id="kitty"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="SPlayer"
+    match app-id="steam"
+    match app-id="spotify"
+    match app-id="jetbrains-idea"
+    match app-id="electron"
+    //match app-id="nemo"
+    
+    // 设置默认列宽度为 100% (占据整个屏幕)
+    default-column-width { proportion 1.0; }
+    
+    // 如果你想要浮动窗口，保留这个
+    // open-floating true
+    
+    // 如果你想要窗口占据整个屏幕高度，可以加上
+    // default-window-height { proportion 1.0; }
+}
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+window-rule {
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+window-rule {
+    match app-id=r#"^gnome-control-center$"#
+    match app-id=r#"^pavucontrol$"#
+    match app-id=r#"^nm-connection-editor$"#
+    default-column-width { proportion 0.5; }
+    open-floating false
+}
+window-rule {
+    match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
+}
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="zoom"
+    open-floating true
+}
+window-rule {
+    //match app-id="wechat"
+    match app-id="QQ"
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-window-height { proportion 0.75; }
+}
+window-rule {
+    match app-id="waydroid"
+    //open-floating true
+    open-maximized false
+}
+window-rule {
+    match app-id="SPlayer" title="桌面歌词"
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-floating-position x=0 y=32 relative-to="bottom"
+    border {
+        off
+    }
+}
+window-rule { // waypaper
+    match app-id="waypaper"
+    default-window-height {fixed 660; }
+    default-column-width {fixed 850; }
+    open-floating true
+//    opacity 0.8
+}
+
+// niri 启动时运行的程序
+// 后台守护进程 (使用 spawn-sh-at-startup 启动需要 & 的服务)
+// 普通启动程序 (使用 spawn-at-startup 启动)
+//shared
+spawn-sh-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1" // 权限认证代理
+spawn-sh-at-startup "glance --config ~/.config/glance/glance.yml &" //glance
+spawn-at-startup "udiskie --automount --notify --smart-tray" // 磁盘挂载工具
+spawn-at-startup "nm-applet"           // 网络管理器 Applet
+spawn-at-startup "poweralertd"         // 电源警报守护进程
+spawn-at-startup "blueman-applet"      // 蓝牙 Applet
+
+// shell
+spawn-at-startup "noctalia-shell"
+spawn-sh-at-startup "sleep 3 && noctalia-shell ipc call lockScreen lock"  //锁屏
+
+// de without shell
+//spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
+// spawn-at-startup "hyprlock"            // 锁屏
+// spawn-at-startup "swayosd-server"      // OSD 提示服务
+// spawn-at-startup "swaynsc"              // 通知中心
+// spawn-at-startup "swww-daemon"
+// spawn-at-startup "init-wallpaper"      // 初始化壁纸脚本
+//spawn-sh-at-startup "wl-clip-persist --clipboard both &" // 剪贴板持久化
+//spawn-sh-at-startup "wl-paste --watch cliphist store &"  // 剪贴板历史记录
+//spawn-sh-at-startup "vicinae server"                     // 应用启动器后端
+//spawn-sh-at-startup "waypaper --restore"                 // 恢复壁纸
+
+overview {
+     zoom 0.6
+}
+
+// swww
+//layer-rule {
+    // 壁纸
+//    match namespace="^wallpaper|swww-daemon$"
+//    place-within-backdrop true
+//}
+
+// noctalia-wallpaper 
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}
+
+recent-windows {
+    // off
+    debounce-ms 750
+
+    open-delay-ms 150
+
+    highlight {
+        active-color "#fe8019"
+        urgent-color "#9b0000"
+        padding 30
+        corner-radius 10
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+
+    binds {
+        Alt+Tab         { next-window; }
+        Alt+Shift+Tab   { previous-window; }
+        Alt+grave       { next-window     filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
+    }
+}
+
+environment {
+    // Qt 应用设置
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_QPA_PLATFORMTHEME_5 "qt5ct"
+    QT_AUTO_SCREEN_SCALE_FACTOR "1" // 启用 HiDPI 缩放
+
+    // Electron 和 Firefox 设置
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    NIXOS_OZONE_WL "1"
+    MOZ_ENABLE_WAYLAND "1"
+    
+    // Java 应用设置
+    _JAVA_AWT_WM_NONREPARENTING "1"
+
+    //
+    WLR_RENDERER "vulkan"
+    
+    //输入法
+    XIM "fcitx"
+    //GTK_IM_MODULE "wayland;fcitx"
+    //QT_IM_MODULE "fcitx"
+
+    STEAM_EXTRA_COMPAT_RUNTIME_PROFILES "1"
+}
