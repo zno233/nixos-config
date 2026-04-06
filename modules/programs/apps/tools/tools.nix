@@ -9,6 +9,7 @@
       cli
       nix-tools
       ssh
+      tool-apps
     ];
   };
 }
