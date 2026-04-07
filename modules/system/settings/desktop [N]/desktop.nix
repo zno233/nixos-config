@@ -8,6 +8,7 @@
       fonts
       graphics
       system-program
+      systemd-oomd
       sessionVariables
       steam
       xdg

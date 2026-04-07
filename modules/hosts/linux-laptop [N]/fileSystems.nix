@@ -39,13 +39,13 @@
         ];
       };
 
-      # 4. 声明 Swap 设备
-      swapDevices = [
-        {
-          device = "/var/lib/swapfile";
-          size = 8 * 1024; # 8 GiB (8192 MiB)，单位是 MiB
-          # 可选：randomEncryption = true;  # 如果需要加密 swap
-        }
-      ];
+      # 4. 声明 Swap 设备（使用ZRAM时需禁用以防LRU反转）
+      # swapDevices = [
+      #   {
+      #     device = "/var/lib/swapfile";
+      #     size = 8 * 1024; # 8 GiB (8192 MiB)，单位是 MiB
+      #     # 可选：randomEncryption = true;  # 如果需要加密 swap
+      #   }
+      # ];
     };
 }
