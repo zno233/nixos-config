@@ -6,8 +6,8 @@
       home.packages = with pkgs; [
         ## Better core utils
         duf # Disk information
-        eza # ls replacement
-        fd # find replacement
+        # eza # ls replacement
+        # fd # find replacement
         gping # ping with a graph
         gtrash # rm replacement, put deleted files in system trash
         hexyl # hex viewer
@@ -44,7 +44,7 @@
         # ttyper # cli typing test
 
         ## Monitoring / fetch
-        htop # Interactive process viewer
+        # htop # Interactive process viewer
         onefetch # fetch utility for git repo
         wavemon # monitoring for wireless network devices
         lm_sensors # Hardware health monitoring
@@ -72,18 +72,18 @@
         ffmpeg # Video/audio conversion tool
         file # Show file information
         jq # JSON processor
-        killall # Kill processes by name
+        # killall # Kill processes by name
         libnotify # Desktop notification library
-        mimeo # MIME type opener
+        # mimeo # MIME type opener
         openssl # Cryptography toolkit
         pamixer # pulseaudio command line mixer
         playerctl # controller for media players
         poweralertd # Power alert daemon
         udiskie # Automounter for removable media
-        unzip # Extract zip archives
+        # unzip # Extract zip archives
         wget # Network downloader
         xdg-utils # Desktop integration utilities
-        p7zip-rar # Archive utility with RAR support
+        # p7zip-rar # Archive utility with RAR support
         unar # Extract many archive formats
         pandoc # Universal document converter
         usbutils # USB device utilities

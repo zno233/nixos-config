@@ -1,12 +1,33 @@
 { lib, ... }:
 {
   options.flake.meta = lib.mkOption {
-    type = lib.types.attrsOf lib.types.anything;
+    type = lib.types.submodule {
+      options = {
+        users = lib.mkOption {
+          type = lib.types.attrsOf (
+            lib.types.submodule {
+              options = {
+                homeDirectory = lib.mkOption { type = lib.types.str; };
+                email = lib.mkOption { type = lib.types.str; };
+                configDirectory = lib.mkOption { type = lib.types.str; };
+              };
+            }
+          );
+          default = { };
+          description = "User metadata configurations";
+        };
+        mainUser = lib.mkOption {
+          type = lib.types.str;
+          default = "zno";
+          description = "Default main user";
+        };
+      };
+    };
     default = { };
+    description = "Global metadata configuration";
   };
 
   config.flake.meta = {
-    # 多用户配置
     users = {
       zno = {
         homeDirectory = "/home/zno";
@@ -19,8 +40,6 @@
         configDirectory = "/home/alice/alice-config";
       };
     };
-
-    # 默认主用户
     mainUser = "zno";
   };
 }

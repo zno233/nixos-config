@@ -7,6 +7,8 @@
     {
       programs.neovim = {
         enable = true;
+        withRuby = false;
+        withPython3 = false;
         package = pkgs.neovim-unwrapped;
 
         # defaultEditor = true; # set EDITOR at system-wide level

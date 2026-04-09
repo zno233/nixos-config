@@ -10,6 +10,7 @@
       nix-tools
       ssh
       tool-apps
+      yazi
     ];
   };
 }
