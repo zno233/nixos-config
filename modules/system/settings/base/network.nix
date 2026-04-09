@@ -5,11 +5,9 @@
       networking = {
         nftables.enable = true;
 
-        # 所有 DNS 查询指向本地 127.0.0.1:53
-        # daed 会通过 bind: 'tcp+udp://0.0.0.0:53' 监听这个端口并接管所有查询
-        nameservers = [
-          "127.0.0.1"
-        ];
+        # nameservers = [
+        #   "127.0.0.1"
+        # ];
 
         networkmanager = {
           enable = true;
@@ -35,7 +33,8 @@
         };
       };
 
-      # 关闭 systemd-resolved 服务，这会导致dns泄露
+      # 启用 systemd-resolved 但禁用 stub listener
+      # 这样释放 53 端口给 daed，防止 DNS 泄露
       services.resolved = {
         enable = true;
         settings = {
@@ -45,6 +44,10 @@
 
             # 搜索域配置
             domains = [ "~." ];
+
+            # 所有 DNS 查询指向本地 127.0.0.1:53
+            # daed 会通过 bind: 'tcp+udp://0.0.0.0:53' 监听这个端口并接管所有查询
+            DNS = [ "127.0.0.1" ];
 
             # 备用 DNS
             FallbackDNS = [
