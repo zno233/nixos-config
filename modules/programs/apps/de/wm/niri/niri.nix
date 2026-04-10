@@ -30,13 +30,15 @@
           xwayland-satellite
           wl-clipboard # 核心剪贴板工具
           cliphist # 剪贴板历史记录
+          grim # Wayland 截图工具
+          slurp # 屏幕区域选择工具
+          satty # 截图标注工具（支持绘图、箭头、文字等）
+          hyprpicker   # 取色器
 
           # waybar       # 面板
           # swww         # 壁纸
           # swaynotificationcenter      # 通知中心
           # wf-recorder  # Wayland屏幕录制工具
-          # hyprpicker   # 取色器
-          # grim         # wayland截图工具
         ];
       };
       xdg.configFile."niri/config.kdl" = {

@@ -1,5 +1,19 @@
-window-rule {
-    match app-id="waydroid"
-    //open-floating true
-    open-maximized false
+binds {
+    // 区域截图（带标注）
+    Ctrl+S { 
+        spawn-sh r#"set -e; grim -t ppm -g "$(slurp -o -d -F monospace)" - | satty --filename - --copy-command=wl-copy --annotation-size-factor 2.0 --output-filename="$(xdg-user-dir PICTURES)/Screenshots/Screenshot from %Y-%m-%d %H:%M:%S.png" --actions-on-enter="save-to-clipboard,exit" --brush-smooth-history-size=5 --disable-notifications"#; 
+    }
+    
+    // 全屏截图（当前输出）
+    Alt+S { 
+        spawn-sh r#"grim -t ppm - | satty --filename - --copy-command=wl-copy --annotation-size-factor 2.0 --output-filename="$(xdg-user-dir PICTURES)/Screenshots/Screenshot from %Y-%m-%d %H:%M:%S.png" --actions-on-enter="save-to-clipboard,exit""#; 
+    }
+    
+    // 当前窗口截图
+    Ctrl+Mod+S { 
+        spawn-sh r#"grim -t ppm -g "$(niri msg focused-window | jq -r '.x,.y,.width,.height' | paste -sd ' ' | awk '{printf "%d,%d %dx%d",$1,$2,$3,$4}')" - | satty --filename - --copy-command=wl-copy --annotation-size-factor 2.0 --output-filename="$(xdg-user-dir PICTURES)/Screenshots/Screenshot from %Y-%m-%d %H:%M:%S.png" --actions-on-enter="save-to-clipboard,exit""#; 
+    }
+
+    // 取色
+    Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
 }
