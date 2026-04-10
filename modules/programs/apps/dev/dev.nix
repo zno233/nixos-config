@@ -6,6 +6,7 @@
       git
       lazygit
       nvim
+      tomcat
     ];
   };
 }
