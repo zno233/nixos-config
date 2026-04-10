@@ -28,6 +28,7 @@
 
       # 音频工具
       environment.systemPackages = with pkgs; [
+        pavucontrol # 音量控制工具
         easyeffects # 用于音效处理
         crosspipe # 可视化连线工具，排查问题极快
       ];

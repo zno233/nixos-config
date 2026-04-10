@@ -210,12 +210,13 @@ binds {
     Alt+M hotkey-overlay-title="音乐播放器： SPlayer" { spawn "splayer"; }
     Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
     Mod+Shift+B hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
+    Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
+    
 
     // no shell
     //Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
     //Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
     //Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
-    //Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
     //Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" { 
     //spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy"; 
    //}
@@ -386,6 +387,19 @@ binds {
     Mod+Print                { screenshot-screen; } // 当前输出
     Ctrl+Print               { screenshot-window; } // 当前窗口
 
+    // 区域截图（带标注）
+    Ctrl+S { 
+        spawn-sh r#"set -e; grim -t ppm -g "$(slurp -o -d -F monospace)" - | satty --filename - --copy-command=wl-copy --annotation-size-factor 2.0 --output-filename="$(xdg-user-dir PICTURES)/Screenshots/Screenshot from %Y-%m-%d %H:%M:%S.png" --actions-on-enter="save-to-clipboard,exit" --brush-smooth-history-size=5 --disable-notifications"#; 
+    }
+    // 全屏截图（当前输出）
+    Alt+S { 
+        spawn-sh r#"grim -t ppm - | satty --filename - --copy-command=wl-copy --annotation-size-factor 2.0 --output-filename="$(xdg-user-dir PICTURES)/Screenshots/Screenshot from %Y-%m-%d %H:%M:%S.png" --actions-on-enter="save-to-clipboard,exit""#; 
+    }
+    // 当前窗口截图
+    Ctrl+Mod+S { 
+        spawn-sh r#"grim -t ppm -g "$(niri msg focused-window | jq -r '.x,.y,.width,.height' | paste -sd ' ' | awk '{printf "%d,%d %dx%d",$1,$2,$3,$4}')" - | satty --filename - --copy-command=wl-copy --annotation-size-factor 2.0 --output-filename="$(xdg-user-dir PICTURES)/Screenshots/Screenshot from %Y-%m-%d %H:%M:%S.png" --actions-on-enter="save-to-clipboard,exit""#; 
+    }
+    
     // ========================= 滚动绑定 =========================
 
     // 垂直移动
@@ -428,6 +442,7 @@ window-rule { // 浮动窗口
     match app-id="dynamic_power_user"
     match app-id="com.network.manager"
     match app-id="org.pulseaudio.pavucontrol"
+    match app-id="com.saivert.pwvucontrol"
     match app-id="xdg-desktop-portal-gtk"
     match app-id="waypaper"
     match app-id="mpv"
@@ -475,7 +490,6 @@ window-rule {
 }
 window-rule {
     match app-id=r#"^gnome-control-center$"#
-    match app-id=r#"^pavucontrol$"#
     match app-id=r#"^nm-connection-editor$"#
     default-column-width { proportion 0.5; }
     open-floating false

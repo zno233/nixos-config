@@ -6,11 +6,10 @@
         ## Multimedia
         audacity
         gimp
-        media-downloader
+        # media-downloader
         obs-studio
-        pavucontrol
-        soundwireserver
-        video-trimmer
+        # soundwireserver
+        # video-trimmer   
         vlc
 
         stable.fooyin # like fb2k
