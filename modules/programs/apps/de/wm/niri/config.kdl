@@ -203,7 +203,7 @@ binds {
     Mod+Return hotkey-overlay-title="终端: kitty" { spawn "kitty"; }
     Mod+B hotkey-overlay-title="浏览器: Chrome" { spawn "google-chrome-stable"; }
     Mod+E hotkey-overlay-title="文件管理器: nemo" { spawn "nemo"; }
-    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/home/common/de/wm/niri/config.kdl"; }
+    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "code $HOME/zno-config/modules/programs/apps/de/wm/niri/config.kdl"; }
     Mod+Alt+N hotkey-overlay-title="打开 nixos 配置文件" { spawn-sh "code $HOME/zno-config"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
     Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
@@ -546,7 +546,7 @@ window-rule { // waypaper
 // 普通启动程序 (使用 spawn-at-startup 启动)
 //shared
 spawn-sh-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1" // 权限认证代理
-spawn-sh-at-startup "glance --config ~/.config/glance/glance.yml &" //glance
+//spawn-sh-at-startup "glance --config ~/.config/glance/glance.yml &" //glance
 spawn-at-startup "udiskie --automount --notify --smart-tray" // 磁盘挂载工具
 spawn-at-startup "nm-applet"           // 网络管理器 Applet
 spawn-at-startup "poweralertd"         // 电源警报守护进程

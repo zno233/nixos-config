@@ -42,14 +42,14 @@
           package = pkgs.papirus-icon-theme.override { color = "green"; };
         };
         cursorTheme = {
-          name = "phinger-cursors-light";
-          package = pkgs.phinger-cursors;
+          name = "Bibata-Modern-Ice";
+          package = pkgs.bibata-cursors;
           size = 22;
         };
       };
       home.pointerCursor = {
-        name = "phinger-cursors-light";
-        package = pkgs.phinger-cursors;
+        name = "Bibata-Modern-Ice";
+        package = pkgs.bibata-cursors;
         size = 22;
       };
       xdg.configFile."gtk-4.0/gtk.css" = {
