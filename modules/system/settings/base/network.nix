@@ -39,8 +39,7 @@
         enable = true;
         settings = {
           Resolve = {
-            # 关闭 DNS over TLS，让 daed 统一处理所有 DNS
-            DNSOverTLS = "no";
+            DNSOverTLS = "opportunistic";
 
             # 搜索域配置
             domains = [ "~." ];
