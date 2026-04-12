@@ -9,7 +9,7 @@
         # media-downloader
         obs-studio
         # soundwireserver
-        # video-trimmer   
+        # video-trimmer
         vlc
 
         stable.fooyin # like fb2k
