@@ -4,17 +4,17 @@
     {
       networking = {
         nftables.enable = true;
-
-        # nameservers = [
-        #   "127.0.0.1"
-        # ];
-
         networkmanager = {
           enable = true;
-          # 使用 systemd-resolved 管理 DNS
-          # 但实际查询会被 daed 拦截（因为 nameservers 指向 127.0.0.1）
-          dns = "systemd-resolved";
+          dns = "default";
         };
+        nameservers = [
+          "127.0.0.1" # daed
+          "223.6.6.6" # 阿里云 DNS
+          "8.8.8.8" # Google DNS
+          "8.8.4.4" # Google DNS 备用
+          "1.1.1.1" # Cloudflare DNS
+        ];
 
         firewall = {
           enable = true;
@@ -33,35 +33,36 @@
         };
       };
 
-      # 启用 systemd-resolved 但禁用 stub listener
-      # 这样释放 53 端口给 daed，防止 DNS 泄露
-      services.resolved = {
-        enable = true;
-        settings = {
-          Resolve = {
-            DNSOverTLS = "opportunistic";
+      # services.resolved = {
+      #   enable = true;
+      #   settings = {
+      #     Resolve = {
+      #       # 占用 127.0.0.53:53
+      #       DNSStubListener = "yes";
 
-            # 搜索域配置
-            domains = [ "~." ];
+      #       # 搜索域配置
+      #       domains = [ "~." ];
 
-            # 所有 DNS 查询指向本地 127.0.0.1:53
-            # daed 会通过 bind: 'tcp+udp://0.0.0.0:53' 监听这个端口并接管所有查询
-            DNS = [ "127.0.0.1" ];
+      #       # 所有 DNS 查询指向本地 127.0.0.1:53
+      #       # daed 会通过 bind: 'tcp+udp://0.0.0.0:53' 监听这个端口并接管所有查询
+      #       DNS = [ "127.0.0.1" ];
 
-            # 备用 DNS
-            FallbackDNS = [
-              "223.6.6.6" # 阿里 DNS
-              "8.8.8.8" # Google DNS
-              "8.8.4.4" # Google DNS 备用
-              "1.1.1.1" # Cloudflare DNS
-            ];
+      #       # 备用 DNS
+      #       FallbackDNS = [
+      #         "223.6.6.6" # 阿里云 DNS
+      #         "8.8.8.8" # Google DNS
+      #         "8.8.4.4" # Google DNS 备用
+      #         "1.1.1.1" # Cloudflare DNS
+      #       ];
 
-            # 关键：让 systemd-resolved 不占用 53 端口
-            # 这样 daed 才能通过 bind: 'tcp+udp://0.0.0.0:53' 监听该端口
-            DNSStubListener = "no";
-          };
-        };
-      };
+      #       # DNSSEC = "allow-downgrade";
+      #       # DNSOverTLS = "opportunistic";
+
+      #       LLMNR = "no";
+      #       MulticastDNS = "no";
+      #     };
+      #   };
+      # };
 
       environment.systemPackages = with pkgs; [ networkmanagerapplet ];
     };
