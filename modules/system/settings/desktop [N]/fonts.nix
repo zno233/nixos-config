@@ -2,8 +2,6 @@
   flake.modules.nixos.fonts =
     {
       pkgs,
-      lib,
-      config,
       ...
     }:
     {

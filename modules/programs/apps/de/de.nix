@@ -3,7 +3,7 @@
   flake.modules.homeManager.de = {
     imports = with inputs.self.modules.homeManager; [
       ### shared
-      # bat # better cat command
+      bat # better cat command
       btop # resouces monitor
       cava # audio visualizer
       fastfetch # fetch tool

@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.bluetooth =
-    { config, pkgs, ... }:
+    { ... }:
     {
       # 核心蓝牙服务 (BlueZ)
       hardware.bluetooth = {
