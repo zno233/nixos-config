@@ -60,7 +60,7 @@
 
         # IDE
         vscode-fhs
-        android-studio
+        # android-studio
         jetbrains.idea
 
         # JSP

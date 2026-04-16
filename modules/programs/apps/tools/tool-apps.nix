@@ -18,7 +18,7 @@
         qbittorrent-enhanced # bt
         #windterm
         calibre
-        snipaste
+        # snipaste
         font-manager
         localsend
         # maa-cli

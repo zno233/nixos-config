@@ -2,6 +2,9 @@ binds {
     
 }
 
-window-rule {
+window-rule { // blur for transparent windows
+
+}
+window-rule { // blur for opaque windows
 
 }

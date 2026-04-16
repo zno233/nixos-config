@@ -540,6 +540,25 @@ window-rule { // waypaper
     open-floating true
 //    opacity 0.8
 }
+window-rule { // blur for transparent windows
+    match app-id="^kitty$"
+    match app-id="^com.mitchellh.ghostty$"
+    match app-id="^zen-beta$"
+    background-effect {
+        blur true
+        xray true
+    }
+}
+window-rule { // blur for opaque windows
+    match app-id="^code$"
+    match app-id="^electron$"
+    //match app-id="^jetbrains-idea$"
+    opacity 0.95
+    background-effect {
+        blur true
+        xray true
+    }
+}
 
 // niri 启动时运行的程序
 // 后台守护进程 (使用 spawn-sh-at-startup 启动需要 & 的服务)
@@ -585,6 +604,14 @@ layer-rule {
     place-within-backdrop true
 }
 
+/* Noctalia: blur everywhere without xray for a better look */
+layer-rule {
+  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  background-effect {
+    xray false
+  }
+}
+
 recent-windows {
     // off
     debounce-ms 750
@@ -609,6 +636,13 @@ recent-windows {
         Alt+grave       { next-window     filter="app-id"; }
         Alt+Shift+grave { previous-window filter="app-id"; }
     }
+}
+
+blur {
+  passes 2        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.03      // grain overlay (default: 0.02)
+  saturation 1.0  // color saturation boost (default: 1.5)
 }
 
 environment {

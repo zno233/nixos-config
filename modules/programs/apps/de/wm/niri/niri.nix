@@ -6,7 +6,6 @@
   flake.modules.homeManager.niri =
     {
       config,
-      inputs,
       pkgs,
       ...
     }:

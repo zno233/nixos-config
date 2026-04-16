@@ -5,19 +5,7 @@
       home.packages = with pkgs; [ nemo-with-extensions ];
 
       xdg.dataFile = {
-        # 1. 在当前目录打开 Kitty 的 Action
-        "nemo/actions/kitty_here.nemo_action".text = ''
-          [Nemo Action]
-          Name=Open in Kitty
-          Comment=Open kitty terminal in the current directory
-          Exec=kitty --directory %F
-          Icon-Name=utilities-terminal
-          Selection=any
-          Extensions=dir;
-          Quote=double
-        '';
-
-        # 2. 使用 unar 解压文件的 Action
+        # 1. 使用 unar 解压文件的 Action
         "nemo/actions/unar_extract.nemo_action".text = ''
           [Nemo Action]
           Name=Extract with unar
@@ -26,6 +14,17 @@
           Icon-Name=archive-extract
           Selection=s
           Extensions=zip;7z;rar;tar;gz;bz2;tar.gz;tar.bz2;tar.xz;xz; # 可以再加几个常见后缀
+          Quote=double
+        '';
+        # 2. 在当前目录打开 Kitty 的 Action
+        "nemo/actions/kitty_here.nemo_action".text = ''
+          [Nemo Action]
+          Name=Open in Kitty
+          Comment=Open kitty terminal in the current directory
+          Exec=kitty --directory %F
+          Icon-Name=utilities-terminal
+          Selection=any
+          Extensions=dir;
           Quote=double
         '';
         # 3. 使用 VS Code 打开文件/目录的 Action
