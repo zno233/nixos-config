@@ -5,9 +5,9 @@
       boot = {
         #开启cake+bbr
         kernel.sysctl = {
-          "net.core.default_qdisc" = "cake"; # 保持原样，低延迟公平分配
-          "net.ipv4.tcp_congestion_control" = "bbr"; # 保持原样，高效利用带宽
-          "net.ipv4.tcp_fastopen" = 3; # 保持原样，减少握手延迟
+          "net.core.default_qdisc" = "cake"; # 低延迟公平分配
+          "net.ipv4.tcp_congestion_control" = "bbr"; # 高效利用带宽
+          "net.ipv4.tcp_fastopen" = 3; # 减少握手延迟
 
           # 缓冲区调整
           # "net.ipv4.tcp_rmem" = "4096 1048576 2097152"; # min/default/max；2MB max适合大多数链路
@@ -44,7 +44,7 @@
         ];
         initrd.verbose = false;
         consoleLogLevel = 3;
-        #initrd.kernelModules = [ "nvidia" ];
+        # initrd.kernelModules = [ "nvidia" ];
 
         # systemd-boot 引导加载器配置
         loader = {

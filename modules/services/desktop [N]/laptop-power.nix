@@ -59,15 +59,14 @@
             CPU_MIN_PERF_ON_AC = 0;
             CPU_MAX_PERF_ON_AC = 100;
             CPU_MIN_PERF_ON_BAT = 0;
-            CPU_MAX_PERF_ON_BAT = 60; # 根据需求调整
+            CPU_MAX_PERF_ON_BAT = 80; # 根据需求调整
 
             # 掉电保护：电池模式下加快数据刷盘
             MAX_LOST_WORK_SECS_ON_BAT = 15;
 
             # NVIDIA独显电源管理
-            RUNTIME_PM_ON_AC = "on";
+            RUNTIME_PM_ON_AC = "auto";
             RUNTIME_PM_ON_BAT = "auto";
-            NVIDIA_PM_ENABLED = 1; # 如果使用闭源驱动
 
             # USB、声音、WiFi优化
             USB_AUTOSUSPEND = 1;
