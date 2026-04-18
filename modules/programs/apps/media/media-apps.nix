@@ -6,9 +6,12 @@
         ## Multimedia
         audacity
         gimp
+        # imv # Image viewer for Wayland
+        pix #Generic image viewer from Linux Mint
+        # digikam # Image viewer for details
         # media-downloader
         obs-studio
-        # soundwireserver
+        # soundwireserver 
         # video-trimmer
         vlc
 

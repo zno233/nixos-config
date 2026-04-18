@@ -64,7 +64,6 @@
         tty-clock # Digital clock in terminal
 
         ## Multimedia
-        imv # Image viewer for Wayland
         # lowfi # Lo-fi music player
 
         ## Utilities

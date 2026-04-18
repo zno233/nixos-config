@@ -5,7 +5,7 @@
     let
       defaultApps = {
         text = [ "code.desktop" ];
-        image = [ "imv-dir.desktop" ];
+        image = [ "pix.desktop" ];
         audio = [ "org.fooyin.fooyin" ];
         video = [ "mpv.desktop" ];
         directory = [ "nemo.desktop" ];
