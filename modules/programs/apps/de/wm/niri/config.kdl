@@ -71,13 +71,6 @@ output "eDP-1" {
     position x=-1366 y=0
 }
 layout {
-    /-blur {
-      // on
-      passes 4 // number of times to apply the blur effect (应用模糊效果的次数)
-      radius 1 // radius of the blur effect (模糊效果的半径)
-      noise 0.1 //add grain to the blur (给模糊添加噪点)
-    }
-
     // Set gaps around windows in logical pixels. (设置窗口周围的间隙，以逻辑像素为单位。)
     gaps 8
     background-color "transparent"

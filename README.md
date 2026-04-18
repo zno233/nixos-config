@@ -4,7 +4,7 @@
 <details>
 <summary>Noctalia-shell (EXPAND)</summary>
 
-<img width="2520" height="1680" alt="Screenshot from 2026-01-10 12-33-18" src="https://github.com/user-attachments/assets/0b28b5df-9936-4e93-a762-efed37c3e88e" />
+<img width="1260" alt="Screenshot from 2026-01-10 12-33-18" src="https://github.com/user-attachments/assets/0b28b5df-9936-4e93-a762-efed37c3e88e" />
 
 </details>
 
@@ -12,7 +12,7 @@
 <details>
 <summary>Waybar (EXPAND)</summary>
 
-<img width="2520" height="1680" alt="Screenshot from 2025-12-19 21-16-32" src="https://github.com/user-attachments/assets/37ce7c1f-c7bb-4a6f-b8b9-e5738f9f06e7" />
+<img width="1260" alt="Screenshot from 2025-12-19 21-16-32" src="https://github.com/user-attachments/assets/37ce7c1f-c7bb-4a6f-b8b9-e5738f9f06e7" />
 
 </details>
 
@@ -36,7 +36,7 @@
 | **GTK theme**               | [Colloid gtk theme][Colloid gtk theme] |
 | **Cursor**                  | [Bibata-Modern-Ice][Bibata-Modern-Ice] |
 | **Icons**                   | [Papirus-Dark][Papirus-Dark] |
-| **Image Viewer**            | [imv][imv] |
+| **Image Viewer**            | [pix][pix] |
 | **Media Player**            | [mpv][mpv] |
 | **Music Player**            | [fooyin][fooyin] + [Splayer][Splayer] + [spicetify-nix][spicetify-nix] |
 | **Screen Recording**        | [OBS][OBS] |
@@ -92,7 +92,7 @@ Other dotfiles that I ~~copied~~ learned from:
 [spicetify-nix]: https://github.com/Gerg-L/spicetify-nix
 [VSCode]: https://github.com/microsoft/vscode
 [Lazyvim]: https://github.com/LazyVim/LazyVim
-[imv]: https://sr.ht/~exec64/imv/
+[pix]: https://github.com/linuxmint/pix
 [Maple Mono]: https://github.com/subframe7536/maple-font
 [LXGW WenKai]: https://github.com/lxgw/LxgwWenKai
 [NetworkManager]: https://wiki.gnome.org/Projects/NetworkManager
