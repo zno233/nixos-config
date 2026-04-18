@@ -22,8 +22,8 @@
         splayer
         kazumi # anime online
         tsukimi # emby
-        #tauon                       #local music player
-        gapless
+        # tauon                       #local music player
+        # gapless
       ];
     };
 }

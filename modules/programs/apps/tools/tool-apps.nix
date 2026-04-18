@@ -13,11 +13,12 @@
         # ldtk
         # tiled
 
-        gnome-calculator
+        qalculate-qt
 
         qbittorrent-enhanced # bt
-        #windterm
+        # windterm
         calibre
+        koodo-reader
         # snipaste
         font-manager
         localsend
@@ -25,6 +26,8 @@
 
         nwg-look
         bleachbit # System cleaner
+
+        peazip # Archive extractor
       ];
     };
 }
