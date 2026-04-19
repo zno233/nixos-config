@@ -5,7 +5,7 @@
     {
       # 1. 基础服务：开启SCX
       services.scx.enable = true;
-      services.scx.scheduler = "scx_rusty";
+      services.scx.scheduler = "scx_bpfland";
 
       # 2. 状态同步：确保电池开机时不会自动启动 SCX
       # ConditionACPower 会让服务在没插电时处于 "condition failed" 状态而不运行

@@ -481,7 +481,7 @@ window-rule {
     open-maximized false
 }
 window-rule {
-    match app-id="SPlayer" title="桌面歌词"
+    match app-id="^Splayer$" title="^桌面歌词$"
     open-floating true
     default-column-width { proportion 0.75; }
     default-floating-position x=0 y=32 relative-to="bottom"
@@ -595,10 +595,10 @@ recent-windows {
 }
 
 blur {
-  passes 2        // more passes = stronger blur (default: 3)
+  passes 3        // more passes = stronger blur (default: 3)
   offset 3.0      // sample distance per pass (default: 3.0)
-  noise 0.03      // grain overlay (default: 0.02)
-  saturation 1.0  // color saturation boost (default: 1.5)
+  noise 0.02      // grain overlay (default: 0.02)
+  saturation 1.5  // color saturation boost (default: 1.5)
 }
 
 environment {

@@ -11,7 +11,7 @@ Notes:
 
 animations {
     // Uncomment while tuning.
-    //slowdown 1
+    slowdown 1.1
 
 
     window-open {
@@ -140,7 +140,7 @@ animations {
 
     overview-open-close {
         // Overview should feel smooth and premium, not springy/bouncy.
-        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+        spring damping-ratio=1.0 stiffness=620 epsilon=0.0001
     }
 
     recent-windows-close {
