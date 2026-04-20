@@ -1,37 +1,41 @@
-include "glide.kdl"
+include "animations/glide.kdl"
 
 binds {
     
 }
 
-window-rule { // blur for transparent windows
+/* Noctalia: blur everywhere without xray for a better look */
+// layer-rule {
+//   match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+//   background-effect {
+//     xray false
+//   }
+// }
 
+blur {
+  passes 3        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.02      // grain overlay (default: 0.02)
+  saturation 1.5  // color saturation boost (default: 1.5)
 }
-window-rule { // blur for opaque windows
-    match app-id="^org.fooyin.fooyin$"
-    opacity 0.95
+
+window-rule { // blur for transparent windows
+    match app-id="^kitty$"
+    match app-id="^com.mitchellh.ghostty$"
+    match app-id="^zen-beta$"
     background-effect {
         blur true
         xray true
     }
 }
-
-window-rule {
-    match app-id="nemo" title="Open with"
-    open-floating true
-    default-window-height {fixed 660; }
-    default-column-width {fixed 850; }
-}
-
-window-rule { // 全屏
-    match app-id="pix"
-    
-    // 设置默认列宽度为 100% (占据整个屏幕)
-    default-column-width { proportion 1.0; }
-    
-    // 如果你想要浮动窗口，保留这个
-    // open-floating true
-    
-    // 如果你想要窗口占据整个屏幕高度，可以加上
-    // default-window-height { proportion 1.0; }
+window-rule { // blur for opaque windows
+    match app-id="^code$"
+    match app-id="^electron$"
+    match app-id="^org.fooyin.fooyin$"
+    //match app-id="^jetbrains-idea$"
+    opacity 0.95
+    background-effect {
+        blur true
+        xray true
+    }
 }

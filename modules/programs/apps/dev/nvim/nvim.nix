@@ -16,9 +16,9 @@
         vimAlias = true;
       };
 
-      xdg.configFile."nvim" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${lazyvimConfig}";
-        force = true;
-      };
+      # xdg.configFile."nvim" = {
+      #   source = config.lib.file.mkOutOfStoreSymlink "${lazyvimConfig}";
+      #   force = true;
+      # };
     };
 }

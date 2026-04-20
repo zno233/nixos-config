@@ -51,8 +51,8 @@ input {
     }
 
     // warp-mouse-to-focus (将鼠标定位到焦点窗口)
-    // focus-follows-mouse (焦点跟随鼠标)
-    focus-follows-mouse max-scroll-amount="0%"
+    // focus-follows-mouse (焦点跟随鼠标)
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 output "eDP-1" {
@@ -173,21 +173,21 @@ binds {
     //Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
     //Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
     //Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
-    //Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" { 
-    //spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy"; 
+    //Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" {
+    //spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy";
    //}
 
     // ========================= 音量控制 =========================
 
     //XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "5"; }
     //XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-5"; }
-    //XF86AudioMute        allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
-    //XF86AudioMicMute     allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    //XF86AudioMuteallow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    //XF86AudioMicMuteallow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
 
 
     // ========================= 亮度控制 =========================
 
-    //XF86MonBrightnessUp allow-when-locked=true   { spawn "swayosd-client" "--brightness" "+5"; }
+    //XF86MonBrightnessUp allow-when-locked=true{ spawn "swayosd-client" "--brightness" "+5"; }
     //XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "-5"; }
 
 
@@ -196,9 +196,9 @@ binds {
     Mod+O hotkey-overlay-title="打开概览" repeat=false { toggle-overview; }
     Mod+Q hotkey-overlay-title="关闭焦点窗口" repeat=false { close-window; }
 
-    Mod+Left  hotkey-overlay-title="将焦点移动到左侧的列"  { focus-column-left; }
-    Mod+Down  hotkey-overlay-title="将焦点移动到下方的窗口"  { focus-window-down; }
-    Mod+Up    hotkey-overlay-title="将焦点移动到上方的窗口" { focus-window-up; }
+    Mod+Left  hotkey-overlay-title="将焦点移动到左侧的列"{ focus-column-left; }
+    Mod+Down  hotkey-overlay-title="将焦点移动到下方的窗口"{ focus-window-down; }
+    Mod+Up    hotkey-overlay-title="将焦点移动到上方的窗口" { focus-window-up; }
     Mod+Right hotkey-overlay-title="将焦点移动到右侧的列" { focus-column-right; }
 
     Mod+H { focus-column-left; }
@@ -209,9 +209,9 @@ binds {
 
     // ========================= 窗口管理 — 移动 =========================
 
-    Mod+Ctrl+Left  hotkey-overlay-title="将列向左移动"  { move-column-left; }
-    Mod+Ctrl+Down  hotkey-overlay-title="将窗口向下移动"    { move-window-down; }
-    Mod+Ctrl+Up    hotkey-overlay-title="将窗口向上移动"  { move-window-up; }
+    Mod+Ctrl+Left  hotkey-overlay-title="将列向左移动"{ move-column-left; }
+    Mod+Ctrl+Down  hotkey-overlay-title="将窗口向下移动"{ move-window-down; }
+    Mod+Ctrl+Up    hotkey-overlay-title="将窗口向上移动"{ move-window-up; }
     Mod+Ctrl+Right hotkey-overlay-title="将列向右移动" { move-column-right; }
 
     Mod+Ctrl+H { move-column-left; }
@@ -222,18 +222,18 @@ binds {
 
     // ========================= 列内导航 =========================
 
-    Mod+Home        { focus-column-first; }
-    Mod+End         { focus-column-last; }
-    Mod+Ctrl+Home   { move-column-to-first; }
-    Mod+Ctrl+End    { move-column-to-last; }
+    Mod+Home        { focus-column-first; }
+    Mod+End         { focus-column-last; }
+    Mod+Ctrl+Home   { move-column-to-first; }
+    Mod+Ctrl+End    { move-column-to-last; }
 
 
     // ========================= 显示器 — 焦点与移动 =========================
 
     // 焦点在显示器之间切换
-    Mod+Shift+Left  { focus-monitor-left; }
-    Mod+Shift+Down  { focus-monitor-down; }
-    Mod+Shift+Up    { focus-monitor-up; }
+    Mod+Shift+Left  { focus-monitor-left; }
+    Mod+Shift+Down  { focus-monitor-down; }
+    Mod+Shift+Up    { focus-monitor-up; }
     Mod+Shift+Right { focus-monitor-right; }
 
     Mod+Shift+H { focus-monitor-left; }
@@ -242,9 +242,9 @@ binds {
     Mod+Shift+L { focus-monitor-right; }
 
     // 在显示器之间移动列
-    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
 
     Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
@@ -256,23 +256,23 @@ binds {
     // ========================= 工作空间 =========================
 
     // 导航
-    Mod+Page_Down { focus-workspace-down; }
-    Mod+Page_Up   { focus-workspace-up; }
-    Mod+U         { focus-workspace-down; }
-    Mod+I         { focus-workspace-up; }
-    Mod+Tab       { focus-workspace-previous; }
+    Mod+Page_Down    { focus-workspace-down; }
+    Mod+Page_Up      { focus-workspace-up; }
+    Mod+U            { focus-workspace-down; }
+    Mod+I            { focus-workspace-up; }
+    Mod+Tab          { focus-workspace-previous; }
 
     // 移动列
-    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-    Mod+Ctrl+U         { move-column-to-workspace-down; }
-    Mod+Ctrl+I         { move-column-to-workspace-up; }
+    Mod+Ctrl+Page_Down  { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up    { move-column-to-workspace-up; }
+    Mod+Ctrl+U          { move-column-to-workspace-down; }
+    Mod+Ctrl+I          { move-column-to-workspace-up; }
 
     // 移动工作空间
-    Mod+Shift+Page_Down { move-workspace-down; }
-    Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+U         { move-workspace-down; }
-    Mod+Shift+I         { move-workspace-up; }
+    Mod+Shift+Page_Down  { move-workspace-down; }
+    Mod+Shift+Page_Up    { move-workspace-up; }
+    Mod+Shift+U          { move-workspace-down; }
+    Mod+Shift+I          { move-workspace-up; }
 
 
     // ========================= 按数字键的工作空间 =========================
@@ -302,39 +302,39 @@ binds {
 
     // ========================= 列和尺寸 =========================
 
-    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
-    Mod+Comma        { consume-window-into-column; }
-    Mod+Period       { expel-window-from-column; }
+    Mod+Comma        { consume-window-into-column; }
+    Mod+Period       { expel-window-from-column; }
 
-    Mod+R        { switch-preset-column-width; }
-    Mod+Shift+R  { switch-preset-window-height; }
-    Mod+Ctrl+R   { reset-window-height; }
+    Mod+R            { switch-preset-column-width; }
+    Mod+Shift+R      { switch-preset-window-height; }
+    Mod+Ctrl+R       { reset-window-height; }
 
-    Mod+F        { maximize-column; }
-    Mod+Alt+F    { maximize-window-to-edges; }
-    Mod+Shift+F  { fullscreen-window; }
+    Mod+F            { maximize-column; }
+    Mod+Alt+F        { maximize-window-to-edges; }
+    Mod+Shift+F      { fullscreen-window; }
 
-    Mod+Ctrl+F { expand-column-to-available-width; }
-    Mod+C      { center-column; }
-    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Ctrl+F       { expand-column-to-available-width; }
+    Mod+C            { center-column; }
+    Mod+Ctrl+C       { center-visible-columns; }
 
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+Minus        { set-column-width "-10%"; }
+    Mod+Equal        { set-column-width "+10%"; }
 
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+Minus  { set-window-height "-10%"; }
+    Mod+Shift+Equal  { set-window-height "+10%"; }
 
     
     // 用于切换窗口浮动
-    Mod+Space { toggle-window-floating; } 
+    Mod+Space          { toggle-window-floating; } 
     // 用于切换浮动/平铺焦点
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; } 
+    Mod+Shift+V        { switch-focus-between-floating-and-tiling; } 
 
 
     // ========================= 标签页模式 =========================
 
-    Mod+W { toggle-column-tabbed-display; }
+    Mod+W            { toggle-column-tabbed-display; }
 
 
     // ========================= 截图 =========================
@@ -359,22 +359,22 @@ binds {
     // ========================= 滚动绑定 =========================
 
     // 垂直移动
-    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
     // 水平移动列
-    Mod+WheelScrollRight      { focus-column-right; }
-    Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+    Mod+WheelScrollRight        { focus-column-right; }
+    Mod+WheelScrollLeft         { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight   { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft    { move-column-left; }
 
     // Shift — 水平滚动
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    Mod+Shift+WheelScrollDown       { focus-column-right; }
+    Mod+Shift+WheelScrollUp         { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown  { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp    { move-column-left; }
 
 }
 
@@ -387,7 +387,7 @@ cursor {
 // 窗口规则
 window-rule { // 移除所有窗口的边框背景 + 透明度
     draw-border-with-background false
-//    opacity 0.89
+//opacity 0.89
 }
 window-rule { // 浮动窗口
     match app-id=r#"^gnome-calculator$"#
@@ -420,6 +420,7 @@ window-rule { // 全屏
     match app-id="spotify"
     match app-id="jetbrains-idea"
     match app-id="electron"
+    match app-id="pix"
     //match app-id="nemo"
     
     // 设置默认列宽度为 100% (占据整个屏幕)
@@ -494,26 +495,13 @@ window-rule { // waypaper
     default-window-height {fixed 660; }
     default-column-width {fixed 850; }
     open-floating true
-//    opacity 0.8
+//opacity 0.8
 }
-window-rule { // blur for transparent windows
-    match app-id="^kitty$"
-    match app-id="^com.mitchellh.ghostty$"
-    match app-id="^zen-beta$"
-    background-effect {
-        blur true
-        xray true
-    }
-}
-window-rule { // blur for opaque windows
-    match app-id="^code$"
-    match app-id="^electron$"
-    //match app-id="^jetbrains-idea$"
-    opacity 0.95
-    background-effect {
-        blur true
-        xray true
-    }
+window-rule { //nemo opn with
+    match app-id="nemo" title="Open with"
+    open-floating true
+    default-window-height {fixed 660; }
+    default-column-width {fixed 850; }
 }
 
 // niri 启动时运行的程序
@@ -544,7 +532,7 @@ spawn-sh-at-startup "sleep 3 && noctalia-shell ipc call lockScreen lock"  //锁�
 //spawn-sh-at-startup "waypaper --restore"                 // 恢复壁纸
 
 overview {
-     zoom 0.6
+    zoom 0.6
 }
 
 // swww
@@ -558,14 +546,6 @@ overview {
 layer-rule {
     match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
-}
-
-/* Noctalia: blur everywhere without xray for a better look */
-layer-rule {
-  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
-  background-effect {
-    xray false
-  }
 }
 
 recent-windows {
@@ -592,13 +572,6 @@ recent-windows {
         Alt+grave       { next-window     filter="app-id"; }
         Alt+Shift+grave { previous-window filter="app-id"; }
     }
-}
-
-blur {
-  passes 3        // more passes = stronger blur (default: 3)
-  offset 3.0      // sample distance per pass (default: 3.0)
-  noise 0.02      // grain overlay (default: 0.02)
-  saturation 1.5  // color saturation boost (default: 1.5)
 }
 
 environment {

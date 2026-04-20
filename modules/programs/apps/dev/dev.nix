@@ -7,6 +7,7 @@
       lazygit
       nvim
       tomcat
+      helix
     ];
   };
 }

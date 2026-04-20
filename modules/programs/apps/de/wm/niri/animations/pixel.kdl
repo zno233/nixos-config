@@ -1,0 +1,76 @@
+animations {
+    window-open {
+        duration-ms 500
+        curve "linear"
+
+        custom-shader r"
+            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                if (coords_geo.x < 0.0 || coords_geo.x > 1.0 ||
+                    coords_geo.y < 0.0 || coords_geo.y > 1.0)
+                    return vec4(0.0);
+
+                float cell_size = 32.0;
+                vec2 grid = floor(size_geo.xy / cell_size);
+                grid = max(grid, vec2(1.0));
+
+                vec2 cell  = floor(coords_geo.xy * grid);
+                vec2 local = fract(coords_geo.xy * grid);
+
+                float t = (cell.x / grid.x + cell.y / grid.y) / 2.0;
+                float d = 0.4;
+                float cell_progress = clamp((niri_clamped_progress - t * (1.0 - d)) / d, 0.0, 1.0);
+
+                vec2 dist = abs(local - 0.5);
+                if (dist.x > cell_progress * 0.5 || dist.y > cell_progress * 0.5)
+                    return vec4(0.0);
+
+                // Blend sample point from cell centre toward exact pixel as cell opens,
+                // so the final frame matches the live window with no jump.
+                vec2 centre     = (cell + 0.5) / grid;
+                vec2 sample_geo = mix(centre, coords_geo.xy, cell_progress);
+                vec3 coords_tex = niri_geo_to_tex * vec3(clamp(sample_geo, 0.0, 1.0), 1.0);
+                vec4 color      = texture2D(niri_tex, coords_tex.st);
+
+                return color;
+            }
+        "
+    }
+
+    window-close {
+        duration-ms 500
+        curve "linear"
+
+        custom-shader r"
+            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+                if (coords_geo.x < 0.0 || coords_geo.x > 1.0 ||
+                    coords_geo.y < 0.0 || coords_geo.y > 1.0)
+                    return vec4(0.0);
+
+                float cell_size = 32.0;
+                vec2 grid = floor(size_geo.xy / cell_size);
+                grid = max(grid, vec2(1.0));
+
+                vec2 cell  = floor(coords_geo.xy * grid);
+                vec2 local = fract(coords_geo.xy * grid);
+
+                float t = ((grid.x - 1.0 - cell.x) / grid.x + (grid.y - 1.0 - cell.y) / grid.y) / 2.0;
+                float d = 0.4;
+                float cell_progress = clamp((niri_clamped_progress - t * (1.0 - d)) / d, 0.0, 1.0);
+
+                float scale = 1.0 - cell_progress;
+                vec2 dist = abs(local - 0.5);
+                if (dist.x > scale * 0.5 || dist.y > scale * 0.5)
+                    return vec4(0.0);
+
+                // Start sampling the exact pixel so frame 0 matches the live window,
+                // then shift toward cell centre as the cell shrinks.
+                vec2 centre     = (cell + 0.5) / grid;
+                vec2 sample_geo = mix(coords_geo.xy, centre, cell_progress);
+                vec3 coords_tex = niri_geo_to_tex * vec3(clamp(sample_geo, 0.0, 1.0), 1.0);
+                vec4 color      = texture2D(niri_tex, coords_tex.st);
+
+                return color;
+            }
+        "
+    }
+}

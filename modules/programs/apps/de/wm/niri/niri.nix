@@ -47,8 +47,8 @@
         source = config.lib.file.mkOutOfStoreSymlink "${niriConfig}/patch.kdl";
         force = true;
       };
-      xdg.configFile."niri/glide.kdl" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${niriConfig}/glide.kdl";
+      xdg.configFile."niri/animations" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${niriConfig}/animations";
         force = true;
       };
     };
