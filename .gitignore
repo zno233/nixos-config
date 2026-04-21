@@ -1,0 +1,19 @@
+# Log files and compiled outputs
+*.log
+
+# Sensitive files
+dotfiles/
+_noctalia/
+glance.yml
+
+# have not been used
+
+# trash
+unused/
+/trash/
+
+# test
+test.sh
+
+# binary
+wanxiang-lts-zh-hans.gram
