@@ -1,9 +1,16 @@
 {
+  config,
+  ...
+}:
+let
+  mainUser = config.flake.meta.mainUser;
+in
+{
   flake.modules.nixos.virtualization =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
       # Add user to libvirtd group
-      users.users.${config.mySystem.mainUser}.extraGroups = [ "libvirtd" ];
+      users.users.${mainUser}.extraGroups = [ "libvirtd" ];
 
       # Install necessary packages
       environment.systemPackages = with pkgs; [

@@ -13,6 +13,7 @@
       ssh
       firmware
       cli-tools
+      virt
     ];
   };
 
