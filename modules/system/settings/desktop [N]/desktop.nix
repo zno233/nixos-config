@@ -4,6 +4,7 @@
     imports = with inputs.self.modules.nixos; [
       appImage
       bluetooth
+      chromium
       fcitx5
       fonts
       graphics

@@ -4,6 +4,7 @@
     with lib;
     let
       defaultApps = {
+        browser = [ "chromium-browser.desktop" ];
         text = [ "code.desktop" ];
         image = [ "pix.desktop" ];
         audio = [ "org.fooyin.fooyin" ];
@@ -17,6 +18,14 @@
       };
 
       mimeMap = {
+        browser = [
+          "text/html"
+          "application/xhtml+xml"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+          "x-scheme-handler/about"
+          "x-scheme-handler/unknown"
+        ];
         text = [
           "text/plain"
           "text/markdown"
