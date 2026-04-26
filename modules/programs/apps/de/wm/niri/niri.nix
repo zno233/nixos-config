@@ -33,6 +33,7 @@
           slurp # 屏幕区域选择工具
           satty # 截图标注工具（支持绘图、箭头、文字等）
           hyprpicker # 取色器
+          linux-wallpaperengine # 壁纸引擎
 
           # waybar       # 面板
           # swww         # 壁纸

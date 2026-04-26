@@ -22,10 +22,14 @@
         };
         programs.zsh.enable = true;
 
-        home-manager.users."${username}" = {
-          imports = [
-            self.modules.homeManager."${username}"
-          ];
+        home-manager = {
+          useUserPackages = true;
+          useGlobalPkgs = true;
+          users."${username}" = {
+            imports = [
+              self.modules.homeManager."${username}"
+            ];
+          };
         };
       };
 
