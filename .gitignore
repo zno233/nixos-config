@@ -3,7 +3,6 @@
 
 # Sensitive files
 dotfiles/
-_noctalia/
 glance.yml
 
 # have not been used
