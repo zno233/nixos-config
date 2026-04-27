@@ -1,5 +1,6 @@
 patch:
   __include: wanxiang_suggested_default:/
+  switches/@0/reset: 1
   key_binder/bindings/+:
     - { when: paging, accept: comma, send: Page_Up }
     - { when: has_menu, accept: period, send: Page_Down }

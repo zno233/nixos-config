@@ -33,6 +33,7 @@ window-rule { // blur for opaque windows
     match app-id="^electron$"
     match app-id="^obsidian$"
     match app-id="^org.fooyin.fooyin$"
+    match app-id="^kitty$" title="^hx$"
     //match app-id="^jetbrains-idea$"
     opacity 0.95
     background-effect {
