@@ -13,15 +13,17 @@
         extraPackages = with pkgs; [
           intel-media-driver # VA-API
           libvdpau-va-gl # VA-API
+          vpl-gpu-rt
         ];
 
         # 32 位包也合并到 extraPackages32
         extraPackages32 = with pkgs.pkgsi686Linux; [
-          mesa # OpenGL/Vulkan 驱动
+          intel-media-driver # 32 位 VA-API
+          libvdpau-va-gl
         ];
       };
 
-      # 移除硬件固件支持
+      # 硬件固件支持
       hardware.enableRedistributableFirmware = true;
 
       # 调试工具

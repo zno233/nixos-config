@@ -2,9 +2,9 @@
 {
   flake.modules.nixos.virt = {
     imports = with inputs.self.modules.nixos; [
-      distrobox
+      podman
       # docker
-      virtualization
+      # virtualization
     ];
   };
 }

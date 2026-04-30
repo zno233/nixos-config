@@ -68,7 +68,7 @@
             update_url = "https://clients2.google.com/service/update2/crx";
           };
 
-          # 辅助扩展：自动安装 + 可手动开关（这就是你想要的“安装但是可控”）
+          # 辅助扩展：自动安装 + 可手动开关
           "bifgfhokfobhebifcogneljkpaaloonp" = {
             # Gesturefy（鼠标手势）
             installation_mode = "normal_installed";
@@ -89,6 +89,15 @@
             installation_mode = "normal_installed";
             update_url = "https://clients2.google.com/service/update2/crx";
           };
+          # 其它未启用扩展
+          # "mpiodijhokgodhhofbcjdecpffjipkle" # SingleFile
+          # "bhchdcejhohfmigjafbampogmaanbfkg" # User-Agent Switcher and Manager
+          # "iifacdnjakkhjjiengaffnegbndgingi" # Voyager
+          # "cclelndahbckbenkjhflpdbgdldlbecc" # Get cookies.txt
+          # "bbbiejemhfihiooipfcjmjmbfdmobobp" # BewlyBewly
+          # "eaoelafamejbnggahofapllmfhlhajdd" # 小电视空降助手
+          # "fjkmabmdepjfammlpliljpnbhleegehm" # WebRTC Control
+          # "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
         };
       };
     in
@@ -132,37 +141,6 @@
           # 4. Brave 辅助 debloat
           "--disable-features=BraveAIChat,BraveWallet,BraveRewards,BraveP3A"
         ];
-
-        # 核心插件：隐私、密码、易用性、书签同步等
-        # 通过注释/取消注释 extensions 列表来切换安装方式（与 policy 二选一）
-        # extensions = [
-        #   # 隐私安全
-        #   # "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-        #   # { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # uBlock Origin Lite
-
-        #   # 账号与同步
-        #   { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-        #   { id = "fnaicdffflnofjppbagibeoednhnbjhg"; } # Floccus（书签同步）
-
-        #   # 效率工具
-        #   { id = "hfjbmagddngcpeloejdejnfgbamkjaeg"; } # Vimium C
-        #   { id = "bifgfhokfobhebifcogneljkpaaloonp"; } # Cesturefy（鼠标手势）
-
-        #   # B 站专属（按需取消注释）
-        #   # "bbbiejemhfihiooipfcjmjmbfdmobobp" # BewlyBewly
-        #   # "eaoelafamejbnggahofapllmfhlhajdd" # 小电视空降助手
-
-        #   # 下载/开发
-        #   { id = "jfedfbgedapdagkghmgibemcoggfppbb"; } # cat-catch
-        #   { id = "mpkodccbngfoacfalldjimigbofkhgjn"; } # Aria2 Explorer
-        #   # "cclelndahbckbenkjhflpdbgdldlbecc" # Get cookies.txt
-
-        #   # 其他
-        #   { id = "gcalenpjmijncebpfijmoaglllgpjagf"; } # Tampermonkey BETA
-        #   # "mpiodijhokgodhhofbcjdecpffjipkle" # SingleFile
-        #   # "bhchdcejhohfmigjafbampogmaanbfkg" # User-Agent Switcher and Manager
-        #   # "iifacdnjakkhjjiengaffnegbndgingi" # Voyager
-        # ];
       };
     };
 }
