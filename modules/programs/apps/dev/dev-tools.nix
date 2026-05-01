@@ -52,6 +52,7 @@
             # 其他
             # mlxtend
             opencv4
+            git-filter-repo
           ]
         ))
 

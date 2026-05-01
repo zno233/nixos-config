@@ -116,7 +116,10 @@
           "text/rtf"
         ];
         pdf = [ "application/pdf" ];
-        terminal = [ "terminal" ];
+        terminal = [
+          "x-scheme-handler/terminal"
+          "application/x-executable"
+        ];
         archive = [
           "application/zip"
           "application/rar"
