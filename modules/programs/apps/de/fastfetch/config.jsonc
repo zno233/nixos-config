@@ -1,146 +1,110 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-  "display": {
-    "separator": " 󰑃  "
-  },
   "logo": {
-    "color": {"1": "blue", "2": "black"},
+    "type": "auto",
     "source": "$(find \"${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/png/\" -name \"*.png\" | shuf -n 1)",
-    // "source": "$HOME/.config/fastfetch/ascii/anime.txt",
+    "width": 26,
     "padding": {
-      "top": 4,
+      "top": 2,
+      "left": 3,
       "right": 4
+    }
+  },
+  "display": {
+    "separator": " ", 
+    "color": {
+      "keys": "white" 
     },
-    "height": 18
+    "key": {
+        "width": 12 // 强制对齐 key 的宽度
+    }
   },
   "modules": [
     "break",
     {
       "type": "title",
+      "format": "  {1}@{2}", // 简洁的标题
       "color": {
-        "user": "35",
-        "host": "36"
+        "user": "green",
+        "at": "white",
+        "host": "green"
       }
     },
     {
-      "type": "separator",
-      "string": "▔"
+      "type": "custom",
+      "format": " \u001b[38;5;240m󰇙 \u001b[m\u001b[38;5;240m───────────────────────────────────────────────────────────────", // 使用淡灰色暗化线条
     },
     {
       "type": "os",
-      "key": " Distro",
-      "keyColor": "yellow"
+      "key": "   distro", 
+      "keyColor": "blue"
     },
     {
       "type": "kernel",
-      "key": "  ├─",
-      "keyColor": "yellow"
+      "key": " 󰒋  kernel",
+      "keyColor": "blue"
     },
     {
       "type": "packages",
-      "key": "  ├─󰏖",
-      "keyColor": "yellow"
-    },
-    {
-      "type": "shell",
-      "key": "  └─",
-      "keyColor": "yellow"
-    },
-    "break",
-    {
-      "type": "wm",
-      "key": " DE/WM",
+      "key": " 󰏖  pkgs",
       "keyColor": "blue"
-    },
-    {
-      "type": "theme",
-      "key": "  ├─󰉼",
-      "keyColor": "blue"
-    },
-    {
-      "type": "wmtheme",
-      "key": "  ├─󰉼",
-      "keyColor": "blue"
-    },
-    {
-      "type": "icons",
-      "key": "  ├─󰉋",
-      "keyColor": "blue"
-    },
-    {
-      "type": "cursor",
-      "key": "  ├─󰳽",
-      "keyColor": "blue"
-    },
-    {
-      "type": "font",
-      "key": "  ├─",
-      "format": "{2}",
-      "keyColor": "blue"
-    },
-    {
-      "type": "terminal",
-      "key": "  └─",
-      "keyColor": "blue"
-    },
-    "break",
-    {
-      "type": "host",
-      "key": "󰌢 System",
-      "keyColor": "green"
-    },
-    {
-      "type": "board",
-      "key": "󰌢 System",
-      "keyColor": "green",
-      "condition": {
-          "succeeded": false
-      }
-    },
-    {
-      "type": "display",
-      "key": "  ├─󰹑",
-      "keyColor": "green",
-      "compactType": "original-with-refresh-rate"
-    },
-    {
-      "type": "cpu",
-      "key": "  ├─",
-      "keyColor": "green"
-    },
-    {
-      "type": "gpu",
-      "key": "  ├─",
-      "format": "{2}",
-      "keyColor": "green"
-    },
-    {
-      "type": "memory",
-      "key": "  ├─󰘚",
-      "keyColor": "green"
-    },
-    {
-      "type": "disk",
-      "key": "  ├─󰋊",
-      "folders": "/",
-      "keyColor": "green"
-    },
-    {
-      "type": "battery",
-      "key": "  ├─󰂋",
-      "keyColor": "green"
     },
     {
       "type": "uptime",
-      "key": "  └─󰔚",
-      "keyColor": "green"
+      "key": " 󰅐  uptime",
+      "keyColor": "blue"
     },
-    "break",
+    {
+      "type": "custom",
+      "format": " \u001b[38;5;240m󰇙 \u001b[m\u001b[38;5;240m───────────────────────────────────────────────────────────────",
+    },
+    {
+      "type": "shell",
+      "key": " 󰆍  shell",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "terminal",
+      "key": " 󰞷  term",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "wm",
+      "key": " 󰖲  wm",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "font",
+      "key": " 󰛖  font",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "custom",
+      "format": " \u001b[38;5;240m󰇙 \u001b[m\u001b[38;5;240m───────────────────────────────────────────────────────────────",
+    },
+    {
+      "type": "cpu",
+      "key": " 󰍛  cpu",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "gpu",
+      "key": " 󰢮  gpu",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "memory",
+      "key": " 󰾆  memory",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "custom",
+      "format": " \u001b[38;5;240m󰇙 \u001b[m\u001b[38;5;240m───────────────────────────────────────────────────────────────",
+    },
     {
       "type": "colors",
-      "symbol": "background",
-      "paddingLeft": 9
-    },
-    "break"
+      "symbol": "circle",
+      "paddingLeft": 3
+    }
   ]
 }
