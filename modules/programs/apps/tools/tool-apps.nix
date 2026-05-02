@@ -8,26 +8,24 @@
         gnome-disk-utility
         mission-center # GUI resources monitor
         zenity
+        font-manager
+        localsend
+        nwg-look
+        bleachbit # System cleaner
+        peazip # Archive extractor
+        qalculate-qt
+
+        ## Torrent
+        qbittorrent-enhanced # bt
 
         ## Level editor
         # ldtk
         # tiled
 
-        qalculate-qt
-
-        qbittorrent-enhanced # bt
-        # windterm
-        calibre
-        koodo-reader
-        # snipaste
-        font-manager
-        localsend
+        ## Others
         # maa-cli
-
-        nwg-look
-        bleachbit # System cleaner
-
-        peazip # Archive extractor
+        # windterm
+        # snipaste
       ];
     };
 }
