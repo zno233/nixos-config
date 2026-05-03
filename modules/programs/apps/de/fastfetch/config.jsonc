@@ -23,7 +23,7 @@
     "break",
     {
       "type": "title",
-      "format": "  {1}@{2}", // 简洁的标题
+      "format": "{1}@{2}", // 简洁的标题
       "color": {
         "user": "green",
         "at": "white",
