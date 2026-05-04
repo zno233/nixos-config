@@ -31,6 +31,13 @@
         gamemode.enable = true; # 启用Gamemode，并自动激活以动态提升性能
       };
 
+      # 启用 ntsync 模块，此为 Wine 的同步优化补丁
+      boot.kernelModules = [ "ntsync" ];
+
+      services.udev.extraRules = ''
+        KERNEL=="ntsync*", MODE="0666"
+      '';
+
       environment.systemPackages = with pkgs; [
         # lutris # 支持多游戏平台
         gamemode # 提升游戏性能动态管理
