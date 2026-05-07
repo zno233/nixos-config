@@ -1,23 +1,24 @@
 {
   flake.modules.homeManager.gaming =
-    { pkgs, inputs, ... }:
+    { pkgs, ... }:
     {
       home.packages = with pkgs; [
         ## Utils
         # gamemode
         # gamescope
-        winetricks # Helper script for Wine
-        wineWow64Packages.waylandFull # Windows compatibility layer with Wayland support
+        # winetricks # Helper script for Wine
+        # wineWow64Packages.waylandFull # Windows compatibility layer with Wayland support
         # inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-ge
 
         ## Minecraft
         # prismlauncher
+        hmcl
 
         ## Cli games
         # _2048
         # _2048-in-terminal
-        vitetris
-        nethack
+        # vitetris
+        # nethack
 
         ## Celeste
         # olympus
@@ -26,11 +27,11 @@
 
         ## Doom
         # gzdoom
-        crispy-doom
+        # crispy-doom
 
         ## Emulation
-        sameboy
-        snes9x
+        # sameboy
+        # snes9x
         # cemu
         # dolphin-emu
       ];

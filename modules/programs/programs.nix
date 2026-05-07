@@ -13,7 +13,7 @@
       social
       others
       tools
-      # game # packages related to gaming
+      gaming # packages related to gaming
     ];
   };
 }
