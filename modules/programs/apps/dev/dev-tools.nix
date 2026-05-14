@@ -66,6 +66,7 @@
 
         # JSP
         # tomcat9
+        ciscoPacketTracer9
       ];
     };
 }
