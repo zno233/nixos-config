@@ -51,7 +51,7 @@
 
             DNSStubListener = "no";
             DNSSEC = "allow-downgrade";
-            # DNSOverTLS = "opportunistic";
+            DNSOverTLS = "no";
             Cache = "yes";
             CacheFromLocalhost = "yes";
             LLMNR = "no";
