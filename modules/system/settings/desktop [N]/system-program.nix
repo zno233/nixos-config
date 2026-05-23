@@ -15,9 +15,6 @@
 
         # has been removed
         # adb.enable = true;
-
-        nix-ld.enable = true;
-        nix-ld.libraries = with pkgs; [ ];
       };
     };
 }
