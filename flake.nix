@@ -70,6 +70,10 @@
       flake = false;
     };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    wayscrollshot = {
+      url = "github:jswysnemc/wayscrollshot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
   };
 }

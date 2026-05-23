@@ -1,7 +1,14 @@
 include "animations/dissolve.kdl"
 
 binds {
-    
+    // 长截图
+    Alt+L {
+    spawn-sh r#"set -e;
+        wayscrollshot \
+            -o "$HOME/Pictures/Screenshots/WayScroll_$(date +%Y%m%d_%H%M%S).png" \
+            --clipboard
+    "#;
+    }
 }
 
 /* Noctalia: blur everywhere without xray for a better look */

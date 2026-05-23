@@ -16,6 +16,7 @@
       # superfile/superfile         # terminal file manager
       wm # window manager
       xdg-mimes # xdg config
+      wayscrollshot # A scrolling screenshot tool for Wayland write in Rust
       zsh # shell
 
       ### de without shell
