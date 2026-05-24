@@ -10,7 +10,7 @@
       programs.nix-ld = {
         enable = true;
         libraries = with pkgs; [
-          stdenv.cc.cc.lib #  libstdc++.so.6 等 C++ 运行时
+          stdenv.cc.cc.lib # libstdc++.so.6 等 C++ 运行时
           zlib # 压缩库
           openssl # 加密/网络
           udev # 设备管理

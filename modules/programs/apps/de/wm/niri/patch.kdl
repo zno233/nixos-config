@@ -29,7 +29,7 @@ blur {
 window-rule { // blur for transparent windows
     match app-id="^kitty$"
     match app-id="^com.mitchellh.ghostty$"
-    match app-id="^zen-beta$"
+    // match app-id="^zen-beta$"
     background-effect {
         blur true
         xray true

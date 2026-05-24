@@ -5,7 +5,7 @@
     let
       defaultApps = {
         browser = [ "chromium-browser.desktop" ];
-        text = [ "code.desktop" ];
+        text = [ "dev.zed.Zed.desktop" ];
         image = [ "pix.desktop" ];
         audio = [ "org.fooyin.fooyin" ];
         video = [ "mpv.desktop" ];

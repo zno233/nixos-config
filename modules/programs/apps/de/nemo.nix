@@ -38,6 +38,17 @@
           Extensions=any;
           Quote=double
         '';
+        # 4. 使用 Zed 打开文件/目录
+        "nemo/actions/zed.nemo_action".text = ''
+          [Nemo Action]
+          Name=Open with Zed
+          Comment=Open with Zed Editor
+          Exec=zeditor %F
+          Icon-Name=zed
+          Selection=any
+          Extensions=any;
+          Quote=double
+        '';
       };
 
       dconf.settings = {
