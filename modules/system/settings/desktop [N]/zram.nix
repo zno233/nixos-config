@@ -8,15 +8,15 @@
       # Zram 配置：纯内存压缩方案，尽量接近cachyos的配置
       zramSwap = {
         enable = true;
-        algorithm = "zstd";
-        memoryPercent = 100;
+        algorithm = "lz4";
+        memoryPercent = 75;
         priority = 100;
       };
 
       # 内核内存管理参数
       boot.kernel.sysctl = {
         # Swappiness：zram 场景下优先换出匿名页，保留文件页缓存
-        "vm.swappiness" = "150";
+        "vm.swappiness" = "100";
 
         # 页簇（page cluster）：zram 应该设为 0
         # 禁用预读，因为 zram 是随机访问，预读无益

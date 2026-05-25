@@ -40,7 +40,7 @@
           };
 
           base_keymap = "VSCode";
-          vim_mode = true;
+          vim_mode = false;
 
           show_whitespaces = "all"; # 显示空白字符
           load_direnv = "shell_hook"; # 支持 flake.nix 环境
