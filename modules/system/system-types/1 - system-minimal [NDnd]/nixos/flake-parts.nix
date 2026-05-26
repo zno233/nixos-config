@@ -6,8 +6,8 @@
   flake-file.inputs = {
     # Primary channels
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs-stable 25.11
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    # nixpkgs-stable 26.05
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
 
     # Kernels / hardware
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
