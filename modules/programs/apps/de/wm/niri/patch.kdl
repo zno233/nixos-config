@@ -19,6 +19,19 @@ binds {
 //   }
 // }
 
+/*
+  Noctalia
+  Disable xray on all our surfaces so it looks more realistic.
+  No need to set blur to 'true' here, it's automatic.
+*/
+layer-rule {
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel)$"
+  background-effect {
+    xray false
+    //blur false
+  }
+}
+
 blur {
   passes 3        // more passes = stronger blur (default: 3)
   offset 3.0      // sample distance per pass (default: 3.0)
@@ -47,4 +60,18 @@ window-rule { // blur for opaque windows
         blur true
         xray true
     }
+}
+
+
+// Floating Noctalia settings window.
+window-rule {
+  match app-id="dev.noctalia.Noctalia.Settings"
+  open-floating true
+  default-column-width { proportion 0.5; }
+  default-window-height { proportion 0.75; }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
 }

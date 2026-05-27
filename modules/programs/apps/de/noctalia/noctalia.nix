@@ -5,7 +5,7 @@
 {
   flake-file.inputs = {
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell/v5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -30,12 +30,12 @@
         pkgs.app2unit # Launch Desktop Entries (or arbitrary commands) as Systemd user units
       ];
 
-      programs.noctalia-shell = {
+      programs.noctalia = {
         enable = true;
       };
-      xdg.configFile."noctalia" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${noctaliaConfig}";
-        force = true;
-      };
+      # xdg.configFile."noctalia" = {
+      #   source = config.lib.file.mkOutOfStoreSymlink "${noctaliaConfig}";
+      #   force = true;
+      # };
     };
 }

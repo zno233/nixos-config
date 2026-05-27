@@ -8,7 +8,7 @@ input {
         }
         numlock
     }
-        
+
     touchpad {
         // off
         tap
@@ -127,32 +127,29 @@ binds {
     Mod+Shift+E { quit; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     //Mod+Shift+Escape hotkey-overlay-title="电源菜单" { spawn "power-menu"; }
-    //Ctrl+Alt+Delete { spawn "power-menu"; } 
+    //Ctrl+Alt+Delete { spawn "power-menu"; }
 
     Mod+Shift+P { power-off-monitors; } // 关闭显示器
 
     // -------- Noctalia 特有绑定 --------
-    Mod+S hotkey-overlay-title="控制面板" { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    //Mod+Comma hotkey-overlay-title="设置" { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
-    Super+Alt+L hotkey-overlay-title="锁屏" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
-    Mod+Shift+Escape hotkey-overlay-title="电源" { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
-    Mod+D hotkey-overlay-title="应用启动器" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+V hotkey-overlay-title="剪切板" { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
-    Mod+Shift+W hotkey-overlay-title="桌面小组件" { spawn "noctalia-shell" "ipc" "call" "desktopWidgets" "toggle"; }
-    
+    Mod+S hotkey-overlay-title="控制面板" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Super+Alt+L hotkey-overlay-title="锁屏" { spawn-sh "noctalia msg screen-lock"; }
+    Mod+Shift+Escape hotkey-overlay-title="电源" { spawn-sh "noctalia msg panel-toggle session"; }
+    Mod+D hotkey-overlay-title="应用启动器" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+V hotkey-overlay-title="剪切板" { spawn-sh "noctalia msg panel-toggle clipboard"; }
+    //Mod+Shift+W hotkey-overlay-title="桌面小组件" { spawn "noctalia" "ipc" "call" "desktopWidgets" "toggle"; }
+
     // Media controls
-    Mod+Alt+Space {spawn "noctalia-shell" "ipc" "call" "media" "playPause";}
-    Mod+Alt+Left {spawn "noctalia-shell" "ipc" "call" "media" "previous";}
-    Mod+Alt+Right {spawn "noctalia-shell" "ipc" "call" "media" "next";}
+    Mod+Alt+Space {spawn-sh "noctalia msg media stop";}
+    Mod+Alt+Left {spawn-sh "noctalia msg media previous";}
+    Mod+Alt+Right {spawn-sh "noctalia msg media next";}
 
-    // Audio controls
-    XF86AudioRaiseVolume { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
-
-    // Brightness controls
-    XF86MonBrightnessUp { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    // Audio & Brightness
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 
     // ========================= 启动应用程序 =========================
 
@@ -167,7 +164,7 @@ binds {
     Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
     Mod+Shift+B hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
     Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
-    
+
 
     // no shell
     //Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
@@ -325,11 +322,11 @@ binds {
     Mod+Shift+Minus  { set-window-height "-10%"; }
     Mod+Shift+Equal  { set-window-height "+10%"; }
 
-    
+
     // 用于切换窗口浮动
-    Mod+Space          { toggle-window-floating; } 
+    Mod+Space          { toggle-window-floating; }
     // 用于切换浮动/平铺焦点
-    Mod+Shift+V        { switch-focus-between-floating-and-tiling; } 
+    Mod+Shift+V        { switch-focus-between-floating-and-tiling; }
 
 
     // ========================= 标签页模式 =========================
@@ -355,7 +352,7 @@ binds {
     Ctrl+Mod+S {
         spawn-sh r#"grim -t ppm -g "$(niri msg focused-window | jq -r '.x,.y,.width,.height' | paste -sd ' ' | awk '{printf "%d,%d %dx%d",$1,$2,$3,$4}')" - | satty --filename - --copy-command wl-copy --annotation-size-factor 2.0 --output-filename "$HOME/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png" --actions-on-enter "save-to-clipboard,save-to-file,exit""#;
     }
-    
+
     // ========================= 滚动绑定 =========================
 
     // 垂直移动
@@ -412,7 +409,7 @@ window-rule { // 全屏
     match app-id="chromium-browser"
     match app-id="brave-browser"
     match app-id="obsidian"
-    match app-id="code" 
+    match app-id="code"
     match app-id="org.telegram.desktop"
     match app-id="moe.tsuna.tsukimi"
     //match app-id="kitty"
@@ -425,13 +422,13 @@ window-rule { // 全屏
     match app-id="pix"
     match app-id="dev.zed.Zed"
     //match app-id="nemo"
-    
+
     // 设置默认列宽度为 100% (占据整个屏幕)
     default-column-width { proportion 1.0; }
-    
+
     // 如果你想要浮动窗口，保留这个
     // open-floating true
-    
+
     // 如果你想要窗口占据整个屏幕高度，可以加上
     // default-window-height { proportion 1.0; }
 }
@@ -519,8 +516,8 @@ spawn-at-startup "poweralertd"         // 电源警报守护进程
 spawn-at-startup "blueman-applet"      // 蓝牙 Applet
 
 // shell
-spawn-at-startup "noctalia-shell"
-spawn-sh-at-startup "sleep 3 && noctalia-shell ipc call lockScreen lock"  //锁屏
+spawn-at-startup "noctalia"
+spawn-sh-at-startup "sleep 3 && noctalia msg screen-lock"  //锁屏
 
 // de without shell
 //spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
@@ -545,7 +542,7 @@ spawn-sh-at-startup "sleep 3 && noctalia-shell ipc call lockScreen lock"  //锁�
 //    place-within-backdrop true
 //}
 
-// noctalia-wallpaper 
+// noctalia-wallpaper
 layer-rule {
     match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
@@ -588,13 +585,13 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     NIXOS_OZONE_WL "1"
     MOZ_ENABLE_WAYLAND "1"
-    
+
     // Java 应用设置
     _JAVA_AWT_WM_NONREPARENTING "1"
 
     //
     WLR_RENDERER "vulkan"
-    
+
     //输入法
     XIM "fcitx"
     //GTK_IM_MODULE "wayland;fcitx"

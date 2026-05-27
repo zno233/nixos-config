@@ -12,11 +12,11 @@
 
       btrfs
       ssh
-      
+
       firmware
-      
+
       cli-tools
-      
+
       virt
     ];
   };
