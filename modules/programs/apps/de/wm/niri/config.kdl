@@ -140,7 +140,7 @@ binds {
     //Mod+Shift+W hotkey-overlay-title="桌面小组件" { spawn "noctalia" "ipc" "call" "desktopWidgets" "toggle"; }
 
     // Media controls
-    Mod+Alt+Space {spawn-sh "noctalia msg media stop";}
+    Mod+Alt+Space {spawn-sh "noctalia msg media toggle";}
     Mod+Alt+Left {spawn-sh "noctalia msg media previous";}
     Mod+Alt+Right {spawn-sh "noctalia msg media next";}
 
@@ -517,7 +517,7 @@ spawn-at-startup "blueman-applet"      // 蓝牙 Applet
 
 // shell
 spawn-at-startup "noctalia"
-spawn-sh-at-startup "sleep 3 && noctalia msg screen-lock"  //锁屏
+spawn-sh-at-startup "sleep 2 && noctalia msg screen-lock"  //锁屏
 
 // de without shell
 //spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
