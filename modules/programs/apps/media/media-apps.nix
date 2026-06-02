@@ -19,7 +19,7 @@
         #spotify
         mpv
         mpv-handler
-        splayer
+        # splayer
         kazumi # anime online
         tsukimi # emby
         # tauon                       #local music player

@@ -34,9 +34,9 @@ layer-rule {
 
 blur {
   passes 3        // more passes = stronger blur (default: 3)
-  offset 3.0      // sample distance per pass (default: 3.0)
-  noise 0.02      // grain overlay (default: 0.02)
-  saturation 1.5  // color saturation boost (default: 1.5)
+  offset 3.5      // sample distance per pass (default: 3.0)
+  noise 0.01      // grain overlay (default: 0.02)
+  saturation 1.15  // color saturation boost (default: 1.5)
 }
 
 window-rule { // blur for transparent windows

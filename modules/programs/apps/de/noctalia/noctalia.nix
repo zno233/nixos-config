@@ -18,7 +18,7 @@
       ...
     }:
     let
-      noctaliaConfig = "${config.home.homeDirectory}/zno-config/modules/programs/apps/de/noctalia/_noctalia";
+      noctaliaConfig = "${config.home.homeDirectory}/zno-config/modules/programs/apps/de/noctalia/config.toml";
     in
     {
       imports = [
@@ -33,9 +33,10 @@
       programs.noctalia = {
         enable = true;
       };
-      # xdg.configFile."noctalia" = {
-      #   source = config.lib.file.mkOutOfStoreSymlink "${noctaliaConfig}";
-      #   force = true;
-      # };
+
+      xdg.configFile."noctalia/config.toml" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${noctaliaConfig}";
+        force = true;
+      };
     };
 }
