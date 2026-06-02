@@ -11,6 +11,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    apple-fonts = {
+      url = "github:Lyndeno/apple-fonts.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     brew-api = {
       url = "github:BatteredBunny/brew-api";
       flake = false;
@@ -70,6 +74,10 @@
       flake = false;
     };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     wayscrollshot = {
       url = "github:jswysnemc/wayscrollshot";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,4 +1,15 @@
 {
+  inputs,
+  ...
+}:
+{
+  flake-file.inputs = {
+    apple-fonts = {
+      url = "github:Lyndeno/apple-fonts.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
   flake.modules.nixos.fonts =
     {
       pkgs,
@@ -32,6 +43,8 @@
             # 西文: 无衬线字体（指笔画末端没有修饰(衬线)的字体，通常用于屏幕显示）
             # 中文: 黑体
             sansSerif = [
+              "SF Pro Text"
+              "SF Pro Display"
               "Noto Sans CJK SC"
               "Noto Sans"
             ];
@@ -48,7 +61,7 @@
             ];
           };
 
-          # 高 DPI下最好显式关闭stem darkening
+          # 高 DPI下显式关闭stem darkening，同时自动将字重从 Regular (80) 映射到 Medium (100）
           localConf = ''
             <?xml version="1.0"?>
             <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
@@ -56,6 +69,18 @@
               <match target="font">
                 <edit name="stem-darkening" mode="assign">
                   <bool>false</bool>
+                </edit>
+              </match>
+
+              <match target="pattern">
+                <test qual="any" name="family">
+                  <string>sans-serif</string>
+                </test>
+                <test compare="less_eq" name="weight">
+                  <int>80</int>
+                </test>
+                <edit name="weight" mode="assign" binding="same">
+                  <int>100</int>
                 </edit>
               </match>
             </fontconfig>
@@ -75,8 +100,10 @@
           lxgw-wenkai-screen
           sarasa-gothic
           #joypixels
+
+          # 苹果字体
+          inputs.apple-fonts.packages.${stdenv.hostPlatform.system}.sf-pro
         ];
       };
     };
-
 }

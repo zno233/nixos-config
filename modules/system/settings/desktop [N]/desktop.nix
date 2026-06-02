@@ -9,6 +9,7 @@
       fcitx5
       fonts
       graphics
+      stylix
       system-program
       systemd-oomd
       sessionVariables

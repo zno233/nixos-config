@@ -20,21 +20,13 @@
 
       gtk = {
         enable = true;
-        gtk4.theme = config.gtk.theme;
-        font = {
-          name = "Maple Mono";
-          size = 12;
-        };
         theme = {
-          name = "Colloid-Green-Dark-Gruvbox";
-          package = pkgs.colloid-gtk-theme.override {
-            colorVariants = [ "dark" ];
-            themeVariants = [ "green" ];
+          name = "Graphite-Dark";
+          package = pkgs.graphite-gtk-theme.override {
             tweaks = [
-              "gruvbox"
               "rimless"
-              "float"
-            ];
+              "black"
+            ]; # black 让底色更纯粹
           };
         };
         iconTheme = {

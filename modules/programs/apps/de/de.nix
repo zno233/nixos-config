@@ -10,12 +10,13 @@
       fzf # fuzzy finder
       ghostty # terminal
       gnome # gnome apps
-      gtk # gtk theme
+      # gtk # gtk theme
       kitty # terminal
       nemo # file manager
       # superfile/superfile         # terminal file manager
       wm # window manager
       xdg-mimes # xdg config
+      stylix # theme
       wayscrollshot # A scrolling screenshot tool for Wayland write in Rust
       zsh # shell
 

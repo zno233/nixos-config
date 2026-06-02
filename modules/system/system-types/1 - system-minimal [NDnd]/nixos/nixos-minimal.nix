@@ -48,8 +48,6 @@
           inputs.nur.overlays.default
 
           inputs.niri.overlays.niri
-
-          # inputs.stylix.nixosModules.stylix
         ];
       };
       nixpkgs.config.allowUnfree = true;

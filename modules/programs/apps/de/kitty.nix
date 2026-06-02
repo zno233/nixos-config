@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.kitty =
-    { config, ... }:
+    { config, lib, ... }:
     {
       programs.kitty = {
         enable = true;
@@ -29,7 +29,7 @@
 
         settings = {
           confirm_os_window_close = 0;
-          background_opacity = "0.66";
+          background_opacity = lib.mkForce "0.8";
           scrollback_lines = 10000;
           enable_audio_bell = false;
           mouse_hide_wait = 60;
@@ -46,7 +46,6 @@
           active_tab_background = "#7C6F64";
           inactive_tab_foreground = "#FBF1C7";
           inactive_tab_background = "#3C3836";
-
         };
 
         keybindings = {
