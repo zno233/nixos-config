@@ -43,6 +43,7 @@
             # 西文: 无衬线字体（指笔画末端没有修饰(衬线)的字体，通常用于屏幕显示）
             # 中文: 黑体
             sansSerif = [
+              "HarmonyOS Sans SC"
               # "SF Pro Text"
               "Noto Sans CJK SC"
               "Noto Sans"
@@ -70,6 +71,7 @@
                   <bool>false</bool>
                 </edit>
               </match>
+            </fontconfig>
           '';
         };
 
@@ -86,6 +88,12 @@
           lxgw-wenkai-screen
           sarasa-gothic
           #joypixels
+
+          # windows字体
+          win11-fonts
+
+          # 鸿蒙字体
+          harmonyos-sans
 
           # 苹果字体
           # inputs.apple-fonts.packages.${stdenv.hostPlatform.system}.sf-pro

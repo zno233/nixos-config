@@ -64,7 +64,7 @@
 
           sansSerif = {
             package = pkgs.noto-fonts;
-            name = "sans-serif"; # 自动走系统里的 [ "Noto Sans CJK SC" "Noto Sans" ]
+            name = "sans-serif"; # 自动走系统里的 [ "HarmonyOS Sans SC" "Noto Sans CJK SC" "Noto Sans" ]
           };
 
           serif = {
