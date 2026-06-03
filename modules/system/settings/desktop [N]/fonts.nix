@@ -3,12 +3,12 @@
   ...
 }:
 {
-  flake-file.inputs = {
-    apple-fonts = {
-      url = "github:Lyndeno/apple-fonts.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  # flake-file.inputs = {
+  #   apple-fonts = {
+  #     url = "github:Lyndeno/apple-fonts.nix";
+  #     inputs.nixpkgs.follows = "nixpkgs";
+  #   };
+  # };
 
   flake.modules.nixos.fonts =
     {
@@ -43,16 +43,15 @@
             # 西文: 无衬线字体（指笔画末端没有修饰(衬线)的字体，通常用于屏幕显示）
             # 中文: 黑体
             sansSerif = [
-              "SF Pro Text"
-              "SF Pro Display"
+              # "SF Pro Text"
               "Noto Sans CJK SC"
               "Noto Sans"
             ];
 
             # 等宽字体
             monospace = [
-              "Maple mono"
               "Sarasa Mono SC"
+              "Maple mono"
               "Hurmit Nerd Font Mono"
             ];
 
@@ -61,7 +60,7 @@
             ];
           };
 
-          # 高 DPI下显式关闭stem darkening，同时自动将字重从 Regular (80) 映射到 Medium (100）
+          # 高 DPI下显式关闭stem darkening
           localConf = ''
             <?xml version="1.0"?>
             <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
@@ -71,19 +70,6 @@
                   <bool>false</bool>
                 </edit>
               </match>
-
-              <match target="pattern">
-                <test qual="any" name="family">
-                  <string>sans-serif</string>
-                </test>
-                <test compare="less_eq" name="weight">
-                  <int>80</int>
-                </test>
-                <edit name="weight" mode="assign" binding="same">
-                  <int>100</int>
-                </edit>
-              </match>
-            </fontconfig>
           '';
         };
 
@@ -102,7 +88,7 @@
           #joypixels
 
           # 苹果字体
-          inputs.apple-fonts.packages.${stdenv.hostPlatform.system}.sf-pro
+          # inputs.apple-fonts.packages.${stdenv.hostPlatform.system}.sf-pro
         ];
       };
     };

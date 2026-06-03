@@ -25,35 +25,6 @@
         "type": "github"
       }
     },
-    "apple-fonts": {
-      "inputs": {
-        "ci": "ci",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "ny": "ny",
-        "sf-arabic": "sf-arabic",
-        "sf-armenian": "sf-armenian",
-        "sf-compact": "sf-compact",
-        "sf-georgian": "sf-georgian",
-        "sf-hebrew": "sf-hebrew",
-        "sf-mono": "sf-mono",
-        "sf-pro": "sf-pro"
-      },
-      "locked": {
-        "lastModified": 1780240721,
-        "narHash": "sha256-O5dSz9h4zRnYyGYTS0hfMamYEDutsEC1PzxQELdsttU=",
-        "owner": "Lyndeno",
-        "repo": "apple-fonts.nix",
-        "rev": "a11f7174137d4a0267bd8d7abd85da05bd9a41cc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Lyndeno",
-        "repo": "apple-fonts.nix",
-        "type": "github"
-      }
-    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -138,40 +109,14 @@
         "type": "github"
       }
     },
-    "blueprint": {
-      "inputs": {
-        "nixpkgs": [
-          "apple-fonts",
-          "ci",
-          "nixpkgs"
-        ],
-        "systems": [
-          "apple-fonts",
-          "ci"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776249299,
-        "narHash": "sha256-Dt9t1TGRmJFc0xVYhttNBD6QsAgHOHCArqGa0AyjrJY=",
-        "owner": "numtide",
-        "repo": "blueprint",
-        "rev": "56131e8628f173d24a27f6d27c0215eff57e40dd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "blueprint",
-        "type": "github"
-      }
-    },
     "brew-api": {
       "flake": false,
       "locked": {
-        "lastModified": 1780356682,
-        "narHash": "sha256-GzDsOmPK3uLGLX5xoVZkJqMrDbphrT3nOCYfQmwG2wA=",
+        "lastModified": 1780447833,
+        "narHash": "sha256-etddaN0eN0wSRnKPSxy8q+kAPJQKkz3B5phCA8cNxGw=",
         "owner": "BatteredBunny",
         "repo": "brew-api",
-        "rev": "489a1d62a87022e7f18cb37cb90fdc50c28accc8",
+        "rev": "7ba33cb2e26715665a079e85cc5d20fd1921d383",
         "type": "github"
       },
       "original": {
@@ -235,28 +180,6 @@
       "original": {
         "owner": "CachyOS",
         "repo": "kernel-patches",
-        "type": "github"
-      }
-    },
-    "ci": {
-      "inputs": {
-        "blueprint": "blueprint",
-        "nixpkgs": [
-          "apple-fonts",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1779849193,
-        "narHash": "sha256-Bc80n+fA3NtxqYHWcdb1XFuYLaV+yX2xnvDRnwAv4ak=",
-        "owner": "Lyndeno",
-        "repo": "ci",
-        "rev": "38cfa6f01bdaf91bc4ce44176b322bab2bb208a0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Lyndeno",
-        "repo": "ci",
         "type": "github"
       }
     },
@@ -703,11 +626,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780347968,
-        "narHash": "sha256-I8ibSDQx+E8cgw6k3UxX6Bm7awmGoKSTXc8Gt1Zbpp4=",
+        "lastModified": 1780408569,
+        "narHash": "sha256-s7Tv6FUQThRAvW8En8XVC6HMb0uiikzVccCcCo9u/Bg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d0af9b8bf3b4a1d449be7034bebc9f8f9fd6ee99",
+        "rev": "f384af1bec6423a0d4ba1855917ab948f64e5808",
         "type": "github"
       },
       "original": {
@@ -1038,11 +961,11 @@
     },
     "nixpkgs-darwin": {
       "locked": {
-        "lastModified": 1780251134,
-        "narHash": "sha256-qq5bv/PjeW4g+1Zj83vXEIz+tRXFtbPp4Y4jUvF+4ko=",
+        "lastModified": 1780383649,
+        "narHash": "sha256-FS3od1iIyWYz68tqZGGc92Po7Ji+G2NEm6+a4s4RI0w=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6d6863fd6e5c1c9347470e24746a259a23d57a58",
+        "rev": "595ee2b1a31a50efcb8db3824999abb98ec1d0c9",
         "type": "github"
       },
       "original": {
@@ -1320,11 +1243,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780355805,
-        "narHash": "sha256-W0i1RZ89doieuhJ1Mgfjnyo9J02Bz1ZGoUZ3+7FnA20=",
+        "lastModified": 1780434820,
+        "narHash": "sha256-/mpsCHkJp447E3kvhu7E2bot7qb+zN1R81Tt4EXiFNM=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "c2a61c326ec3567944f998c3eec12dae246ef15d",
+        "rev": "808574bfbe8380fff03e5e5aa18ea4ade1635fda",
         "type": "github"
       },
       "original": {
@@ -1342,11 +1265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780356309,
-        "narHash": "sha256-DnAxJAzt+AdYrDuC5tSd4PjOvjLtK4aXsOb3REoKPHM=",
+        "lastModified": 1780450658,
+        "narHash": "sha256-QEJw8z2gQsBO/0FOl2d5UOpJ+A996URtGLCRrPSaB0w=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f10482307667afcfba23d6de99680a8142cd448d",
+        "rev": "3e822e8e65d8ccf171be75e9d0af774cb0c7395a",
         "type": "github"
       },
       "original": {
@@ -1367,29 +1290,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1779766384,
-        "narHash": "sha256-P7Ohnlq8b8b2fU+Sgkrej7LBTM60LBTkHleLuYzmLmU=",
+        "lastModified": 1780281641,
+        "narHash": "sha256-M/+hUKoKbHXpV0xGVfELbN1Ds1aoe3pL5p5/t46YhVo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "57800b7ab648725ccd33551d01484ee14952ad3f",
+        "rev": "30f9ae2f04174de63ba8bcf3580ca90843b28a01",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "NUR",
         "type": "github"
-      }
-    },
-    "ny": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-3257NAH4qlan2YHVLpNRy7x8IJqR2pal3OzFo/ykqXs=",
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/NY.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/NY.dmg"
       }
     },
     "pkgs-by-name-for-flake-parts": {
@@ -1410,7 +1321,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "apple-fonts": "apple-fonts",
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
         "daeuniverse": "daeuniverse",
@@ -1475,101 +1385,17 @@
         "type": "path"
       }
     },
-    "sf-arabic": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-/0gjRimqvZyE60xYxxPdlU+7Q2LJnnvtbmwOP0YmS9U=",
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Arabic.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Arabic.dmg"
-      }
-    },
-    "sf-armenian": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-rRoDkbNMYkzOHZmQm96Zv80TZvRlAeoxkv4pMHP5nUg=",
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Armenian.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Armenian.dmg"
-      }
-    },
-    "sf-compact": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-oLhkN4HYkU1Xjxk+xdmyxJmROSzo1qd/tafdxw7icxs=",
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg"
-      }
-    },
-    "sf-georgian": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-IevVNOC28IiR45YfI3PsZzXLMRxuB5u7UiE53Zn6tRU=",
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Georgian.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Georgian.dmg"
-      }
-    },
-    "sf-hebrew": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-Dw84kYwMpCtKKKqm8cZcQ9TZ7GayU5MO7W0LJw0Rcwk=",
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Hebrew.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Hebrew.dmg"
-      }
-    },
-    "sf-mono": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-ICdHRFdNL7PM/fXJUzS7LgZxZiqcyIuCMHLze4En4vg=",
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Mono.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Mono.dmg"
-      }
-    },
-    "sf-pro": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-s42hsaUe0Vkaw5yw8G7G3W3AYJb2TPqSlMqPyY0e5WU=",
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
-      }
-    },
     "spicetify-nix": {
       "inputs": {
         "nixpkgs": "nixpkgs_8",
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1780213729,
-        "narHash": "sha256-rdeBztPA6tiKp6gG4ihZAzeYGC9mYa2tAU4UIOLcZM0=",
+        "lastModified": 1780422259,
+        "narHash": "sha256-dWGk4SEdI189kQW5cE4Uo1Mc+P+kQEdgMcyMgTtmQOA=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "c679f3fa9fbe86903486a8f7ad71f99e26481d71",
+        "rev": "8414bbf2fcc7bc0a22c675e498e3c7365c1aec0a",
         "type": "github"
       },
       "original": {
@@ -1598,11 +1424,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1780256506,
-        "narHash": "sha256-wEXN/OoZt9HfsKBL6694p2Y9xRlwfUbdn/M107U8fVU=",
+        "lastModified": 1780418031,
+        "narHash": "sha256-/lkloe/Vlpq8GmKiHzxA3woYUubWX1mV/RDtv8TE4d0=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "8ed48a41087feeb66372ff718021a9512fc552b3",
+        "rev": "b670c2bdf09861b3215f30fc8a70f2fe26dc5f16",
         "type": "github"
       },
       "original": {

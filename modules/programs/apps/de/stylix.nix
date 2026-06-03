@@ -14,21 +14,22 @@
       fonts.fontconfig.enable = true;
       home.packages = with pkgs; [
         # 字体包（部分供备用或特殊软件调用）
+        maple-mono-custom
         nerd-fonts.jetbrains-mono
         nerd-fonts.fira-code
         nerd-fonts.caskaydia-cove
         nerd-fonts.symbols-only
         twemoji-color-font
         noto-fonts-color-emoji
-        fantasque-sans-mono
+        # fantasque-sans-mono
 
         # 图标包
-        tela-circle-icon-theme
+        # tela-circle-icon-theme
 
         # 备用的光标包
-        phinger-cursors
-        graphite-cursors
-        vimix-cursors
+        # phinger-cursors
+        # graphite-cursors
+        # vimix-cursors
       ];
 
       # 2. 启用并配置 Stylix
@@ -38,7 +39,7 @@
         enableReleaseChecks = false;
 
         # 【基础壁纸设置】Stylix 必须基于一张图片来提取/匹配主题色
-        # 请替换为你实际的壁纸路径
+        # 替换为实际的壁纸路径
         image = ../../../../wallpapers/otherWallpaper/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg;
 
         # 【现代暗黑主题方案】
@@ -63,7 +64,7 @@
 
           sansSerif = {
             package = pkgs.noto-fonts;
-            name = "sansSerif"; # 自动走系统里的 [ "SF Pro Display" "SF Pro Text" "Noto Sans CJK SC" "Noto Sans" ]
+            name = "sans-serif"; # 自动走系统里的 [ "Noto Sans CJK SC" "Noto Sans" ]
           };
 
           serif = {
@@ -73,9 +74,9 @@
 
           # 由 Stylix 统一接管的高级字体大小调校
           sizes = {
-            applications = 13;
+            applications = 12;
             terminal = 15;
-            desktop = 13;
+            desktop = 12;
           };
         };
       };
@@ -92,13 +93,18 @@
 
         # 桌面环境
         # niri.enable = false;
+        qt = {
+          # xdgdesktopportal：需要系统已配置 xdg-desktop-portal-gtk 或 -kde
+          # 如果弹出的文件选择对话框样式异常，改回 "gtk3"
+          standardDialogs = "xdgdesktopportal";
+        };
 
         # 应用
         spicetify.enable = false;
         zen-browser.profileNames = [ "default" ];
       };
 
-      # 3. GTK 专属高级微调（如果你想强制保留 Tela-circle-green-dark 图标）
+      # 3. GTK 专属高级微调
       # Stylix 会自动生成符合 Everforest 颜色的极简 GTK 主题，我们只需要把图标注入进去
       gtk = {
         enable = true;
@@ -106,6 +112,74 @@
         iconTheme = {
           name = "Papirus-Dark";
           package = pkgs.papirus-icon-theme.override { color = "green"; };
+        };
+      };
+
+      qt.kvantum = {
+        enable = true;
+        settings = {
+          General = {
+            theme = "Base16Kvantum";
+
+            # === 容器圆角 ===
+            roundness = 10;
+            frameRoundness = 10;
+            groupBoxRoundness = 10;
+            dockRoundness = 10;
+            viewRoundness = 8;
+
+            # === 控件圆角 ===
+            buttonRoundness = 6;
+            comboBoxRoundness = 6;
+            tabRoundness = 6;
+            popupRoundness = 8;
+            menuRoundness = 8;
+
+            # === 细节圆角 ===
+            scrollBarRoundness = 6;
+            tooltipRoundness = 6;
+            menuItemRoundness = 4;
+
+            # === 阴影 ===
+            shadowSize = 24;
+            shadowIntensity = 0.25;
+            shadowOffset = 0;
+
+            # === 尺寸与间距 ===
+            layoutMargin = 6;
+            layoutSpacing = 4;
+            groupBoxMargin = 6;
+            frameMargin = 6;
+            viewMargin = 4;
+            viewItemMargin = 4;
+            toolbarMargin = 4;
+            toolbarSpacing = 4;
+            toolButtonMargin = 4;
+
+            menuItemHeight = 28;
+            menuVerticalMargin = 4;
+            menuHorizontalMargin = 6;
+            popupMargin = 6;
+            scrollableMenu = true;
+
+            scrollBarWidth = 12;
+            scrollBarPadding = 3;
+            splitterWidth = 3;
+
+            # === 工具栏与图标 ===
+            toolButtonStyle = "FollowStyle";
+            toolbarIconSize = 22;
+            smallIconSize = 16;
+            largeIconSize = 22;
+            noButtonGradient = true;
+
+            # === 交互 ===
+            animationDuration = 150;
+            menuDelay = 100;
+            backgroundTransparency = 0;
+            windowDrag = "always";
+            tabOverlap = 1;
+          };
         };
       };
     };

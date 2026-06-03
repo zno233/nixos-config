@@ -11,10 +11,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    apple-fonts = {
-      url = "github:Lyndeno/apple-fonts.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     brew-api = {
       url = "github:BatteredBunny/brew-api";
       flake = false;
