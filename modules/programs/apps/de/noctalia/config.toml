@@ -1,0 +1,201 @@
+[bar.default]
+background_opacity = 0.87999998033046722
+capsule = true
+capsule_opacity = 0.40000000000000002
+center = [ "group:g2" ]
+end = [
+    "tray",
+    "clipboard",
+    "wallpaper",
+    "network",
+    "bluetooth",
+    "input_volume",
+    "volume",
+    "brightness",
+    "power_profile",
+    "battery",
+    "notifications",
+    "clock",
+    "session"
+]
+margin_edge = 0.0
+margin_ends = 0.0
+padding = 6
+radius = 0
+start = [ "launcher", "workspaces", "group:g1", "active_window" ]
+
+    [[bar.default.capsule_group]]
+    fill = "surface_variant"
+    id = "g1"
+    members = [ "cpu", "temp", "ram" ]
+    opacity = 0.40000000596046448
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    fill = "surface_variant"
+    id = "g2"
+    members = [ "media", "audio_visualizer" ]
+    opacity = 0.40000000596046448
+    padding = 6.0
+
+[dock]
+active_monitor_only = true
+auto_hide = true
+enabled = true
+icon_size = 44
+
+[location]
+address = ""
+auto_locate = true
+
+[shell]
+avatar_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
+font_family = "LXGW WenKai Screen"
+polkit_agent = true
+settings_show_advanced = true
+telemetry_enabled = false
+
+    [shell.panel]
+    session_placement = "centered"
+
+    [[shell.session.actions]]
+    action = "lock"
+    enabled = true
+    shortcut = "1"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    enabled = true
+    shortcut = "2"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "suspend"
+    enabled = true
+    shortcut = "3"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    enabled = true
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    enabled = true
+    shortcut = "4"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    enabled = true
+    shortcut = "5"
+    variant = "destructive"
+
+    [shell.shadow]
+    alpha = 0.89999997988343239
+
+[theme]
+source = "wallpaper"
+wallpaper_scheme = "m3-tonal-spot"
+
+[wallpaper]
+directory = "/home/zno/Pictures/wallpapers/others"
+
+    [wallpaper.default]
+    path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
+
+    [wallpaper.last]
+    path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
+
+[weather]
+address = ""
+
+[widget.active_window]
+capsule = true
+capsule_opacity = 0.40000000000000002
+max_length = 150.0
+
+[widget.audio_visualizer]
+bands = 20
+capsule = true
+capsule_opacity = 0.40000000000000002
+width = 100.0
+
+[widget.battery]
+show_label = false
+
+[widget.brightness]
+show_label = false
+
+[widget.clock]
+format = "{:%H:%M %A, %m/%d}"
+
+[widget.cpu]
+capsule = true
+capsule_opacity = 0.40000000000000002
+show_label = false
+
+[widget.input_volume]
+show_label = false
+
+[widget.launcher]
+capsule = true
+capsule_opacity = 0.40000000000000002
+custom_image = "/home/zno/Pictures/nixos_logo_icon.svg"
+scale = 1.1499999999999999
+
+[widget.media]
+capsule = true
+capsule_opacity = 0.40000000000000002
+hide_when_no_media = true
+max_length = 150.0
+title_scroll = "on_hover"
+
+[widget.network]
+show_label = false
+
+[widget.network_rx]
+capsule = true
+capsule_opacity = 0.40000000000000002
+show_label = false
+
+[widget.network_tx]
+capsule = true
+capsule_opacity = 0.40000000000000002
+show_label = false
+
+[widget.ram]
+capsule = true
+capsule_opacity = 0.40000000000000002
+show_label = false
+
+[widget.session]
+color = "#CE9680"
+scale = 1.1499999999999999
+
+[widget.sysmon]
+capsule = true
+
+[widget.temp]
+capsule = true
+capsule_opacity = 0.40000000000000002
+show_label = false
+
+[widget.tray]
+drawer = true
+drawer_columns = 5
+
+[widget.volume]
+show_label = false
+
+[widget.wallpaper]
+capsule = true
+capsule_opacity = 0.40000000000000002
+
+[widget.workspaces]
+display = "none"

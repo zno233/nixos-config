@@ -133,7 +133,7 @@ binds {
 
     // -------- Noctalia 特有绑定 --------
     Mod+S hotkey-overlay-title="控制面板" { spawn-sh "noctalia msg panel-toggle control-center"; }
-    Super+Alt+L hotkey-overlay-title="锁屏" { spawn-sh "noctalia msg screen-lock"; }
+    Super+Alt+L hotkey-overlay-title="锁屏" { spawn-sh "noctalia msg session lock"; }
     Mod+Shift+Escape hotkey-overlay-title="电源" { spawn-sh "noctalia msg panel-toggle session"; }
     Mod+D hotkey-overlay-title="应用启动器" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+V hotkey-overlay-title="剪切板" { spawn-sh "noctalia msg panel-toggle clipboard"; }
@@ -517,7 +517,7 @@ spawn-at-startup "blueman-applet"      // 蓝牙 Applet
 
 // shell
 spawn-at-startup "noctalia"
-spawn-sh-at-startup "sleep 2 && noctalia msg screen-lock"  //锁屏
+spawn-sh-at-startup "sleep 2 && noctalia msg session lock"  //锁屏
 
 // de without shell
 //spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
