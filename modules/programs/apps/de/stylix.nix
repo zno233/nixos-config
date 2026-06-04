@@ -36,7 +36,7 @@
       stylix = {
         enable = true;
         autoEnable = true;
-        enableReleaseChecks = false;
+        # enableReleaseChecks = false;
 
         # 【基础壁纸设置】Stylix 必须基于一张图片来提取/匹配主题色
         # 替换为实际的壁纸路径
@@ -59,17 +59,22 @@
         fonts = {
           monospace = {
             package = pkgs.maple-mono-custom;
-            name = "monospace"; # 自动走系统里的 [ "Maple mono", "Sarasa Mono SC" ... ]
+            name = "monospace"; # 自动走系统里的 [ "Sarasa Mono SC", "Iosevka Nerd Font" ... ]
           };
 
           sansSerif = {
             package = pkgs.noto-fonts;
-            name = "sans-serif"; # 自动走系统里的 [ "HarmonyOS Sans SC" "Noto Sans CJK SC" "Noto Sans" ]
+            name = "sans-serif"; # 自动走系统里的 [ "HarmonyOS Sans SC" "Noto Sans CJK SC" ]
           };
 
           serif = {
             package = pkgs.lxgw-wenkai-screen;
             name = "serif"; # 自动走系统里的 [ "LXGW WenKai Screen", "Noto Serif CJK SC" ... ]
+          };
+
+          emoji = {
+            package = pkgs.noto-fonts-color-emoji;
+            name = "emoji"; # 自动走系统里的 [ "Noto Color Emoji" ]
           };
 
           # 由 Stylix 统一接管的高级字体大小调校
@@ -108,7 +113,6 @@
       # Stylix 会自动生成符合 Everforest 颜色的极简 GTK 主题，我们只需要把图标注入进去
       gtk = {
         enable = true;
-        gtk4.theme = null;
         iconTheme = {
           name = "Papirus-Dark";
           package = pkgs.papirus-icon-theme.override { color = "green"; };

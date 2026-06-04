@@ -52,8 +52,10 @@
             # 等宽字体
             monospace = [
               "Sarasa Mono SC"
-              "Maple mono"
-              "Hurmit Nerd Font Mono"
+              # "IBM Plex Mono"
+              # "Maple mono"
+              "Iosevka Nerd Font"
+              "Noto Sans Mono"
             ];
 
             emoji = [
@@ -66,6 +68,7 @@
             <?xml version="1.0"?>
             <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
             <fontconfig>
+              <!-- 关闭 stem-darkening -->
               <match target="font">
                 <edit name="stem-darkening" mode="assign">
                   <bool>false</bool>
@@ -83,10 +86,11 @@
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
           noto-fonts-color-emoji
-          nerd-fonts.hurmit
+          nerd-fonts.iosevka
           lxgw-wenkai
           lxgw-wenkai-screen
           sarasa-gothic
+          ibm-plex
           #joypixels
 
           # windows字体

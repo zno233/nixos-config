@@ -19,7 +19,7 @@
     stylix = {
       enable = true;
       autoEnable = false;
-      enableReleaseChecks = false;
+      # enableReleaseChecks = false;
       image = ../../../../wallpapers/otherWallpaper/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg;
     };
   };
