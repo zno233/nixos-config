@@ -1,0 +1,3 @@
+patch:
+  "switches/@where(name=ascii_mode)/reset": 1
+  "switches/@where(name=emoji)/reset": 1

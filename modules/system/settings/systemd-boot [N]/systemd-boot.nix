@@ -3,8 +3,12 @@
     { pkgs, ... }:
     {
       boot = {
-        #开启cake+bbr
         kernel.sysctl = {
+          # 提高 inotify 文件监视器上限，防止 Vite 等前端开发工具报 ENOSPC 错误
+          # Linux 默认值为 8192，对现代前端项目（node_modules 文件众多）远远不够
+          "fs.inotify.max_user_watches" = 524288;
+
+          #开启cake+bbr
           "net.core.default_qdisc" = "cake"; # 低延迟公平分配
           "net.ipv4.tcp_congestion_control" = "bbr"; # 高效利用带宽
           "net.ipv4.tcp_fastopen" = 3; # 减少握手延迟
