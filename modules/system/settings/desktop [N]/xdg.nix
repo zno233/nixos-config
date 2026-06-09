@@ -7,8 +7,38 @@
       ...
     }:
     {
+      xdg.terminal-exec = {
+        enable = true;
+        package = pkgs.xdg-terminal-exec;
+        settings =
+          let
+            my_terminal_desktop = [
+              # NOTE: We have add these packages at user level
+              "kitty.desktop"
+              "com.mitchellh.ghostty.desktop"
+              "Alacritty.desktop"
+              "foot.desktop"
+            ];
+          in
+          {
+            GNOME = my_terminal_desktop ++ [
+              "com.raggesilver.BlackBox.desktop"
+              "org.gnome.Terminal.desktop"
+            ];
+            niri = my_terminal_desktop;
+            default = my_terminal_desktop;
+          };
+      };
+      xdg = {
+        autostart.enable = lib.mkDefault true;
+        menus.enable = lib.mkDefault true;
+        mime.enable = lib.mkDefault true;
+        icons.enable = lib.mkDefault true;
+      };
+
       xdg.portal = {
         enable = true;
+
         config = {
           niri = {
             # Use xdg-desktop-portal-gtk for every portal interface...

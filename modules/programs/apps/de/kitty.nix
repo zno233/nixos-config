@@ -28,6 +28,9 @@
         '';
 
         settings = {
+          # https://github.com/kovidgoyal/kitty/issues/10102
+          auto_reload_config = -1;
+
           confirm_os_window_close = 0;
           background_opacity = lib.mkForce "0.8";
           scrollback_lines = 10000;

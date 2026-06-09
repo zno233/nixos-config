@@ -15,10 +15,10 @@ stdenvNoCC.mkDerivation {
   installPhase = ''
     # 创建目标字体目录
     mkdir -p $out/share/fonts/truetype
-    
+
     # 进入包含 .gz 文件的目录
     cd "2021 - Windows 11/ttf"
-    
+
     # 查找所有 .gz 文件并解压到目标目录
     for f in *.gz; do
       gunzip -c "$f" > "$out/share/fonts/truetype/$(basename "$f" .gz)"
