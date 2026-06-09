@@ -1,14 +1,30 @@
 include "animations/dissolve.kdl"
 
 binds {
-    // 长截图
-    Alt+L {
-    spawn-sh r#"set -e;
-        wayscrollshot \
-            -o "$HOME/Pictures/Screenshots/WayScroll_$(date +%Y%m%d_%H%M%S).png" \
-            --clipboard
-    "#;
-    }
+    // // 区域截图（带标注）
+    // Alt+S {
+    //     spawn-sh r#"set -e; grim -t ppm -g "$(slurp -o -d -F monospace)" - | satty --filename - --copy-command wl-copy --annotation-size-factor 2.0 --output-filename "$HOME/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png" --actions-on-enter "save-to-clipboard,save-to-file,exit" --brush-smooth-history-size 5 --disable-notifications"#;
+    // }
+    // // 全屏截图
+    // Ctrl+Alt+S {
+    //     spawn-sh r#"grim -t ppm - | satty --filename - --copy-command wl-copy --annotation-size-factor 2.0 --output-filename "$HOME/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png" --actions-on-enter "save-to-clipboard,save-to-file,exit""#;
+    // }
+    // // 当前窗口截图
+    // Ctrl+Mod+S {
+    //     spawn-sh r#"grim -t ppm -g "$(niri msg focused-window | jq -r '.x,.y,.width,.height' | paste -sd ' ' | awk '{printf "%d,%d %dx%d",$1,$2,$3,$4}')" - | satty --filename - --copy-command wl-copy --annotation-size-factor 2.0 --output-filename "$HOME/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png" --actions-on-enter "save-to-clipboard,save-to-file,exit""#;
+    // }
+    // // 长截图(wayscrollshot)
+    // Alt+L {
+    // spawn-sh r#"set -e;
+    //     wayscrollshot \
+    //         -o "$HOME/Pictures/Screenshots/WayScroll_$(date +%Y%m%d_%H%M%S).png" \
+    //         --clipboard
+    // "#;
+    // }
+
+    // mark-shot
+    Mod+Shift+S { spawn "mark-shot"; }
+    
 }
 
 /* Noctalia: blur everywhere without xray for a better look */

@@ -91,6 +91,7 @@
         vscode.enable = false;
         zed.enable = false;
         helix.enable = false;
+        neovim.enable = false;
 
         # 终端
         kitty.enable = false;

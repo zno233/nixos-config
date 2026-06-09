@@ -8,7 +8,7 @@
         themeFile = "gruvbox-dark-hard";
 
         font = {
-          name = "IBM Plex Mono";
+          name = "Maple Mono";
           size = 15;
         };
 

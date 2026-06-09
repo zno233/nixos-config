@@ -30,8 +30,9 @@
           wl-clipboard # 核心剪贴板工具
           cliphist # 剪贴板历史记录
           grim # Wayland 截图工具
-          slurp # 屏幕区域选择工具
-          satty # 截图标注工具（支持绘图、箭头、文字等）
+          # slurp # 屏幕区域选择工具
+          # satty # 截图标注工具（支持绘图、箭头、文字等）
+          mark-shot # Qt 6 Wayland screenshot selection and annotation tool
           hyprpicker # 取色器
           # linux-wallpaperengine # 壁纸引擎
 

@@ -17,7 +17,7 @@
       wm # window manager
       xdg-mimes # xdg config
       stylix # theme
-      wayscrollshot # A scrolling screenshot tool for Wayland write in Rust
+      # wayscrollshot # A scrolling screenshot tool for Wayland write in Rust
       zsh # shell
 
       ### de without shell
