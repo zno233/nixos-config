@@ -67,6 +67,9 @@
         # JSP
         # tomcat9
         ciscoPacketTracer9
+
+        postman
+        mysql84
       ];
     };
 }

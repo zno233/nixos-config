@@ -11,7 +11,7 @@
       [
         system-minimal
         home-manager
-        #secrets
+        secrets
       ]
       ++ (with inputs.self.modules.generic; [
         systemConstants
@@ -27,7 +27,7 @@
         determinate
         home-manager
         homebrew
-        # secrets
+        secrets
       ]
       ++ (with inputs.self.modules.generic; [
         systemConstants
@@ -43,7 +43,7 @@
       with inputs.self.modules.homeManager;
       [
         system-minimal
-        # secrets
+        secrets
       ]
       ++ [ inputs.self.modules.generic.systemConstants ];
   };

@@ -2,7 +2,8 @@
 {
   flake.modules.homeManager.ai = {
     imports = with inputs.self.modules.homeManager; [
-      agent-cli
+      agent
+      agent_alias
       #ollama
     ];
   };

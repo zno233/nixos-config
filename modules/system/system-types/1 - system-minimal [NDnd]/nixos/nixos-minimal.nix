@@ -69,6 +69,7 @@
           "https://nixpkgs-wayland.cachix.org"
           "https://attic.xuyh0120.win/lantian"
           "https://cache.lix.systems"
+          "https://cache.numtide.com"
           # "https://zed.cachix.org"
           # "https://cache.garnix.io"
         ];
@@ -84,6 +85,7 @@
           "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
           "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
           "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+          "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
           # "zed.cachix.org-1:/pHQ6dpMsAZk2DiP4WCL0p9YDNKWj2Q5FL20bNmw1cU="
           # "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         ];
@@ -91,7 +93,7 @@
         experimental-features = [
           "nix-command"
           "flakes"
-          "pipe-operator"
+          # "pipe-operator"
         ];
 
         trusted-users = [

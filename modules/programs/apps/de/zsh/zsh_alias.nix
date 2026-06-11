@@ -10,7 +10,7 @@
           tt = "gtrash put";
           cat = "bat";
           nano = "micro";
-          code = "codium";
+          code = "zeditor";
           diff = "delta --diff-so-fancy --side-by-side";
           less = "bat";
           copy = "wl-copy";

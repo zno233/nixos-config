@@ -1,3 +1,7 @@
+[audio]
+enable_overdrive = true
+enable_sounds = true
+
 [bar.default]
 background_opacity = 0.87999998033046722
 capsule = true
@@ -43,13 +47,36 @@ active_monitor_only = true
 auto_hide = true
 enabled = true
 icon_size = 44
+reserve_space = false
 
 [location]
 address = ""
 auto_locate = true
 
+[lockscreen_widgets]
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 720.0
+    cy = 837.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+[osd]
+position = "top_right"
+
 [shell]
 avatar_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
+clipboard_history_max_entries = 200
 font_family = "LXGW WenKai Screen"
 polkit_agent = true
 settings_show_advanced = true
@@ -111,9 +138,6 @@ directory = "/home/zno/Pictures/wallpapers/others"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
-
-[weather]
-address = ""
 
 [widget.active_window]
 capsule = true
