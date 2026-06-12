@@ -87,7 +87,7 @@ let
 in
 stdenv.mkDerivation {
   pname = "maple-mono-custom";
-  version = "v7.8";
+  version = "v7.9";
 
   src = inputs.maple-mono;
 
