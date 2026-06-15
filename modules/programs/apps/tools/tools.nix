@@ -9,6 +9,7 @@
       # glance
       cli
       nix-tools
+      rclone
       ssh
       tool-apps
       yazi
