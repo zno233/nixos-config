@@ -5,9 +5,9 @@
       programs = {
         steam = {
           enable = true;
-          package = pkgs.steam.override {
-            extraArgs = "-system-composer";
-          };
+          # package = pkgs.steam.override {
+          #   extraArgs = "-system-composer";
+          # };
 
           remotePlay.openFirewall = true;
           dedicatedServer.openFirewall = true;
@@ -21,11 +21,10 @@
 
         gamescope = {
           enable = true;
-          capSysNice = true;
+          capSysNice = false;
           args = [
             "--rt"
             "--expose-wayland"
-            "--prefer-vkdevice" # 优化 Vulkan 设备切换
           ];
         };
         gamemode.enable = true; # 启用Gamemode，并自动激活以动态提升性能

@@ -1,28 +1,22 @@
 {
+  self,
+  ...
+}:
+{
   flake.modules.nixos.greetd =
     { pkgs, ... }:
     {
-      # greetd display manager
-      services.greetd =
-        let
-          session = {
-            command = "${pkgs.niri}/bin/niri-session";
-            user = "zno";
-          };
-        in
-        {
-          enable = true;
-          settings = {
-            terminal.vt = 1;
-            default_session = session;
-            initial_session = session;
+      services.greetd = {
+        enable = true;
+        settings = {
+          terminal.vt = 1;
+          default_session = {
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --time-format \"%H:%M  %Y-%m-%d\" --remember --remember-session --asterisks --greeting \"welcome to NixOS\" --cmd ${pkgs.niri}/bin/niri-session";
+            user = "greeter";
           };
         };
-
-      # unlock GPG keyring on login
+      };
+      # 登录时解锁 GPG keyring
       security.pam.services.greetd.enableGnomeKeyring = true;
-
-      services.displayManager.autoLogin.enable = true;
-      services.displayManager.autoLogin.user = "zno";
     };
 }
