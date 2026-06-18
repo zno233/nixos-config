@@ -28,6 +28,8 @@
           criticalPowerAction = "PowerOff";
         };
 
+        cpupower-gui.enable = true;
+
         # tlp = {
         #   enable = true;
         #   settings = {
@@ -87,18 +89,23 @@
           ppdSupport = true;
 
           # 设置默认的电源配置文件
-          # "balanced" 通常是笔记本的最佳平衡点，兼顾性能和电池寿命
-          # 如果更看重电池续航，可以改为 "powersave"
+          # 对插电模式和电池模式分别设置默认配置
           ppdSettings = {
             main = {
               default = "balanced";
               battery_detection = true;
             };
-            # 将 GNOME/KDE 的电源模式滑块映射到你的硬件最佳 Profile
             profiles = {
-              power-saver = "laptop-battery-powersave"; # 对应滑块“省电”
-              balanced = "balanced-battery"; # 对应滑块“平衡”
-              performance = "desktop"; # 对应滑块“高性能”
+              # 插电 (AC) 状态：不考虑电量，追求流畅和极致性能
+              power-saver = "desktop-powersave"; # 静音/低温模式：适合夜间下载或安静办公，风扇不叫
+              balanced = "desktop"; # 日常主力模式：日常最流畅的体验，响应极快
+              performance = "latency-performance"; # 满血模式：编译、游戏、渲染时用，完全释放性能
+            };
+            battery = {
+              # 电池 (Battery) 状态：以续航为主，兼顾流畅度
+              power-saver = "laptop-battery-powersave"; # 极致省电：电量告急（<20%）时使用，大幅延长续航
+              balanced = "balanced-battery"; # 电池平衡：出门在外的默认模式，小核积极工作
+              performance = "desktop"; # 临时爆发：不插电但需要干重活时使用
             };
           };
         };
@@ -110,7 +117,6 @@
         kernelModules = [ "acpi_call" ];
         extraModulePackages = with config.boot.kernelPackages; [
           acpi_call
-          cpupower
         ];
       };
     };

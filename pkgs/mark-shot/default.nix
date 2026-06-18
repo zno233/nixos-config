@@ -8,12 +8,12 @@ let
 in
 pkgs.stdenv.mkDerivation {
   pname = "mark-shot";
-  version = "0.1.27";
+  version = "0.1.29";
   src = pkgs.fetchFromGitHub {
     owner = "jswysnemc";
     repo = "mark-shot";
     rev = "main";
-    hash = "sha256-KyU78jA2zHBYevNrWtsEFQX+jmm4aHXh9p5Rmj3Z9Cg="; # 替换为真实 hash
+    hash = "sha256-OyCBIksDZheXC4ARDOVmlwhUKIHGRJThRWHOICmg4YY="; # 替换为真实 hash
   };
   nativeBuildInputs = with pkgs; [
     cmake

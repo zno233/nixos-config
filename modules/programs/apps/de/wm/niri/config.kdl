@@ -505,7 +505,7 @@ spawn-at-startup "blueman-applet"      // 蓝牙 Applet
 
 // shell
 spawn-at-startup "noctalia"
-spawn-sh-at-startup "sleep 2 && noctalia msg session lock"  //锁屏
+// spawn-sh-at-startup "sleep 2 && noctalia msg session lock"  //锁屏
 
 // de without shell
 //spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板

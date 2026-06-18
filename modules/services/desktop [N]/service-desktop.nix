@@ -5,9 +5,10 @@
       aria2
       dae
       flatpak
-      greetd
+      # greetd
       pipewire
       scx
+      sddm
       services
       xserver
     ];

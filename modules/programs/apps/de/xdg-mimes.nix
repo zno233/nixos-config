@@ -100,6 +100,7 @@
           "video/quicktime"
           "video/x-ms-wmv"
           "video/3gpp"
+          "video/x-strm"
         ];
         directory = [ "inode/directory" ];
         office = [
@@ -150,6 +151,18 @@
       xdg.mimeApps.enable = true;
       xdg.mimeApps.associations.added = associations;
       xdg.mimeApps.defaultApplications = associations;
+
+      # === 让系统知道 .strm 后缀属于 application/x-strm 和 video/x-strm ===
+      # 否则系统会把 .strm 当作 text/plain 文本文件而用 Zed 打开
+      xdg.dataFile."mime/packages/strm.xml".text = ''
+        <?xml version="1.0" encoding="UTF-8"?>
+        <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+          <mime-type type='video/x-strm'>
+            <comment>STRM Video File</comment>
+            <glob pattern='*.strm'/>
+          </mime-type>
+        </mime-info>
+      '';
 
       home.sessionVariables = {
         # prevent wine from creating file associations
