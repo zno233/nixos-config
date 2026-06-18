@@ -9,11 +9,13 @@
       fcitx5
       fonts
       graphics
+      nix-ld
+      qylock
+      steam
       stylix
       system-program
       systemd-oomd
       sessionVariables
-      steam
       xdg
       zram
     ];

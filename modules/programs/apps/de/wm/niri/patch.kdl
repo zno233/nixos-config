@@ -24,6 +24,9 @@ binds {
 
     // mark-shot
     Mod+Shift+S { spawn "mark-shot"; }
+
+    // 锁屏
+    Super+Alt+L hotkey-overlay-title="锁屏" { spawn-sh "qylock-lock"; }
     
 }
 

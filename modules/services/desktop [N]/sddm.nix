@@ -47,15 +47,15 @@
           kdePackages.qtmultimedia # Required for video backgrounds/audio
         ];
         theme = "sddm-astronaut-theme";
-        # settings = {
-        #   Theme = {
-        #     CursorTheme = "Bibata-Modern-Ice";
-        #     CursorSize = 40;
-        #   };
-        # };
+        settings = {
+          Theme = {
+            CursorTheme = "Bibata-Modern-Ice";
+            CursorSize = 40;
+          };
+        };
       };
 
-      # 添加niri会话
+      # add niri session
       services.displayManager.sessionPackages = [ pkgs.niri ];
 
       # unlock GPG keyring on login
