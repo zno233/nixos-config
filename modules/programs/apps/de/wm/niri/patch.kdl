@@ -67,6 +67,19 @@ window-rule { // blur for transparent windows
         xray true
     }
 }
+
+window-rule { // 全屏
+    match app-id="^wpsoffice$" title="^WPS Office$"
+
+    // 设置默认列宽度为 100% (占据整个屏幕)
+    default-column-width { proportion 1.0; }
+
+    // 如果你想要浮动窗口，保留这个
+    // open-floating true
+
+    // 如果你想要窗口占据整个屏幕高度，可以加上
+    // default-window-height { proportion 1.0; }
+}
 // window-rule { // blur for opaque windows
 //     // match app-id="^code$"
 //     // match app-id="^electron$"
