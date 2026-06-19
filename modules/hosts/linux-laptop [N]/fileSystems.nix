@@ -8,15 +8,21 @@
     }:
 
     {
-      # 1. 启用 ntfs 支持
-      boot.supportedFilesystems = [
-        "ntfs"
-      ];
+      # # 1. 启用 ntfs 支持
+      # boot.supportedFilesystems = [
+      #   "ntfs"
+      # ];
 
-      # 2. 挂载 Windows 系统分区 (nvme0n1p3)
+      # 1. 禁用 NixOS 默认的 NTFS (ntfs-3g) 模块，防止其自动安装挂载助手
+      disabledModules = [ "tasks/filesystems/ntfs.nix" ];
+
+      # 2. 仅加载你的内核驱动模块
+      boot.kernelModules = [ "ntfs" ];
+
+      # 3. 挂载 Windows 系统分区 (nvme0n1p3)
       fileSystems."/mnt/windows" = {
         device = "/dev/disk/by-uuid/ACA44607A445D48C"; # Windows 系统分区 UUID
-        fsType = "ntfs3";
+        fsType = "ntfs";
         options = [
           "defaults"
           "nofail"
@@ -25,10 +31,10 @@
         ];
       };
 
-      # 3. 挂载 Data 数据分区 (nvme0n1p4)
+      # 4. 挂载 Data 数据分区 (nvme0n1p4)
       fileSystems."/mnt/data" = {
         device = "/dev/disk/by-uuid/A2F62AC3F62A9815"; # Data 分区 UUID
-        fsType = "ntfs3";
+        fsType = "ntfs";
         options = [
           "defaults"
           "nofail"
@@ -39,7 +45,7 @@
         ];
       };
 
-      # 4. 声明 Swap 设备（使用ZRAM时需禁用以防LRU反转）
+      # 5. 声明 Swap 设备（使用ZRAM时需禁用以防LRU反转）
       # swapDevices = [
       #   {
       #     device = "/var/lib/swapfile";
