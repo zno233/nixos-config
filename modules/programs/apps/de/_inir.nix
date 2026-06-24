@@ -4,10 +4,7 @@
 }:
 {
   flake-file.inputs = {
-    inir = {
-      url = "github:snowarch/iNiR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    inir.url = "github:snowarch/iNiR";
   };
 
   flake.modules.homeManager.inir =

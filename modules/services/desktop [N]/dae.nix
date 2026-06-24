@@ -61,14 +61,13 @@
           enable = true;
           port = 2025; # daed 的监听端口
         };
+        # assetsPaths = with pkgs; [
+        #   v2ray-geoip
+        #   v2ray-domain-list-community
+        # ];
         # 可选：如果需要自定义包
         # package = daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed;  # 默认已使用
         #};
-
-        # 确保 daed 依赖于 dae（模块可能已处理，但显式添加）
-        #systemd.services.daed = {
-        #  after = [ "dae.service" ];
-        #  wants = [ "dae.service" ];
       };
 
       # ------------------------------------------------------------------------

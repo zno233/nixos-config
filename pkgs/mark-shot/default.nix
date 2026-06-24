@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
     owner = "jswysnemc";
     repo = "mark-shot";
     rev = "main";
-    hash = "sha256-OyCBIksDZheXC4ARDOVmlwhUKIHGRJThRWHOICmg4YY="; # 替换为真实 hash
+    hash = "sha256-z17w9pJJjQc5reucRs3EqTF5MTyBvlyMB8VZ+0X1NqE="; # 替换为真实 hash
   };
   nativeBuildInputs = with pkgs; [
     cmake

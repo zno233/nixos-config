@@ -1,6 +1,6 @@
 include "./binds.kdl"
 include "./environment.kdl"
-// include "./noctalia.kdl"
+include "./noctalia.kdl"
 include "./recent-windows.kdl"
 include "./patch.kdl"
 // include "./waybar.kdl"

@@ -111,7 +111,7 @@
       };
 
       # 3. GTK 专属高级微调
-      # Stylix 会自动生成符合 Everforest 颜色的极简 GTK 主题，我们只需要把图标注入进去
+      # Stylix 会自动生成符合颜色主题的极简 GTK 主题，我们只需要把图标注入进去
       gtk = {
         enable = true;
         iconTheme = {
@@ -122,70 +122,70 @@
 
       qt.kvantum = {
         enable = true;
-        settings = {
-          General = {
-            theme = "Base16Kvantum";
+        # settings = {
+        #   General = {
+        #     theme = "Base16Kvantum";
 
-            # === 容器圆角 ===
-            roundness = 10;
-            frameRoundness = 10;
-            groupBoxRoundness = 10;
-            dockRoundness = 10;
-            viewRoundness = 8;
+        #     # === 容器圆角 ===
+        #     roundness = 10;
+        #     frameRoundness = 10;
+        #     groupBoxRoundness = 10;
+        #     dockRoundness = 10;
+        #     viewRoundness = 8;
 
-            # === 控件圆角 ===
-            buttonRoundness = 6;
-            comboBoxRoundness = 6;
-            tabRoundness = 6;
-            popupRoundness = 8;
-            menuRoundness = 8;
+        #     # === 控件圆角 ===
+        #     buttonRoundness = 6;
+        #     comboBoxRoundness = 6;
+        #     tabRoundness = 6;
+        #     popupRoundness = 8;
+        #     menuRoundness = 8;
 
-            # === 细节圆角 ===
-            scrollBarRoundness = 6;
-            tooltipRoundness = 6;
-            menuItemRoundness = 4;
+        #     # === 细节圆角 ===
+        #     scrollBarRoundness = 6;
+        #     tooltipRoundness = 6;
+        #     menuItemRoundness = 4;
 
-            # === 阴影 ===
-            shadowSize = 24;
-            shadowIntensity = 0.25;
-            shadowOffset = 0;
+        #     # === 阴影 ===
+        #     shadowSize = 24;
+        #     shadowIntensity = 0.25;
+        #     shadowOffset = 0;
 
-            # === 尺寸与间距 ===
-            layoutMargin = 6;
-            layoutSpacing = 4;
-            groupBoxMargin = 6;
-            frameMargin = 6;
-            viewMargin = 4;
-            viewItemMargin = 4;
-            toolbarMargin = 4;
-            toolbarSpacing = 4;
-            toolButtonMargin = 4;
+        #     # === 尺寸与间距 ===
+        #     layoutMargin = 4;
+        #     layoutSpacing = 3;
+        #     groupBoxMargin = 6;
+        #     frameMargin = 6;
+        #     viewMargin = 4;
+        #     viewItemMargin = 4;
+        #     toolbarMargin = 4;
+        #     toolbarSpacing = 4;
+        #     toolButtonMargin = 3;
 
-            menuItemHeight = 28;
-            menuVerticalMargin = 4;
-            menuHorizontalMargin = 6;
-            popupMargin = 6;
-            scrollableMenu = true;
+        #     menuItemHeight = 24;
+        #     menuVerticalMargin = 4;
+        #     menuHorizontalMargin = 6;
+        #     popupMargin = 6;
+        #     scrollableMenu = true;
 
-            scrollBarWidth = 12;
-            scrollBarPadding = 3;
-            splitterWidth = 3;
+        #     scrollBarWidth = 12;
+        #     scrollBarPadding = 3;
+        #     splitterWidth = 3;
 
-            # === 工具栏与图标 ===
-            toolButtonStyle = "FollowStyle";
-            toolbarIconSize = 22;
-            smallIconSize = 16;
-            largeIconSize = 22;
-            noButtonGradient = true;
+        #     # === 工具栏与图标 ===
+        #     toolButtonStyle = "FollowStyle";
+        #     toolbarIconSize = 18;
+        #     smallIconSize = 14;
+        #     largeIconSize = 18;
+        #     noButtonGradient = true;
 
-            # === 交互 ===
-            animationDuration = 150;
-            menuDelay = 100;
-            backgroundTransparency = 0;
-            windowDrag = "always";
-            tabOverlap = 1;
-          };
-        };
+        #     # === 交互 ===
+        #     animationDuration = 150;
+        #     menuDelay = 100;
+        #     backgroundTransparency = 0;
+        #     windowDrag = "always";
+        #     tabOverlap = 1;
+        #   };
+        # };
       };
     };
 }

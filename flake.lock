@@ -797,26 +797,6 @@
         "type": "github"
       }
     },
-    "inir": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781174168,
-        "narHash": "sha256-9zNrqpg/1gs3/an9fVEjkH2J2fUV+IMs4M6RMAYrx1o=",
-        "owner": "snowarch",
-        "repo": "iNiR",
-        "rev": "01434067705d9dfce10709dbe680474dacc35261",
-        "type": "github"
-      },
-      "original": {
-        "owner": "snowarch",
-        "repo": "iNiR",
-        "type": "github"
-      }
-    },
     "llm-agents": {
       "inputs": {
         "blueprint": "blueprint",
@@ -1336,16 +1316,16 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1782231800,
-        "narHash": "sha256-AyPvq+cx3JFicSd687dhhIfUMryk9PUFmHnofBjalMg=",
+        "lastModified": 1781577229,
+        "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6f5e2d2ea55618c5197ce40e346f205c35d2213e",
+        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable-small",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1363,6 +1343,26 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782278404,
+        "narHash": "sha256-vRTuqzrnBEjjVv478VKrrGtByllx65KVrzdSgC27LRM=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "74fc383681641691025418b3f9d32bd624dc394e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts_7",
@@ -1371,11 +1371,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782281442,
-        "narHash": "sha256-vpzq0+Xj2YjShHtZgqykTCZfMVwdjif0ORCDDLZg7QA=",
+        "lastModified": 1782283437,
+        "narHash": "sha256-5af20EtBeo+Usz2N+pTdUqVy+DfdVzKdJ6L6f4LzT+Q=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "adcf24ba89b2afee259bccfad63c7ca0fe808b90",
+        "rev": "20d7b69dedc82b5dd8ada99437f663b7f7eb0fab",
         "type": "github"
       },
       "original": {
@@ -1457,7 +1457,6 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
-        "inir": "inir",
         "llm-agents": "llm-agents",
         "maple-mono": "maple-mono",
         "niri": "niri",
@@ -1470,6 +1469,7 @@
         "nixpkgs": "nixpkgs_8",
         "nixpkgs-darwin": "nixpkgs-darwin",
         "nixpkgs-stable": "nixpkgs-stable_2",
+        "noctalia": "noctalia",
         "nur": "nur",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "qylock": "qylock",
