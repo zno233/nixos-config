@@ -1,0 +1,25 @@
+environment {
+    // Qt 应用设置
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct" // qt6ct 负责字体/DPI
+    QT_STYLE_OVERRIDE "kvantum" // 样式强制走 kvantum
+    QT_AUTO_SCREEN_SCALE_FACTOR "1" // 启用 HiDPI 缩放
+
+    // Electron 和 Firefox 设置
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    NIXOS_OZONE_WL "1"
+    MOZ_ENABLE_WAYLAND "1"
+
+    // Java 应用设置
+    _JAVA_AWT_WM_NONREPARENTING "1"
+
+    //
+    WLR_RENDERER "vulkan"
+
+    //输入法
+    XIM "fcitx"
+    //GTK_IM_MODULE "wayland;fcitx"
+    //QT_IM_MODULE "fcitx"
+
+    STEAM_EXTRA_COMPAT_RUNTIME_PROFILES "1"
+}

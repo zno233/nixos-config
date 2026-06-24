@@ -21,7 +21,7 @@
                 --set QT_FONT_DPI 148
             fi
           done
-    
+
           # 修正 .desktop 文件中的 Exec 路径，使其指向包装后的二进制文件
           rm -rf $out/share/applications
           mkdir -p $out/share/applications
@@ -32,7 +32,7 @@
         '';
       };
     in
-      {
+    {
       home.packages = with pkgs; [
         wpsoffice-wrapped
         libreoffice

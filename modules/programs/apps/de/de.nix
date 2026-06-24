@@ -32,7 +32,8 @@
       #waypaper                    # GUI wallpaper picker
 
       ### using shell
-      noctalia
+      # noctalia
+      inir
 
       # optinal
       #caelestia

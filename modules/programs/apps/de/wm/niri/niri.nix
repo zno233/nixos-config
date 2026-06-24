@@ -45,6 +45,24 @@
       xdg.configFile."niri/config.kdl" = {
         source = ./config.kdl;
       };
+      xdg.configFile."niri/binds.kdl" = {
+        source = ./binds.kdl;
+      };
+      xdg.configFile."niri/environment.kdl" = {
+        source = ./environment.kdl;
+      };
+      xdg.configFile."niri/noctalia.kdl" = {
+        source = ./noctalia.kdl;
+      };
+      xdg.configFile."niri/recent-windows.kdl" = {
+        source = ./recent-windows.kdl;
+      };
+      xdg.configFile."niri/waybar.kdl" = {
+        source = ./waybar.kdl;
+      };
+      xdg.configFile."niri/window-rule.kdl" = {
+        source = ./window-rule.kdl;
+      };
       xdg.configFile."niri/patch.kdl" = {
         source = config.lib.file.mkOutOfStoreSymlink "${niriConfig}/patch.kdl";
         force = true;
