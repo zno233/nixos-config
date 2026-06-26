@@ -3,6 +3,17 @@
   lib,
   ...
 }:
+# 定义一个通用的生成器
+# pkgsInput 是从 inputs 中传入的特定频道（如 inputs.nixpkgs-stable）
+let
+  mkSpecialArgs = pkgsInput: system: {
+    inherit inputs;
+    pkgs-stable = import pkgsInput {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  };
+in
 {
   # Helper functions for creating system / home-manager configurations
 
@@ -15,6 +26,7 @@
 
     mkNixos = system: name: {
       ${name} = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = mkSpecialArgs inputs.nixpkgs-stable system;
         modules = [
           inputs.self.modules.nixos.${name}
           { nixpkgs.hostPlatform = lib.mkDefault system; }

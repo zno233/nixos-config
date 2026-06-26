@@ -5,7 +5,7 @@
 }:
 let
   home-manager-config =
-    { lib, ... }:
+    { lib, pkgs-stable, ... }:
     {
       home-manager = {
         verbose = true;
@@ -14,6 +14,9 @@ let
         backupFileExtension = "hm-backup";
         backupCommand = "rm";
         overwriteBackup = true;
+        extraSpecialArgs = {
+          inherit pkgs-stable;
+        };
       };
     };
 in

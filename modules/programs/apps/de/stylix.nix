@@ -11,7 +11,6 @@
     }:
     {
       # 1. 依然保留基础的字体配置和非 Stylix 接管的独立工具包
-      fonts.fontconfig.enable = true;
       home.packages = with pkgs; [
         # 字体包（部分供备用或特殊软件调用）
         maple-mono-custom

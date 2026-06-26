@@ -15,12 +15,13 @@
         # Android sdk license
         config.android_sdk.accept_license = true;
         overlays = [
-          (final: prev: {
-            stable = import inputs.nixpkgs-stable {
-              localSystem = prev.stdenv.hostPlatform;
-              config.allowUnfree = true;
-            };
-          })
+          # # add nixpkgs-stable overlay
+          # (final: prev: {
+          #   stable = import inputs.nixpkgs-stable {
+          #     inherit (prev.stdenv.hostPlatform) system;
+          #     config.allowUnfree = true;
+          #   };
+          # })
 
           # inputs.lix-module.overlays.default
           (final: prev: {

@@ -1,9 +1,9 @@
 {
   flake.modules.homeManager.aseprite =
-    { pkgs, ... }:
+    { pkgs, pkgs-stable, ... }:
     {
       home.packages = [
-        pkgs.stable.aseprite
+        pkgs-stable.aseprite
       ];
     };
 }
