@@ -8,6 +8,7 @@
       p10k
       # glance
       cli
+      mark-shot
       nix-tools
       rclone
       ssh

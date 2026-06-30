@@ -53,6 +53,7 @@
             # mlxtend
             opencv4
             git-filter-repo
+            rapidocr-onnxruntime # ocr
           ]
         ))
 
