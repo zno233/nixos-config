@@ -1,7 +1,3 @@
-[audio]
-enable_overdrive = true
-enable_sounds = true
-
 [bar.default]
 background_opacity = 0.87999998033046722
 capsule = true
@@ -10,7 +6,6 @@ center = [ "group:g2" ]
 end = [
     "tray",
     "clipboard",
-    "wallpaper",
     "network",
     "bluetooth",
     "input_volume",
@@ -47,88 +42,18 @@ active_monitor_only = true
 auto_hide = true
 enabled = true
 icon_size = 44
-reserve_space = false
-
-[location]
-address = ""
-auto_locate = true
-
-[lockscreen_widgets]
-schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1" ]
-
-    [lockscreen_widgets.grid]
-    cell_size = 16
-    major_interval = 4
-    visible = true
-
-    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 0.0
-    box_width = 0.0
-    cx = 720.0
-    cy = 837.0
-    output = "eDP-1"
-    rotation = 0.0
-    type = "login_box"
-
-[osd]
-position = "top_right"
 
 [shell]
 avatar_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
-clipboard_history_max_entries = 200
 font_family = "LXGW WenKai Screen"
 polkit_agent = true
 settings_show_advanced = true
 telemetry_enabled = false
 
     [shell.panel]
-    open_near_click_control_center = true
     session_placement = "centered"
 
-    [[shell.session.actions]]
-    action = "lock"
-    enabled = true
-    shortcut = "1"
-    variant = "default"
-
-    [[shell.session.actions]]
-    action = "logout"
-    enabled = true
-    shortcut = "2"
-    variant = "default"
-
-    [[shell.session.actions]]
-    action = "suspend"
-    enabled = true
-    shortcut = "3"
-    variant = "default"
-
-    [[shell.session.actions]]
-    action = "lock_and_suspend"
-    enabled = true
-    shortcut = "KP_4"
-    variant = "default"
-
-    [[shell.session.actions]]
-    action = "reboot"
-    enabled = true
-    shortcut = "KP_5"
-    variant = "default"
-
-    [[shell.session.actions]]
-    action = "shutdown"
-    enabled = true
-    shortcut = "KP_6"
-    variant = "destructive"
-
-    [shell.shadow]
-    alpha = 0.89999997988343239
-
 [theme]
-builtin = "Tokyo-Night"
-community_palette = "Tokyo Night Moon"
-mode = "dark"
 source = "wallpaper"
 wallpaper_scheme = "m3-tonal-spot"
 
@@ -143,24 +68,6 @@ directory = "/home/zno/Pictures/wallpapers/others"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
-
-    [[wallpaper.favorite]]
-    palette_source = "wallpaper"
-    path = "/home/zno/Pictures/wallpapers/others/wallhaven-qr3175_3840x2160.png"
-    theme_mode = "dark"
-    wallpaper_scheme = "m3-tonal-spot"
-
-    [[wallpaper.favorite]]
-    palette_source = "wallpaper"
-    path = "/home/zno/Pictures/wallpapers/others/wallpaper666.png"
-    theme_mode = "dark"
-    wallpaper_scheme = "m3-content"
-
-    [[wallpaper.favorite]]
-    palette_source = "wallpaper"
-    path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
-    theme_mode = "dark"
-    wallpaper_scheme = "m3-content"
 
 [widget.active_window]
 capsule = true

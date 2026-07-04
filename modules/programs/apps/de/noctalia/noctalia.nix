@@ -1,5 +1,6 @@
 {
   self,
+  lib,
   ...
 }:
 {
@@ -35,7 +36,7 @@
       };
 
       xdg.configFile."noctalia/config.toml" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${noctaliaConfig}";
+        source = lib.mkForce (config.lib.file.mkOutOfStoreSymlink "${noctaliaConfig}");
         force = true;
       };
     };
