@@ -19,7 +19,7 @@
 
       environment.systemPackages = with pkgs; [
         # 字体包（部分供备用或特殊软件调用）
-        maple-mono-custom
+        maple-mono.NF
         nerd-fonts.jetbrains-mono
         nerd-fonts.fira-code
         nerd-fonts.caskaydia-cove

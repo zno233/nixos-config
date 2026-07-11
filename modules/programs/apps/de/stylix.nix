@@ -13,7 +13,7 @@
       # 1. 依然保留基础的字体配置和非 Stylix 接管的独立工具包
       home.packages = with pkgs; [
         # 字体包（部分供备用或特殊软件调用）
-        maple-mono-custom
+        maple-mono.NF
         nerd-fonts.jetbrains-mono
         nerd-fonts.fira-code
         nerd-fonts.caskaydia-cove
@@ -57,7 +57,7 @@
         # 这里的 package 属性仅作为 Nix 语法编译的“占位符”，不会与系统发生冲突。
         fonts = {
           monospace = {
-            package = pkgs.maple-mono-custom;
+            package = pkgs.maple-mono.NF;
             name = "monospace"; # 自动走系统里的 [ "Sarasa Mono SC", "Iosevka Nerd Font" ... ]
           };
 

@@ -97,7 +97,7 @@ window-rule { // 全屏
 
 // Floating Noctalia settings window.
 window-rule {
-  match app-id="dev.noctalia.Noctalia.Settings"
+  match app-id="dev.noctalia.Noctalia" title="^Noctalia Settings$"
   open-floating true
   default-column-width { proportion 0.5; }
   default-window-height { proportion 0.75; }

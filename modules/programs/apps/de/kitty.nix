@@ -8,15 +8,15 @@
         themeFile = "gruvbox-dark-hard";
 
         font = {
-          name = "Maple Mono";
+          name = "Maple Mono NF";
           size = 15;
         };
 
         extraConfig = ''
-          font_features MapleMono-Regular +ss01 +ss02 +ss04
-          font_features MapleMono-Bold +ss01 +ss02 +ss04
-          font_features MapleMono-Italic +ss01 +ss02 +ss04
-          font_features MapleMono-Light +ss01 +ss02 +ss04
+          font_features MapleMono-NF-Regular     +ss01 +ss02 +ss04 +ss05 +cv66
+          font_features MapleMono-NF-Bold        +ss01 +ss02 +ss04 +ss05 +cv66
+          font_features MapleMono-NF-Italic      +ss01 +ss02 +ss04 +ss05 +cv66
+          font_features MapleMono-NF-BoldItalic  +ss01 +ss02 +ss04 +ss05 +cv66
 
           cursor_trail 3
           cursor_trail_decay 0.1 0.4

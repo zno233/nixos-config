@@ -37,10 +37,6 @@
     impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
     llm-agents.url = "github:numtide/llm-agents.nix";
-    maple-mono = {
-      url = "github:subframe7536/maple-font/variable";
-      flake = false;
-    };
     mark-shot = {
       url = "github:jswysnemc/mark-shot";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -33,10 +33,10 @@
     nix-colors.url = "github:Misterio77/nix-colors";
 
     # Fonts / others
-    maple-mono = {
-      url = "github:subframe7536/maple-font/variable";
-      flake = false;
-    };
+    # maple-mono = {
+    #   url = "github:subframe7536/maple-font/variable";
+    #   flake = false;
+    # };
 
     # Optional / commented inputs (kept as-is)
 

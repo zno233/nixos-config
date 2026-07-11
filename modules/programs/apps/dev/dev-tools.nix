@@ -1,6 +1,16 @@
 {
   flake.modules.homeManager.dev-tools =
     { pkgs, ... }:
+    # let
+    #   # 统一禁用测试的 python 环境
+    #   myPython = pkgs.python314.override {
+    #     packageOverrides = self: super: {
+    #       slicer = super.slicer.overrideAttrs (old: {
+    #         doCheck = false;
+    #       });
+    #     };
+    #   };
+    # in
     {
       home.packages = with pkgs; [
         ## Lsp
@@ -22,14 +32,14 @@
 
         ## Python
         #python3
-        (python313.withPackages (
+        (python314.withPackages (
           p: with p; [
             #ai tools
             # llm
             # llm-ollama
             # llm-gemini
 
-            # 核心工具
+            # # 核心工具
             ipython
             jupyterlab
 
@@ -39,15 +49,15 @@
             pandas
             seaborn
             statsmodels
-            shap
+            # shap
             ipywidgets
 
-            # 机器学习与数据科学
-            scikit-learn
-            xgboost
-            joblib
-            # imbalanced-learn
-            chardet
+            # # 机器学习与数据科学
+            # scikit-learn
+            # xgboost
+            # joblib
+            # # imbalanced-learn
+            # chardet
 
             # 其他
             # mlxtend

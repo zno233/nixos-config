@@ -1,17 +1,22 @@
+[audio]
+enable_overdrive = true
+enable_sounds = true
+
 [bar.default]
 background_opacity = 0.87999998033046722
 capsule = true
 capsule_opacity = 0.40000000000000002
 center = [ "group:g2" ]
+concave_edge_corners = true
 end = [
     "tray",
     "clipboard",
+    "wallpaper",
     "network",
     "bluetooth",
     "input_volume",
     "volume",
     "brightness",
-    "power_profile",
     "battery",
     "notifications",
     "clock",
@@ -21,7 +26,9 @@ margin_edge = 0.0
 margin_ends = 0.0
 padding = 6
 radius = 0
-start = [ "launcher", "workspaces", "group:g1", "active_window" ]
+radius_bottom_left = 16
+radius_bottom_right = 16
+start = [ "launcher", "workspaces", "group:g1", "weather", "active_window" ]
 
     [[bar.default.capsule_group]]
     fill = "surface_variant"
@@ -33,7 +40,7 @@ start = [ "launcher", "workspaces", "group:g1", "active_window" ]
     [[bar.default.capsule_group]]
     fill = "surface_variant"
     id = "g2"
-    members = [ "media", "audio_visualizer" ]
+    members = [ "media" ]
     opacity = 0.40000000596046448
     padding = 6.0
 
@@ -42,18 +49,95 @@ active_monitor_only = true
 auto_hide = true
 enabled = true
 icon_size = 44
+reserve_space = false
+
+[location]
+address = "Nanchang,china"
+auto_locate = false
+
+[lockscreen_widgets]
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 720.0
+    cy = 837.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+[osd]
+position = "top_right"
 
 [shell]
 avatar_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
+clipboard_history_max_entries = 500
 font_family = "LXGW WenKai Screen"
 polkit_agent = true
 settings_show_advanced = true
 telemetry_enabled = false
 
     [shell.panel]
-    session_placement = "centered"
+    open_near_click_control_center = true
+    session_placement = "floating"
+    session_position = "center"
+
+    [[shell.session.actions]]
+    action = "lock"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "1"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "2"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "suspend"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "3"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "4"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "5"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "6"
+    variant = "destructive"
+
+    [shell.shadow]
+    alpha = 0.89999997988343239
 
 [theme]
+builtin = "Tokyo-Night"
+community_palette = "Tokyo Night Moon"
+mode = "dark"
 source = "wallpaper"
 wallpaper_scheme = "m3-tonal-spot"
 
@@ -68,6 +152,24 @@ directory = "/home/zno/Pictures/wallpapers/others"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/zno/Pictures/wallpapers/others/wallhaven-qr3175_3840x2160.png"
+    theme_mode = "dark"
+    wallpaper_scheme = "m3-tonal-spot"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/zno/Pictures/wallpapers/others/wallpaper666.png"
+    theme_mode = "dark"
+    wallpaper_scheme = "m3-content"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
+    theme_mode = "dark"
+    wallpaper_scheme = "m3-content"
 
 [widget.active_window]
 capsule = true
@@ -150,6 +252,9 @@ show_label = false
 [widget.wallpaper]
 capsule = true
 capsule_opacity = 0.40000000000000002
+
+[widget.weather]
+show_condition = false
 
 [widget.workspaces]
 display = "none"

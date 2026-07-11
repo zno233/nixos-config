@@ -11,7 +11,7 @@
         twemoji-color-font
         noto-fonts-color-emoji
         fantasque-sans-mono
-        maple-mono-custom
+        maple-mono.NF-unhinted
         bibata-cursors
         phinger-cursors
         graphite-cursors
