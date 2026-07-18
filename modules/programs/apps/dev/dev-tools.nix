@@ -28,7 +28,7 @@
         cmake
         gnumake
         valgrind
-        llvmPackages_20.clang-tools
+        llvmPackages_22.clang-tools
 
         ## Python
         #python3
@@ -77,10 +77,10 @@
 
         # JSP
         # tomcat9
-        ciscoPacketTracer9
+        # ciscoPacketTracer9
 
-        postman
-        mysql84
+        # postman
+        # mysql84
       ];
     };
 }

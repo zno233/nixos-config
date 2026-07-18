@@ -34,6 +34,7 @@
           package = pkgs.papirus-icon-theme.override { color = "green"; };
         };
         cursorTheme = {
+          enable = true;
           name = "Bibata-Modern-Ice";
           package = pkgs.bibata-cursors;
           size = 22;

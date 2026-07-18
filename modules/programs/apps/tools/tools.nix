@@ -2,7 +2,7 @@
 {
   flake.modules.homeManager.tools = {
     imports = with inputs.self.modules.homeManager; [
-      aseprite
+      # aseprite
       ebook
       nix-search
       p10k
