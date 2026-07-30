@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.fcitx5 =
-    { pkgs, ... }:
+    { pkgs, pkgs-stable, ... }:
     {
       # ------------------------------------------------------------------------
       # 输入法配置 (Fcitx5)
@@ -14,7 +14,7 @@
           libsForQt5.fcitx5-qt
           kdePackages.fcitx5-qt
           (fcitx5-rime.override {
-            rimeDataPkgs = [ rime-wanxiang ];
+            rimeDataPkgs = [ pkgs-stable.rime-wanxiang ];
           })
           #rime-data
           fcitx5-gtk

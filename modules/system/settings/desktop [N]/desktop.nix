@@ -10,7 +10,7 @@
       fonts
       graphics
       nix-ld
-      qylock
+      # qylock
       steam
       stylix
       system-program

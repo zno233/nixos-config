@@ -28,7 +28,7 @@ padding = 6
 radius = 0
 radius_bottom_left = 16
 radius_bottom_right = 16
-start = [ "launcher", "workspaces", "group:g1", "weather", "active_window" ]
+start = [ "launcher", "workspaces", "group:g1", "weather", "nix-monitor", "active_window", "status" ]
 
     [[bar.default.capsule_group]]
     fill = "surface_variant"
@@ -52,12 +52,19 @@ icon_size = 44
 reserve_space = false
 
 [location]
-address = "Nanchang,china"
 auto_locate = false
 
 [lockscreen_widgets]
+enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1" ]
+widget_order = [
+    "lockscreen-login-box@eDP-1",
+    "lockscreen-widget-0000000000000001",
+    "lockscreen-widget-0000000000000002",
+    "lockscreen-widget-0000000000000007",
+    "lockscreen-widget-0000000000000005",
+    "lockscreen-widget-0000000000000008"
+]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -65,16 +72,109 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
     visible = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 0.0
-    box_width = 0.0
+    box_height = 70.0
+    box_width = 400.0
     cx = 720.0
-    cy = 837.0
+    cy = 728.0
     output = "eDP-1"
     rotation = 0.0
     type = "login_box"
 
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.0
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "compact"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = false
+        show_media = false
+        show_session_buttons = false
+        show_unlock_hint = false
+        show_weather = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 240.0
+    box_width = 368.0
+    cx = 304.0
+    cy = 608.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "weather"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background_opacity = 0.0
+        show_forecast = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 224.0
+    box_width = 352.0
+    cx = 720.0
+    cy = 256.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background_opacity = 0.0
+        clock_style = "digital"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000005]
+    box_height = 48.0
+    box_width = 272.0
+    cx = 720.0
+    cy = 792.0
+    output = "eDP-1"
+    rotation = -0.0
+    type = "label"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000005.settings]
+        background_opacity = 0.0
+        title = "LINK START ！"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000007]
+    box_height = 192.38671875
+    box_width = 194.671875
+    cx = 720.0
+    cy = 575.806640625
+    output = "eDP-1"
+    rotation = 0.0
+    type = "sticker"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000007.settings]
+        background_opacity = 0.0
+        image_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
+        opacity = 1.0
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000008]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1171.0
+    cy = 624.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "media_player"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000008.settings]
+        background = true
+        background_color = "surface"
+        background_opacity = 0.80000000000000004
+        background_padding = 10
+        background_radius = 12
+        color = "on_surface"
+        font_family = ""
+        hide_when_no_media = true
+        layout = "horizontal"
+        shadow = true
+
 [osd]
 position = "top_right"
+
+[plugins]
+enabled = []
 
 [shell]
 avatar_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
@@ -225,6 +325,11 @@ capsule = true
 capsule_opacity = 0.40000000000000002
 show_label = false
 
+[widget.nix-monitor]
+show_text = false
+type = "avivbintangaringga/nix-monitor:nix-monitor"
+up_to_date_color = "primary"
+
 [widget.ram]
 capsule = true
 capsule_opacity = 0.40000000000000002
@@ -233,6 +338,9 @@ show_label = false
 [widget.session]
 color = "#CE9680"
 scale = 1.1499999999999999
+
+[widget.status]
+type = "pozzoo/hassio:status"
 
 [widget.sysmon]
 capsule = true
