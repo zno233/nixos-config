@@ -271,6 +271,8 @@ directory = "/home/zno/Pictures/wallpapers/others"
     theme_mode = "dark"
     wallpaper_scheme = "m3-content"
 
+[weather]
+
 [widget.active_window]
 capsule = true
 capsule_opacity = 0.40000000000000002
@@ -295,6 +297,7 @@ format = "{:%H:%M %A, %m/%d}"
 capsule = true
 capsule_opacity = 0.40000000000000002
 show_label = false
+show_value = false
 
 [widget.input_volume]
 show_label = false
@@ -334,6 +337,7 @@ up_to_date_color = "primary"
 capsule = true
 capsule_opacity = 0.40000000000000002
 show_label = false
+show_value = false
 
 [widget.session]
 color = "#CE9680"
@@ -349,6 +353,7 @@ capsule = true
 capsule = true
 capsule_opacity = 0.40000000000000002
 show_label = false
+show_value = false
 
 [widget.tray]
 drawer = true

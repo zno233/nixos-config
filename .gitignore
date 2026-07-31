@@ -1,6 +1,9 @@
 # Log files and compiled outputs
 *.log
 
+# Local-only dot entries
+.omo/
+
 # Sensitive files
 dotfiles/
 glance.yml

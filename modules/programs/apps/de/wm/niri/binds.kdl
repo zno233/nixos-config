@@ -49,6 +49,7 @@ binds {
     // ========================= 窗口管理 — 焦点 =========================
 
     Mod+O hotkey-overlay-title="打开概览" repeat=false { toggle-overview; }
+    Mod+Shift+O hotkey-overlay-title="切换窗口透明度" { toggle-window-rule-opacity; }
     Mod+Q hotkey-overlay-title="关闭焦点窗口" repeat=false { close-window; }
 
     Mod+Left  hotkey-overlay-title="将焦点移动到左侧的列"{ focus-column-left; }

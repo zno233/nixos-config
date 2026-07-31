@@ -66,40 +66,40 @@
         #   v2ray-domain-list-community
         # ];
         # 可选：如果需要自定义包
-        # package = daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed;  # 默认已使用
-        #};
+        package = pkgs.daed; # 模块默认为daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed
       };
-
-      # ------------------------------------------------------------------------
-      # 配置文件填充（示例：通过 environment.etc 创建）
-      # ------------------------------------------------------------------------
-      #environment.etc = {
-      #  "dae/config.dae".text = ''
-      #    global {
-      #      log_level: info
-      #      tproxy_port: 12345  # 与 openFirewall.port 匹配
-      #      allow_insecure: false
-      #      # 其他全局设置...
-      #    }
-      # 添加 subscription, group, node, routing 等规则...
-      # 示例：
-      #    subscription {
-      # 您的订阅链接...
-      #     }
-      #     group {
-      #        # 组定义...
-      #      }
-      #      routing {
-      # 路由规则...
-      #     }
-      #   '';
-
-      # 如果 daed 需要配置文件（通常在 UI 中配置，但如果有 YAML）
-      #   "daed/config.yaml".text = ''
-      # 示例配置，根据 daed 文档调整
-      #      backend: http://localhost:12345/graphql  # 指向 dae 的 API，如果启用
-      # 其他设置...
-      #    '';
-      #  };
     };
+
+  # ------------------------------------------------------------------------
+  # 配置文件填充（示例：通过 environment.etc 创建）
+  # ------------------------------------------------------------------------
+  # environment.etc = {
+  #  "dae/config.dae".text = ''
+  #    global {
+  #      log_level: info
+  #      tproxy_port: 12345  # 与 openFirewall.port 匹配
+  #      allow_insecure: false
+  #      # 其他全局设置...
+  #    }
+  # 添加 subscription, group, node, routing 等规则...
+  # 示例：
+  #    subscription {
+  # 您的订阅链接...
+  #     }
+  #     group {
+  #        # 组定义...
+  #      }
+  #      routing {
+  # 路由规则...
+  #     }
+  #   '';
+
+  # 如果 daed 需要配置文件（通常在 UI 中配置，但如果有 YAML）
+  #   "daed/config.yaml".text = ''
+  # 示例配置，根据 daed 文档调整
+  #      backend: http://localhost:12345/graphql  # 指向 dae 的 API，如果启用
+  # 其他设置...
+  #    '';
+  #  };
+  # };
 }

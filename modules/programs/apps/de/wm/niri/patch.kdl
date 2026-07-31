@@ -98,6 +98,7 @@ window-rule { // 全屏
 // Floating Noctalia settings window.
 window-rule {
   match app-id="dev.noctalia.Noctalia" title="^Noctalia Settings$"
+  match app-id="^xdg-desktop-portal-gtk"
   open-floating true
   default-column-width { proportion 0.5; }
   default-window-height { proportion 0.75; }

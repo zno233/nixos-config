@@ -5,45 +5,68 @@
     let
       # 带注释的 policies（toJSON 会自动生成纯 JSON）
       bravePolicies = {
-        # --- 核心隐私与安全（与原 Chromium 一致） ---
+        # --- 核心隐私与安全 ---
         BrowserSignin = 0; # 禁用登录，保护隐私
         SyncDisabled = true; # 彻底禁用同步引擎
         MetricsReportingEnabled = false; # 禁用指标上报
         BackgroundModeEnabled = false; # 关闭浏览器后立即释放所有进程
 
-        # 加强遥测/诊断关闭
-        BraveStatsPingEnabled = false;
+        # 遥测/诊断关闭
+        BraveStatsPingEnabled = false; # 每日使用量 ping
+        UserFeedbackAllowed = false; # 禁用用户反馈邀请
+        FeedbackSurveysEnabled = false; # 禁用反馈调查
+        SafeBrowsingExtendedReportingEnabled = false; # 禁用扩展安全报告（不向 Google 上报可疑 URL；基础 Safe Browsing 仍开启）
+        TranslateEnabled = false; # 禁用翻译（减少功能面；如需翻译改回 true）
+        SpellCheckServiceEnabled = false; # 禁用拼写检查网络服务（输入内容不发送；本地词典拼写仍可用）
+
+        # --- Brave 专属彻底 debloat ---
+        BraveAIChatEnabled = false; # 禁用 Leo AI（1.6x+ 起 Leo 助手已并入，无独立 policy）
+        BraveWalletDisabled = true; # 禁用数字钱包 + Web3
+        BraveRewardsDisabled = true; # 禁用 Rewards / BAT / 隐私广告
+        BraveVPNDisabled = true; # 禁用 VPN
+        BraveP3AEnabled = false; # 禁用匿名统计（P3A）
+        BraveTalkDisabled = true; # 禁用 Brave Talk（视频会议）
+        BraveNewsDisabled = true; # 禁用新标签页新闻流
+        # BravePlaylistEnabled = false; # 禁用 Playlist
+        BraveSpeedreaderEnabled = false; # 禁用快速阅读
+        BraveWaybackMachineEnabled = false; # 禁用 Wayback Machine 集成
+        BraveWebDiscoveryEnabled = false; # 禁用 Web Discovery 数据收集
+        TorDisabled = true; # 禁用 Tor 窗口
+
+        # 隐私增强（而非禁用）
+        BraveDeAmpEnabled = true; # 剥离 AMP 重定向
+        BraveDebouncingEnabled = true; # 剥离跟踪跳转
+        BraveReduceLanguageEnabled = true; # 减少语言指纹（请求头）
+        DefaultBraveFingerprintingV2Setting = 3; # 指纹防护锁定为标准（1=关闭，3=标准，无 2）
 
         # --- 禁用自动填充（交给 Bitwarden） ---
         AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;
         PasswordManagerEnabled = false;
 
-        # --- 网络隐私与连接（通用） ---
+        # --- 网络隐私与连接 ---
         BuiltInDnsClientEnabled = false; # 使用系统 DNS
         AlternateErrorPagesEnabled = false; # 禁用纠错页面
+        NetworkPredictionOptions = 1; # 禁用预连接/预取/预渲染（隐私优先：不泄露浏览意图、省流量；如重速度可改回 1）
+        DefaultGeolocationSetting = 2; # 默认禁止地理位置（按站点手动授权）
+        WebRtcIPHandling = "disable_non_proxied_udp"; # 限制 WebRTC IP 泄露
+        HttpsUpgradesEnabled = true; # 强制 HTTPS 升级
+        BlockThirdPartyCookies = true; # 阻止第三方 Cookie
+        SearchSuggestEnabled = false; # 关闭搜索建议（避免按键泄漏给搜索服务）
+
+        # --- 隐私增强（1.92+ 新增 policy） ---
+        BraveGlobalPrivacyControlEnabled = true; # 全局隐私控制（GPC）：向站点发送"不要出售/共享"信号
+        BraveTrackingQueryParametersFilteringEnabled = true; # 剥离 URL 中的追踪查询参数（utm_* 等）
+        IPFSEnabled = false; # 禁用 IPFS 协议支持（弃用功能，减少网络面）
 
         # --- 易用性 ---
         ExternalProtocolDialogShowAlwaysOpenCheckbox = true;
 
-        # --- Privacy Sandbox（通用） ---
+        # --- Privacy Sandbox ---
         PrivacySandboxAdTopicsEnabled = false;
         PrivacySandboxAdMeasurementEnabled = false;
         PrivacySandboxSiteEnabledAdsEnabled = false;
         PrivacySandboxPromptEnabled = false;
-
-        # --- GenAI / AI 禁用（Chromium 风格，Brave 上部分生效） ---
-        # CreateThemesSettings = 2;
-        # HelpMeWriteSettings = 2;
-        # HistorySearchSettings = 2;
-
-        # --- Brave 专属彻底 debloat ---
-        # BraveAIChatEnabled = false; # 禁用 Leo AI
-        # BraveWalletDisabled = true; # 禁用数字钱包 + Web3
-        # BraveRewardsDisabled = true; # 禁用 Rewards / BAT / 隐私广告
-        # BraveVPNDisabled = true; # 禁用 VPN 提示
-        # BraveP3AEnabled = false; # 禁用匿名统计（P3A）
-        # BraveTalkDisabled = true; # 禁用 Brave Talk（视频会议）
 
         # --- 扩展管理（Policy 方式） ---
         ExtensionSettings = {
@@ -119,57 +142,38 @@
 
   flake.modules.homeManager.chromium =
     { pkgs, ... }:
-    let
-      # 需要注入的启动参数，统一在这里维护
-      braveFlags = [
-        # 1. 核心硬件加速
-        "--enable-gpu-rasterization"
-        "--enable-zero-copy"
-        "--ignore-gpu-blocklist"
-        "--enable-features=VaapiVideoDecoder,CanvasOopRasterization,ParallelDownloading,EncryptedMediaExtensions"
-
-        # 2. 核心隐私底线
-        "--no-pings" # 禁用超链接点击追踪
-        "--disable-speech-api" # 禁用不需要的语音识别接口
-        "--disable-domain-reliability" # 禁用域名可靠性报告
-        # 加强隐私（禁用崩溃上报、后台网络、限制 WebRTC IP 泄露）
-        "--disable-crash-reporter"
-        "--disable-background-networking"
-        "--force-webrtc-ip-handling-policy=disable_non_proxied_udp"
-
-        # 3. 极简启动（跳过烦人的首次运行引导）
-        "--no-first-run"
-        "--no-default-browser-check"
-
-        # 4. Brave 辅助 debloat
-        # "--disable-features=BraveAIChat,BraveWallet,BraveRewards,BraveP3A"
-      ];
-
-      # brave-origin 没有 `override`，home-manager 的 chromium 模块只要
-      # commandLineArgs 非空就会调用 cfg.package.override，从而报错。
-      # 所以这里自己用 symlinkJoin + makeWrapper 把参数写死进二进制，
-      # 而 programs.chromium.commandLineArgs 保持为空，绕开那条 override 分支。
-      braveOriginWrapped = pkgs.symlinkJoin {
-        name = "brave-origin-wrapped";
-        paths = [ pkgs.brave-origin ];
-        nativeBuildInputs = [ pkgs.makeWrapper ];
-        postBuild = ''
-          # symlinkJoin 生成的 $out/bin/brave-origin 只是个指向只读 store 路径的
-          # 符号链接，wrapProgram 会尝试 mv 它指向的目标（不可写），所以先删掉
-          # 这个符号链接，再用 makeWrapper 在同一个位置新建一个 wrapper 脚本，
-          # 让它去调用原始（未被我们碰过的）可执行文件。
-          rm -f $out/bin/brave-origin
-          makeWrapper ${lib.getExe pkgs.brave-origin} $out/bin/brave-origin \
-            --add-flags "${builtins.concatStringsSep " " braveFlags}"
-        '';
-      };
-    in
     {
       programs.chromium = {
         enable = true;
-        package = braveOriginWrapped;
-        # 注意：不要在这里设置 commandLineArgs，否则又会触发 .override
-        commandLineArgs = [ ];
+        package = pkgs.brave-origin;
+        commandLineArgs = [
+          # 1. 平台 + GPU 加速（仅保留 Linux 上非默认开启、需显式声明的项）
+          # Chromium 120+ 默认 ozone auto（可自动检测 Wayland），理论上可省去此 flag；
+          # 但 niri 为纯 Wayland 合成器（无 X server），auto 在异常启动环境（SSH/tmux/
+          # 剥离 env 的 desktop entry）下会回退 X11 导致崩溃 → 显式钉死 Wayland，稳定性优先。
+          "--ozone-platform=wayland"
+          # kDefaultEnableGpuRasterization 在 Linux 上默认 DISABLED（仅 Apple/Win/CrOS/Android 默认开）
+          # → --enable-gpu-rasterization 非冗余，保留
+          "--enable-gpu-rasterization"
+          # enable_zero_copy 无 finch 实验默认（DefaultEnableZeroCopy 已不存在），GpuPreferences 默认 false
+          # → --enable-zero-copy 非冗余，保留（零拷贝光栅化，避免 CPU↔GPU 上传拷贝）
+          "--enable-zero-copy"
+          # Chromium 150+ 改名：VaapiVideoDecoder→AcceleratedVideoDecoder（Linux 默认开，不显式写出），
+          # VaapiVideoEncoder→AcceleratedVideoEncoder（默认关，需显式开启硬编）。
+          # 笔记本为 Intel i5-13500H 混合架构（4P+8E）+ Iris Xe iGPU + RTX 3050 PRIME offload，
+          # Brave 默认跑在 Intel iGPU 上，VA-API 正常（H264/HEVC/VP9/AV1 硬解 + H264/HEVC/VP9 硬编）。
+          # 勿用 --ignore-gpu-blocklist（NVIDIA 混构下易崩溃）。
+          # 如需强制 N 卡渲染（牺牲 VA-API），用环境变量 __NV_PRIME_RENDER_OFFLOAD=1。
+          "--enable-features=AcceleratedVideoEncoder"
+
+          # 2. 隐私底线（其余由 policy 接管）
+          "--disable-crash-reporter" # 禁用崩溃上报进程
+          "--disable-speech-api" # 禁用语音识别接口
+
+          # 3. 极简启动（跳过首次运行引导）
+          "--no-first-run"
+          "--no-default-browser-check"
+        ];
       };
     };
 }
