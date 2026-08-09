@@ -19,7 +19,7 @@
 
       programs.niri = {
         enable = true;
-        package = pkgs.niri-unstable;
+        package = self.inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
       };
 
       home = {

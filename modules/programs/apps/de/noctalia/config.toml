@@ -44,6 +44,13 @@ start = [ "launcher", "workspaces", "group:g1", "weather", "nix-monitor", "activ
     opacity = 0.40000000596046448
     padding = 6.0
 
+[calendar]
+enabled = true
+
+    [calendar.account.personal_google]
+    name = "8bit233"
+    type = "google"
+
 [dock]
 active_monitor_only = true
 auto_hide = true
@@ -271,7 +278,6 @@ directory = "/home/zno/Pictures/wallpapers/others"
     theme_mode = "dark"
     wallpaper_scheme = "m3-content"
 
-[weather]
 
 [widget.active_window]
 capsule = true
@@ -370,4 +376,4 @@ capsule_opacity = 0.40000000000000002
 show_condition = false
 
 [widget.workspaces]
-display = "none"
+show_labels = false

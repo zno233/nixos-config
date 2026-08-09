@@ -29,7 +29,7 @@ window-rule { // 全屏
     match app-id="google-chrome"
     match app-id="chromium-browser"
     match app-id="brave-origin"
-    match app-id="obsidian"
+    match app-id="md.Obsidian"
     match app-id="code"
     match app-id="org.telegram.desktop"
     match app-id="moe.tsuna.tsukimi"

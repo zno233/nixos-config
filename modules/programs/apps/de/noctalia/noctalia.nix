@@ -27,7 +27,7 @@
 
       home.packages = [
         pkgs.qt6Packages.qt6ct # for icon theme
-        pkgs.app2unit # Launch Desktop Entries (or arbitrary commands) as Systemd user units
+        # pkgs.app2unit # Launch Desktop Entries (or arbitrary commands) as Systemd user units
       ];
 
       programs.noctalia = {
