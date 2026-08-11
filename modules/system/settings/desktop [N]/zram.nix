@@ -8,7 +8,7 @@
       # Zram 配置：纯内存压缩方案，尽量接近cachyos的配置
       zramSwap = {
         enable = true;
-        algorithm = "lz4";
+        algorithm = "zstd";
         memoryPercent = 75;
         priority = 100;
       };

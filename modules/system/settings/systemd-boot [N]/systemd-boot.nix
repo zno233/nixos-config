@@ -26,7 +26,7 @@
         # 核心系统配置
         #kernelPackages = pkgs.linuxPackages_zen;
         kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
-        supportedFilesystems = [ "ntfs3" ];
+        # supportedFilesystems = [ "ntfs3" ];
         kernelParams = [
           # 基础优化
           "quiet"
