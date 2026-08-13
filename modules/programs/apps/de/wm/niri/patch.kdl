@@ -1,6 +1,13 @@
+// ============================================================
+// 补丁 / 特效配置
+// ============================================================
+
+// 当前动画预设：dissolve（备选：default / glide / pixel）
 include "animations/dissolve.kdl"
 
 binds {
+    // ==================== 截图（旧方案，已注释） ====================
+
     // // 区域截图（带标注）
     // Alt+S {
     //     spawn-sh r#"set -e; grim -t ppm -g "$(slurp -o -d -F monospace)" - | satty --filename - --copy-command wl-copy --annotation-size-factor 2.0 --output-filename "$HOME/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png" --actions-on-enter "save-to-clipboard,save-to-file,exit" --brush-smooth-history-size 5 --disable-notifications"#;
@@ -13,65 +20,78 @@ binds {
     // Ctrl+Mod+S {
     //     spawn-sh r#"grim -t ppm -g "$(niri msg focused-window | jq -r '.x,.y,.width,.height' | paste -sd ' ' | awk '{printf "%d,%d %dx%d",$1,$2,$3,$4}')" - | satty --filename - --copy-command wl-copy --annotation-size-factor 2.0 --output-filename "$HOME/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png" --actions-on-enter "save-to-clipboard,save-to-file,exit""#;
     // }
-    // // 长截图(wayscrollshot)
+    // // 长截图（wayscrollshot）
     // Alt+L {
-    // spawn-sh r#"set -e;
-    //     wayscrollshot \
-    //         -o "$HOME/Pictures/Screenshots/WayScroll_$(date +%Y%m%d_%H%M%S).png" \
-    //         --clipboard
-    // "#;
+    //     spawn-sh r#"set -e;
+    //         wayscrollshot \
+    //             -o "$HOME/Pictures/Screenshots/WayScroll_$(date +%Y%m%d_%H%M%S).png" \
+    //             --clipboard
+    //     "#;
     // }
 
-    // mark-shot
+    // ==================== 截图 ====================
+
+    // mark-shot（截图 + 标注）
     Mod+Shift+S { spawn "mark-shot"; }
 
-    // 锁屏
-    Super+Alt+L hotkey-overlay-title="锁屏" { spawn-sh "qylock-lock"; }
-    
+    // ==================== 锁屏 ====================
+
+    // Super+Alt+L hotkey-overlay-title="锁屏" { spawn-sh "qylock-lock"; }
 }
 
-/* Noctalia: blur everywhere without xray for a better look */
+// ============================================================
+// Noctalia 背景模糊
+// ============================================================
+
+// 全区域模糊（不使用 xray）
 // layer-rule {
-//   match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
-//   background-effect {
-//     xray false
-//   }
+//     match namespace=r#"^noctalia-(background|launcher-overlay|dock)-.*$"#
+//     background-effect {
+//         xray false
+//     }
 // }
 
-/*
-  Noctalia
-  Disable xray on all our surfaces so it looks more realistic.
-  No need to set blur to 'true' here, it's automatic.
-*/
+// 关闭所有 Noctalia 表面的 xray，使模糊效果更真实
+// （无需显式开启 blur，Noctalia 会自动应用）
 layer-rule {
-  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel)$"
-  background-effect {
-    xray false
-    //blur false
-  }
+    match namespace=r#"^noctalia-(bar-[^"]+|notification|dock|panel)$"#
+    background-effect {
+        xray false
+        // blur false
+    }
 }
+
+// ============================================================
+// 模糊效果
+// ============================================================
 
 blur {
-  passes 3        // more passes = stronger blur (default: 3)
-  offset 5.0      // sample distance per pass (default: 3.0)
-  noise 0.04      // grain overlay (default: 0.02)
-  saturation 1.8  // color saturation boost (default: 1.5)
+    passes 3        // 采样次数越多模糊越强（默认 3）
+    offset 5.0      // 每次采样的距离（默认 3.0）
+    noise 0.04      // 颗粒覆盖（默认 0.02）
+    saturation 1.8  // 色彩饱和度增强（默认 1.5）
 }
 
-window-rule { // blur for transparent windows
-    match app-id="^kitty$"
-    match app-id="^com.mitchellh.ghostty$"
-    // match app-id="^zen-beta$"
+// ============================================================
+// 窗口规则
+// ============================================================
+
+// 透明窗口背景模糊
+window-rule {
+    match app-id=r#"^kitty$"#
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+    // match app-id=r#"^zen-beta$"#
     background-effect {
         blur true
         xray true
     }
 }
 
-window-rule { // 全屏
-    match app-id="^wpsoffice$" title="^WPS Office$"
+// WPS Office 全屏（占满整列）
+window-rule {
+    match app-id=r#"^wpsoffice$"# title=r#"^WPS Office$"#
 
-    // 设置默认列宽度为 100% (占据整个屏幕)
+    // 设置默认列宽度为 100%（占据整个屏幕）
     default-column-width { proportion 1.0; }
 
     // 如果你想要浮动窗口，保留这个
@@ -80,13 +100,15 @@ window-rule { // 全屏
     // 如果你想要窗口占据整个屏幕高度，可以加上
     // default-window-height { proportion 1.0; }
 }
-// window-rule { // blur for opaque windows
-//     // match app-id="^code$"
-//     // match app-id="^electron$"
-//     // match app-id="^obsidian$"
-//     // match app-id="^org.fooyin.fooyin$"
-//     match app-id="^kitty$" title="^hx$"
-//     // match app-id="^jetbrains-idea$"
+
+// 不透明窗口背景模糊（已注释）
+// window-rule {
+//     // match app-id=r#"^code$"#
+//     // match app-id=r#"^electron$"#
+//     // match app-id=r#"^obsidian$"#
+//     // match app-id=r#"^org\.fooyin\.fooyin$"#
+//     match app-id=r#"^kitty$"# title=r#"^hx$"#
+//     // match app-id=r#"^jetbrains-idea$"#
 //     opacity 0.95
 //     background-effect {
 //         blur true
@@ -94,17 +116,45 @@ window-rule { // 全屏
 //     }
 // }
 
-
-// Floating Noctalia settings window.
+// Noctalia 设置窗口 / 桌面门户：浮动
 window-rule {
-  match app-id="dev.noctalia.Noctalia" title="^Noctalia Settings$"
-  match app-id="^xdg-desktop-portal-gtk"
-  open-floating true
-  default-column-width { proportion 0.5; }
-  default-window-height { proportion 0.75; }
+    match app-id=r#"^dev\.noctalia\.Noctalia$"# title=r#"^Noctalia Settings$"#
+    match app-id=r#"^xdg-desktop-portal-gtk"#
+    open-floating true
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.75; }
 }
 
+// splayer_next
+window-rule {
+    // 媒体 / 播放器
+    match app-id=r#"^top.imsyy.splayer_next$"#
+
+    // 设置默认列宽度为 100%（占据整个屏幕）
+    default-column-width { proportion 1.0; }
+
+    // 如果你想要浮动窗口，保留这个
+    // open-floating true
+
+    // 如果你想要窗口占据整个屏幕高度，可以加上
+    // default-window-height { proportion 1.0; }
+}
+window-rule {
+    match app-id=r#"^top.imsyy.splayer_next$"# title=r#"^SPlayer-Next - Desktop Lyric$"#
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-floating-position x=0 y=32 relative-to="bottom"
+    border {
+        off
+    }
+}
+
+
+// ============================================================
+// 调试
+// ============================================================
+
 debug {
-  // Allows notification actions and window activation from Noctalia.
-  honor-xdg-activation-with-invalid-serial
+    // 允许 Noctalia 的通知操作与窗口激活
+    honor-xdg-activation-with-invalid-serial
 }

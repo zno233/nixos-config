@@ -1,22 +1,32 @@
-// de without shell
-//spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
+// ============================================================
+// 旧 Waybar 配置（已弃用，当前使用 Noctalia Shell）
+//
+// 如需启用：取消 config.kdl 中 `// include "./waybar.kdl"` 的注释
+// ============================================================
+
+// ==================== 启动程序 ====================
+
+// spawn-sh-at-startup "waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css" // 桌面面板
 // spawn-at-startup "hyprlock"            // 锁屏
 // spawn-at-startup "swayosd-server"      // OSD 提示服务
-// spawn-at-startup "swaynsc"              // 通知中心
-// spawn-at-startup "swww-daemon"
+// spawn-at-startup "swaynsc"             // 通知中心
+// spawn-at-startup "swww-daemon"         // 壁纸守护进程
 // spawn-at-startup "init-wallpaper"      // 初始化壁纸脚本
-//spawn-sh-at-startup "wl-clip-persist --clipboard both &" // 剪贴板持久化
-//spawn-sh-at-startup "wl-paste --watch cliphist store &"  // 剪贴板历史记录
-//spawn-sh-at-startup "vicinae server"                     // 应用启动器后端
-//spawn-sh-at-startup "waypaper --restore"                 // 恢复壁纸
+// spawn-sh-at-startup "wl-clip-persist --clipboard both &" // 剪贴板持久化
+// spawn-sh-at-startup "wl-paste --watch cliphist store &"  // 剪贴板历史记录
+// spawn-sh-at-startup "vicinae server"                     // 应用启动器后端
+// spawn-sh-at-startup "waypaper --restore"                 // 恢复壁纸
+
+// ==================== 概览 ====================
 
 // overview {
 //     zoom 0.6
 // }
 
+// ==================== 壁纸层 ====================
+
 // swww
-//layer-rule {
-    // 壁纸
-//    match namespace="^wallpaper|swww-daemon$"
-//    place-within-backdrop true
-//}
+// layer-rule {
+//     match namespace=r#"^wallpaper|swww-daemon$"#
+//     place-within-backdrop true
+// }

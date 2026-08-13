@@ -1,5 +1,5 @@
 animations {
-    // 窗口打开的动画，小锂这里的配置是从屏幕顶部下落且伴有回弹效果
+    // 窗口打开的动画：从屏幕顶部下落并伴有回弹效果
     window-open {
         spring damping-ratio=0.80 stiffness=600 epsilon=0.0001
 
@@ -19,7 +19,7 @@ animations {
         "
     }
 
-    // 窗口关闭的动画，小锂这里的配置是先溶解后下落
+    // 窗口关闭的动画：先溶解后下落
     window-close {
         duration-ms 800
         curve "linear"
@@ -34,14 +34,14 @@ animations {
                 if (noise < (p * 1.5 - (1.0 - coords_geo.y) * 0.2)) {
                     return vec4(0.0);
                 }
-                // 前20%的时间溶解，然后再下落
+                // 前 20% 的时间溶解，然后下落
                 float drop_p = max(0.0, p - 0.2) / 0.8;
                 float gravity = pow(drop_p, 3.0) * 4.0;
                 float spread = (noise - 0.5) * gravity * 0.1;
                 vec3 moved_coords = vec3(coords_geo.x + spread, coords_geo.y - gravity, 1.0);
                 vec3 coords_tex = niri_geo_to_tex * moved_coords;
                 vec4 color = texture2D(niri_tex, coords_tex.st);
-                
+
                 if (moved_coords.y < 0.0 || moved_coords.y > 1.0 || moved_coords.x < 0.0 || moved_coords.x > 1.0) {
                     return vec4(0.0);
                 }
@@ -51,7 +51,7 @@ animations {
         "
     }
 
-    // 窗口大小发生变化的动画
+    // 窗口大小变化的动画
     window-resize {
         spring damping-ratio=0.8 stiffness=700 epsilon=0.0001
 
@@ -64,27 +64,25 @@ animations {
         "
     }
 
-    // ***animations below do not use a shaders ***
-    // these are not required
+    // ==================== 以下动画不使用 shader（非必需） ====================
 
     workspace-switch {
-        // Smooth, composed, no bounce.
+        // 平滑、无回弹
         spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
     }
-    
+
     horizontal-view-movement {
-        // Main "camera glide" for scrollable movement.
+        // 滚动时的“镜头”滑动
         spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
     }
 
     window-movement {
-        // Individual windows shift with a slightly tighter response
-        // than the camera, so it feels organized.
+        // 窗口移动比镜头略紧，手感更整齐
         spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
     }
 
     config-notification-open-close {
-        // Less playful, more refined than the default underdamped feel.
+        // 比默认欠阻尼更克制
         spring damping-ratio=1.0 stiffness=820 epsilon=0.001
     }
 
@@ -98,7 +96,7 @@ animations {
     }
 
     overview-open-close {
-        // Overview should feel smooth and premium, not springy/bouncy.
+        // 概览应平滑流畅，不应弹跳
         spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
     }
 

@@ -17,9 +17,12 @@
 
         fooyin # like fb2k
         #spotify
-        mpv
+
+        (pkgs.mpv.override {
+          scripts = [ pkgs.mpvScripts.mpris ];
+        })
         mpv-handler
-        # splayer
+        splayer-next
         kazumi # anime online
         tsukimi # emby
         # tauon                       #local music player

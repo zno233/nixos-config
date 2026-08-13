@@ -1,50 +1,91 @@
-// 窗口规则
+// ============================================================
+// 全局窗口规则
+// ============================================================
+
+// 所有窗口统一：圆角、裁切、无边框背景
 window-rule {
     geometry-corner-radius 10
     clip-to-geometry true
-}
-window-rule { // 移除所有窗口的边框背景 + 透明度
     draw-border-with-background false
-//opacity 0.89
+    // opacity 0.89
 }
-window-rule { // 浮动窗口
+
+// ============================================================
+// 浮动窗口
+// ============================================================
+
+// 通用浮动窗口
+window-rule {
+    // 计算器
     match app-id=r#"^gnome-calculator$"#
     match app-id=r#"^galculator$"#
-    match app-id=r#"^blueman-manager$"#
-    match app-id=r#"^org\.gnome\.Nautilus$"#
-    match app-id=r#"^xdg-desktop-portal$"#
-    match app-id="dynamic_power_user"
-    match app-id="com.network.manager"
-    match app-id="org.pulseaudio.pavucontrol"
-    match app-id="com.saivert.pwvucontrol"
-    match app-id="xdg-desktop-portal-gtk"
-    match app-id="waypaper"
-    match app-id="mpv"
-    match app-id="vlc"
-    match app-id="imv"
-    open-floating true
-//  opacity 0.8
-}
-window-rule { // 全屏
-    match app-id="google-chrome"
-    match app-id="chromium-browser"
-    match app-id="brave-origin"
-    match app-id="md.Obsidian"
-    match app-id="code"
-    match app-id="org.telegram.desktop"
-    match app-id="moe.tsuna.tsukimi"
-    //match app-id="kitty"
-    match app-id="com.mitchellh.ghostty"
-    match app-id="SPlayer"
-    match app-id="steam"
-    match app-id="spotify"
-    match app-id="jetbrains-idea"
-    match app-id="electron"
-    match app-id="pix"
-    match app-id="dev.zed.Zed"
-    //match app-id="nemo"
 
-    // 设置默认列宽度为 100% (占据整个屏幕)
+    // 系统工具 / 桌面门户
+    match app-id=r#"^blueman-manager$"#
+    match app-id=r#"^xdg-desktop-portal$"#
+    match app-id=r#"^xdg-desktop-portal-gtk$"#
+    match app-id=r#"^dynamic_power_user$"#
+    match app-id=r#"^com\.network\.manager$"#
+
+    // 音量控制
+    match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
+    match app-id=r#"^com\.saivert\.pwvucontrol$"#
+
+    // 文件管理器
+    match app-id=r#"^org\.gnome\.Nautilus$"#
+
+    // 媒体播放器
+    match app-id=r#"^mpv$"#
+    match app-id=r#"^vlc$"#
+    match app-id=r#"^imv$"#
+
+    open-floating true
+    // opacity 0.8
+}
+
+// 画中画 / 会议窗口
+window-rule {
+    match app-id=r#"firefox$"# title=r#"^Picture-in-Picture$"#
+    match app-id=r#"^zoom$"#
+    open-floating true
+}
+
+// ============================================================
+// 整列显示（全屏）
+// ============================================================
+
+// 常用应用：打开时占满整列宽度
+window-rule {
+    // 浏览器
+    match app-id=r#"^google-chrome$"#
+    match app-id=r#"^chromium-browser$"#
+    match app-id=r#"^brave-origin$"#
+
+    // 编辑器 / IDE
+    match app-id=r#"^code$"#
+    match app-id=r#"^jetbrains-idea$"#
+    match app-id=r#"^md\.Obsidian$"#
+    match app-id=r#"^dev\.zed\.Zed$"#
+
+    // 聊天
+    match app-id=r#"^org\.telegram\.desktop$"#
+
+    // 媒体 / 播放器
+    match app-id=r#"^moe\.tsuna\.tsukimi$"#
+    match app-id=r#"^SPlayer$"#
+    match app-id=r#"^spotify$"#
+
+    // 游戏
+    match app-id=r#"^steam$"#
+
+    // 其他
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+    match app-id=r#"^electron$"#
+    match app-id=r#"^pix$"#
+    // match app-id=r#"^kitty$"#
+    // match app-id=r#"^nemo$"#
+
+    // 设置默认列宽度为 100%（占据整个屏幕）
     default-column-width { proportion 1.0; }
 
     // 如果你想要浮动窗口，保留这个
@@ -53,57 +94,52 @@ window-rule { // 全屏
     // 如果你想要窗口占据整个屏幕高度，可以加上
     // default-window-height { proportion 1.0; }
 }
+
+// ============================================================
+// 特殊窗口规则
+// ============================================================
+
+// wezterm：使用默认列宽
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
+    // 尽量精确匹配，避免误伤其他窗口（可简化为 app-id="wezterm"）
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
-window-rule {
-    match app-id=r#"^org\.gnome\."#
-    draw-border-with-background false
-    geometry-corner-radius 10
-    clip-to-geometry true
-}
+
+// GNOME 设置 / 网络连接编辑器：半屏宽、不浮动
 window-rule {
     match app-id=r#"^gnome-control-center$"#
     match app-id=r#"^nm-connection-editor$"#
     default-column-width { proportion 0.5; }
     open-floating false
 }
+
+// Steam 通知弹窗：右下角、不抢焦点
 window-rule {
     match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
     open-focused false
 }
+
+// QQ：浮动 + 75% 尺寸
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    match app-id="Alacritty"
-    match app-id="zen-beta"
-    match app-id="com.mitchellh.ghostty"
-    match app-id="kitty"
-    draw-border-with-background false
-}
-window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    match app-id="zoom"
-    open-floating true
-}
-window-rule {
-    //match app-id="wechat"
-    match app-id="QQ"
+    // match app-id=r#"^wechat$"#
+    match app-id=r#"^QQ$"#
     open-floating true
     default-column-width { proportion 0.75; }
     default-window-height { proportion 0.75; }
 }
+
+// waydroid：禁止最大化
 window-rule {
-    match app-id="waydroid"
-    //open-floating true
+    match app-id=r#"^waydroid$"#
+    // open-floating true
     open-maximized false
 }
+
+// SPlayer 桌面歌词：底部浮动
 window-rule {
-    match app-id="^Splayer$" title="^桌面歌词$"
+    match app-id=r#"^Splayer$"# title=r#"^桌面歌词$"#
     open-floating true
     default-column-width { proportion 0.75; }
     default-floating-position x=0 y=32 relative-to="bottom"
@@ -111,16 +147,20 @@ window-rule {
         off
     }
 }
-window-rule { // waypaper
-    match app-id="waypaper"
-    default-window-height {fixed 660; }
-    default-column-width {fixed 850; }
+
+// waypaper：固定尺寸浮动
+window-rule {
+    match app-id=r#"^waypaper$"#
+    default-window-height { fixed 660; }
+    default-column-width { fixed 850; }
     open-floating true
-//opacity 0.8
+    // opacity 0.8
 }
-window-rule { //nemo opn with
-    match app-id="nemo" title="Open with"
+
+// nemo "Open with" 对话框：固定尺寸浮动
+window-rule {
+    match app-id=r#"^nemo$"# title="Open with"
     open-floating true
-    default-window-height {fixed 660; }
-    default-column-width {fixed 850; }
+    default-window-height { fixed 660; }
+    default-column-width { fixed 850; }
 }

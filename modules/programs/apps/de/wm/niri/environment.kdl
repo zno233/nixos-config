@@ -1,25 +1,39 @@
 environment {
-    // Qt 应用设置
-    QT_QPA_PLATFORM "wayland"
-    QT_QPA_PLATFORMTHEME "qt6ct" // qt6ct 负责字体/DPI
-    QT_STYLE_OVERRIDE "kvantum" // 样式强制走 kvantum
-    QT_AUTO_SCREEN_SCALE_FACTOR "1" // 启用 HiDPI 缩放
+    // ==================== Qt 应用 ====================
 
-    // Electron 和 Firefox 设置
+    // 使用 Wayland 平台
+    QT_QPA_PLATFORM "wayland"
+    // qt6ct 负责字体 / DPI 设置
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    // 样式强制走 kvantum
+    QT_STYLE_OVERRIDE "kvantum"
+    // 启用 HiDPI 缩放
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+
+    // ==================== Electron / Firefox ====================
+
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     NIXOS_OZONE_WL "1"
     MOZ_ENABLE_WAYLAND "1"
 
-    // Java 应用设置
+    // ==================== Java 应用 ====================
+
+    // 防止 AWT 窗口在 Wayland 下定位异常
     _JAVA_AWT_WM_NONREPARENTING "1"
 
-    //
+    // ==================== 合成器 ====================
+
+    // 强制 wlroots 渲染器使用 Vulkan
     WLR_RENDERER "vulkan"
 
-    //输入法
-    XIM "fcitx"
-    //GTK_IM_MODULE "wayland;fcitx"
-    //QT_IM_MODULE "fcitx"
+    // ==================== 输入法 ====================
 
+    XIM "fcitx"
+    // GTK_IM_MODULE "wayland;fcitx"
+    // QT_IM_MODULE "fcitx"
+
+    // ==================== Steam ====================
+
+    // 启用额外兼容运行时
     STEAM_EXTRA_COMPAT_RUNTIME_PROFILES "1"
 }

@@ -50,8 +50,8 @@
       xdg.configFile."niri/environment.kdl" = {
         source = ./environment.kdl;
       };
-      xdg.configFile."niri/noctalia.kdl" = {
-        source = ./noctalia.kdl;
+      xdg.configFile."niri/noctalia-shell.kdl" = {
+        source = ./noctalia-shell.kdl;
       };
       xdg.configFile."niri/recent-windows.kdl" = {
         source = ./recent-windows.kdl;

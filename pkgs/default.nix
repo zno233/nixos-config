@@ -9,5 +9,6 @@
   win11-fonts = pkgs.callPackage ./microsoft-fonts { };
   harmonyos-sans = pkgs.callPackage ./harmonyos-sans { };
   # mark-shot = pkgs.callPackage ./mark-shot { };
-  fooyin = pkgs.callPackage ./fooyin { };
+  # fooyin = pkgs.callPackage ./fooyin { };
+  splayer-next = pkgs.callPackage ./splayer-next { };
 }

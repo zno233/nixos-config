@@ -14,7 +14,7 @@
           libsForQt5.fcitx5-qt
           kdePackages.fcitx5-qt
           (fcitx5-rime.override {
-            rimeDataPkgs = [ pkgs-stable.rime-wanxiang ];
+            rimeDataPkgs = [ rime-wanxiang ];
           })
           #rime-data
           fcitx5-gtk

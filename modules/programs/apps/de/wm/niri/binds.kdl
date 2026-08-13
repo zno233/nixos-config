@@ -1,90 +1,88 @@
 binds {
-    // ========================= 基本系统功能 =========================
+    // ==================== 基本系统功能 ====================
 
     Mod+Shift+Slash hotkey-overlay-title="显示快捷键" { show-hotkey-overlay; }
     Mod+Shift+E { quit; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-    //Mod+Shift+Escape hotkey-overlay-title="电源菜单" { spawn "power-menu"; }
-    //Ctrl+Alt+Delete { spawn "power-menu"; }
+    // Mod+Shift+Escape hotkey-overlay-title="电源菜单" { spawn "power-menu"; }
+    // Ctrl+Alt+Delete { spawn "power-menu"; }
 
     Mod+Shift+P { power-off-monitors; } // 关闭显示器
 
-    // ========================= 启动应用程序 =========================
+    // ==================== 启动应用程序 ====================
 
-    Mod+Return hotkey-overlay-title="终端: kitty" { spawn "kitty"; }
-    Mod+B hotkey-overlay-title="浏览器: brave-origin" { spawn "brave-origin"; }
-    Mod+E hotkey-overlay-title="文件管理器: nemo" { spawn "nemo"; }
-    Mod+Alt+I hotkey-overlay-title="打开 niri 配置文件" { spawn-sh "zeditor $HOME/zno-config/modules/programs/apps/de/wm/niri/config.kdl"; }
-    Mod+Alt+N hotkey-overlay-title="打开 nixos 配置文件" { spawn-sh "zeditor $HOME/zno-config"; }
-    Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器: MissionCenter" { spawn "missioncenter"; }
-    Mod+M hotkey-overlay-title="音乐播放器： fooyin" { spawn "fooyin"; }
-    Alt+M hotkey-overlay-title="音乐播放器： SPlayer" { spawn "splayer"; }
-    Mod+N hotkey-overlay-title="笔记： obsidian" { spawn "obsidian"; }
-    Mod+Shift+B hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
-    Mod+Shift+C hotkey-overlay-title="取色器： hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
+    Mod+Return        hotkey-overlay-title="终端：kitty" { spawn "kitty"; }
+    Mod+B             hotkey-overlay-title="浏览器：brave-origin" { spawn "brave-origin"; }
+    Mod+E             hotkey-overlay-title="文件管理器：nemo" { spawn "nemo"; }
+    Mod+Alt+I         hotkey-overlay-title="打开 niri 配置" { spawn-sh "zeditor $HOME/zno-config/modules/programs/apps/de/wm/niri/config.kdl"; }
+    Mod+Alt+N         hotkey-overlay-title="打开 nixos 配置" { spawn-sh "zeditor $HOME/zno-config"; }
+    Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器：MissionCenter" { spawn "missioncenter"; }
+    Mod+M             hotkey-overlay-title="音乐播放器：fooyin" { spawn "fooyin"; }
+    Alt+M             hotkey-overlay-title="音乐播放器：SPlayer" { spawn "splayer"; }
+    Mod+N             hotkey-overlay-title="笔记：obsidian" { spawn "obsidian"; }
+    Mod+Shift+B       hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
+    Mod+Shift+C       hotkey-overlay-title="取色器：hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
 
+    // 不使用 Shell 的场景（已注释）
+    // Mod+D hotkey-overlay-title="应用启动器：rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
+    // Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
+    // Super+Alt+L hotkey-overlay-title="锁定屏幕：gtklock" { spawn "swaylock"; }
+    // Mod+V hotkey-overlay-title="剪贴板管理器：cliphist/rofi" {
+    //     spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy";
+    // }
 
-    // no shell
-    //Mod+D hotkey-overlay-title="应用启动器: rofi" { spawn-sh "rofi -show drun || pkill rofi"; }
-    //Mod+Shift+W hotkey-overlay-title="Waypaper GUI" { spawn-sh "waypaper"; }
-    //Super+Alt+L hotkey-overlay-title="锁定屏幕: gtklock" { spawn "swaylock"; }
-    //Mod+V hotkey-overlay-title="剪贴板管理器: cliphist/rofi" {
-    //spawn-sh "cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy";
-   //}
+    // ==================== 音量控制（已注释） ====================
 
-    // ========================= 音量控制 =========================
+    // XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "5"; }
+    // XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-5"; }
+    // XF86AudioMute allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    // XF86AudioMicMute allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
 
-    //XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "5"; }
-    //XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-5"; }
-    //XF86AudioMuteallow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
-    //XF86AudioMicMuteallow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    // ==================== 亮度控制（已注释） ====================
 
+    // XF86MonBrightnessUp allow-when-locked=true { spawn "swayosd-client" "--brightness" "+5"; }
+    // XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "-5"; }
 
-    // ========================= 亮度控制 =========================
+    // ==================== 窗口管理 — 焦点 ====================
 
-    //XF86MonBrightnessUp allow-when-locked=true{ spawn "swayosd-client" "--brightness" "+5"; }
-    //XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "-5"; }
-
-
-    // ========================= 窗口管理 — 焦点 =========================
-
-    Mod+O hotkey-overlay-title="打开概览" repeat=false { toggle-overview; }
+    Mod+O       hotkey-overlay-title="打开概览" repeat=false { toggle-overview; }
     Mod+Shift+O hotkey-overlay-title="切换窗口透明度" { toggle-window-rule-opacity; }
-    Mod+Q hotkey-overlay-title="关闭焦点窗口" repeat=false { close-window; }
+    Mod+Q       hotkey-overlay-title="关闭焦点窗口" repeat=false { close-window; }
 
-    Mod+Left  hotkey-overlay-title="将焦点移动到左侧的列"{ focus-column-left; }
-    Mod+Down  hotkey-overlay-title="将焦点移动到下方的窗口"{ focus-window-down; }
+    // 方向键
+    Mod+Left  hotkey-overlay-title="将焦点移动到左侧的列" { focus-column-left; }
+    Mod+Down  hotkey-overlay-title="将焦点移动到下方的窗口" { focus-window-down; }
     Mod+Up    hotkey-overlay-title="将焦点移动到上方的窗口" { focus-window-up; }
     Mod+Right hotkey-overlay-title="将焦点移动到右侧的列" { focus-column-right; }
 
+    // 备用方向键（Vim 风格）
     Mod+H { focus-column-left; }
     Mod+J { focus-window-down; }
     Mod+K { focus-window-up; }
     Mod+L { focus-column-right; }
 
+    // ==================== 窗口管理 — 移动 ====================
 
-    // ========================= 窗口管理 — 移动 =========================
-
-    Mod+Ctrl+Left  hotkey-overlay-title="将列向左移动"{ move-column-left; }
-    Mod+Ctrl+Down  hotkey-overlay-title="将窗口向下移动"{ move-window-down; }
-    Mod+Ctrl+Up    hotkey-overlay-title="将窗口向上移动"{ move-window-up; }
+    // 方向键
+    Mod+Ctrl+Left  hotkey-overlay-title="将列向左移动" { move-column-left; }
+    Mod+Ctrl+Down  hotkey-overlay-title="将窗口向下移动" { move-window-down; }
+    Mod+Ctrl+Up    hotkey-overlay-title="将窗口向上移动" { move-window-up; }
     Mod+Ctrl+Right hotkey-overlay-title="将列向右移动" { move-column-right; }
 
+    // 备用方向键（Vim 风格）
     Mod+Ctrl+H { move-column-left; }
     Mod+Ctrl+J { move-window-down; }
     Mod+Ctrl+K { move-window-up; }
     Mod+Ctrl+L { move-column-right; }
 
+    // ==================== 列内导航 ====================
 
-    // ========================= 列内导航 =========================
+    Mod+Home      { focus-column-first; }
+    Mod+End       { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
 
-    Mod+Home        { focus-column-first; }
-    Mod+End         { focus-column-last; }
-    Mod+Ctrl+Home   { move-column-to-first; }
-    Mod+Ctrl+End    { move-column-to-last; }
-
-
-    // ========================= 显示器 — 焦点与移动 =========================
+    // ==================== 显示器 — 焦点与移动 ====================
 
     // 焦点在显示器之间切换
     Mod+Shift+Left  { focus-monitor-left; }
@@ -92,6 +90,7 @@ binds {
     Mod+Shift+Up    { focus-monitor-up; }
     Mod+Shift+Right { focus-monitor-right; }
 
+    // 备用方向键（Vim 风格）
     Mod+Shift+H { focus-monitor-left; }
     Mod+Shift+J { focus-monitor-down; }
     Mod+Shift+K { focus-monitor-up; }
@@ -103,35 +102,34 @@ binds {
     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
 
+    // 备用方向键（Vim 风格）
     Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
 
-
-    // ========================= 工作空间 =========================
+    // ==================== 工作空间 ====================
 
     // 导航
-    Mod+Page_Down    { focus-workspace-down; }
-    Mod+Page_Up      { focus-workspace-up; }
-    Mod+U            { focus-workspace-down; }
-    Mod+I            { focus-workspace-up; }
-    Mod+Tab          { focus-workspace-previous; }
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up   { focus-workspace-up; }
+    Mod+U         { focus-workspace-down; }
+    Mod+I         { focus-workspace-up; }
+    Mod+Tab       { focus-workspace-previous; }
 
-    // 移动列
-    Mod+Ctrl+Page_Down  { move-column-to-workspace-down; }
-    Mod+Ctrl+Page_Up    { move-column-to-workspace-up; }
-    Mod+Ctrl+U          { move-column-to-workspace-down; }
-    Mod+Ctrl+I          { move-column-to-workspace-up; }
+    // 移动列到工作空间
+    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
+    Mod+Ctrl+U         { move-column-to-workspace-down; }
+    Mod+Ctrl+I         { move-column-to-workspace-up; }
 
     // 移动工作空间
-    Mod+Shift+Page_Down  { move-workspace-down; }
-    Mod+Shift+Page_Up    { move-workspace-up; }
-    Mod+Shift+U          { move-workspace-down; }
-    Mod+Shift+I          { move-workspace-up; }
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+    Mod+Shift+U         { move-workspace-down; }
+    Mod+Shift+I         { move-workspace-up; }
 
-
-    // ========================= 按数字键的工作空间 =========================
+    // ==================== 按数字键的工作空间 ====================
 
     // 焦点
     Mod+1 { focus-workspace 1; }
@@ -155,52 +153,47 @@ binds {
     Mod+Ctrl+8 { move-column-to-workspace 8; }
     Mod+Ctrl+9 { move-column-to-workspace 9; }
 
-
-    // ========================= 列和尺寸 =========================
+    // ==================== 列和尺寸 ====================
 
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
     Mod+Comma        { consume-window-into-column; }
     Mod+Period       { expel-window-from-column; }
 
-    Mod+R            { switch-preset-column-width; }
-    Mod+Shift+R      { switch-preset-window-height; }
-    Mod+Ctrl+R       { reset-window-height; }
+    Mod+R       { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R  { reset-window-height; }
 
-    Mod+F            { maximize-column; }
-    Mod+Alt+F        { maximize-window-to-edges; }
-    Mod+Shift+F      { fullscreen-window; }
+    Mod+F       { maximize-column; }
+    Mod+Alt+F   { maximize-window-to-edges; }
+    Mod+Shift+F { fullscreen-window; }
 
-    Mod+Ctrl+F       { expand-column-to-available-width; }
-    Mod+C            { center-column; }
-    Mod+Ctrl+C       { center-visible-columns; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+C      { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
 
-    Mod+Minus        { set-column-width "-10%"; }
-    Mod+Equal        { set-column-width "+10%"; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
 
-    Mod+Shift+Minus  { set-window-height "-10%"; }
-    Mod+Shift+Equal  { set-window-height "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
 
+    // 切换窗口浮动
+    Mod+Space   { toggle-window-floating; }
+    // 切换浮动 / 平铺焦点
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
-    // 用于切换窗口浮动
-    Mod+Space          { toggle-window-floating; }
-    // 用于切换浮动/平铺焦点
-    Mod+Shift+V        { switch-focus-between-floating-and-tiling; }
+    // ==================== 标签页模式 ====================
 
+    Mod+W { toggle-column-tabbed-display; }
 
-    // ========================= 标签页模式 =========================
+    // ==================== 截图 ====================
 
-    Mod+W            { toggle-column-tabbed-display; }
+    Print      { screenshot; }        // 矩形区域
+    Mod+Print  { screenshot-screen; } // 当前输出
+    Ctrl+Print { screenshot-window; } // 当前窗口
 
-
-    // ========================= 截图 =========================
-
-    Print                    { screenshot; }        // 矩形区域
-    Mod+Print                { screenshot-screen; } // 当前输出
-    Ctrl+Print               { screenshot-window; } // 当前窗口
-
-
-    // ========================= 滚动绑定 =========================
+    // ==================== 滚动绑定 ====================
 
     // 垂直移动
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
@@ -209,15 +202,14 @@ binds {
     Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
     // 水平移动列
-    Mod+WheelScrollRight        { focus-column-right; }
-    Mod+WheelScrollLeft         { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight   { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft    { move-column-left; }
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
-    // Shift — 水平滚动
-    Mod+Shift+WheelScrollDown       { focus-column-right; }
-    Mod+Shift+WheelScrollUp         { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown  { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp    { move-column-left; }
-
+    // Shift + 水平滚动
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 }

@@ -1,11 +1,22 @@
-include "./binds.kdl"
-include "./environment.kdl"
-include "./noctalia.kdl"
-include "./recent-windows.kdl"
-include "./patch.kdl"
-// include "./waybar.kdl"
-include "./window-rule.kdl"
+// ============================================================
+// niri 主配置（入口）
+// ============================================================
 
+// ============================================================
+// 子配置
+// ============================================================
+
+include "./binds.kdl"          // 按键绑定
+include "./environment.kdl"    // 环境变量
+include "./noctalia-shell.kdl" // Noctalia Shell 集成
+include "./recent-windows.kdl" // 最近窗口切换（Alt+Tab）
+include "./patch.kdl"          // 补丁 / 特效配置
+// include "./waybar.kdl"      // 旧 Waybar 配置（已弃用，改用 Noctalia）
+include "./window-rule.kdl"    // 窗口规则
+
+// ============================================================
+// 输入设备
+// ============================================================
 
 input {
     keyboard {
@@ -39,53 +50,62 @@ input {
     }
 
     mouse {
-        // off (关闭)
-        // natural-scroll (自然滚动)
-        // accel-speed 0.2 (加速度)
-        // accel-profile "flat" (加速度配置文件)
-        // scroll-method "no-scroll" (滚动方法)
+        // off（关闭）
+        // natural-scroll（自然滚动）
+        // accel-speed 0.2（加速度）
+        // accel-profile "flat"（加速度配置文件）
+        // scroll-method "no-scroll"（滚动方法）
     }
 
     trackpoint {
-        // off (关闭)
-        // natural-scroll (自然滚动)
-        // accel-speed 0.2 (加速度)
-        // accel-profile "flat" (加速度配置文件)
-        // scroll-method "on-button-down" (滚动方法)
-        // scroll-button 273 (滚动按钮)
-        // scroll-button-lock (滚动按钮锁定)
-        // middle-emulation (中键模拟)
+        // off（关闭）
+        // natural-scroll（自然滚动）
+        // accel-speed 0.2（加速度）
+        // accel-profile "flat"（加速度配置文件）
+        // scroll-method "on-button-down"（滚动方法）
+        // scroll-button 273（滚动按钮）
+        // scroll-button-lock（滚动按钮锁定）
+        // middle-emulation（中键模拟）
     }
 
-    // warp-mouse-to-focus (将鼠标定位到焦点窗口)
-    // focus-follows-mouse (焦点跟随鼠标)
+    // warp-mouse-to-focus（将鼠标定位到焦点窗口）
+    // focus-follows-mouse（焦点跟随鼠标）
     focus-follows-mouse max-scroll-amount="0%"
 }
 
+// ============================================================
+// 输出（显示器）
+// ============================================================
+
 output "eDP-1" {
     mode "2520x1680@120.000"
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270. (方向)
-    //transform "normal"
+    // transform "normal"（方向：normal / 90 / 180 / 270 / flipped / flipped-90 / flipped-180 / flipped-270）
     scale 1.75
     position x=0 y=0
-    //focus-at-startup
+    // focus-at-startup
 }
 
-/-output "HDMI-A-1" {
-   //mode "1920x1080@60.000"
-    mode "1600x900@60.000"
-   // mode "2560x1080@60.000"
-    position x=-1366 y=0
-}
+// 备用外接显示器（已注释）
+// output "HDMI-A-1" {
+//     mode "1600x900@60.000"
+//     // mode "1920x1080@60.000"
+//     // mode "2560x1080@60.000"
+//     position x=-1366 y=0
+// }
+
+// ============================================================
+// 布局
+// ============================================================
+
 layout {
-    // Set gaps around windows in logical pixels. (设置窗口周围的间隙，以逻辑像素为单位。)
+    // 窗口间隙（逻辑像素）
     gaps 8
     background-color "transparent"
     center-focused-column "never"
 
-    preset-column-widths { // 你可以通过按 (Mod+R) 来更改列的宽度。
-        // 例如，如果你设置比例为 "0.25"，你可以在屏幕上放置 4 个窗口。
-        // 默认情况下是屏幕的 1/3, 1/2 和 2/3。
+    // 预设列宽（可通过 Mod+R 切换）
+    preset-column-widths {
+        // 例如比例 0.25 可在一屏放置 4 个窗口；默认 1/3、1/2、2/3
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
@@ -93,18 +113,21 @@ layout {
 
     default-column-width { proportion 0.5; }
 
+    // 焦点环
     focus-ring {
         off
     }
 
+    // 边框
     border {
-        // off (关闭)
+        // off（关闭）
         width 2
         active-color "#DACDAA"
         inactive-color "#444C2E"
         urgent-color "#FB4934"
     }
 
+    // 阴影
     shadow {
         on
         softness 15
@@ -114,10 +137,13 @@ layout {
     }
 }
 
+// 不使用客户端装饰（CSD）
 prefer-no-csd
 
+// 截图保存路径
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
+// 快捷键概览（启动时跳过）
 hotkey-overlay {
     skip-at-startup
 }
@@ -128,14 +154,15 @@ cursor {
     xcursor-size 20
 }
 
+// ============================================================
+// 启动时运行的程序
+// ============================================================
+// 普通程序      → spawn-at-startup
+// 后台守护进程  → spawn-sh-at-startup（命令需要 & 时使用）
 
-// niri 启动时运行的程序
-// 后台守护进程 (使用 spawn-sh-at-startup 启动需要 & 的服务)
-// 普通启动程序 (使用 spawn-at-startup 启动)
-//shared
 spawn-sh-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1" // 权限认证代理
-//spawn-sh-at-startup "glance --config ~/.config/glance/glance.yml &" //glance
-spawn-at-startup "udiskie --automount --notify --smart-tray" // 磁盘挂载工具
-spawn-at-startup "nm-applet"           // 网络管理器 Applet
-spawn-at-startup "poweralertd"         // 电源警报守护进程
-spawn-at-startup "blueman-applet"      // 蓝牙 Applet
+// spawn-sh-at-startup "glance --config ~/.config/glance/glance.yml &"         // glance 系统监控
+spawn-at-startup "udiskie --automount --notify --smart-tray"                  // 磁盘挂载工具
+spawn-at-startup "nm-applet"                                                  // 网络管理器 Applet
+spawn-at-startup "poweralertd"                                                // 电源警报守护进程
+spawn-at-startup "blueman-applet"                                             // 蓝牙 Applet
