@@ -4,7 +4,11 @@
 <details>
 <summary>Noctalia-shell (EXPAND)</summary>
 
-<img width="1260" alt="Screenshot from 2026-01-10 12-33-18" src="https://github.com/user-attachments/assets/0b28b5df-9936-4e93-a762-efed37c3e88e" />
+<img width="1260" alt="Screenshot from 2026-08-18 17-39-38" src="https://github.com/user-attachments/assets/982a5ce8-9fa7-463e-a422-61b73c797477" />
+
+<img width="1260" alt="Screenshot from 2026-08-18 17-44-03" src="https://github.com/user-attachments/assets/15328406-7f81-477a-ac77-9cbf1b74b8d4" />
+
+
 
 </details>
 
