@@ -82,7 +82,8 @@ stdenv.mkDerivation {
       --add-flags $out/share/splayer-next/resources/app.asar \
       --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true --wayland-text-input-version=3}}" \
       --set-default ELECTRON_FORCE_IS_PACKAGED 1 \
-      --set-default ELECTRON_IS_DEV 0
+      --set-default ELECTRON_IS_DEV 0 \
+      --inherit-argv0
 
     runHook postInstall
   '';

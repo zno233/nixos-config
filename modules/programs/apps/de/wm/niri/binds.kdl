@@ -18,7 +18,7 @@ binds {
     Mod+Alt+N         hotkey-overlay-title="打开 nixos 配置" { spawn-sh "zeditor $HOME/zno-config"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器：MissionCenter" { spawn "missioncenter"; }
     Mod+M             hotkey-overlay-title="音乐播放器：fooyin" { spawn "fooyin"; }
-    Alt+M             hotkey-overlay-title="音乐播放器：SPlayer" { spawn "splayer"; }
+    Alt+M             hotkey-overlay-title="音乐播放器：splayer-next" { spawn "splayer-next"; }
     Mod+N             hotkey-overlay-title="笔记：obsidian" { spawn "obsidian"; }
     Mod+Shift+B       hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
     Mod+Shift+C       hotkey-overlay-title="取色器：hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }

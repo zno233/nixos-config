@@ -72,7 +72,7 @@ window-rule {
 
     // 媒体 / 播放器
     match app-id=r#"^moe\.tsuna\.tsukimi$"#
-    match app-id=r#"^SPlayer$"#
+    match app-id=r#"^top.imsyy.splayer_next$"#
     match app-id=r#"^spotify$"#
 
     // 游戏
@@ -137,9 +137,9 @@ window-rule {
     open-maximized false
 }
 
-// SPlayer 桌面歌词：底部浮动
+// SPlayer-next 桌面歌词：底部浮动
 window-rule {
-    match app-id=r#"^Splayer$"# title=r#"^桌面歌词$"#
+    match app-id=r#"^top.imsyy.splayer_next$"# title=r#"^SPlayer-Next - Desktop Lyric$"#
     open-floating true
     default-column-width { proportion 0.75; }
     default-floating-position x=0 y=32 relative-to="bottom"
