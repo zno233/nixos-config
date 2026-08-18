@@ -1,6 +1,6 @@
 # Log files and compiled outputs
 *.log
-.result/
+result/
 
 # Local-only dot entries
 .omo/
