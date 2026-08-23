@@ -2,6 +2,10 @@
   flake.modules.nixos.linux-laptop =
     { config, pkgs, ... }:
     {
+      imports = [
+        ./_hardware-configuration.nix
+      ];
+
       # 允许非自由软件
       nixpkgs.config.allowUnfree = true;
 
