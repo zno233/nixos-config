@@ -86,32 +86,28 @@ zno-config/
 │   │                              impermanence [N], pkgs-by-name [G], secrets [NDnd]
 │   ├── programs/          # Application configurations
 │   │   ├── ai [nd]/       #   claude-code, opencode, reasonix, agent
-│   │   ├── browsers [nd]/ #   brave, chrome, zen
-│   │   ├── cli-tools [ND]/#   git, tmux, h-m (generic); parted (nixos); mas (darwin)
-│   │   ├── de [nd]/       #   WM (niri), terminal, shell, theme, file manager, noctalia, noctalia-greeter
-│   │   ├── desktop [N]/   #   NixOS desktop programs (steam, appImage, nix-ld, system-program)
+│   │   ├── browsers [nd]/ #   brave, zen
+│   │   ├── de [nd]/       #   WM (niri), terminal, shell, theme, file manager, noctalia
 │   │   ├── dev [nd]/      #   nvim, helix, zed, git, dev-tools (C/C++, Python, Jupyter)
-│   │   ├── game [nd]/     #   gaming packages
-│   │   ├── media [nd]/    #   mpv, fooyin, spotify, vlc, audacious
+│   │   ├── game [nd]/     #   steam, gaming packages
+│   │   ├── media [nd]/    #   mpv, fooyin, spotify, vlc, obs-studio, gimp
 │   │   ├── note [nd]/     #   obsidian
 │   │   ├── office [nd]/   #   WPS Office, LibreOffice
-│   │   ├── others [nd]/   #   misc overrides, rime
+│   │   ├── others [nd]/   #   rime, system-program
 │   │   ├── scripts [nd]/  #   custom scripts
-│   │   ├── social [nd]/   #   discord
-│   │   ├── tools [nd]/    #   CLI utils, nix-tools, aseprite, yazi, p10k
+│   │   ├── social [nd]/   #   discord, telegram, wechat, qq
+│   │   ├── tools [nd]/    #   CLI utils, nix-tools, yazi, p10k, cli-tools [ND]
 │   │   └── programs.nix   #   aggregator -> flake.modules.homeManager.programs
 │   ├── services/          # System services
-│   │   ├── desktop [N]/   #   pipewire, greetd, dae, flatpak, scx, xserver, …
+│   │   ├── desktop [N]/   #   pipewire, greetd, dae, flatpak, scx, sddm, xserver, …
 │   │   ├── fs/            #   btrfs
 │   │   ├── printing [N]/  #   CUPS
 │   │   └── ssh [ND]/
 │   ├── system/            # System-level settings
 │   │   ├── settings/
 │   │   │   ├── base/                # i18n, network, nh, security
-│   │   │   ├── bluetooth [N]/
-│   │   │   ├── desktop [N]/         # desktop system settings (fonts, graphics, xdg, zram, …)
+│   │   │   ├── desktop [N]/         # desktop system settings (fonts, graphics, xdg, zram, bluetooth, fcitx5)
 │   │   │   ├── firmware [N]/
-│   │   │   ├── inputMethod/         # fcitx5
 │   │   │   ├── systemConstants [NDnd]/
 │   │   │   ├── systemd-boot [N]/
 │   │   │   └── _network/            # subnet-A [networkInterfaces], subnet-B
@@ -151,7 +147,7 @@ Bracket suffixes in directory names are literal and describe the feature's usage
 
 | Tag | Meaning | Used by |
 | --- | --- | --- |
-| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `bluetooth`, `firmware`, `systemd-boot`, `programs/desktop`, `system/settings/desktop` |
+| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `bluetooth`, `firmware`, `systemd-boot`, `system/settings/desktop` |
 | `[D]` | Darwin/macOS only | `hosts/macbook`, `users/alice`, `nix/tools/determinate`, `homebrew` |
 | `[ND]` | NixOS + Darwin | `programs/cli-tools`, `services/ssh`, `nix/tools/home-manager`, `factory/user` |
 | `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs |

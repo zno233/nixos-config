@@ -19,17 +19,25 @@ zno-config/
 │   ├── nix/              # Nix tooling (flake-parts wiring, home-manager, impermanence, homebrew, agenix secrets, pkgs-by-name)
 │   ├── programs/         # Application configurations (flat, tagged category dirs)
 │   │   ├── ai [nd]/      # claude-code, opencode, reasonix, agent
-│   │   ├── browsers [nd]/# brave, chrome, zen
-│   │   ├── cli-tools [ND]/ # platform sets (darwin.nix / nixos.nix / generic.nix)
-│   │   ├── de [nd]/      # WM (niri), terminal, shell, theme, file manager, noctalia, noctalia-greeter
-│   │   ├── desktop [N]/  # NixOS desktop programs (steam, appImage, nix-ld, system-program)
+│   │   ├── browsers [nd]/# brave, zen
+│   │   ├── de [nd]/      # WM (niri), terminal, shell, theme, file manager, noctalia
 │   │   ├── dev [nd]/     # nvim, helix, zed, git, dev-tools
-│   │   ├── game [nd]/ media [nd]/ note [nd]/ office [nd]/ others [nd]/
-│   │   ├── scripts [nd]/ social [nd]/ tools [nd]/
+│   │   ├── game [nd]/    # steam, gaming packages
+│   │   ├── media [nd]/   # mpv, fooyin, spotify, vlc, obs-studio, gimp
+│   │   ├── note [nd]/    # obsidian
+│   │   ├── office [nd]/  # WPS Office, LibreOffice
+│   │   ├── others [nd]/  # rime, system-program
+│   │   ├── scripts [nd]/ # custom scripts
+│   │   ├── social [nd]/  # discord, telegram, wechat, qq
+│   │   ├── tools [nd]/   # CLI utils, nix-tools, yazi, p10k, cli-tools [ND]
 │   │   └── programs.nix  # aggregator → flake.modules.homeManager.programs
 │   ├── services/         # System services (desktop [N], fs, printing [N], ssh [ND])
+│   │   ├── desktop [N]/  #   pipewire, greetd, dae, flatpak, scx, sddm, xserver, …
+│   │   ├── fs/            #   btrfs
+│   │   ├── printing [N]/  #   CUPS
+│   │   └── ssh [ND]/
 │   ├── system/           # System-level settings
-│   │   ├── settings/     # base/, bluetooth [N]/, desktop [N]/, firmware [N]/, inputMethod/, systemConstants [NDnd]/, systemd-boot [N]/, _network/
+│   │   ├── settings/     # base/, desktop [N]/, firmware [N]/, systemConstants [NDnd]/, systemd-boot [N]/, _network/
 │   │   └── system-types/ # Layered types: 1-minimal → 2-default → 3-cli → 4-desktop
 │   ├── users/            # User configurations (user flake-parts + meta.nix for metadata)
 │   └── virt/             # Virtualization configs
@@ -43,7 +51,7 @@ zno-config/
 
 | Tag | Meaning | Used by |
 | --- | --- | --- |
-| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `services/desktop`, `programs/desktop`, `bluetooth`, `firmware`, `systemd-boot`, `factory/mount-cifs-nixos`, `nix/tools/impermanence` |
+| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `services/desktop`, `bluetooth`, `firmware`, `systemd-boot`, `factory/mount-cifs-nixos`, `nix/tools/impermanence` |
 | `[D]` | Darwin/macOS only | `hosts/macbook`, `users/alice`, `nix/tools/determinate`, `nix/tools/homebrew` |
 | `[ND]` | NixOS + Darwin | `programs/cli-tools`, `services/ssh`, `nix/tools/home-manager`, `factory/user` |
 | `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs (`ai [nd]`, `de [nd]`, …) |
@@ -80,14 +88,13 @@ System builds compose layers via `modules/system/system-types/`:
 
 ### Program Aggregation Pattern
 - Each category dir `modules/programs/<category> [nd]/` has a `<category>.nix` that registers `flake.modules.homeManager.<category>` and imports that category's app modules.
-- `modules/programs/programs.nix` registers `flake.modules.homeManager.programs`, importing all categories (`ai`, `browsers`, `de`, …); `system-desktop` (homeManager side) imports `programs`.
+- `modules/programs/programs.nix` registers `flake.modules.homeManager.programs`, importing all categories (`ai`, `browsers`, `de`, `dev`, `game`, `media`, `note`, `office`, `scripts`, `social`, `others`, `tools`); `system-desktop` (homeManager side) imports `programs`.
 - To add a program: create `modules/programs/<category> [nd]/<app>.nix` registering `flake.modules.homeManager.<app>`, and add it to the category's `<category>.nix` imports.
 
 ### Desktop Naming — three distinct concepts
-- `system/settings/desktop [N]/` → `flake.modules.nixos.settings-desktop` (aggregator `desktop.nix`) — NixOS *system settings* for desktop (fonts, graphics, xdg, zram, systemd-oomd, sessionVariables, stylix system layer)
-- `programs/desktop [N]/` → NixOS *program features* (steam, appImage, nix-ld, system-program) imported by `settings-desktop`
-- `services/desktop [N]/` → `flake.modules.nixos.service-desktop` — NixOS *services* (pipewire, greetd, dae, flatpak, …)
-- `programs/de [nd]/` → `flake.modules.homeManager.de` — home-manager *desktop environment* (de = desktop; wm, terminal, shell, theme, noctalia-greeter)
+- `system/settings/desktop [N]/` → `flake.modules.nixos.settings-desktop` (aggregator `desktop.nix`) — NixOS *system settings* for desktop (fonts, graphics, xdg, zram, systemd-oomd, sessionVariables, stylix system layer, bluetooth, fcitx5)
+- `services/desktop [N]/` → `flake.modules.nixos.service-desktop` — NixOS *services* (pipewire, greetd, dae, flatpak, scx, …)
+- `programs/de [nd]/` → `flake.modules.homeManager.de` — home-manager *desktop environment* (de = desktop; wm, terminal, shell, theme, noctalia)
 - Stylix is deliberately split in two layers: `nixos.stylix` (system scaffolding, `autoEnable = false`) and `homeManager.stylix` (per-user theming). Keep them separate.
 
 ### mkOutOfStoreSymlink paths (WARNING)
