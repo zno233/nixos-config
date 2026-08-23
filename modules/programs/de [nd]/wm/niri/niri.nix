@@ -10,7 +10,7 @@
       ...
     }:
     let
-      niriConfig = "${config.home.homeDirectory}/zno-config/modules/programs/de/wm/niri";
+      niriConfig = "${config.home.homeDirectory}/zno-config/modules/programs/de [nd]/wm/niri";
     in
     {
       imports = [

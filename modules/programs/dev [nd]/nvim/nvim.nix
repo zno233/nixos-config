@@ -2,7 +2,7 @@
   flake.modules.homeManager.nvim =
     { config, pkgs, ... }:
     let
-      lazyvimConfig = "${config.home.homeDirectory}/zno-config/modules/programs/apps/dev/nvim/lazyvim";
+      lazyvimConfig = "${config.home.homeDirectory}/zno-config/modules/programs/dev [nd]/nvim/lazyvim";
     in
     {
       programs.neovim = {

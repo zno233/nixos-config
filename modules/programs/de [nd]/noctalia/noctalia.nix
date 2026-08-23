@@ -18,7 +18,7 @@
       ...
     }:
     let
-      noctaliaConfig = "${config.home.homeDirectory}/zno-config/modules/programs/de/noctalia/config.toml";
+      noctaliaConfig = "${config.home.homeDirectory}/zno-config/modules/programs/de [nd]/noctalia/config.toml";
     in
     {
       imports = [
