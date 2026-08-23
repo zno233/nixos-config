@@ -82,24 +82,24 @@ zno-config/
 │   │   └── macbook [D]/
 │   ├── nix/               # Nix tooling
 │   │   ├── flake-parts []/     # dendritic-tools, lib, factory wiring
-│   │   └── tools/              # determinate[D], home-manager[ND], homebrew[D],
-│   │                              impermanence[N], pkgs-by-name[G], secrets[NDnd]
+│   │   └── tools/              # determinate [D], home-manager [ND], homebrew [D],
+│   │                              impermanence [N], pkgs-by-name [G], secrets [NDnd]
 │   ├── programs/          # Application configurations
-│   │   ├── apps/          # Individual apps grouped by category
-│   │   │   ├── ai/        #   claude-code, opencode, reasonix
-│   │   │   ├── browsers/  #   zen-browser
-│   │   │   ├── de/        #   WM (niri), terminal, shell, theme, file manager, noctalia
-│   │   │   ├── dev/       #   nvim, helix, zed, git, dev-tools (C/C++, Python, Jupyter)
-│   │   │   ├── game/      #   HMCL (Minecraft)
-│   │   │   ├── media/     #   mpv, fooyin, spotify, vlc, kazumi, OBS, gimp
-│   │   │   ├── note/      #   obsidian
-│   │   │   ├── office/    #   WPS Office, LibreOffice
-│   │   │   ├── others/    #   misc overrides
-│   │   │   ├── scripts/   #   custom scripts
-│   │   │   ├── social/    #   discord
-│   │   │   └── tools/     #   CLI utils, nix-tools, aseprite, yazi, p10k
-│   │   └── app-sets/      # Platform-specific sets
-│   │       └── cli-tools [ND]/   # git, tmux, h-m (generic); parted (nixos); mas (darwin)
+│   │   ├── ai [nd]/       #   claude-code, opencode, reasonix, agent
+│   │   ├── browsers [nd]/ #   brave, chrome, zen
+│   │   ├── cli-tools [ND]/#   git, tmux, h-m (generic); parted (nixos); mas (darwin)
+│   │   ├── de [nd]/       #   WM (niri), terminal, shell, theme, file manager, noctalia
+│   │   ├── desktop [N]/   #   NixOS desktop settings (settings-desktop)
+│   │   ├── dev [nd]/      #   nvim, helix, zed, git, dev-tools (C/C++, Python, Jupyter)
+│   │   ├── game [nd]/     #   gaming packages
+│   │   ├── media [nd]/    #   mpv, fooyin, spotify, vlc, audacious
+│   │   ├── note [nd]/     #   obsidian
+│   │   ├── office [nd]/   #   WPS Office, LibreOffice
+│   │   ├── others [nd]/   #   misc overrides, rime
+│   │   ├── scripts [nd]/  #   custom scripts
+│   │   ├── social [nd]/   #   discord
+│   │   ├── tools [nd]/    #   CLI utils, nix-tools, aseprite, yazi, p10k
+│   │   └── programs.nix   #   aggregator -> flake.modules.homeManager.programs
 │   ├── services/          # System services
 │   │   ├── desktop [N]/   #   pipewire, greetd, dae, flatpak, scx, xserver, …
 │   │   ├── fs/            #   btrfs
@@ -108,16 +108,17 @@ zno-config/
 │   ├── system/            # System-level settings
 │   │   ├── settings/
 │   │   │   ├── base/                # i18n, network, nh, security
-│   │   │   ├── desktop [N]/
+│   │   │   ├── bluetooth [N]/
 │   │   │   ├── firmware [N]/
+│   │   │   ├── inputMethod/         # fcitx5
 │   │   │   ├── systemConstants [NDnd]/
 │   │   │   ├── systemd-boot [N]/
-│   │   │   └── _network/            # subnet-A, subnet-B
+│   │   │   └── _network/            # subnet-A [networkInterfaces], subnet-B
 │   │   └── system-types/   # Layered system types
-│   │       ├── 1-system-minimal [NDnd]/
-│   │       ├── 2-system-default [NDnd]/
-│   │       ├── 3-system-cli [NDnd]/
-│   │       └── 4-system-desktop [NDnd]/
+│   │       ├── 1 - system-minimal [NDnd]/
+│   │       ├── 2 - system-default [NDnd]/
+│   │       ├── 3 - system-cli [NDnd]/
+│   │       └── 4 - system-desktop [NDnd]/
 │   ├── users/             # User configurations
 │   │   ├── meta.nix       # User metadata (homeDirectory, email, configDirectory)
 │   │   ├── zno [NDn]/     # main user
@@ -131,15 +132,36 @@ zno-config/
 │       ├── podman.nix
 │       ├── virt.nix
 │       └── virtualization.nix
-├── pkgs/                  # Custom packages
+├── pkgs/                  # Custom packages (imported via pkgs-by-name overlay)
 │   ├── 2048/              # Game
+│   ├── fooyin/
 │   ├── harmonyos-sans/    # Font
 │   ├── maple-mono/        # Font
 │   ├── mark-shot/         # Screenshot tool
-│   └── microsoft-fonts/   # Fonts
+│   ├── microsoft-fonts/   # Fonts
+│   └── splayer-next/
 ├── secrets/               # Age-encrypted secrets (agenix)
 └── wallpapers/            # Wallpaper assets
 ```
+
+## Directory Tag Legend
+
+Bracket suffixes in directory names are literal and describe the feature's usage contexts (dendritic convention):
+
+| Tag | Meaning | Used by |
+| --- | --- | --- |
+| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `bluetooth`, `firmware`, `systemd-boot`, `programs/desktop` |
+| `[D]` | Darwin/macOS only | `hosts/macbook`, `users/alice`, `nix/tools/determinate`, `homebrew` |
+| `[ND]` | NixOS + Darwin | `programs/cli-tools`, `services/ssh`, `nix/tools/home-manager`, `factory/user` |
+| `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs |
+| `[NDn]` | NixOS + Darwin + home-manager, with standalone `homeConfigurations` | `users/zno`, `users/bob` |
+| `[NDnd]` | all contexts | `nix/tools/secrets`, `systemConstants`, `system-types/*` |
+| `[G]` | generic (class-independent) | `nix/tools/pkgs-by-name` |
+| `[]` | flake-parts meta wiring (no aspects) | `nix/flake-parts []` |
+| `[networkInterfaces]` | custom DRY class | `settings/_network/subnet-*` |
+| *(no tag)* | grouping dir only, not a feature | `hosts/`, `users/`, `programs/`, `services/`, `system/`, `nix/`, `virt/` |
+
+Tags describe the directory's *primary* context; individual files may additionally register other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`).
 
 ## Architecture
 
@@ -159,7 +181,9 @@ System builds compose layers via `modules/system/system-types/`:
 ### User Registration Pattern
 - `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUser`
 - Factory `modules/factory/user [ND]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
-- Each user has their own `modules/users/<name> [tags]/` directory with `flake-parts.nix` + config module
+- Two coexisting styles:
+  - **Standalone** (`zno [NDn]`, `bob [NDn]`): `flake-parts.nix` registers a standalone `homeConfigurations.<name>` via `mkHomeManager`; the user is also wired into hosts via `hosts/<host>/users/<name>.nix`
+  - **Host-attached** (`alice [D]`, `eve [N]`, `mallory [N]`): no `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
 
 ## Commands
 
@@ -174,6 +198,7 @@ darwin-rebuild switch --flake .#macbook
 
 # Home-manager standalone
 home-manager switch --flake .#zno@linux-laptop
+home-manager build --flake .#bob
 
 # Regenerate flake.nix (after adding/removing inputs in flake-parts)
 nix run .#write-flake
