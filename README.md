@@ -88,8 +88,8 @@ zno-config/
 │   │   ├── ai [nd]/       #   claude-code, opencode, reasonix, agent
 │   │   ├── browsers [nd]/ #   brave, chrome, zen
 │   │   ├── cli-tools [ND]/#   git, tmux, h-m (generic); parted (nixos); mas (darwin)
-│   │   ├── de [nd]/       #   WM (niri), terminal, shell, theme, file manager, noctalia
-│   │   ├── desktop [N]/   #   NixOS desktop settings (settings-desktop)
+│   │   ├── de [nd]/       #   WM (niri), terminal, shell, theme, file manager, noctalia, noctalia-greeter
+│   │   ├── desktop [N]/   #   NixOS desktop programs (steam, appImage, nix-ld, system-program)
 │   │   ├── dev [nd]/      #   nvim, helix, zed, git, dev-tools (C/C++, Python, Jupyter)
 │   │   ├── game [nd]/     #   gaming packages
 │   │   ├── media [nd]/    #   mpv, fooyin, spotify, vlc, audacious
@@ -109,6 +109,7 @@ zno-config/
 │   │   ├── settings/
 │   │   │   ├── base/                # i18n, network, nh, security
 │   │   │   ├── bluetooth [N]/
+│   │   │   ├── desktop [N]/         # desktop system settings (fonts, graphics, xdg, zram, …)
 │   │   │   ├── firmware [N]/
 │   │   │   ├── inputMethod/         # fcitx5
 │   │   │   ├── systemConstants [NDnd]/
@@ -150,7 +151,7 @@ Bracket suffixes in directory names are literal and describe the feature's usage
 
 | Tag | Meaning | Used by |
 | --- | --- | --- |
-| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `bluetooth`, `firmware`, `systemd-boot`, `programs/desktop` |
+| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `bluetooth`, `firmware`, `systemd-boot`, `programs/desktop`, `system/settings/desktop` |
 | `[D]` | Darwin/macOS only | `hosts/macbook`, `users/alice`, `nix/tools/determinate`, `homebrew` |
 | `[ND]` | NixOS + Darwin | `programs/cli-tools`, `services/ssh`, `nix/tools/home-manager`, `factory/user` |
 | `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs |

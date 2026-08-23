@@ -21,15 +21,15 @@ zno-config/
 │   │   ├── ai [nd]/      # claude-code, opencode, reasonix, agent
 │   │   ├── browsers [nd]/# brave, chrome, zen
 │   │   ├── cli-tools [ND]/ # platform sets (darwin.nix / nixos.nix / generic.nix)
-│   │   ├── de [nd]/      # WM (niri), terminal, shell, theme, file manager, noctalia
-│   │   ├── desktop [N]/  # NixOS desktop settings (flake.modules.nixos.settings-desktop)
+│   │   ├── de [nd]/      # WM (niri), terminal, shell, theme, file manager, noctalia, noctalia-greeter
+│   │   ├── desktop [N]/  # NixOS desktop programs (steam, appImage, nix-ld, system-program)
 │   │   ├── dev [nd]/     # nvim, helix, zed, git, dev-tools
 │   │   ├── game [nd]/ media [nd]/ note [nd]/ office [nd]/ others [nd]/
 │   │   ├── scripts [nd]/ social [nd]/ tools [nd]/
 │   │   └── programs.nix  # aggregator → flake.modules.homeManager.programs
 │   ├── services/         # System services (desktop [N], fs, printing [N], ssh [ND])
 │   ├── system/           # System-level settings
-│   │   ├── settings/     # base/, bluetooth [N]/, firmware [N]/, inputMethod/, systemConstants [NDnd]/, systemd-boot [N]/, _network/
+│   │   ├── settings/     # base/, bluetooth [N]/, desktop [N]/, firmware [N]/, inputMethod/, systemConstants [NDnd]/, systemd-boot [N]/, _network/
 │   │   └── system-types/ # Layered types: 1-minimal → 2-default → 3-cli → 4-desktop
 │   ├── users/            # User configurations (user flake-parts + meta.nix for metadata)
 │   └── virt/             # Virtualization configs
@@ -54,7 +54,7 @@ zno-config/
 | `[networkInterfaces]` | custom DRY class | `settings/_network/subnet-A\|B` |
 | *(no tag)* | grouping dir only, not a feature | `hosts/`, `users/`, `programs/`, `services/`, `system/`, `nix/`, `nix/tools/`, `virt/`, `services/fs/`, `settings/base/`, `settings/inputMethod/` |
 
-Tags describe the directory's *primary* context; individual files may additionally register other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`; `desktop [N]/noctalia-greeter.nix` registers `homeManager.noctalia-greeter`).
+Tags describe the directory's *primary* context; individual files may additionally register other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`).
 
 ## Architecture
 
@@ -84,9 +84,10 @@ System builds compose layers via `modules/system/system-types/`:
 - To add a program: create `modules/programs/<category> [nd]/<app>.nix` registering `flake.modules.homeManager.<app>`, and add it to the category's `<category>.nix` imports.
 
 ### Desktop Naming — three distinct concepts
-- `programs/desktop [N]/` → `flake.modules.nixos.settings-desktop` — NixOS *settings* (fonts, nix-ld, steam, zram, xdg, stylix system layer, …)
+- `system/settings/desktop [N]/` → `flake.modules.nixos.settings-desktop` (aggregator `desktop.nix`) — NixOS *system settings* for desktop (fonts, graphics, xdg, zram, systemd-oomd, sessionVariables, stylix system layer)
+- `programs/desktop [N]/` → NixOS *program features* (steam, appImage, nix-ld, system-program) imported by `settings-desktop`
 - `services/desktop [N]/` → `flake.modules.nixos.service-desktop` — NixOS *services* (pipewire, greetd, dae, flatpak, …)
-- `programs/de [nd]/` → `flake.modules.homeManager.de` — home-manager *program category* (wm, terminal, shell, theme)
+- `programs/de [nd]/` → `flake.modules.homeManager.de` — home-manager *desktop environment* (de = desktop; wm, terminal, shell, theme, noctalia-greeter)
 - Stylix is deliberately split in two layers: `nixos.stylix` (system scaffolding, `autoEnable = false`) and `homeManager.stylix` (per-user theming). Keep them separate.
 
 ### mkOutOfStoreSymlink paths (WARNING)
@@ -96,6 +97,11 @@ System builds compose layers via `modules/system/system-types/`:
 - `programs/dev [nd]/nvim/nvim.nix` (`lazyvimConfig`, currently commented out)
 
 **Any future move of those directories must update these strings in the same commit** — eval does not catch a broken symlink path.
+
+Relative path strings that also depend on directory depth (update together with any move):
+- `programs/de [nd]/stylix.nix` — `../../../wallpapers/...` (3 levels to repo root)
+- `system/settings/desktop [N]/stylix.nix` — `../../../../wallpapers/...` (4 levels)
+- `system/system-types/1 - system-minimal [NDnd]/nixos/nixos-minimal.nix` — `../../../../../pkgs` (5 levels)
 
 ## Commands
 

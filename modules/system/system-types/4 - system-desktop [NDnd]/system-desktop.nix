@@ -10,6 +10,7 @@
       system-cli
       service-desktop
       settings-desktop
+      programs
     ];
   };
 

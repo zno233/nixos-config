@@ -1,11 +1,21 @@
 { inputs, ... }:
 {
+  flake.modules.nixos.programs = {
+    imports = with inputs.self.modules.nixos; [
+      browsers # based browser
+      game
+      tools
+      others
+    ];
+  };
+
   flake.modules.homeManager.programs = {
     imports = with inputs.self.modules.homeManager; [
       ai
       browsers # based browser
       de
       dev
+      game
       media
       note
       office
@@ -13,7 +23,6 @@
       social
       others
       tools
-      gaming # packages related to gaming
     ];
   };
 }

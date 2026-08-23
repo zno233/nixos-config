@@ -1,14 +1,14 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.others = {
+  flake.modules.nixos.game = {
     imports = with inputs.self.modules.nixos; [
-      system-program
+      steam
     ];
   };
 
-  flake.modules.homeManager.others = {
+  flake.modules.homeManager.game = {
     imports = with inputs.self.modules.homeManager; [
-      rime-user-overrides
+      gaming
     ];
   };
 }

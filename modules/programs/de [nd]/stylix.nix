@@ -39,7 +39,7 @@
 
         # 【基础壁纸设置】Stylix 必须基于一张图片来提取/匹配主题色
         # 替换为实际的壁纸路径
-        image = ../../../../wallpapers/otherWallpaper/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg;
+        image = ../../../wallpapers/otherWallpaper/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg;
 
         # 【现代暗黑主题方案】
         base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
