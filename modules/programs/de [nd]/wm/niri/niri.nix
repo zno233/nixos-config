@@ -1,8 +1,30 @@
 {
   self,
+  inputs,
   ...
 }:
 {
+  flake-file.inputs = {
+    niri = {
+      url = "github:epireyn/niri-flake";
+      #inputs.niri-unstable.follows = "niri-unstable";
+    };
+  };
+
+  flake.modules.nixos.niri =
+    {
+      ...
+    }:
+    {
+      home-manager.sharedModules = [
+        inputs.self.modules.homeManager.niri
+      ];
+
+      nixpkgs = {
+        overlays = [ self.inputs.niri.overlays.niri ];
+      };
+    };
+
   flake.modules.homeManager.niri =
     {
       config,
@@ -19,7 +41,7 @@
 
       programs.niri = {
         enable = true;
-        package = self.inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+        package = pkgs.niri-unstable;
       };
 
       home = {

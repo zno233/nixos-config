@@ -11,6 +11,7 @@
       imports = [
         inputs.nur.modules.nixos.default
       ];
+
       nixpkgs = {
         # Android sdk license
         config.android_sdk.accept_license = true;
@@ -42,13 +43,7 @@
               hostPlatform = final.stdenv.hostPlatform;
             })
           )
-
-          # 加入 CachyOS kernel overlay
-          inputs.nix-cachyos-kernel.overlays.pinned
-
           inputs.nur.overlays.default
-
-          inputs.niri.overlays.niri
         ];
       };
       nixpkgs.config.allowUnfree = true;
@@ -65,7 +60,7 @@
           # "https://hyprland.cachix.org"
           "https://ghostty.cachix.org"
           # "https://vicinae.cachix.org"
-          "https://niri.cachix.org"
+          "https://niri-epireyn.cachix.org"
           "https://noctalia.cachix.org"
           "https://nixpkgs-wayland.cachix.org"
           "https://attic.xuyh0120.win/lantian"
@@ -81,7 +76,7 @@
           # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
           "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
           # "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
-          "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+          "niri-epireyn.cachix.org-1:tlVyFN7CtsDT+ZcLPS+ekFWeT1X6X4OqvWqbBMyIzFA="
           "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
           "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
           "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="

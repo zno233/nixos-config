@@ -1,7 +1,19 @@
 {
+  self,
+  ...
+}:
+{
+  flake-file.inputs = {
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+  };
+
   flake.modules.nixos.systemd-boot =
     { pkgs, ... }:
     {
+      nixpkgs = {
+        overlays = [ self.inputs.nix-cachyos-kernel.overlays.pinned ];
+      };
+
       boot = {
         kernel.sysctl = {
           # 提高 inotify 文件监视器上限，防止 Vite 等前端开发工具报 ENOSPC 错误

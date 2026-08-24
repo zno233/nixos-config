@@ -3,6 +3,7 @@
   flake.modules.nixos.programs = {
     imports = with inputs.self.modules.nixos; [
       browsers # based browser
+      de
       game
       tools
       others

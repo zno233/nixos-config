@@ -1,4 +1,8 @@
 {
+  # flake-file.inputs = {
+  #   nix-gaming.url = "github:fufexan/nix-gaming";
+  # };
+
   flake.modules.homeManager.gaming =
     { pkgs, ... }:
     {

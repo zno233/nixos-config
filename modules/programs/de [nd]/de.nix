@@ -2,6 +2,7 @@
 {
   flake.modules.nixos.de = {
     imports = with inputs.self.modules.nixos; [
+      wm
       # noctalia-greeter
     ];
   };
@@ -20,7 +21,7 @@
       kitty # terminal
       nemo # file manager
       # superfile/superfile         # terminal file manager
-      wm # window manager
+      # wm # window manager
       xdg-mimes # xdg config
       stylix # theme
       # wayscrollshot # A scrolling screenshot tool for Wayland write in Rust

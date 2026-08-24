@@ -26,6 +26,7 @@ $python\
 $docker_context\
 $conda\
 $pixi\
+$nix_shell\
 [](fg:color_bg3 bg:color_bg1)\
 $time\
 [ ](fg:color_bg1)\
@@ -117,6 +118,18 @@ format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
 
 [git_status]
 style = "bg:color_aqua"
+# 强制定义每个状态的显示格式，包含 ${count}
+staged = "󰐗 ${count} "
+modified = "󰏫 ${count} "
+untracked = "󰧧 ${count} "
+renamed = "󰑕 ${count} "
+deleted = "󰍶 ${count} "
+conflicted = " ${count} "
+ahead = "󰶣 ${count} "
+behind = "󰶡 ${count} "
+diverged = "󰹹 " # 分叉状态通常不需要数字
+
+# 保持你原有的 format，它会自动填充上面定义好的带数字的字符串
 format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
 
 [nodejs]
@@ -192,6 +205,14 @@ disabled = false
 time_format = "%R"
 style = "bg:color_bg1"
 format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
+
+[nix_shell]
+symbol = " "
+style = "bg:color_bg3"
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = '[[ $symbol$name ](fg:color_fg0 bg:color_bg3)]($style)'
 
 [line_break]
 disabled = false
