@@ -4,7 +4,6 @@
     {
       imports = [
         ./_hardware-configuration.nix
-        ./platform-opt.nix
       ];
 
       # 允许非自由软件

@@ -96,6 +96,9 @@
         kitty.enable = false;
         # fzf.enable = false;
 
+        # shell prompt：使用自带的 Gruvbox Rainbow 预设（自定义 color_* 调色板），不交给 Stylix 接管
+        starship.enable = false;
+
         # 桌面环境
         # niri.enable = false;
         qt = {

@@ -25,7 +25,7 @@
           criticalPowerAction = "PowerOff";
         };
 
-        cpupower-gui.enable = true;
+        # cpupower-gui.enable = true;
 
         # tlp = {
         #   enable = true;

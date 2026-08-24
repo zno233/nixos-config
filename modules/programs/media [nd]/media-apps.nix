@@ -23,7 +23,7 @@
         })
         mpv-handler
         splayer-next-electron
-        kazumi # anime online
+        # kazumi # anime online
         tsukimi # emby
         # tauon                       #local music player
         # gapless
