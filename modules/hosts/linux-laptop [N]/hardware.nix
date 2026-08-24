@@ -4,6 +4,7 @@
     {
       imports = [
         ./_hardware-configuration.nix
+        ./platform-opt.nix
       ];
 
       # 允许非自由软件
@@ -20,6 +21,12 @@
       };
       # 1.1 启用 NVIDIA 容器工具包
       hardware.nvidia-container-toolkit.enable = true;
+
+      # 1.2 X server 视频驱动(从共享 xserver.nix 移入的平台特定配置)
+      services.xserver.videoDrivers = [
+        "modesetting"
+        "nvidia"
+      ];
 
       # 2. 屏蔽冲突驱动
       boot.blacklistedKernelModules = [
@@ -41,5 +48,16 @@
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
+
+      # 4. Intel 核显 VA-API 支持
+      hardware.graphics.extraPackages = with pkgs; [
+        intel-media-driver # VA-API
+        vpl-gpu-rt
+      ];
+
+      # 32 位 VA-API 包
+      hardware.graphics.extraPackages32 = [
+        pkgs.pkgsi686Linux.intel-media-driver # 32 位 VA-API
+      ];
     };
 }

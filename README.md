@@ -28,7 +28,7 @@
 | --- | :--- |
 | **Kernel** | [nix-cachyos-kernel][nix-cachyos-kernel] |
 | **Window Manager** | [niri][niri] |
-| **Shell** | [zsh][zsh] + [powerlevel10k][powerlevel10k] |
+| **Shell** | [zsh][zsh] + [starship][starship] |
 | **Terminal** | [kitty][kitty], [ghostty][ghostty] |
 | **Bar / Shell** | [noctalia-shell][noctalia-shell] |
 | **Launcher** | shell-based (no Rofi) |
@@ -74,7 +74,7 @@ zno-config/
 ├── modules/
 │   ├── factory/           # Reusable module templates
 │   │   ├── mount-cifs-nixos [N]/
-│   │   └── user [ND]/
+│   │   └── user [NDn]/
 │   ├── hosts/             # Host-specific configurations
 │   │   ├── linux-desktop [N]/
 │   │   ├── linux-laptop [N]/
@@ -96,21 +96,21 @@ zno-config/
 │   │   ├── others [nd]/   #   rime, system-program
 │   │   ├── scripts [nd]/  #   custom scripts
 │   │   ├── social [nd]/   #   discord, telegram, wechat, qq
-│   │   ├── tools [nd]/    #   CLI utils, nix-tools, yazi, p10k, cli-tools [ND]
+│   │   ├── tools [nd]/    #   CLI utils, nix-tools, yazi, _p10k, cli-tools [NDn]
 │   │   └── programs.nix   #   aggregator -> flake.modules.homeManager.programs
 │   ├── services/          # System services
 │   │   ├── desktop [N]/   #   pipewire, greetd, dae, flatpak, scx, sddm, xserver, …
-│   │   ├── fs/            #   btrfs
+│   │   ├── fs [N]/        #   btrfs
 │   │   ├── printing [N]/  #   CUPS
 │   │   └── ssh [ND]/
 │   ├── system/            # System-level settings
 │   │   ├── settings/
-│   │   │   ├── base/                # i18n, network, nh, security
+│   │   │   ├── base [N]/            # i18n, network, nh, security
 │   │   │   ├── desktop [N]/         # desktop system settings (fonts, graphics, xdg, zram, bluetooth, fcitx5)
 │   │   │   ├── firmware [N]/
 │   │   │   ├── systemConstants [NDnd]/
 │   │   │   ├── systemd-boot [N]/
-│   │   │   └── _network/            # subnet-A [networkInterfaces], subnet-B
+│   │   │   └── _network [N]/        # subnet-A [networkInterfaces], subnet-B
 │   │   └── system-types/   # Layered system types
 │   │       ├── 1 - system-minimal [NDnd]/
 │   │       ├── 2 - system-default [NDnd]/
@@ -120,9 +120,7 @@ zno-config/
 │   │   ├── meta.nix       # User metadata (homeDirectory, email, configDirectory)
 │   │   ├── zno [NDn]/     # main user
 │   │   ├── alice [D]/
-│   │   ├── bob [NDn]/
-│   │   ├── eve [N]/
-│   │   └── mallory [N]/
+│   │   └── eve [N]/
 │   └── virt/              # Virtualization
 │       ├── containers/    # pbh
 │       ├── docker.nix
@@ -147,18 +145,20 @@ Bracket suffixes in directory names are literal and describe the feature's usage
 
 | Tag | Meaning | Used by |
 | --- | --- | --- |
-| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `bluetooth`, `firmware`, `systemd-boot`, `system/settings/desktop` |
+| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `services/desktop`, `services/fs`, `settings/base`, `settings/_network`, `bluetooth`, `firmware`, `systemd-boot` |
 | `[D]` | Darwin/macOS only | `hosts/macbook`, `users/alice`, `nix/tools/determinate`, `homebrew` |
-| `[ND]` | NixOS + Darwin | `programs/cli-tools`, `services/ssh`, `nix/tools/home-manager`, `factory/user` |
+| `[ND]` | NixOS + Darwin | `services/ssh`, `nix/tools/home-manager` |
 | `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs |
-| `[NDn]` | NixOS + Darwin + home-manager, with standalone `homeConfigurations` | `users/zno`, `users/bob` |
+| `[NDn]` | NixOS + Darwin + home-manager | `users/zno` (with standalone `homeConfigurations`), `factory/user`, `programs/tools/cli-tools` |
 | `[NDnd]` | all contexts | `nix/tools/secrets`, `systemConstants`, `system-types/*` |
 | `[G]` | generic (class-independent) | `nix/tools/pkgs-by-name` |
 | `[]` | flake-parts meta wiring (no aspects) | `nix/flake-parts []` |
 | `[networkInterfaces]` | custom DRY class | `settings/_network/subnet-*` |
 | *(no tag)* | grouping dir only, not a feature | `hosts/`, `users/`, `programs/`, `services/`, `system/`, `nix/`, `virt/` |
 
-Tags describe the directory's *primary* context; individual files may additionally register other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`).
+Tags describe the directory's *primary* context. Program categories are self-contained units that may expose **paired nixos/homeManager aggregators** — e.g. `game.nix` registers both `nixos.game` and `homeManager.game`; the nixos side reaches hosts via `programs.nix` → `nixos.programs` → `system-desktop`. The tag reflects the primary (home-manager) surface; individual files may additionally register one-off other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`).
+
+Tags reflect *usage contexts*, not necessarily the registration class: e.g. `systemConstants [NDnd]` registers under `flake.modules.generic` but is imported into all three contexts, while `pkgs-by-name [G]` stays class-independent infrastructure.
 
 ## Architecture
 
@@ -177,10 +177,10 @@ System builds compose layers via `modules/system/system-types/`:
 
 ### User Registration Pattern
 - `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUser`
-- Factory `modules/factory/user [ND]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
+- Factory `modules/factory/user [NDn]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
 - Two coexisting styles:
-  - **Standalone** (`zno [NDn]`, `bob [NDn]`): `flake-parts.nix` registers a standalone `homeConfigurations.<name>` via `mkHomeManager`; the user is also wired into hosts via `hosts/<host>/users/<name>.nix`
-  - **Host-attached** (`alice [D]`, `eve [N]`, `mallory [N]`): no `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
+  - **Standalone** (`zno [NDn]`): `flake-parts.nix` registers a standalone `homeConfigurations.<name>` via `mkHomeManager`; the user is also wired into hosts via `hosts/<host>/users/<name>.nix`
+  - **Host-attached** (`alice [D]`, `eve [N]`): no `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
 
 ## Commands
 
@@ -195,7 +195,6 @@ darwin-rebuild switch --flake .#macbook
 
 # Home-manager standalone
 home-manager switch --flake .#zno@linux-laptop
-home-manager build --flake .#bob
 
 # Regenerate flake.nix (after adding/removing inputs in flake-parts)
 nix run .#write-flake
@@ -227,7 +226,7 @@ Other dotfiles that I ~~copied~~ learned from:
 [noctalia-shell]: https://github.com/noctalia-dev/noctalia-shell
 [kitty]: https://sw.kovidgoyal.net/kitty/
 [ghostty]: https://ghostty.org/
-[powerlevel10k]: https://github.com/romkatv/powerlevel10k
+[starship]: https://starship.rs/
 [btop]: https://github.com/aristocratos/btop
 [mission-center]: https://gitlab.com/mission-center-devs/mission-center
 [nemo]: https://github.com/linuxmint/nemo/

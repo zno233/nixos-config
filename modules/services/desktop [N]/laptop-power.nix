@@ -15,9 +15,6 @@
       ];
 
       services = {
-        # intel温控
-        thermald.enable = true;
-
         # 注释 power-profiles-daemon，避免与 TLP 冲突
         # power-profiles-daemon.enable = true;
         upower = {

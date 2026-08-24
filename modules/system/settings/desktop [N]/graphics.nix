@@ -9,18 +9,10 @@
         # 启用 32 位支持
         enable32Bit = true;
 
-        # 将 VA-API 包和 Mesa (OpenGL/Vulkan) 包合并到同一个 extraPackages 列表
-        extraPackages = with pkgs; [
-          intel-media-driver # VA-API
-          libvdpau-va-gl # VA-API
-          vpl-gpu-rt
-        ];
+        # VDPAU→VA-API 兼容层(通用包,不含硬件驱动,各 GPU 平台共享)
+        extraPackages = [ pkgs.libvdpau-va-gl ];
 
-        # 32 位包也合并到 extraPackages32
-        extraPackages32 = with pkgs.pkgsi686Linux; [
-          intel-media-driver # 32 位 VA-API
-          libvdpau-va-gl
-        ];
+        extraPackages32 = [ pkgs.pkgsi686Linux.libvdpau-va-gl ];
       };
 
       # 硬件固件支持

@@ -11,13 +11,13 @@
         with inputs.self.modules.nixos;
         with inputs.self.factory;
         [
-          bob
+          zno
           (mount-cifs-nixos {
             host = "home-server.lan";
             resource = "home";
-            destination = "/home/users/bob/homeserver";
+            destination = "/home/users/zno/homeserver";
             credentialspath = "${config.age.secrets."homeserver-cred".path}";
-            UID = "bob";
+            UID = "zno";
             GID = "users";
           })
         ];
@@ -28,7 +28,7 @@
 
       # ...
 
-      home-manager.users.bob = {
+      home-manager.users.zno = {
         ###
       };
     };

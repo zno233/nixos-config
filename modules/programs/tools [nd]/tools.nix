@@ -3,6 +3,7 @@
   flake.modules.nixos.tools = {
     imports = with inputs.self.modules.nixos; [
       appImage
+      nh
       nix-ld
     ];
   };
@@ -12,7 +13,8 @@
       # aseprite
       ebook
       nix-search
-      p10k
+      starship
+      # p10k
       # glance
       cli
       mark-shot

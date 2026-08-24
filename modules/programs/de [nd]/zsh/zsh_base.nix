@@ -15,11 +15,6 @@
             src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
           }
           {
-            name = "powerlevel10k";
-            src = pkgs.zsh-powerlevel10k;
-            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-          }
-          {
             name = "zsh-autopair";
             src = "${pkgs.zsh-autopair}/share/zsh/zsh-autopair";
             file = "autopair.zsh";
@@ -116,13 +111,6 @@
         '';
 
         initContent = ''
-          # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-          # Initialization code that may require console input (password prompts, [y/n]
-          # confirmations, etc.) must go above this block; everything else may go below.
-          if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-            source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-          fi
-
           DISABLE_AUTO_UPDATE=true
           DISABLE_MAGIC_FUNCTIONS=true
           export "MICRO_TRUECOLOR=1"
@@ -135,8 +123,6 @@
           setopt hist_find_no_dups
           setopt hist_expire_dups_first
           setopt hist_verify
-
-          source ~/.p10k.zsh
 
           # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
           # - The first argument to the function ($1) is the base path to start traversal
@@ -151,7 +137,7 @@
           }
 
           # Advanced customization of fzf options via _fzf_comprun function
-          # - The first argument to the function is the name of the command.
+          # - The first argument to the function ($1) is the name of the command.
           # - You should make sure to pass the rest of the arguments to fzf.
           _fzf_comprun() {
             local command=$1

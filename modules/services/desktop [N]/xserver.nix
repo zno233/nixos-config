@@ -7,10 +7,8 @@
           enable = true;
           xkb.layout = "us";
           exportConfiguration = true;
-          videoDrivers = [
-            "modesetting"
-            "nvidia"
-          ];
+          # 视频驱动按平台在各主机 hardware.nix 中声明
+          # (如 linux-laptop 的 modesetting/nvidia,见 hosts/linux-laptop [N]/hardware.nix)
         };
 
         #displayManager.autoLogin = {

@@ -1,5 +1,11 @@
 { inputs, ... }:
 {
+  flake.modules.nixos.de = {
+    imports = with inputs.self.modules.nixos; [
+      # noctalia-greeter
+    ];
+  };
+
   flake.modules.homeManager.de = {
     imports = with inputs.self.modules.homeManager; [
       ### shared

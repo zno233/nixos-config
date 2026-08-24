@@ -10,7 +10,7 @@
     ];
     networking.hostName = "macbook";
 
-    system.primaryUser = "bob";
+    system.primaryUser = "alice";
 
     homebrew = {
       enable = true;

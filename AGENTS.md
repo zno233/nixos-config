@@ -10,7 +10,7 @@ zno-config/
 ├── modules/
 │   ├── factory/          # Reusable module templates
 │   │   ├── mount-cifs-nixos [N]/
-│   │   └── user [ND]/
+│   │   └── user [NDn]/
 │   ├── hosts/            # Host-specific configurations (one per machine)
 │   │   ├── linux-desktop [N]/
 │   │   ├── linux-laptop [N]/
@@ -29,18 +29,18 @@ zno-config/
 │   │   ├── others [nd]/  # rime, system-program
 │   │   ├── scripts [nd]/ # custom scripts
 │   │   ├── social [nd]/  # discord, telegram, wechat, qq
-│   │   ├── tools [nd]/   # CLI utils, nix-tools, yazi, p10k, cli-tools [ND]
+│   │   ├── tools [nd]/   # CLI utils, nix-tools, yazi, _p10k, cli-tools [NDn]
 │   │   └── programs.nix  # aggregator → flake.modules.homeManager.programs
-│   ├── services/         # System services (desktop [N], fs, printing [N], ssh [ND])
+│   ├── services/         # System services (desktop [N], fs [N], printing [N], ssh [ND])
 │   │   ├── desktop [N]/  #   pipewire, greetd, dae, flatpak, scx, sddm, xserver, …
-│   │   ├── fs/            #   btrfs
+│   │   ├── fs [N]/        #   btrfs
 │   │   ├── printing [N]/  #   CUPS
 │   │   └── ssh [ND]/
 │   ├── system/           # System-level settings
-│   │   ├── settings/     # base/, desktop [N]/, firmware [N]/, systemConstants [NDnd]/, systemd-boot [N]/, _network/
+│   │   ├── settings/     # base [N]/, desktop [N]/, firmware [N]/, systemConstants [NDnd]/, systemd-boot [N]/, _network [N]/
 │   │   └── system-types/ # Layered types: 1-minimal → 2-default → 3-cli → 4-desktop
 │   ├── users/            # User configurations (user flake-parts + meta.nix for metadata)
-│   └── virt/             # Virtualization configs
+│   └── virt/              # Virtualization configs
 ├── pkgs/                 # Custom packages (imported via nixpkgs overlay in system-minimal)
 ├── secrets/              # Age-encrypted secrets (agenix)
 ├── wallpapers/           # Wallpaper assets
@@ -51,18 +51,20 @@ zno-config/
 
 | Tag | Meaning | Used by |
 | --- | --- | --- |
-| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `services/desktop`, `bluetooth`, `firmware`, `systemd-boot`, `factory/mount-cifs-nixos`, `nix/tools/impermanence` |
+| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `services/desktop`, `services/fs`, `settings/base`, `settings/_network`, `bluetooth`, `firmware`, `systemd-boot`, `factory/mount-cifs-nixos`, `nix/tools/impermanence` |
 | `[D]` | Darwin/macOS only | `hosts/macbook`, `users/alice`, `nix/tools/determinate`, `nix/tools/homebrew` |
-| `[ND]` | NixOS + Darwin | `programs/cli-tools`, `services/ssh`, `nix/tools/home-manager`, `factory/user` |
+| `[ND]` | NixOS + Darwin | `services/ssh`, `nix/tools/home-manager` |
 | `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs (`ai [nd]`, `de [nd]`, …) |
-| `[NDn]` | NixOS + Darwin + home-manager, with standalone `homeConfigurations` | `users/zno`, `users/bob` |
+| `[NDn]` | NixOS + Darwin + home-manager | `users/zno` (with standalone `homeConfigurations`), `factory/user`, `programs/tools/cli-tools` |
 | `[NDnd]` | all contexts | `nix/tools/secrets`, `settings/systemConstants`, `system-types/*` |
 | `[G]` | generic (class-independent) | `nix/tools/pkgs-by-name` |
 | `[]` | flake-parts meta wiring (no aspects) | `nix/flake-parts []` |
 | `[networkInterfaces]` | custom DRY class | `settings/_network/subnet-A\|B` |
-| *(no tag)* | grouping dir only, not a feature | `hosts/`, `users/`, `programs/`, `services/`, `system/`, `nix/`, `nix/tools/`, `virt/`, `services/fs/`, `settings/base/`, `settings/inputMethod/` |
+| *(no tag)* | grouping dir only, not a feature | `hosts/`, `users/`, `programs/`, `services/`, `system/`, `nix/`, `nix/tools/` |
 
-Tags describe the directory's *primary* context; individual files may additionally register other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`).
+Tags describe the directory's *primary* context. Program categories are self-contained units that may expose **paired nixos/homeManager aggregators** — e.g. `game.nix` registers both `nixos.game` and `homeManager.game`; the nixos side reaches hosts via `programs.nix` → `nixos.programs` → `system-desktop`. The tag reflects the primary (home-manager) surface; individual files may additionally register one-off other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`).
+
+Tags reflect *usage contexts*, not necessarily the registration class: e.g. `systemConstants [NDnd]` registers under `flake.modules.generic` but is imported into all three contexts, while `pkgs-by-name [G]` stays class-independent infrastructure.
 
 ## Architecture
 
@@ -81,10 +83,10 @@ System builds compose layers via `modules/system/system-types/`:
 
 ### User Registration Pattern
 - `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUser`
-- Factory `modules/factory/user [ND]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
+- Factory `modules/factory/user [NDn]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
 - Two coexisting styles:
-  - **Standalone** (`zno [NDn]`, `bob [NDn]`): `flake-parts.nix` registers `homeConfigurations.<name>` via `mkHomeManager`; the user is also wired into hosts via `hosts/<host>/users/<name>.nix`
-  - **Host-attached** (`alice [D]`, `eve [N]`, `mallory [N]`): no `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
+  - **Standalone** (`zno [NDn]`): `flake-parts.nix` registers `homeConfigurations.<name>` via `mkHomeManager`; the user is also wired into hosts via `hosts/<host>/users/<name>.nix`
+  - **Host-attached** (`alice [D]`, `eve [N]`): no `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
 
 ### Program Aggregation Pattern
 - Each category dir `modules/programs/<category> [nd]/` has a `<category>.nix` that registers `flake.modules.homeManager.<category>` and imports that category's app modules.
