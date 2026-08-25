@@ -1,7 +1,18 @@
 {
+  inputs,
+  ...
+}:
+{
   flake.modules.nixos.linux-laptop =
     { pkgs, ... }:
     {
+
+      imports = with inputs.self.modules.nixos; [
+        laptop-power
+        firmware
+        services-fs
+      ];
+
       boot = {
         kernelParams = [
           # nvidia驱动相关

@@ -10,10 +10,7 @@
       system-default
       system-base
 
-      btrfs
       ssh
-
-      firmware
 
       cli-tools
 

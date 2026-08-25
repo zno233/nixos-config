@@ -1,4 +1,8 @@
 {
+  inputs,
+  ...
+}:
+{
   flake.modules.nixos.btrfs =
     {
       config,
@@ -6,6 +10,10 @@
       ...
     }:
     {
+      # imports = with inputs.self.modules.nixos; [
+      #   btrbk
+      # ];
+
       # Btrfs 自动动态回收（对所有 Btrfs 文件系统生效）
       systemd.services.btrfs-auto-reclaim = {
         description = "Enable Btrfs dynamic_reclaim + periodic_reclaim";
