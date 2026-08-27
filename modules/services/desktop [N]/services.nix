@@ -11,7 +11,7 @@
         };
 
         dbus.enable = true;
-        fstrim.enable = true; #定期回收 SSD 上不再使用的空间
+        fstrim.enable = true; # 定期回收 SSD 上不再使用的空间
         irqbalance.enable = true; # 提升 IRQ 响应
 
         # needed for GNOME services outside of GNOME Desktop

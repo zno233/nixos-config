@@ -15,7 +15,6 @@
       ]
       ++ (with inputs.self.modules.generic; [
         systemConstants
-        pkgs-by-name
       ]);
   };
 
@@ -31,7 +30,6 @@
       ]
       ++ (with inputs.self.modules.generic; [
         systemConstants
-        pkgs-by-name
       ]);
   };
 
