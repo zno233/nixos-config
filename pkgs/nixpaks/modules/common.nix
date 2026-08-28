@@ -3,6 +3,7 @@
 # https://flatpak.github.io/xdg-desktop-portal/docs/api-reference.html
 {
   lib,
+  pkgs,
   sloth,
   config,
   ...
@@ -230,6 +231,10 @@ in
         (sloth.concat' sloth.xdgConfigHome "/gtk-4.0")
         (sloth.concat' sloth.xdgConfigHome "/fontconfig")
         (sloth.concat' sloth.xdgConfigHome "/dconf")
+        [
+          (lib.getExe pkgs.bashInteractive)
+          "/bin/sh"
+        ]
       ];
       bind.dev = [ "/dev/shm" ] ++ (map (id: "/dev/video${toString id}") (lib.lists.range 0 9));
     };
