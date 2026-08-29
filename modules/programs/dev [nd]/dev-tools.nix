@@ -28,7 +28,7 @@
         cmake
         gnumake
         valgrind
-        llvmPackages_22.clang-tools
+        llvmPackages.clang-tools
 
         ## Python
         #python3

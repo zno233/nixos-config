@@ -51,10 +51,11 @@
 
             # 等宽字体
             monospace = [
-              "Sarasa Mono SC"
+              "Asuka Mono"
+              # "Sarasa Mono SC"
               # "IBM Plex Mono"
               # "Maple mono"
-              "Iosevka Nerd Font"
+              # "Iosevka Nerd Font"
               "Noto Sans Mono"
             ];
 
@@ -82,22 +83,41 @@
         fontDir.enable = true;
 
         packages = with pkgs; [
+          # noto fonts
           noto-fonts
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
           noto-fonts-color-emoji
-          nerd-fonts.iosevka
+
+          # asuka fonts
+          asuka-fonts
+
+          # 霞鹜文楷
           lxgw-wenkai
           lxgw-wenkai-screen
-          sarasa-gothic
-          ibm-plex
-          #joypixels
 
           # windows字体
           win11-fonts
 
           # 鸿蒙字体
           harmonyos-sans
+
+          # Maple Mono
+          maple-mono.NF
+
+          # Nerd Fonts
+          # nerd-fonts.iosevka
+          nerd-fonts.jetbrains-mono
+          nerd-fonts.fira-code
+          # nerd-fonts.caskaydia-cove
+          # nerd-fonts.symbols-only
+
+          # 其他
+          # sarasa-gothic
+          ibm-plex
+          # joypixels
+          # twemoji-color-font # Twitter 风格的 Emoji。
+          # fantasque-sans-mono # 手写风格的等宽字体
 
           # 苹果字体
           # inputs.apple-fonts.packages.${stdenv.hostPlatform.system}.sf-pro

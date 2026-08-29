@@ -56,6 +56,7 @@ in
   # 非 nixpak 包
   # _2048 = pkgs.callPackage ./apps/2048 { };
   # maple-mono-custom = pkgs.callPackage ./apps/maple-mono { inherit inputs; };
+  asuka-fonts = pkgs.callPackage ./apps/asuka-fonts { };
   win11-fonts = pkgs.callPackage ./apps/microsoft-fonts { };
   harmonyos-sans = pkgs.callPackage ./apps/harmonyos-sans { };
   # mark-shot = pkgs.callPackage ./apps/mark-shot { };

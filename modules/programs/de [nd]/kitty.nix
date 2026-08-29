@@ -8,16 +8,11 @@
         themeFile = "gruvbox-dark-hard";
 
         font = {
-          name = "Maple Mono NF";
+          name = "Asuka Mono";
           size = 15;
         };
 
         extraConfig = ''
-          font_features MapleMono-NF-Regular     +ss01 +ss02 +ss04 +ss05 +cv66
-          font_features MapleMono-NF-Bold        +ss01 +ss02 +ss04 +ss05 +cv66
-          font_features MapleMono-NF-Italic      +ss01 +ss02 +ss04 +ss05 +cv66
-          font_features MapleMono-NF-BoldItalic  +ss01 +ss02 +ss04 +ss05 +cv66
-
           cursor_trail 3
           cursor_trail_decay 0.1 0.4
           cursor_trail_start_threshold 2

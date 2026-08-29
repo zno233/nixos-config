@@ -9,19 +9,17 @@
         settings = {
           ##### Font #####
           font-family = [
-            "Maple Mono"
+            "Asuka Mono"
             # "DejaVu Sans"
           ];
           font-size = 16;
           font-feature = [
             "calt"
-            "cv66"
-            "ss05"
           ];
 
           ##### Theme #####
           theme = "gruvbox";
-          background-opacity = 0.5;
+          background-opacity = 0.8;
           adjust-cursor-thickness = 1;
 
           selection-clear-on-copy = true;

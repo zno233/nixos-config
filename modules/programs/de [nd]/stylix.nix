@@ -12,23 +12,8 @@
     {
       # 1. 依然保留基础的字体配置和非 Stylix 接管的独立工具包
       home.packages = with pkgs; [
-        # 字体包（部分供备用或特殊软件调用）
-        maple-mono.NF
-        nerd-fonts.jetbrains-mono
-        nerd-fonts.fira-code
-        nerd-fonts.caskaydia-cove
-        nerd-fonts.symbols-only
-        twemoji-color-font
-        noto-fonts-color-emoji
-        # fantasque-sans-mono
-
-        # 图标包
-        # tela-circle-icon-theme
-
-        # 备用的光标包
-        # phinger-cursors
-        # graphite-cursors
-        # vimix-cursors
+        # 光标
+        bibata-cursors
       ];
 
       # 2. 启用并配置 Stylix
