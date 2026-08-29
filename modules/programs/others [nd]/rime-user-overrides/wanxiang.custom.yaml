@@ -1,3 +1,3 @@
 patch:
-  "switches/@where(name=ascii_mode)/reset": 1
-  "switches/@where(name=emoji)/reset": 1
+  "switches/@0/reset": 1 # ascii_mode 默认英文
+  "switches/@3/reset": 1 # emoji 默认开启
