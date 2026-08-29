@@ -12,7 +12,7 @@
             "Asuka Mono"
             # "DejaVu Sans"
           ];
-          font-size = 16;
+          font-size = 15;
           font-feature = [
             "calt"
           ];
@@ -57,6 +57,8 @@
             "ctrl+shift+c=copy_to_clipboard"
             "ctrl+shift+v=paste_from_clipboard"
 
+            "ctrl+tab=next_tab"
+            "ctrl+shift+tab=previous_tab"
             "ctrl+shift+t=new_tab"
             "ctrl+shift+w=close_tab:this"
             "alt+digit_1=goto_tab:1"

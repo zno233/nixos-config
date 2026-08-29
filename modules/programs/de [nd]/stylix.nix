@@ -43,7 +43,7 @@
         fonts = {
           monospace = {
             package = pkgs.maple-mono.NF;
-            name = "monospace"; # 自动走系统里的 [ "Sarasa Mono SC", "Iosevka Nerd Font" ... ]
+            name = "monospace"; # 自动走系统里的 [ "Asuka Mono", "Noto Sans Mono" ... ]
           };
 
           sansSerif = {
@@ -79,6 +79,7 @@
 
         # 终端
         kitty.enable = false;
+        ghostty.enable = false;
         # fzf.enable = false;
 
         # shell prompt：使用自带的 Gruvbox Rainbow 预设（自定义 color_* 调色板），不交给 Stylix 接管

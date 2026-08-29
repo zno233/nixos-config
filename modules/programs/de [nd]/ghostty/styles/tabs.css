@@ -1,27 +1,32 @@
+/* Headerbar 高度和间距（保持原样） */
 headerbar {
     min-height: 30px;
     padding: 0;
     margin: 0;
 }
 
+/* Tabbar 背景改为透明度0.8 */
 tabbar tabbox {
     margin: 0;
     padding: 0;
     min-height: 30px;
-    background-color: #1d2021;
+    background-color: rgba(29, 32, 33, 0.8);
 }
 
+/* Tab 文字颜色 */
 tabbar tabbox tab {
     margin: 0;
     padding: 0;
     color: #fbf1c7;
 }
 
+/* 选中 Tab 背景和颜色 */
 tabbar tabbox tab:selected {
     background-color: #282828;
     color: #fbf1c7;
 }
 
+/* Tab 文字大小 */
 tabbar tabbox tab label {
-    font-size: 18px;
+    font-size: 16px;
 }

@@ -79,7 +79,7 @@ window-rule {
     match app-id=r#"^steam$"#
 
     // 其他
-    match app-id=r#"^com\.mitchellh\.ghostty$"#
+    // match app-id=r#"^com\.mitchellh\.ghostty$"#
     match app-id=r#"^electron$"#
     match app-id=r#"^pix$"#
     // match app-id=r#"^kitty$"#
