@@ -21,7 +21,7 @@ in
         Description=PeerBanHelper (System-level Quadlet)
         After=network-online.target
         Wants=network-online.target
-        Requires=network-online.target   # 加强网络依赖
+        Requires=network-online.target
 
         [Container]
         Image=ghostchu/peerbanhelper:latest

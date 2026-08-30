@@ -4,9 +4,9 @@
 <details>
 <summary>Noctalia-shell (EXPAND)</summary>
 
-<img width="1260" alt="Screenshot from 2026-08-18 17-39-38" src="https://github.com/user-attachments/assets/982a5ce8-9fa7-463e-a422-61b73c797477" />
+<img width="1260" alt="Screenshot from 2026-08-30 16-17-23" src="https://github.com/user-attachments/assets/753ab4c9-d068-42cb-8508-515c670d4c53" />
 
-<img width="1260" alt="Screenshot from 2026-08-18 17-44-03" src="https://github.com/user-attachments/assets/15328406-7f81-477a-ac77-9cbf1b74b8d4" />
+<img width="1260" alt="Screenshot from 2026-08-30 16-17-02" src="https://github.com/user-attachments/assets/1cb0ebe6-7388-42cf-86cb-8d518c0ac3c6" />
 
 
 
@@ -31,27 +31,20 @@
 | **Shell** | [zsh][zsh] + [starship][starship] |
 | **Terminal** | [kitty][kitty], [ghostty][ghostty] |
 | **Bar / Shell** | [noctalia-shell][noctalia-shell] |
-| **Launcher** | shell-based (no Rofi) |
-| **Notification** | shell-based (no mako/swaync) |
 | **Input Method** | [fcitx5][fcitx5] + [rime_wanxiang][rime_wanxiang] |
-| **Text Editor** | [neovim][neovim] (LazyVim) + [helix][helix] + [zed][zed] |
-| **IDE / Code** | [VSCode][VSCode], [zed][zed] |
-| **AI Tools** | [claude-code][claude-code], [opencode][opencode], [reasonix][reasonix] |
-| **Network** | [NetworkManager][NetworkManager] + [network-manager-applet][network-manager-applet] |
+| **Text Editor** | [zed][zed] + [neovim][neovim] + [helix][helix] |
+| **IDE / Code** | [zed][zed] + [VSCode][VSCode] |
 | **System Monitor** | [btop][btop], [mission-center][mission-center] |
 | **File Manager** | [nemo][nemo] |
-| **Fonts** | [Maple Mono][Maple Mono] + [HarmonyOS Sans][HarmonyOS Sans] + [LXGW WenKai][LXGW WenKai] |
+| **Fonts** | [Maple Mono][Maple Mono] + [Asuka Fonts][Asuka Fonts] + [LXGW WenKai][LXGW WenKai] |
 | **Gtk & Qt Theme** | [stylix][stylix] |
 | **Cursor** | [Bibata-Modern-Ice][Bibata-Modern-Ice] |
 | **Icons** | [Papirus-Dark][Papirus-Dark] |
 | **Browser** | [brave][brave], [zen-browser][zen-browser] |
-| **Image Viewer** | [pix][pix] |
 | **Media Player** | [mpv][mpv] + [vlc][vlc] |
-| **Music Player** | [fooyin][fooyin] + [audacious][audacious] + [spotify][spotify] (spicetify) |
+| **Music Player** | [fooyin][fooyin] + [splayer-next][splayer-next] + [spotify][spotify] (spicetify) |
 | **Note Taking** | [obsidian][obsidian] |
 | **Screen Recording** | [OBS Studio][OBS] |
-| **CLI Tools** | [ripgrep][ripgrep], [duf][duf], [gping][gping], [eza][eza], [fd][fd], [broot][broot], [yazi][yazi] … |
-| **Nix Tools** | [nvd][nvd], [nix-du][nix-du], [nix-tree][nix-tree], [nix-output-monitor][nix-output-monitor] … |
 
 ---
 
@@ -64,79 +57,31 @@
 | `homeserver` | x86_64-linux | NixOS | `[N]` |
 | `macbook` | aarch64-darwin | nix-darwin | `[D]` |
 
-## Project Structure
+## Nix Evaluation Flow
 
-```
-zno-config/
-├── flake.nix              # Auto-generated — DO NOT edit by hand
-├── AGENTS.md              # Agent guidelines for AI-assisted development
-├── syscheck.sh            # System health/diagnostic script
-├── modules/
-│   ├── factory/           # Reusable module templates
-│   │   ├── mount-cifs-nixos [N]/
-│   │   └── user [NDn]/
-│   ├── hosts/             # Host-specific configurations
-│   │   ├── linux-desktop [N]/
-│   │   ├── linux-laptop [N]/
-│   │   ├── homeserver [N]/
-│   │   └── macbook [D]/
-│   ├── nix/               # Nix tooling
-│   │   ├── flake-parts []/     # dendritic-tools, lib, factory wiring
-│   │   └── tools/              # determinate [D], home-manager [ND], homebrew [D],
-│   │                              impermanence [N], pkgs-by-name [G], secrets [NDnd]
-│   ├── programs/          # Application configurations
-│   │   ├── ai [nd]/       #   claude-code, opencode, reasonix, agent
-│   │   ├── browsers [nd]/ #   brave, zen
-│   │   ├── de [nd]/       #   WM (niri), terminal, shell, theme, file manager, noctalia
-│   │   ├── dev [nd]/      #   nvim, helix, zed, git, dev-tools (C/C++, Python, Jupyter)
-│   │   ├── game [nd]/     #   steam, gaming packages
-│   │   ├── media [nd]/    #   mpv, fooyin, spotify, vlc, obs-studio, gimp
-│   │   ├── note [nd]/     #   obsidian
-│   │   ├── office [nd]/   #   WPS Office, LibreOffice
-│   │   ├── others [nd]/   #   rime, system-program
-│   │   ├── scripts [nd]/  #   custom scripts
-│   │   ├── social [nd]/   #   discord, telegram, wechat, qq
-│   │   ├── tools [nd]/    #   CLI utils, nix-tools, yazi, _p10k, cli-tools [NDn]
-│   │   └── programs.nix   #   aggregator -> flake.modules.homeManager.programs
-│   ├── services/          # System services
-│   │   ├── desktop [N]/   #   pipewire, greetd, dae, flatpak, scx, sddm, xserver, …
-│   │   ├── fs [N]/        #   btrfs
-│   │   ├── printing [N]/  #   CUPS
-│   │   └── ssh [ND]/
-│   ├── system/            # System-level settings
-│   │   ├── settings/
-│   │   │   ├── base [N]/            # i18n, network, nh, security
-│   │   │   ├── desktop [N]/         # desktop system settings (fonts, graphics, xdg, zram, bluetooth, fcitx5)
-│   │   │   ├── firmware [N]/
-│   │   │   ├── systemConstants [NDnd]/
-│   │   │   ├── systemd-boot [N]/
-│   │   │   └── _network [N]/        # subnet-A [networkInterfaces], subnet-B
-│   │   └── system-types/   # Layered system types
-│   │       ├── 1 - system-minimal [NDnd]/
-│   │       ├── 2 - system-default [NDnd]/
-│   │       ├── 3 - system-cli [NDnd]/
-│   │       └── 4 - system-desktop [NDnd]/
-│   ├── users/             # User configurations
-│   │   ├── meta.nix       # User metadata (homeDirectory, email, configDirectory)
-│   │   ├── zno [NDn]/     # main user
-│   │   ├── alice [D]/
-│   │   └── eve [N]/
-│   └── virt/              # Virtualization
-│       ├── containers/    # pbh
-│       ├── docker.nix
-│       ├── podman.nix
-│       ├── virt.nix
-│       └── virtualization.nix
-├── pkgs/                  # Custom packages (imported via pkgs-by-name overlay)
-│   ├── 2048/              # Game
-│   ├── fooyin/
-│   ├── harmonyos-sans/    # Font
-│   ├── maple-mono/        # Font
-│   ├── mark-shot/         # Screenshot tool
-│   ├── microsoft-fonts/   # Fonts
-│   └── splayer-next/
-├── secrets/               # Age-encrypted secrets (agenix)
-└── wallpapers/            # Wallpaper assets
+```mermaid
+flowchart TD
+    A["flake.nix"] -->|"import-tree"| B["modules/*"]
+    
+    B -->|"register"| C["flake.modules.nixos.*"]
+    B -->|"register"| D["flake.modules.darwin.*"]
+    B -->|"register"| E["flake.modules.homeManager.*"]
+    
+    F["hosts/*/flake-parts.nix"] -->|"mkNixos"| G["nixpkgs.lib.nixosSystem"]
+    F -->|"mkDarwin"| H["nix-darwin.lib.darwinSystem"]
+    I["users/*/flake-parts.nix"] -->|"mkHomeManager"| J["home-manager.lib.homeManagerConfiguration"]
+    
+    G -->|"modules"| C
+    H -->|"modules"| D
+    J -->|"modules"| E
+    
+    K["hosts/*/configuration.nix"] -->|"imports"| L["system-types"]
+    L --> L1["1-system-minimal"]
+    L1 --> L2["2-system-default"]
+    L2 --> L3["3-system-cli"]
+    L3 --> L4["4-system-desktop"]
+    
+    L4 -->|"imports"| M["service-desktop + settings-desktop + programs"]
 ```
 
 ## Directory Tag Legend
@@ -164,23 +109,22 @@ Tags reflect *usage contexts*, not necessarily the registration class: e.g. `sys
 
 ### System Types
 System builds compose layers via `modules/system/system-types/`:
-1. **`1-system-minimal`** — base nixpkgs config, overlays (CachyOS kernel, niri, NUR, custom pkgs), substituters, stateVersion
-2. **`2-system-default`** — imports system-minimal
-3. **`3-system-cli`** — imports system-default + CLI tools
-4. **`4-system-desktop`** — imports system-cli + desktop services + desktop settings
+1. **`1-system-minimal`** — base nixpkgs config, overlays (NUR, custom pkgs, lix tools), substituters, stateVersion
+2. **`2-system-default`** — imports system-minimal + home-manager + secrets + systemConstants (+ determinate + homebrew on darwin)
+3. **`3-system-cli`** — imports system-default + system-base + ssh + cli-tools + virt
+4. **`4-system-desktop`** — imports system-cli + service-desktop + settings-desktop (nixos); system-cli (darwin); system-cli + programs (home-manager)
 
 ### Flake Wiring (Dendritic Pattern)
-- `modules/nix/flake-parts []/dendritic-tools.nix` — imports flake-parts + flake-file + import-tree modules; defines all systems
+- `flake.nix` uses `import-tree ./modules` to auto-discover and import all modules
+- `modules/nix/flake-parts []/dendritic-tools.nix` — imports flake-parts + flake-file + import-tree; defines all systems
 - `modules/nix/flake-parts []/lib.nix` — defines `flake.lib` helpers: `mkNixos`, `mkDarwin`, `mkHomeManager`
 - Each host/user adds a `flake-parts.nix` that calls one of the `mk*` helpers
-- Modules register themselves under `flake.modules.nixos.<name>`, `flake.modules.darwin.<name>`, or `flake.modules.homeManager.<name>` depending on target
+- Modules register themselves under `flake.modules.nixos.<name>`, `flake.modules.darwin.<name>`, or `flake.modules.homeManager.<name>`
 
 ### User Registration Pattern
 - `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUser`
 - Factory `modules/factory/user [NDn]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
-- Two coexisting styles:
-  - **Standalone** (`zno [NDn]`): `flake-parts.nix` registers a standalone `homeConfigurations.<name>` via `mkHomeManager`; the user is also wired into hosts via `hosts/<host>/users/<name>.nix`
-  - **Host-attached** (`alice [D]`, `eve [N]`): no `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
+- All users are **host-attached**: no standalone `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
 
 ## Commands
 
@@ -193,20 +137,12 @@ sudo nixos-rebuild switch --flake .#homeserver
 # Build darwin
 darwin-rebuild switch --flake .#macbook
 
-# Home-manager standalone
-home-manager switch --flake .#zno@linux-laptop
-
 # Regenerate flake.nix (after adding/removing inputs in flake-parts)
 nix run .#write-flake
 
 # Flake evaluation
 nix flake show
 nix eval .#nixosConfigurations.linux-laptop.config.system.build.toplevel.name
-
-# System diagnostic
-./syscheck.sh              # interactive menu
-./syscheck.sh all           # full check
-./syscheck.sh --output report.txt  # save report
 
 # Update inputs
 nix flake update
@@ -243,33 +179,18 @@ Other dotfiles that I ~~copied~~ learned from:
 [mpv]: https://github.com/mpv-player/mpv
 [vlc]: https://www.videolan.org/vlc/
 [fooyin]: https://github.com/fooyin/fooyin
-[audacious]: https://audacious-media-player.org/
+[splayer-next]: https://github.com/SPlayer-Dev/SPlayer-Next
 [spotify]: https://open.spotify.com/
 [spicetify-nix]: https://github.com/Gerg-L/spicetify-nix
 [obsidian]: https://obsidian.md/
 [OBS]: https://obsproject.com/
 [zen-browser]: https://zen-browser.app/
-[discord]: https://discord.com/
 [Maple Mono]: https://github.com/subframe7536/maple-font
-[HarmonyOS Sans]: https://developer.huawei.com/consumer/cn/design/resource/
+[Asuka Fonts]: https://github.com/zno233/asuka-fonts
 [LXGW WenKai]: https://github.com/lxgw/LxgwWenKai
 [NetworkManager]: https://wiki.gnome.org/Projects/NetworkManager
 [network-manager-applet]: https://gitlab.gnome.org/GNOME/network-manager-applet/
-[Gruvbox]: https://github.com/morhetz/gruvbox
 [Papirus-Dark]: https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
 [Bibata-Modern-Ice]: https://www.gnome-look.org/p/1197198
-[pix]: https://github.com/linuxmint/pix
-[ripgrep]: https://github.com/BurntSushi/ripgrep
-[duf]: https://github.com/muesli/duf
-[gping]: https://github.com/orf/gping
-[eza]: https://eza.rocks/
-[fd]: https://github.com/sharkdp/fd
-[broot]: https://dystroy.org/broot/
-[yazi]: https://yazi-rs.github.io/
-[nvd]: https://gitlab.com/khumba/nvd
-[nix-du]: https://github.com/neffo/nix-du
-[nix-tree]: https://github.com/utdemir/nix-tree
-[nix-output-monitor]: https://github.com/maralorn/nix-output-monitor
 [stylix]:https://github.com/nix-community/stylix
 [brave]:https://github.com/brave/brave-browser
-[nix-cachyos-kernel]:https://github.com/xddxdd/nix-cachyos-kernel

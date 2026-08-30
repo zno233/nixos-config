@@ -16,8 +16,13 @@
         dockerCompat = true; # 命令别名
         dockerSocket.enable = true; # 模拟 Docker daemon 的 socket 接口
         defaultNetwork.settings.dns_enabled = true;
-        # 可选：自动 prune
-        # autoPrune.enable = true;
+        # 自动清理无用容器/镜像/网络（每周日凌晨 3 点）
+        autoPrune = {
+          enable = true;
+          dates = "weekly";
+          flags = [ "--all" ];
+        };
+
       };
 
       # 为用户 zno 配置 subuid/subgid（必须）
