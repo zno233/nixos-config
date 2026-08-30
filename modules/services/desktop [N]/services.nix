@@ -22,13 +22,13 @@
 
         logind = {
           settings.Login = {
-            # don’t shutdown when power button is short-pressed
             HandlePowerKey = "ignore";
+            KillUserProcesses = true;
           };
         };
 
         udisks2.enable = true;
-        seatd.enable = true;
+        # seatd.enable = true;
       };
 
     };
