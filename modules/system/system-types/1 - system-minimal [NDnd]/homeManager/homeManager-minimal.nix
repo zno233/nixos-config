@@ -18,6 +18,6 @@
           (lib.mkForce "/Users/${config.home.username}")
         else
           "/home/${config.home.username}";
-      home.stateVersion = "25.05";
+      home.stateVersion = "26.05";
     };
 }

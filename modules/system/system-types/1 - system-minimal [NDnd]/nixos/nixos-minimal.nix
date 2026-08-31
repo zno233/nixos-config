@@ -47,7 +47,7 @@
         ];
       };
       nixpkgs.config.allowUnfree = true;
-      system.stateVersion = "25.05";
+      system.stateVersion = "26.05";
 
       nix.settings = {
         auto-optimise-store = true;

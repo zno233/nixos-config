@@ -13,7 +13,7 @@
     {
       nixpkgs.config.allowUnfree = true;
 
-      system.stateVersion = 6;
+      system.stateVersion = 7;
 
       # Custom settings written to /etc/nix/nix.custom.conf
 
