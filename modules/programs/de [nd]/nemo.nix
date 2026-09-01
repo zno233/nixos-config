@@ -43,7 +43,7 @@
           [Nemo Action]
           Name=Open with Zed
           Comment=Open with Zed Editor
-          Exec=zeditor %F
+          Exec=zeditor --new %F
           Icon-Name=zed
           Selection=any
           Extensions=any;

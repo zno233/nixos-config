@@ -23,6 +23,9 @@ let
           prefixPathes = with pkgs; [
             coreutils
             glib # provides "gsettings"
+            gawk
+            gnugrep
+            gnused
           ];
         };
         flatpak = {
@@ -35,6 +38,8 @@ let
             x11 = true;
           };
           shareIpc = true;
+          dieWithParent = true;
+          newSession = true;
           tmpfs = [ "/var/tmp" ];
           bind.ro = [
             "/etc/passwd"
@@ -55,6 +60,7 @@ let
             QT_IM_MODULE = "fcitx";
             XMODIFIERS = "@im=fcitx";
             QT_FONT_DPI = "148";
+            QT_QPA_PLATFORM = "xcb";
           };
         };
       };
@@ -68,9 +74,9 @@ buildEnv {
     (makeDesktopItem {
       name = appId;
       desktopName = "WPS Office";
-      genericName = "WPS";
-      comment = "Use WPS Writer to office work.";
-      exec = "${exePath} %f";
+      genericName = "Office Suite";
+      comment = "WPS Office - Word, Spreadsheet, Presentation";
+      exec = "${exePath} %U";
       startupNotify = false;
       terminal = false;
       icon = "${wpsoffice-cn}/share/icons/hicolor/scalable/apps/wps-office2023-wpsmain.svg";
@@ -79,6 +85,19 @@ buildEnv {
         "Office"
         "WordProcessor"
         "Qt"
+      ];
+      mimeTypes = [
+        "application/msword"
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        "application/vnd.ms-excel"
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "application/vnd.ms-powerpoint"
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+        "application/pdf"
+        "application/vnd.oasis.opendocument.text"
+        "application/vnd.oasis.opendocument.spreadsheet"
+        "application/vnd.oasis.opendocument.presentation"
+        "text/plain"
       ];
       startupWMClass = "wpsoffice";
       extraConfig = {

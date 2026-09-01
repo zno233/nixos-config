@@ -73,6 +73,6 @@ in
     # telegram = wrapper pkgs ./nixpaks/telegram.nix;
     # spotify = wrapper pkgs ./nixpaks/spotify.nix;
     # wemeet = wrapper pkgs ./nixpaks/wemeet.nix;
-    wpsoffice = wrapper pkgs ./nixpaks/wpsoffice.nix;
+    # wpsoffice = wrapper pkgs ./nixpaks/wpsoffice.nix;
   };
 }
