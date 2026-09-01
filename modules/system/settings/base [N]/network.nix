@@ -1,11 +1,18 @@
 {
   flake.modules.nixos.network =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       networking = {
         nftables.enable = true;
         networkmanager = {
           enable = true;
+          wifi = {
+            backend = "iwd";
+            macAddress = "stable-ssid";
+          };
           dns = "systemd-resolved";
         };
 
@@ -15,6 +22,13 @@
         #   "8.8.4.4" # Google DNS 备用
         #   "1.1.1.1" # Cloudflare DNS
         # ];
+
+        wireless.iwd = {
+          enable = true;
+          settings = {
+            General.AddressRandomization = "networks";
+          };
+        };
 
         firewall = {
           enable = true;

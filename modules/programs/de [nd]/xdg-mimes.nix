@@ -10,8 +10,8 @@
         audio = [ "org.fooyin.fooyin" ];
         video = [ "mpv.desktop" ];
         directory = [ "nemo.desktop" ];
-        office = [ "libreoffice.desktop" ];
-        pdf = [ "org.gnome.Evince.desktop" ];
+        office = [ "wps-office-wps.desktop" ];
+        pdf = [ "wps-office-pdf.desktop" ];
         terminal = [ "kitty.desktop" ];
         archive = [ "org.gnome.FileRoller.desktop" ];
         discord = [ "webcord.desktop" ];
@@ -115,6 +115,7 @@
           "application/vnd.ms-powerpoint"
           "application/rtf"
           "text/rtf"
+          "text/csv"
         ];
         pdf = [ "application/pdf" ];
         terminal = [
