@@ -44,6 +44,9 @@ start = [ "launcher", "workspaces", "group:g1", "weather", "nix-monitor", "activ
     opacity = 0.40000000596046448
     padding = 6.0
 
+[battery]
+warning_threshold = 20
+
 [calendar]
 enabled = true
 
@@ -84,6 +87,8 @@ widget_order = [
     cx = 720.0
     cy = 728.0
     output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1440.0
     rotation = 0.0
     type = "login_box"
 
@@ -109,6 +114,8 @@ widget_order = [
     cx = 304.0
     cy = 608.0
     output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1440.0
     rotation = 0.0
     type = "weather"
 
@@ -122,6 +129,8 @@ widget_order = [
     cx = 720.0
     cy = 256.0
     output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1440.0
     rotation = 0.0
     type = "clock"
 
@@ -135,6 +144,8 @@ widget_order = [
     cx = 720.0
     cy = 792.0
     output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1440.0
     rotation = -0.0
     type = "label"
 
@@ -148,6 +159,8 @@ widget_order = [
     cx = 720.0
     cy = 575.806640625
     output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1440.0
     rotation = 0.0
     type = "sticker"
 
@@ -162,6 +175,8 @@ widget_order = [
     cx = 1171.0
     cy = 624.0
     output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1440.0
     rotation = 0.0
     type = "media_player"
 
@@ -179,6 +194,9 @@ widget_order = [
 
 [osd]
 position = "top_right"
+
+[plugin_settings."cleboost/hotspot"]
+password = "1314250hh"
 
 [plugins]
 enabled = []
@@ -276,8 +294,7 @@ directory = "/home/zno/Pictures/wallpapers/others"
     palette_source = "wallpaper"
     path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
     theme_mode = "dark"
-    wallpaper_scheme = "m3-content"
-
+    wallpaper_scheme = "m3-tonal-spot"
 
 [widget.active_window]
 capsule = true
@@ -319,6 +336,7 @@ capsule = true
 capsule_opacity = 0.40000000000000002
 hide_when_no_media = true
 max_length = 150.0
+show_progress = true
 title_scroll = "on_hover"
 
 [widget.network]
@@ -376,4 +394,6 @@ capsule_opacity = 0.40000000000000002
 show_condition = false
 
 [widget.workspaces]
+scale = 1.0
 show_labels = false
+style = "regular"

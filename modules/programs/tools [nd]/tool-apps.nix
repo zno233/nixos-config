@@ -8,7 +8,7 @@
         gnome-disk-utility
         mission-center # GUI resources monitor
         zenity
-        # font-manager  # broken: https://github.com/NixOS/nixpkgs/issues/557142
+        font-manager
         localsend
         nwg-look
         bleachbit # System cleaner
