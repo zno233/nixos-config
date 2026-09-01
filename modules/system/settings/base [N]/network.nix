@@ -49,7 +49,7 @@
               "8.8.8.8" # Google DNS
             ];
 
-            DNSStubListener = "no";
+            DNSStubListener = "yes";
             DNSSEC = "allow-downgrade";
             DNSOverTLS = "no";
             Cache = "yes";
