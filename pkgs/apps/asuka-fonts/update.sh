@@ -152,10 +152,10 @@ stdenvNoCC.mkDerivation {
   '';
 
   meta = with lib; {
-    description = "Iosevka-based font with Nerd Font icons and CJK support";
+    description = "Iosevka-based font with Nerd Font icons and non-Latin character support";
     homepage = "https://github.com/${REPO}";
     license = with licenses; [
-      ofl11 # Iosevka, Noto Sans CJK
+      ofl11 # Iosevka, LXGW WenKai, WenYuan Rounded
       mit # Nerd Fonts
     ];
     platforms = platforms.all;
