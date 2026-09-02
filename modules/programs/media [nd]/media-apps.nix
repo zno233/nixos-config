@@ -22,7 +22,7 @@
           scripts = [ pkgs.mpvScripts.mpris ];
         })
         mpv-handler
-        splayer-next-electron
+        splayer-next
         # kazumi # anime online
         tsukimi # emby
         # tauon                       #local music player

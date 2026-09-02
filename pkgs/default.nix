@@ -60,10 +60,6 @@ in
   win11-fonts = pkgs.callPackage ./apps/microsoft-fonts { };
   harmonyos-sans = pkgs.callPackage ./apps/harmonyos-sans { };
   # mark-shot = pkgs.callPackage ./apps/mark-shot { };
-  # fooyin = pkgs.callPackage ./apps/fooyin { };
-  splayer-next = pkgs.callPackage ./apps/splayer-next { };
-  # 备选打包方案：nixpkgs electron 运行时版（同目录 electron.nix），与 .deb 直解版对比用
-  splayer-next-electron = pkgs.callPackage ./apps/splayer-next/electron.nix { };
 
   # nixpak 沙箱包装包
   nixpaks = {
