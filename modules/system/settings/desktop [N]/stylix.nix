@@ -27,7 +27,8 @@
         enable = true;
         autoEnable = false;
         # enableReleaseChecks = false;
-        image = ../../../../wallpapers/otherWallpaper/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+        polarity = "dark";
       };
     };
 }
