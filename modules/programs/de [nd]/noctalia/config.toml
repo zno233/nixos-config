@@ -3,9 +3,10 @@ enable_overdrive = true
 enable_sounds = true
 
 [bar.default]
-background_opacity = 0.87999998033046722
+background_opacity = 0.89999997988343239
 capsule = true
 capsule_opacity = 0.40000000000000002
+capsule_thickness = 0.7799999862909317
 center = [ "group:g2" ]
 concave_edge_corners = true
 end = [
@@ -28,7 +29,10 @@ padding = 6
 radius = 0
 radius_bottom_left = 16
 radius_bottom_right = 16
+radius_top_left = 0
+radius_top_right = 0
 start = [ "launcher", "workspaces", "group:g1", "weather", "nix-monitor", "active_window", "status" ]
+thickness = 36
 
     [[bar.default.capsule_group]]
     fill = "surface_variant"
@@ -204,7 +208,7 @@ enabled = []
 [shell]
 avatar_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
 clipboard_history_max_entries = 500
-font_family = "LXGW WenKai Screen"
+font_family = "Asuka Sans"
 polkit_agent = true
 settings_show_advanced = true
 telemetry_enabled = false
@@ -261,10 +265,14 @@ telemetry_enabled = false
 
 [theme]
 builtin = "Tokyo-Night"
-community_palette = "Tokyo Night Moon"
+community_palette = "Everforest Material"
 mode = "dark"
-source = "wallpaper"
-wallpaper_scheme = "m3-tonal-spot"
+source = "community"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates.user.stylix]
+    input_path = "/home/zno/zno-config/modules/programs/de [nd]/noctalia/templates/stylix-base16.yaml.tmpl"
+    output_path = "/home/zno/zno-config/modules/programs/de [nd]/noctalia/generated/stylix-base16.yaml"
 
 [wallpaper]
 directory = "/home/zno/Pictures/wallpapers/others"
@@ -291,10 +299,10 @@ directory = "/home/zno/Pictures/wallpapers/others"
     wallpaper_scheme = "m3-content"
 
     [[wallpaper.favorite]]
-    palette_source = "wallpaper"
+    community_palette = "Everforest Material"
+    palette_source = "community"
     path = "/home/zno/Pictures/wallpapers/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg"
     theme_mode = "dark"
-    wallpaper_scheme = "m3-tonal-spot"
 
 [widget.active_window]
 capsule = true
@@ -394,6 +402,9 @@ capsule_opacity = 0.40000000000000002
 show_condition = false
 
 [widget.workspaces]
+active_pill_size = 2.0
+capsule = true
+capsule_opacity = 0.40000000000000002
 scale = 1.0
-show_labels = false
-style = "regular"
+show_labels = true
+style = "minimal"

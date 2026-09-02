@@ -9,6 +9,10 @@
       lib,
       ...
     }:
+    let
+      # Noctalia 生成的配色方案路径
+      noctaliaGenerated = ./noctalia/generated/stylix-base16.yaml;
+    in
     {
       # 1. 依然保留基础的字体配置和非 Stylix 接管的独立工具包
       home.packages = with pkgs; [
@@ -19,15 +23,15 @@
       # 2. 启用并配置 Stylix
       stylix = {
         enable = true;
-        autoEnable = true;
+        autoEnable = false;
         # enableReleaseChecks = false;
 
-        # 【基础壁纸设置】Stylix 必须基于一张图片来提取/匹配主题色
+        # 【基础壁纸设置】基于一张图片来提取/匹配主题色
         # 替换为实际的壁纸路径
-        image = ../../../wallpapers/otherWallpaper/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg;
+        # image = ../../../wallpapers/otherWallpaper/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg;
 
-        # 【现代暗黑主题方案】
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+        # 【现代暗黑主题方案】- 从 Noctalia 生成的配色读取
+        base16Scheme = noctaliaGenerated;
         polarity = "dark";
 
         # 【全局光标同步】
@@ -70,32 +74,37 @@
         };
       };
 
+      # 默认关闭所有 targets，按需开启
       stylix.targets = {
-        # 编辑器
-        vscode.enable = false;
-        zed.enable = false;
-        helix.enable = false;
-        neovim.enable = false;
+        # # 编辑器
+        # vscode.enable = true;
+        # zed.enable = true;
+        # helix.enable = true;
+        # neovim.enable = true;
 
-        # 终端
-        kitty.enable = false;
-        ghostty.enable = false;
-        # fzf.enable = false;
+        # # 终端
+        # kitty.enable = true;
+        # ghostty.enable = true;
+        # starship.enable = true;
 
-        # shell prompt：使用自带的 Gruvbox Rainbow 预设（自定义 color_* 调色板），不交给 Stylix 接管
-        starship.enable = false;
+        # # 应用
+        # spicetify.enable = true;
+        yazi.enable = true;
+        btop.enable = true;
+        fzf.enable = true;
+        cava.enable = true;
 
-        # 桌面环境
-        # niri.enable = false;
-        qt = {
-          # xdgdesktopportal：需要系统已配置 xdg-desktop-portal-gtk 或 -kde
-          # 如果弹出的文件选择对话框样式异常，改回 "gtk3"
-          standardDialogs = "xdgdesktopportal";
+        zen-browser = {
+          enable = true;
+          profileNames = [ "default" ];
         };
 
-        # 应用
-        spicetify.enable = false;
-        zen-browser.profileNames = [ "default" ];
+        # 桌面环境
+        gtk.enable = true;
+        qt = {
+          enable = true;
+          standardDialogs = "xdgdesktopportal";
+        };
       };
 
       # 3. GTK 专属高级微调
