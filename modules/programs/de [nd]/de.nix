@@ -3,7 +3,7 @@
   flake.modules.nixos.de = {
     imports = with inputs.self.modules.nixos; [
       wm
-      # noctalia-greeter
+      noctalia-greeter
     ];
   };
 

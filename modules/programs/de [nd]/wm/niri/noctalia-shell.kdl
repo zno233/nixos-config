@@ -34,7 +34,7 @@ binds {
 // 启动 shell
 spawn-at-startup "noctalia"
 // 启动 3 秒后锁定屏幕（避免启动过程中露出桌面）
-spawn-sh-at-startup "sleep 3 && noctalia msg session lock"
+// spawn-sh-at-startup "sleep 3 && noctalia msg session lock"
 
 // ============================================================
 // 壁纸层
