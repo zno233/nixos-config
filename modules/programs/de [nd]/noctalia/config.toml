@@ -31,7 +31,7 @@ radius_bottom_left = 16
 radius_bottom_right = 16
 radius_top_left = 0
 radius_top_right = 0
-start = [ "launcher", "workspaces", "group:g1", "weather", "nix-monitor", "active_window", "status" ]
+start = [ "launcher", "workspaces", "group:g1", "weather", "nix-monitor", "eyecare-widget", "active_window", "status" ]
 thickness = 36
 
     [[bar.default.capsule_group]]
@@ -196,14 +196,20 @@ widget_order = [
         layout = "horizontal"
         shadow = true
 
+[notification]
+border = false
+
 [osd]
+border = false
+orientation = "vertical"
 position = "top_right"
+position_vertical = "center_right"
 
 [plugin_settings."cleboost/hotspot"]
 password = "1314250hh"
 
 [plugins]
-enabled = []
+enabled = [ "apex077/eyecare" ]
 
 [shell]
 avatar_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
@@ -212,6 +218,9 @@ font_family = "Asuka Sans"
 polkit_agent = true
 settings_show_advanced = true
 telemetry_enabled = false
+
+    [shell.greeter_sync]
+    auto_sync = true
 
     [shell.panel]
     open_near_click_control_center = true
@@ -266,13 +275,17 @@ telemetry_enabled = false
 [theme]
 builtin = "Tokyo-Night"
 community_palette = "Everforest Material"
+custom_palette = "stylix"
 mode = "dark"
 source = "community"
 wallpaper_scheme = "m3-content"
 
-    [theme.templates.user.stylix]
-    input_path = "/home/zno/zno-config/modules/programs/de [nd]/noctalia/templates/stylix-base16.yaml.tmpl"
-    output_path = "/home/zno/zno-config/modules/programs/de [nd]/noctalia/generated/stylix-base16.yaml"
+    [theme.templates]
+    community_ids = [ "opencode" ]
+
+        [theme.templates.user.stylix]
+        input_path = "/home/zno/zno-config/modules/programs/de [nd]/noctalia/templates/stylix-base16.yaml.tmpl"
+        output_path = "/home/zno/zno-config/modules/programs/de [nd]/noctalia/generated/stylix-base16.yaml"
 
 [wallpaper]
 directory = "/home/zno/Pictures/wallpapers/others"
@@ -329,6 +342,11 @@ capsule = true
 capsule_opacity = 0.40000000000000002
 show_label = false
 show_value = false
+
+[widget.eyecare-widget]
+capsule = true
+capsule_opacity = 0.40000000000000002
+type = "apex077/eyecare:eyecare-widget"
 
 [widget.input_volume]
 show_label = false

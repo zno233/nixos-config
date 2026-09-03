@@ -35,7 +35,7 @@
     {
       home.packages = with pkgs; [
         wpsoffice-wrapped
-        libreoffice
+        # libreoffice
         # onlyoffice-desktopeditors
       ];
     };

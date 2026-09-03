@@ -7,12 +7,12 @@
   flake-file.inputs = {
     niri = {
       url = "github:epireyn/niri-flake";
-      #inputs.niri-unstable.follows = "niri-unstable";
     };
   };
 
   flake.modules.nixos.niri =
     {
+      pkgs,
       ...
     }:
     {
@@ -23,6 +23,8 @@
       nixpkgs = {
         overlays = [ self.inputs.niri.overlays.niri ];
       };
+
+      services.displayManager.sessionPackages = [ pkgs.niri-unstable ];
     };
 
   flake.modules.homeManager.niri =
@@ -46,7 +48,6 @@
 
       home = {
         packages = with pkgs; [
-          # seatd →改成 system-level services.seatd.enable = true;
           jaq
           xwayland-satellite
           wl-clipboard # 核心剪贴板工具
