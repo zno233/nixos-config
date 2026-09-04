@@ -14,7 +14,7 @@
       noctaliaGenerated = ./noctalia/generated/stylix-base16.yaml;
     in
     {
-      # 1. 依然保留基础的字体配置和非 Stylix 接管的独立工具包
+      # 1. 基础包
       home.packages = with pkgs; [
         # 光标
         bibata-cursors
@@ -27,10 +27,9 @@
         # enableReleaseChecks = false;
 
         # 【基础壁纸设置】基于一张图片来提取/匹配主题色
-        # 替换为实际的壁纸路径
         # image = ../../../wallpapers/otherWallpaper/others/anime-girls-cat-girl-white-rose-nature-kawaii-skirt.jpg;
 
-        # 【现代暗黑主题方案】- 从 Noctalia 生成的配色读取
+        # 【暗黑主题方案】- 从 Noctalia 生成的配色读取
         base16Scheme = noctaliaGenerated;
         polarity = "dark";
 
@@ -103,11 +102,11 @@
         gtk.enable = true;
         qt = {
           enable = true;
-          standardDialogs = "xdgdesktopportal";
+          standardDialogs = "gtk3";
         };
       };
 
-      # 3. GTK 专属高级微调
+      # 3. GTK 微调
       # Stylix 会自动生成符合颜色主题的极简 GTK 主题，我们只需要把图标注入进去
       gtk = {
         enable = true;
@@ -119,70 +118,6 @@
 
       qt.kvantum = {
         enable = true;
-        # settings = {
-        #   General = {
-        #     theme = "Base16Kvantum";
-
-        #     # === 容器圆角 ===
-        #     roundness = 10;
-        #     frameRoundness = 10;
-        #     groupBoxRoundness = 10;
-        #     dockRoundness = 10;
-        #     viewRoundness = 8;
-
-        #     # === 控件圆角 ===
-        #     buttonRoundness = 6;
-        #     comboBoxRoundness = 6;
-        #     tabRoundness = 6;
-        #     popupRoundness = 8;
-        #     menuRoundness = 8;
-
-        #     # === 细节圆角 ===
-        #     scrollBarRoundness = 6;
-        #     tooltipRoundness = 6;
-        #     menuItemRoundness = 4;
-
-        #     # === 阴影 ===
-        #     shadowSize = 24;
-        #     shadowIntensity = 0.25;
-        #     shadowOffset = 0;
-
-        #     # === 尺寸与间距 ===
-        #     layoutMargin = 4;
-        #     layoutSpacing = 3;
-        #     groupBoxMargin = 6;
-        #     frameMargin = 6;
-        #     viewMargin = 4;
-        #     viewItemMargin = 4;
-        #     toolbarMargin = 4;
-        #     toolbarSpacing = 4;
-        #     toolButtonMargin = 3;
-
-        #     menuItemHeight = 24;
-        #     menuVerticalMargin = 4;
-        #     menuHorizontalMargin = 6;
-        #     popupMargin = 6;
-        #     scrollableMenu = true;
-
-        #     scrollBarWidth = 12;
-        #     scrollBarPadding = 3;
-        #     splitterWidth = 3;
-
-        #     # === 工具栏与图标 ===
-        #     toolButtonStyle = "FollowStyle";
-        #     toolbarIconSize = 18;
-        #     smallIconSize = 14;
-        #     largeIconSize = 18;
-        #     noButtonGradient = true;
-
-        #     # === 交互 ===
-        #     animationDuration = 150;
-        #     menuDelay = 100;
-        #     backgroundTransparency = 0;
-        #     windowDrag = "always";
-        #     tabOverlap = 1;
-        #   };
-        # };
       };
     };
 }
