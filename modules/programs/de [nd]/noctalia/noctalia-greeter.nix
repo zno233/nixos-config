@@ -39,7 +39,7 @@
           # ── Cursor ───────────────────────────────────────────────────
           cursor = {
             theme = "Bibata-Modern-Ice";
-            size = 22;
+            size = 20;
             path = "${pkgs.bibata-cursors}/share/icons";
           };
 

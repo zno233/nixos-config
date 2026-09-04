@@ -34,7 +34,7 @@
       ...
     }:
     let
-      niriConfig = "${config.home.homeDirectory}/zno-config/modules/programs/de [nd]/wm/niri";
+      niriConfig = "${config.home.homeDirectory}/zno-config/modules/programs/de [nd]/wm/niri/config";
     in
     {
       imports = [
@@ -53,6 +53,7 @@
           wl-clipboard # 核心剪贴板工具
           cliphist # 剪贴板历史记录
           grim # Wayland 截图工具
+          kotonoha # wayland 桌面歌词
           # slurp # 屏幕区域选择工具
           # satty # 截图标注工具（支持绘图、箭头、文字等）
           # hyprpicker # 取色器
@@ -65,25 +66,25 @@
         ];
       };
       xdg.configFile."niri/config.kdl" = {
-        source = ./config.kdl;
+        source = ./config/config.kdl;
       };
       xdg.configFile."niri/binds.kdl" = {
-        source = ./binds.kdl;
+        source = ./config/binds.kdl;
       };
       xdg.configFile."niri/environment.kdl" = {
-        source = ./environment.kdl;
+        source = ./config/environment.kdl;
       };
       xdg.configFile."niri/noctalia-shell.kdl" = {
-        source = ./noctalia-shell.kdl;
+        source = ./config/noctalia-shell.kdl;
       };
       xdg.configFile."niri/recent-windows.kdl" = {
-        source = ./recent-windows.kdl;
+        source = ./config/recent-windows.kdl;
       };
       xdg.configFile."niri/waybar.kdl" = {
-        source = ./waybar.kdl;
+        source = ./config/waybar.kdl;
       };
       xdg.configFile."niri/window-rule.kdl" = {
-        source = ./window-rule.kdl;
+        source = ./config/window-rule.kdl;
       };
       xdg.configFile."niri/patch.kdl" = {
         source = config.lib.file.mkOutOfStoreSymlink "${niriConfig}/patch.kdl";
