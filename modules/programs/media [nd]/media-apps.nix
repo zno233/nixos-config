@@ -3,30 +3,38 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        ## Multimedia
-        audacity
-        gimp
-        # imv # Image viewer for Wayland
-        pix # Generic image viewer from Linux Mint
-        # digikam # Image viewer for details
-        # media-downloader
-        obs-studio
-        # soundwireserver
-        # video-trimmer
-        vlc
+        ## ── Image ────────────────────────────────────────────────────
+        gimp # image editor
+        pix # image viewer (Linux Mint)
+        imv # image viewer (Wayland)
+        # digikam # photo manager
 
-        fooyin # like fb2k
-        #spotify
-
+        ## ── Video player ────────────────────────────────────────────
         (pkgs.mpv.override {
           scripts = [ pkgs.mpvScripts.mpris ];
         })
-        mpv-handler
-        splayer-next
-        # kazumi # anime online
-        tsukimi # emby
-        # tauon                       #local music player
+        mpv-handler # mpv URL handler
+        vlc # media player
+        # video-trimmer
+
+        ## ── Audio player ────────────────────────────────────────────
+        fooyin # foobar2k-like
+        splayer-next # music player
+        # spotify
+        # tauon # local music player
         # gapless
+
+        ## ── Streaming / Media service ───────────────────────────────
+        tsukimi # Emby client
+        # kazumi # anime streaming
+
+        ## ── Recording / Editing ─────────────────────────────────────
+        obs-studio # screen recording/streaming
+        audacity # audio editor
+
+        ## ── Misc ────────────────────────────────────────────────────
+        # media-downloader
+        # soundwireserver
       ];
     };
 }

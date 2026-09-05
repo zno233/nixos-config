@@ -160,9 +160,8 @@ cursor {
 // 普通程序      → spawn-at-startup
 // 后台守护进程  → spawn-sh-at-startup（命令需要 & 时使用）
 
-spawn-sh-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1" // 权限认证代理
 // spawn-sh-at-startup "glance --config ~/.config/glance/glance.yml &"         // glance 系统监控
 spawn-at-startup "udiskie --automount --notify --smart-tray"                  // 磁盘挂载工具
 spawn-at-startup "nm-applet"                                                  // 网络管理器 Applet
-spawn-at-startup "poweralertd"                                                // 电源警报守护进程
+// spawn-at-startup "poweralertd"                                                // 电源警报守护进程
 spawn-at-startup "blueman-applet"                                             // 蓝牙 Applet
