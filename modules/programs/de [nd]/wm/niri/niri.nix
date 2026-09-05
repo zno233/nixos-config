@@ -48,7 +48,6 @@
 
       home = {
         packages = with pkgs; [
-          jaq
           xwayland-satellite
           wl-clipboard # 核心剪贴板工具
           cliphist # 剪贴板历史记录

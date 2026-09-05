@@ -7,7 +7,7 @@
       ...
     }:
     let
-      tomcatDevPath = "${config.home.homeDirectory}/dev/tomcat-dev";
+      tomcatDevPath = "${config.home.homeDirectory}/dev/toolkits/tomcat-dev";
     in
     {
       # 环境变量
@@ -41,7 +41,7 @@
         #!/usr/bin/env bash
         export CATALINA_HOME="$(dirname "$(readlink -f "$0")")"
         export CATALINA_BASE="$CATALINA_HOME"
-        export JAVA_HOME="${pkgs.jdk}"
+        export JAVA_HOME="${pkgs.jdk21}"
         echo "🚀 启动Tomcat..."
         echo "   CATALINA_HOME: $CATALINA_HOME"
         echo "   JAVA_HOME: $JAVA_HOME"

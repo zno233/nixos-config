@@ -1,31 +1,40 @@
 {
   flake.modules.homeManager.tool-apps =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       home.packages = with pkgs; [
-        ## Utility
-        dconf-editor
-        gnome-disk-utility
-        mission-center # GUI resources monitor
-        zenity
-        font-manager
-        localsend
-        nwg-look
-        bleachbit # System cleaner
-        peazip # Archive extractor
-        qalculate-qt
+        ## ── System ───────────────────────────────────────────────────
+        dconf-editor # dconf GUI
+        mission-center # system monitor (GUI)
+        bleachbit # system cleaner
+        gnome-disk-utility # disk management
 
-        ## Torrent
-        qbittorrent-enhanced # bt
+        ## ── File / Archive ──────────────────────────────────────────
+        peazip # archive extractor
 
-        ## Level editor
-        # ldtk
-        # tiled
+        ## ── Desktop ─────────────────────────────────────────────────
+        nwg-look # GTK theme selector
+        font-manager # font management
+        zenity # dialog boxes
+        localsend # local file sharing
 
-        ## Others
-        # maa-cli
-        # windterm
-        # snipaste
+        ## ── Calculator ──────────────────────────────────────────────
+        qalculate-qt # scientific calculator
+
+        ## ── Torrent ─────────────────────────────────────────────────
+        qbittorrent-enhanced # BitTorrent client
+
+        ## ── Development ─────────────────────────────────────────────
+        # ldtk # level editor
+        # tiled # tile map editor
+
+        ## ── Misc ────────────────────────────────────────────────────
+        # maa-cli # MaaAssistantArknights
+        # windterm # terminal emulator
+        # snipaste # screenshot tool
       ];
     };
 }

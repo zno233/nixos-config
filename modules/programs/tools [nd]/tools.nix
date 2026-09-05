@@ -12,7 +12,7 @@
     imports = with inputs.self.modules.homeManager; [
       # aseprite
       ebook
-      nix-search
+      # nix-search
       starship
       # p10k
       # glance

@@ -1,86 +1,80 @@
 {
   flake.modules.homeManager.dev-tools =
-    { pkgs, ... }:
-    # let
-    #   # 统一禁用测试的 python 环境
-    #   myPython = pkgs.python314.override {
-    #     packageOverrides = self: super: {
-    #       slicer = super.slicer.overrideAttrs (old: {
-    #         doCheck = false;
-    #       });
-    #     };
-    #   };
-    # in
+    {
+      pkgs,
+      ...
+    }:
     {
       home.packages = with pkgs; [
-        ## Lsp
-        nixd # nix
+        ## ── LSP / Formatting ────────────────────────────────────────
+        nixd # Nix LSP
+        nixfmt # Nix formatter (RFC style)
+        shfmt # Shell formatter
+        treefmt # multi-language formatter
 
-        ## formating
-        shfmt
-        treefmt
-        nixfmt # nixfmt-rfc-style has been replaced by nixfmt
-
-        ## C / C++
+        ## ── C / C++ ─────────────────────────────────────────────────
         gcc
         gdb
-        gef
+        gef # GDB enhanced
         cmake
         gnumake
         valgrind
         llvmPackages.clang-tools
 
-        ## Python
-        #python3
+        ## ── Python ──────────────────────────────────────────────────
         (python314.withPackages (
           p: with p; [
-            #ai tools
-            # llm
-            # llm-ollama
-            # llm-gemini
-
-            # # 核心工具
+            # core
             ipython
             jupyterlab
 
-            # 数据处理与可视化
+            # data science
             matplotlib
             numpy
             pandas
             seaborn
             statsmodels
-            # shap
             ipywidgets
 
-            # # 机器学习与数据科学
+            # ML
             # scikit-learn
             # xgboost
             # joblib
-            # # imbalanced-learn
-            # chardet
+            # imbalanced-learn
 
-            # 其他
-            # mlxtend
+            # utils
             opencv4
             git-filter-repo
-            rapidocr-onnxruntime # ocr
+            rapidocr-onnxruntime # OCR
+
+            # AI
+            # llm
+            # llm-ollama
+            # llm-gemini
+
+            # misc
+            # shap
+            # chardet
+            # mlxtend
           ]
         ))
 
-        ##java
-        jdk
-
-        # IDE
-        vscode-fhs
-        # android-studio
-        jetbrains.idea
-
-        # JSP
+        ## ── Java ────────────────────────────────────────────────────
+        jdk21
         # tomcat9
-        # ciscoPacketTracer9
 
+        ## ── IDE ─────────────────────────────────────────────────────
+        vscode-fhs
+        jetbrains.idea
+        # android-studio
+
+        ## ── Misc ────────────────────────────────────────────────────
         # postman
         # mysql84
+        # ciscoPacketTracer9
       ];
+
+      # 创建一个长期使用的软链接，避免因更新导致的路径漂移
+      home.file."dev/toolkits/java/jdks/jdk-21".source = pkgs.jdk21;
     };
 }
