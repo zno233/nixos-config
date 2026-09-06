@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  configDir = config.flake.meta.users.zno.configDirectory;
+  configDir = config.flake.meta.mainUser.configDirectory;
 in
 {
   flake.modules.nixos.nh =
