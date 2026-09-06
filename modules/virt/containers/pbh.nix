@@ -4,7 +4,7 @@
   ...
 }:
 let
-  homeDir = config.flake.meta.users.zno.homeDirectory;
+  homeDir = config.flake.meta.mainUser.homeDirectory;
 in
 {
   flake.modules.nixos.containers =

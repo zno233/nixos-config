@@ -3,7 +3,7 @@
   ...
 }:
 let
-  mainUser = config.flake.meta.mainUser;
+  mainUser = config.flake.meta.mainUser.name;
 in
 {
   flake.modules.nixos.virtualization =

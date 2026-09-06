@@ -82,7 +82,7 @@ System builds compose layers via `modules/system/system-types/`:
 - Modules register themselves under `flake.modules.nixos.<name>`, `flake.modules.darwin.<name>`, or `flake.modules.homeManager.<name>` depending on target
 
 ### User Registration Pattern
-- `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUser`
+- `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUserName` (selector string) + `flake.meta.mainUser` (resolved metadata record)
 - Factory `modules/factory/user [NDn]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
 - Two coexisting styles:
   - **Standalone** (`zno [NDn]`): `flake-parts.nix` registers `homeConfigurations.<name>` via `mkHomeManager`; the user is also wired into hosts via `hosts/<host>/users/<name>.nix`

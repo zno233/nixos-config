@@ -6,10 +6,9 @@ let
   systems = [ honor-laptop ];
 in
 {
-  "deepseek-token.age".publicKeys = [
-    zno
-    honor-laptop
-  ];
+  "deepseek-token.age".publicKeys = users ++ systems;
+  "aria2-rpc-secret.age".publicKeys = users ++ systems;
+
   # "secret2.age".publicKeys = users ++ systems;
   # "armored-secret.age" = {
   #   publicKeys = [ zno ];

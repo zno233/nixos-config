@@ -17,6 +17,11 @@
         owner = "zno";
         mode = "0400";
       };
+      age.secrets."aria2-rpc-secret" = {
+        file = "${inputs.self}/secrets/aria2-rpc-secret.age";
+        owner = "aria2";
+        mode = "0400";
+      };
     };
 
   flake.modules.darwin.secrets =
