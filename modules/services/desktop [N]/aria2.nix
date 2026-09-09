@@ -66,11 +66,13 @@ in
           "auto-file-renaming" = false;
 
           # 伪装浏览器 UA，避免 CDN 识别为爬虫限速/拦截
-          "user-agent" = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+          "user-agent" =
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
 
           # tracker：模块 settings 的 freeform 类型是 singleLineStr，不能用多行字符串，
           # 必须全部写在同一行用逗号分隔（与 aria2c 的 --bt-tracker 分隔符一致）
-          "bt-tracker" = "https://tracker.openbittorrent.com:80/announce,https://tracker.opentrackr.org:1337/announce,https://open.stealth.si:80/announce,https://tracker.torrent.eu.org:443/announce,https://open.demonii.com:1337/announce,https://explodie.org:6969/announce,https://tracker.tiny-vps.com:6969/announce,https://tracker1.bt.moack.co.kr:6969/announce,https://tracker.files.fm:6969/announce,https://tracker.gbitt.info:443/announce";
+          "bt-tracker" =
+            "https://tracker.openbittorrent.com:80/announce,https://tracker.opentrackr.org:1337/announce,https://open.stealth.si:80/announce,https://tracker.torrent.eu.org:443/announce,https://open.demonii.com:1337/announce,https://explodie.org:6969/announce,https://tracker.tiny-vps.com:6969/announce,https://tracker1.bt.moack.co.kr:6969/announce,https://tracker.files.fm:6969/announce,https://tracker.gbitt.info:443/announce";
         };
       };
 

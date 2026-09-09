@@ -10,8 +10,10 @@
         networkmanager = {
           enable = true;
           wifi = {
+            # 启用 iwd 作为 NetworkManager 的无线后端
             backend = "iwd";
-            macAddress = "stable-ssid";
+            # 避免与 iwd 竞争改写 MAC 导致断连
+            # macAddress = "stable-ssid";
           };
           dns = "systemd-resolved";
         };
@@ -26,7 +28,8 @@
         wireless.iwd = {
           enable = true;
           settings = {
-            General.AddressRandomization = "networks";
+            # network 表示对每个 SSID 使用固定的生成 MAC 地址 (相当于 stable-ssid)
+            General.AddressRandomization = "network";
           };
         };
 
