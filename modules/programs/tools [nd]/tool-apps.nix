@@ -24,8 +24,9 @@
         ## ── Calculator ──────────────────────────────────────────────
         qalculate-qt # scientific calculator
 
-        ## ── Torrent ─────────────────────────────────────────────────
+        ## ── Downloader ─────────────────────────────────────────────────
         qbittorrent-enhanced # BitTorrent client
+        fluxdown # Rust-powered multi-protocol download manager with Flutter UI
 
         ## ── Development ─────────────────────────────────────────────
         # ldtk # level editor

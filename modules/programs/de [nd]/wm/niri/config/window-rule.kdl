@@ -64,8 +64,9 @@ window-rule {
     // 编辑器 / IDE
     match app-id=r#"^code$"#
     match app-id=r#"^jetbrains-idea$"#
-    match app-id=r#"^md\.Obsidian$"#
+    match app-id=r#"^md\.obsidian\.Obsidian$"#
     match app-id=r#"^dev\.zed\.Zed$"#
+    match app-id=r#"^zorite$"#
 
     // 办公
     match app-id=r#"^wpsoffice$"# title=r#"^WPS Office$"#
@@ -124,10 +125,11 @@ window-rule {
     open-focused false
 }
 
-// QQ：浮动 + 75% 尺寸
+// QQ / fluxdown：浮动 + 75% 尺寸
 window-rule {
     // match app-id=r#"^wechat$"#
     match app-id=r#"^QQ$"#
+    match app-id=r#"^com.fluxdown.app$"#
     open-floating true
     default-column-width { proportion 0.75; }
     default-window-height { proportion 0.75; }
