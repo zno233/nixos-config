@@ -74,7 +74,10 @@
       url = "path:./secrets";
       flake = false;
     };
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    sonora = {
+      url = "github:sonorahq/sonora";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
