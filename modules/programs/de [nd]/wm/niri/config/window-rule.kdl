@@ -78,6 +78,7 @@ window-rule {
     match app-id=r#"^moe\.tsuna\.tsukimi$"#
     match app-id=r#"^top.imsyy.splayer_next$"#
     match app-id=r#"^spotify$"#
+    match app-id=r#"^sonora$"#
 
     // 游戏
     match app-id=r#"^steam$"#

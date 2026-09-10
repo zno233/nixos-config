@@ -2,9 +2,10 @@
 {
   flake.modules.homeManager.media = {
     imports = with inputs.self.modules.homeManager; [
-      #audacious
+      # audacious
       media-apps
-      spotify
+      sonora
+      # spotify
     ];
   };
 }
