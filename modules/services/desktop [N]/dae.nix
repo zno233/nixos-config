@@ -4,7 +4,10 @@
 }:
 {
   flake-file.inputs = {
-    daeuniverse.url = "github:daeuniverse/flake.nix";
+    daeuniverse = {
+      url = "github:daeuniverse/flake.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   flake.modules.nixos.dae =
