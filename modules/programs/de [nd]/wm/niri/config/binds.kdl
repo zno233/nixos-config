@@ -20,11 +20,14 @@ binds {
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器：MissionCenter" { spawn "missioncenter"; }
     Mod+M             hotkey-overlay-title="音乐播放器：fooyin" { spawn "fooyin"; }
     Alt+M             hotkey-overlay-title="音乐播放器：SPlayer-Next" { spawn "SPlayer-Next"; }
-    Alt+L             hotkey-overlay-title="音乐播放器：kotonoha" { spawn "kotonoha"; }
+    Mod+Alt+M         hotkey-overlay-title="音乐播放器：sonora" { spawn "sonora"; }
+    Alt+L             hotkey-overlay-title="歌词：kotonoha" { spawn "kotonoha"; }
     Alt+F             hotkey-overlay-title="下载器：fluxdown" { spawn "fluxdown"; }
+    Alt+T             hotkey-overlay-title="聊天：telegram" { spawn "telegram"; }
+    Alt+Z             hotkey-overlay-title="日志：zorite" { spawn "zorite"; }
     Mod+N             hotkey-overlay-title="笔记：obsidian" { spawn "obsidian"; }
     Mod+Shift+B       hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
-    Mod+Shift+C       hotkey-overlay-title="取色器：hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
+    // Mod+Shift+C       hotkey-overlay-title="取色器：hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
 
     // 不使用 Shell 的场景（已注释）
     // Mod+D hotkey-overlay-title="应用启动器：rofi" { spawn-sh "rofi -show drun || pkill rofi"; }

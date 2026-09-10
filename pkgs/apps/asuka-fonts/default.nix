@@ -5,35 +5,35 @@
 }:
 
 let
-  version = "0.1.3";
+  version = "0.1.5";
   baseUrl = "https://github.com/zno233/asuka-fonts/releases/download/v${version}";
 
   fonts = [
     # Asuka Mono (等宽 — 终端/代码)
     {
       name = "AsukaMono-Light.ttf";
-      hash = "sha256-5nfiGncrGe0K+gRtWTYnImJkv4WtXFVbN+lLDMHwTs0=";
+      hash = "sha256-hEuUSI/5BeIp40yW2Jdk+eFMZzOxyBuIYSkXjEtaJUY=";
     }
     {
       name = "AsukaMono-Regular.ttf";
-      hash = "sha256-K/ZsXDicGvzFfm2NDXG1URN+gWDqfeu/djznEEnbVCQ=";
+      hash = "sha256-2KoQPhUe++J4d3gsYB0zPILw9LZElgEg2DQZ9orSFU4=";
     }
     {
       name = "AsukaMono-Bold.ttf";
-      hash = "sha256-QxNcxnBHJZVRfAatURLQVrDi9UoYkKHXWrMCZuJyD2Y=";
+      hash = "sha256-eM/y1eLXQAb2zwysnma9XOSPADnhUQxG4xy1XVgBlDQ=";
     }
     # Asuka Sans (比例 — 阅读/文档)
     {
       name = "AsukaSans-Light.ttf";
-      hash = "sha256-Enl2UgUFBk6IkTXOf4Da1SDLr3sMkb7KM47C+IaUVz0=";
+      hash = "sha256-NH8mlURsm8Dwz7+0I73jC8UPMXFcM40bxJikX71uKyI=";
     }
     {
       name = "AsukaSans-Regular.ttf";
-      hash = "sha256-9ycwUUiH9m9gbG54CNTUE4iBwfAldLsBaa/1iG8LQac=";
+      hash = "sha256-qyLLZCbKZiE8ZdQZemzTepTp3LWvjzgxu7l7wxJcK20=";
     }
     {
       name = "AsukaSans-Bold.ttf";
-      hash = "sha256-3IJPTfonDIW/kFgAvKdI7zrwijn9y+nCmHsYJI54RFY=";
+      hash = "sha256-dbyPFkD/miApTFwcDn3LRbJYTGKmbUrxk+ApqLydvy0=";
     }
   ];
 in
