@@ -56,6 +56,51 @@
               "-S"
             ];
           };
+
+          scheds.scx_lavd = {
+            # 日常桌面：让调度器自己根据负载判断
+            auto_mode = [
+              "--autopilot"
+              "--pinned-slice-us"
+              "500"
+            ];
+
+            # 游戏：强制高性能模式，关闭省电相关的核心压缩
+            gaming_mode = [
+              "--performance"
+              "--pinned-slice-us"
+              "500"
+            ];
+
+            # 低延迟模式：更小的 slice
+            lowlatency_mode = [
+              "--performance"
+              "--slice-min-us"
+              "300"
+              "--slice-max-us"
+              "3000"
+              "--pinned-slice-us"
+              "300"
+            ];
+
+            # 省电
+            powersave_mode = [
+              "--powersave"
+              "--pinned-slice-us"
+              "1000"
+            ];
+
+            # 服务器：性能优先，放大时间片减少切换开销
+            server_mode = [
+              "--performance"
+              "--slice-min-us"
+              "3000"
+              "--slice-max-us"
+              "10000"
+              "--pinned-slice-us"
+              "3000"
+            ];
+          };
         };
       };
 

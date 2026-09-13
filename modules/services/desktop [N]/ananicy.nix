@@ -45,18 +45,5 @@
           # }
         ];
       };
-
-      # NixOS 26.11/unstable currently has a cgroup-v2 startup
-      # ordering issue where ananicy-cpp may start before the
-      # CPU controller is available.
-      #
-      # Remove this workaround once the upstream issue is fixed.
-      systemd.services.ananicy-cpp.serviceConfig.ExecStartPre =
-        let
-          enableCpuController = pkgs.writeShellScript "ananicy-cpp-enable-cgroup-cpu" ''
-            echo +cpu > /sys/fs/cgroup/cgroup.subtree_control
-          '';
-        in
-        [ "${enableCpuController}" ];
     };
 }
