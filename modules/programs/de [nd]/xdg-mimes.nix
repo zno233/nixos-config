@@ -4,9 +4,9 @@
     with lib;
     let
       defaultApps = {
-        browser = [ "chromium-browser.desktop" ];
+        browser = [ "brave-origin.desktop" ];
         text = [ "dev.zed.Zed.desktop" ];
-        image = [ "pix.desktop" ];
+        image = [ "imv-dir.desktop" ];
         audio = [ "org.fooyin.fooyin" ];
         video = [ "mpv.desktop" ];
         directory = [ "nemo.desktop" ];

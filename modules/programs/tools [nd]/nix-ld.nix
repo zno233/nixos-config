@@ -17,6 +17,8 @@
           alsa-lib # 音频基础
           libGL # OpenGL 图形
           vulkan-loader # Vulkan
+          libxcb # XCB
+          libxkbcommon # XKB
         ];
       };
     };
