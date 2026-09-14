@@ -22,7 +22,6 @@ input {
     keyboard {
         xkb {
             layout "us"
-            options "grp:alt_shift_toggle,compose:ralt,ctrl:yescaps"
         }
         numlock
     }

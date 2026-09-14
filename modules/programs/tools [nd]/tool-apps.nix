@@ -28,6 +28,9 @@
         qbittorrent-enhanced # BitTorrent client
         fluxdown # Rust-powered multi-protocol download manager with Flutter UI
 
+        ## ── Proxy ─────────────────────────────────────────────
+        # gui-for-singbox
+
         ## ── Development ─────────────────────────────────────────────
         # ldtk # level editor
         # tiled # tile map editor
