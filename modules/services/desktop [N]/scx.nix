@@ -10,8 +10,8 @@
         ];
 
         config = {
-          # 开机默认：bpfland
-          default_sched = "scx_bpfland";
+          # 开机默认：EEVDF
+          default_sched = null;
 
           # 日常桌面：Auto
           default_mode = "Auto";
