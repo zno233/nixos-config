@@ -16,7 +16,7 @@
       home.packages = with self.inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
         claude-code
         opencode
-        reasonix
+        dsh
         # gemini-cli
         # qwen-code
       ];
