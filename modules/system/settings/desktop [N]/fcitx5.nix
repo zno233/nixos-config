@@ -19,7 +19,7 @@
           #rime-data
           fcitx5-gtk
           fcitx5-lua
-          fcitx5-mellow-themes
+          fcitx5-theme-collect
           catppuccin-fcitx5
         ];
       };
@@ -31,7 +31,7 @@
       #   INPUT_METHOD = "fcitx5";
       # };
 
-      #修复fcitx在某些软件的显示问题
+      # SVG渲染库，fcitx5皮肤依赖，wm最好显式加上
       programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
     };
 }

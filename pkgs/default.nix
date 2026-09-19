@@ -57,6 +57,7 @@ in
   # _2048 = pkgs.callPackage ./apps/2048 { };
   # maple-mono-custom = pkgs.callPackage ./apps/maple-mono { inherit inputs; };
   asuka-fonts = pkgs.callPackage ./apps/asuka-fonts { };
+  fcitx5-theme-collect = pkgs.callPackage ./apps/fcitx5-theme-collect { };
   win11-fonts = pkgs.callPackage ./apps/microsoft-fonts { };
   harmonyos-sans = pkgs.callPackage ./apps/harmonyos-sans { };
   fluxdown = pkgs.callPackage ./apps/fluxdown { };

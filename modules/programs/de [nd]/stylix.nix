@@ -102,7 +102,7 @@
         gtk.enable = true;
         qt = {
           enable = true;
-          standardDialogs = "gtk3";
+          standardDialogs = "xdgdesktopportal";
         };
       };
 
