@@ -18,6 +18,7 @@
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.latest;
       };
+      
       # 1.1 启用 NVIDIA 容器工具包
       hardware.nvidia-container-toolkit.enable = true;
 

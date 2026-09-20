@@ -36,7 +36,6 @@
           "net.core.netdev_max_backlog" = 4096;
 
           # Maximum number of file handles.
-          # CachyOS: 2097152
           "fs.file-max" = 2097152;
 
           # 提高 inotify 文件监视器上限，防止 Vite 等前端开发工具报 ENOSPC 错误

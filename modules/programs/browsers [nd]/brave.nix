@@ -48,25 +48,17 @@
         BuiltInDnsClientEnabled = false; # 使用系统 DNS
         AlternateErrorPagesEnabled = false; # 禁用纠错页面
         NetworkPredictionOptions = 1; # 禁用预连接/预取/预渲染（隐私优先：不泄露浏览意图、省流量；如重速度可改回 1）
-        DefaultGeolocationSetting = 2; # 默认禁止地理位置（按站点手动授权）
         WebRtcIPHandling = "disable_non_proxied_udp"; # 限制 WebRTC IP 泄露
         HttpsUpgradesEnabled = true; # 强制 HTTPS 升级
         BlockThirdPartyCookies = true; # 阻止第三方 Cookie
         SearchSuggestEnabled = false; # 关闭搜索建议（避免按键泄漏给搜索服务）
 
-        # --- 隐私增强（1.92+ 新增 policy） ---
+        # --- 隐私增强 ---
         BraveGlobalPrivacyControlEnabled = true; # 全局隐私控制（GPC）：向站点发送"不要出售/共享"信号
         BraveTrackingQueryParametersFilteringEnabled = true; # 剥离 URL 中的追踪查询参数（utm_* 等）
-        IPFSEnabled = false; # 禁用 IPFS 协议支持（弃用功能，减少网络面）
 
         # --- 易用性 ---
         ExternalProtocolDialogShowAlwaysOpenCheckbox = true;
-
-        # --- Privacy Sandbox ---
-        PrivacySandboxAdTopicsEnabled = false;
-        PrivacySandboxAdMeasurementEnabled = false;
-        PrivacySandboxSiteEnabledAdsEnabled = false;
-        PrivacySandboxPromptEnabled = false;
 
         # --- 扩展管理（Policy 方式） ---
         ExtensionSettings = {
@@ -147,26 +139,19 @@
         enable = true;
         package = pkgs.brave-origin;
         commandLineArgs = [
-          # 1. 平台 + GPU 加速（仅保留 Linux 上非默认开启、需显式声明的项）
-          # Chromium 120+ 默认 ozone auto（可自动检测 Wayland），理论上可省去此 flag；
-          # 但 niri 为纯 Wayland 合成器（无 X server），auto 在异常启动环境（SSH/tmux/
-          # 剥离 env 的 desktop entry）下会回退 X11 导致崩溃 → 显式钉死 Wayland，稳定性优先。
+          # 1. 平台 + GPU 加速
           "--ozone-platform=wayland"
           # kDefaultEnableGpuRasterization 在 Linux 上默认 DISABLED（仅 Apple/Win/CrOS/Android 默认开）
-          # → --enable-gpu-rasterization 非冗余，保留
+          # → --enable-gpu-rasterization
           "--enable-gpu-rasterization"
           # enable_zero_copy 无 finch 实验默认（DefaultEnableZeroCopy 已不存在），GpuPreferences 默认 false
-          # → --enable-zero-copy 非冗余，保留（零拷贝光栅化，避免 CPU↔GPU 上传拷贝）
+          # → --enable-zero-copy（零拷贝光栅化，避免 CPU↔GPU 上传拷贝）
           "--enable-zero-copy"
           # Chromium 150+ 改名：VaapiVideoDecoder→AcceleratedVideoDecoder（Linux 默认开，不显式写出），
           # VaapiVideoEncoder→AcceleratedVideoEncoder（默认关，需显式开启硬编）。
-          # 笔记本为 Intel i5-13500H 混合架构（4P+8E）+ Iris Xe iGPU + RTX 3050 PRIME offload，
-          # Brave 默认跑在 Intel iGPU 上，VA-API 正常（H264/HEVC/VP9/AV1 硬解 + H264/HEVC/VP9 硬编）。
-          # 勿用 --ignore-gpu-blocklist（NVIDIA 混构下易崩溃）。
-          # 如需强制 N 卡渲染（牺牲 VA-API），用环境变量 __NV_PRIME_RENDER_OFFLOAD=1。
           "--enable-features=AcceleratedVideoEncoder"
 
-          # 2. 隐私底线（其余由 policy 接管）
+          # 2. 隐私（其余由 policy 接管）
           "--disable-crash-reporter" # 禁用崩溃上报进程
           "--disable-speech-api" # 禁用语音识别接口
 

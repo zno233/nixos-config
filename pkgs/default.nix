@@ -61,7 +61,7 @@ in
   win11-fonts = pkgs.callPackage ./apps/microsoft-fonts { };
   harmonyos-sans = pkgs.callPackage ./apps/harmonyos-sans { };
   fluxdown = pkgs.callPackage ./apps/fluxdown { };
-  zorite = pkgs.callPackage ./apps/zorite { };
+  # zorite = pkgs.callPackage ./apps/zorite { };
   # mark-shot = pkgs.callPackage ./apps/mark-shot { };
 
   # nixpak 沙箱包装包

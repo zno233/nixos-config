@@ -4,7 +4,7 @@
     {
       home.packages = with pkgs; [
         obsidian
-        zorite # gpui daily journal
+        # zorite # gpui daily journal
       ];
     };
 }
