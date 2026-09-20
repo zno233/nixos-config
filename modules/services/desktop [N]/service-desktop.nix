@@ -13,7 +13,7 @@
       services
       xserver
 
-      # printing
+      printing
     ];
   };
 }
