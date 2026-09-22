@@ -1,8 +1,4 @@
 {
-  inputs,
-  ...
-}:
-{
   # age-encrypted secrets for NixOS / Darwin and Home Manager
   # https://github.com/ryantm/agenix
 

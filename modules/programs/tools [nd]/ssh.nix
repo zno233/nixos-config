@@ -1,37 +1,35 @@
 {
-  flake.modules.homeManager.ssh =
-    { ... }:
-    {
-      programs.ssh = {
-        enable = true;
-        enableDefaultConfig = false;
-        settings = {
-          "*" = {
-            addKeysToAgent = "1h";
+  flake.modules.homeManager.ssh = {
+    programs.ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      settings = {
+        "*" = {
+          addKeysToAgent = "1h";
 
-            controlMaster = "auto";
-            controlPath = "~/.ssh/control-%r@%h:%p";
-            controlPersist = "10m";
+          controlMaster = "auto";
+          controlPath = "~/.ssh/control-%r@%h:%p";
+          controlPersist = "10m";
 
-            forwardAgent = false;
-            compression = false;
-            serverAliveInterval = 60;
-            serverAliveCountMax = 3;
-            hashKnownHosts = false;
-            userKnownHostsFile = "~/.ssh/known_hosts";
-          };
+          forwardAgent = false;
+          compression = false;
+          serverAliveInterval = 60;
+          serverAliveCountMax = 3;
+          hashKnownHosts = false;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+        };
 
-          github = {
-            host = "github.com";
-            hostname = "ssh.github.com";
-            user = "git";
-            port = 443;
-            identityFile = "~/.ssh/id_ed25519";
-            identitiesOnly = true;
-          };
+        github = {
+          host = "github.com";
+          hostname = "ssh.github.com";
+          user = "git";
+          port = 443;
+          identityFile = "~/.ssh/id_ed25519";
+          identitiesOnly = true;
         };
       };
-
-      services.ssh-agent.enable = false;
     };
+
+    services.ssh-agent.enable = false;
+  };
 }

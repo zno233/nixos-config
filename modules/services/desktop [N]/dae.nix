@@ -1,8 +1,4 @@
 {
-  self,
-  ...
-}:
-{
   flake-file.inputs = {
     daeuniverse = {
       url = "github:daeuniverse/flake.nix";
@@ -12,16 +8,14 @@
 
   flake.modules.nixos.dae =
     {
-      config,
       pkgs,
-      lib,
       inputs,
       ...
     }:
 
     {
       imports = [
-        self.inputs.daeuniverse.nixosModules.daed
+        inputs.daeuniverse.nixosModules.daed
       ];
       # ------------------------------------------------------------------------
       # dae 服务（使用官方模块）

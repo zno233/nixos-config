@@ -5,7 +5,10 @@
 }:
 let
   home-manager-config =
-    { lib, pkgs-stable, ... }:
+    {
+      pkgs-stable,
+      ...
+    }:
     {
       home-manager = {
         verbose = true;

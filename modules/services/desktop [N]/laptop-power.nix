@@ -2,7 +2,6 @@
   flake.modules.nixos.laptop-power =
     {
       config,
-      lib,
       pkgs,
       ...
     }:

@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.gnome =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       home.packages = (
         with pkgs;

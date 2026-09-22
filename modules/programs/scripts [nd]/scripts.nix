@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.scripts =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     let
       scriptDir = ./scripts;
       scriptEntries = builtins.readDir scriptDir;

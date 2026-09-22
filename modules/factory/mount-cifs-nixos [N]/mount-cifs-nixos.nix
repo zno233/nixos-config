@@ -9,11 +9,6 @@
       GID,
     }:
     {
-      config,
-      lib,
-      ...
-    }:
-    {
       fileSystems."${destination}" = {
         device = "//${host}/${resource}";
         fsType = "cifs";

@@ -1,6 +1,9 @@
 {
   flake.modules.nixos.graphics =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       hardware.graphics = {
         # 启用图形支持

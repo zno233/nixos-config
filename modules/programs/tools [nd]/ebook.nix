@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.ebook =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       home.packages = with pkgs; [
         calibre

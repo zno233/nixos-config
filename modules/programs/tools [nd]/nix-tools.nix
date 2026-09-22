@@ -1,5 +1,5 @@
 {
-  self,
+  inputs,
   ...
 }:
 {
@@ -11,10 +11,13 @@
   };
 
   flake.modules.homeManager.nix-tools =
-    { inputs, pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       imports = [
-        self.inputs.nix-index-database.homeModules.nix-index
+        inputs.nix-index-database.homeModules.nix-index
       ];
 
       programs = {

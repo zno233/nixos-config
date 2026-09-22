@@ -1,6 +1,9 @@
 {
   flake.modules.nixos.scx =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       services.scx-loader = {
         enable = true;

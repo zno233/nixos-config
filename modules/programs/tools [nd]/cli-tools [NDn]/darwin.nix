@@ -1,6 +1,9 @@
 {
   flake.modules.darwin.cli-tools =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       environment.systemPackages = with pkgs; [
         mas

@@ -1,6 +1,9 @@
 {
   flake.modules.nixos.pipewire =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       # ==================== PipeWire 核心配置 ====================
       services.pipewire = {

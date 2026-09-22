@@ -1,8 +1,4 @@
 {
-  inputs,
-  ...
-}:
-{
   flake-file.inputs = {
     # Primary channels
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

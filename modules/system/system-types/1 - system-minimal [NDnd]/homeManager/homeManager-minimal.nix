@@ -1,8 +1,4 @@
 {
-  inputs,
-  ...
-}:
-{
   # default settings needed for all homeManagerConfigurations
 
   flake.modules.homeManager.system-minimal =

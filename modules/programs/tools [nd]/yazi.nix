@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.yazi =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       # terminal file manager
       programs.yazi = {

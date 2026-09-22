@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   ...
 }:
 {
@@ -51,7 +52,7 @@
 
       nixpkgs.overlays = [
         (final: _prev: {
-          unstable = import inputs.nixpkgs-unstable {
+          unstable = import inputs.nixpkgs-stable {
             inherit (final) config system;
           };
         })

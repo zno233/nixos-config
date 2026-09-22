@@ -28,7 +28,10 @@
           ];
         };
         homeManager.zno =
-          { pkgs, ... }:
+          {
+            pkgs,
+            ...
+          }:
           {
             imports = with self.modules.homeManager; [
               system-desktop

@@ -6,7 +6,10 @@
   # default settings needed for all nixosConfigurations
 
   flake.modules.nixos.system-minimal =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       imports = [
         inputs.nur.modules.nixos.default
@@ -43,7 +46,6 @@
               hostPlatform = final.stdenv.hostPlatform;
             })
           )
-          inputs.nur.overlays.default
         ];
       };
       nixpkgs.config.allowUnfree = true;
@@ -54,19 +56,19 @@
         substituters = [
           # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
           # "https://mirrors.ustc.edu.cn/nix-channels/store"
-          "https://mirrors.cernet.edu.cn/nix-channels/store"
-          "https://cache.nixos.org"
-          "https://nix-community.cachix.org"
+          "https://mirrors.cernet.edu.cn/nix-channels/store?priority=30"
+          "https://cache.nixos.org?priority=40"
+          "https://nix-community.cachix.org?priority=50"
           # "https://nix-gaming.cachix.org"
           # "https://hyprland.cachix.org"
           # "https://ghostty.cachix.org"
           # "https://vicinae.cachix.org"
-          "https://niri-epireyn.cachix.org"
+          "https://niri-epireyn.cachix.org?priority=60"
           # "https://noctalia.cachix.org"
           # "https://nixpkgs-wayland.cachix.org"
-          "https://attic.xuyh0120.win/lantian"
-          "https://cache.lix.systems"
-          "https://cache.numtide.com"
+          "https://attic.xuyh0120.win/lantian?priority=70"
+          "https://cache.lix.systems?priority=50"
+          "https://cache.numtide.com?priority=50"
           # "https://zed.cachix.org"
           # "https://cache.garnix.io"
         ];
@@ -101,7 +103,6 @@
 
       nix.extraOptions = ''
         warn-dirty = false
-        keep-outputs = true
       '';
 
       nix.package = pkgs.lixPackageSets.stable.lix;

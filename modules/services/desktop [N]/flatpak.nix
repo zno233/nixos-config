@@ -1,16 +1,15 @@
 {
-  self,
-  ...
-}:
-{
   flake-file.inputs = {
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
   flake.modules.nixos.flatpak =
-    { inputs, ... }:
     {
-      imports = [ self.inputs.nix-flatpak.nixosModules.nix-flatpak ];
+      inputs,
+      ...
+    }:
+    {
+      imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
 
       services.flatpak = {
         enable = true;

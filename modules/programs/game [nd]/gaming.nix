@@ -4,7 +4,10 @@
   # };
 
   flake.modules.homeManager.gaming =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       home.packages = with pkgs; [
         ## Utils

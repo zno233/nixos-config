@@ -1,8 +1,4 @@
 {
-  inputs,
-  ...
-}:
-{
   # flake-file.inputs = {
   #   zed.url = "github:zed-industries/zed";
   # };

@@ -1,6 +1,10 @@
 {
   flake.modules.homeManager.helix =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      pkgs,
+      ...
+    }:
     {
       programs.helix = {
         enable = true;

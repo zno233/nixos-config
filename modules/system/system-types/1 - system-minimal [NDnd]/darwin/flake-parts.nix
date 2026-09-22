@@ -1,8 +1,4 @@
 {
-  inputs,
-  ...
-}:
-{
   # Manage your macOS using Nix
   # https://github.com/nix-darwin/nix-darwin
 

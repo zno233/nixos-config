@@ -1,5 +1,5 @@
 {
-  self,
+  inputs,
   ...
 }:
 {
@@ -12,11 +12,9 @@
       };
     };
   };
-  flake.modules.homeManager.zen =
-    { inputs, pkgs, ... }:
-    {
-      imports = [ self.inputs.zen-browser.homeModules.beta ];
+  flake.modules.homeManager.zen = {
+    imports = [ inputs.zen-browser.homeModules.beta ];
 
-      programs.zen-browser.enable = true;
-    };
+    programs.zen-browser.enable = true;
+  };
 }
