@@ -19,11 +19,11 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "fluxdown";
-  version = "0.4.7";
+  version = "0.4.8";
 
   src = fetchurl {
     url = "https://github.com/zerx-lab/FluxDown/releases/download/v${finalAttrs.version}/FluxDown-${finalAttrs.version}-linux-x64.deb";
-    hash = "sha256-vTJxsG7RWcj6TB/QQL8S2eAD/fnc59npUQwS8EH2l20=";
+    hash = "sha256-f3/fWgnLAEU8AWQgmlnOUWCWZr2M8hx4jdDXB3M6K1Y=";
   };
 
   nativeBuildInputs = [
