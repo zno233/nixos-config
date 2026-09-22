@@ -1,5 +1,4 @@
 {
-  self,
   inputs,
   ...
 }:
@@ -25,7 +24,7 @@
       ];
 
       nixpkgs = {
-        overlays = [ self.inputs.niri.overlays.niri ];
+        overlays = [ inputs.niri.overlays.niri ];
       };
 
       services.displayManager.sessionPackages = [ pkgs.niri-unstable ];
@@ -42,7 +41,7 @@
     in
     {
       imports = [
-        self.inputs.niri.homeModules.niri
+        inputs.niri.homeModules.niri
       ];
 
       programs.niri = {

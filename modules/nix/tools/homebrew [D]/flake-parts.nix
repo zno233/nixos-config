@@ -1,8 +1,4 @@
 {
-  inputs,
-  ...
-}:
-{
   # Experimental nix expression to package all MacOS casks from homebrew automatically
   # https://github.com/BatteredBunny/brew-nix
 

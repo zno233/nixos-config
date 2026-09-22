@@ -1,5 +1,5 @@
 {
-  self,
+  inputs,
   ...
 }:
 {
@@ -11,9 +11,12 @@
   };
 
   flake.modules.homeManager.agent =
-    { pkgs, ... }:
     {
-      home.packages = with self.inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+      pkgs,
+      ...
+    }:
+    {
+      home.packages = with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
         claude-code
         opencode
         dsh

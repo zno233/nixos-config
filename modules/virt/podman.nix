@@ -4,7 +4,10 @@
 }:
 {
   flake.modules.nixos.podman =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       # 导入声明式的容器配置
       imports = with inputs.self.modules.nixos; [

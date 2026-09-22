@@ -1,5 +1,5 @@
 {
-  self,
+  inputs,
   ...
 }:
 {
@@ -12,13 +12,12 @@
 
   flake.modules.homeManager.mark-shot =
     {
-      inputs,
       pkgs,
       ...
     }:
     {
       home.packages = with pkgs; [
-        self.inputs.mark-shot.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.mark-shot.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
     };
 }

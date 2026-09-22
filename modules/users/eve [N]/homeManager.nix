@@ -7,7 +7,10 @@ let
 in
 {
   flake.modules.homeManager."${username}" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       imports = with inputs.self.modules.homeManager; [
         system-cli

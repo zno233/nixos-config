@@ -1,6 +1,10 @@
 {
   flake.modules.homeManager.rclone =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
     let
       # 动态获取家目录
       homeDir = config.home.homeDirectory;

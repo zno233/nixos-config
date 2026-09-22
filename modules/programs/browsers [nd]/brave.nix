@@ -1,7 +1,12 @@
-{ inputs, lib, ... }:
+{
+  inputs,
+  ...
+}:
 {
   flake.modules.nixos.brave =
-    { ... }:
+    {
+      ...
+    }:
     let
       # 带注释的 policies（toJSON 会自动生成纯 JSON）
       bravePolicies = {
@@ -133,7 +138,10 @@
     };
 
   flake.modules.homeManager.chromium =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       programs.chromium = {
         enable = true;

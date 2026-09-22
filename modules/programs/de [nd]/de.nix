@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 {
   flake.modules.nixos.de = {
     imports = with inputs.self.modules.nixos; [

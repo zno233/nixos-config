@@ -1,5 +1,5 @@
 {
-  self,
+  inputs,
   ...
 }:
 {
@@ -8,10 +8,13 @@
   };
 
   flake.modules.nixos.systemd-boot =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       nixpkgs = {
-        overlays = [ self.inputs.nix-cachyos-kernel.overlays.pinned ];
+        overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
       };
 
       boot = {

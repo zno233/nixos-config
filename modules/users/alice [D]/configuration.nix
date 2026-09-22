@@ -1,6 +1,5 @@
 {
   inputs,
-  self,
   ...
 }:
 
@@ -9,7 +8,10 @@ let
 in
 {
   flake.modules.darwin."${username}" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
 
       imports = with inputs.self.modules.darwin; [

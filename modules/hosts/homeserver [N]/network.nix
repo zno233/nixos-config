@@ -1,4 +1,8 @@
-{ self, lib, ... }:
+{
+  self,
+  lib,
+  ...
+}:
 {
   flake.modules.nixos.homeserver = {
     networking.interfaces."enp86s0" =

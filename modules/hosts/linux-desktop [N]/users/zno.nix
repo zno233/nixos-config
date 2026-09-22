@@ -1,11 +1,13 @@
 {
   inputs,
-  self,
   ...
 }:
 {
   flake.modules.nixos.linux-desktop =
-    { config, ... }:
+    {
+      config,
+      ...
+    }:
     {
       imports =
         with inputs.self.modules.nixos;
@@ -23,7 +25,7 @@
         ];
 
       age.secrets."homeserver-cred" = {
-        file = "${self.inputs.secrets}/homeserver-cred.age";
+        file = "${inputs.secrets}/homeserver-cred.age";
       };
 
       # ...

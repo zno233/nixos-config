@@ -1,6 +1,12 @@
 {
+  lib,
+  ...
+}:
+{
   flake.modules.homeManager.xdg-mimes =
-    { lib, ... }:
+    {
+      ...
+    }:
     with lib;
     let
       defaultApps = {

@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.office =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     let
       # 包装完整的 wpsoffice-cn
       wpsoffice-wrapped = pkgs.symlinkJoin {

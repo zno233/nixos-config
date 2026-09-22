@@ -1,12 +1,7 @@
 {
-  self,
-  ...
-}:
-{
   flake.modules.homeManager.stylix =
     {
       pkgs,
-      lib,
       ...
     }:
     let

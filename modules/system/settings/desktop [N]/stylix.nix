@@ -11,7 +11,10 @@
   };
 
   flake.modules.nixos.stylix =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       imports = [
         inputs.stylix.nixosModules.stylix

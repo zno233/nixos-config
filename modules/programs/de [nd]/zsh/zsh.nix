@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 {
   flake.modules.homeManager.zsh = {
     imports = with inputs.self.modules.homeManager; [

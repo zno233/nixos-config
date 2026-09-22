@@ -1,6 +1,9 @@
 {
   flake.modules.nixos.services =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       services = {
         gvfs.enable = true;

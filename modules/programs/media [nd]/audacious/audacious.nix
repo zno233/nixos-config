@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.audacious =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       home.packages = with pkgs; [ audacious ];
 

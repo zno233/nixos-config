@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   ...
 }:
 let
@@ -9,7 +8,10 @@ let
 in
 {
   flake.modules.nixos.aria2 =
-    { config, ... }:
+    {
+      config,
+      ...
+    }:
     {
       services.aria2 = {
         enable = true;

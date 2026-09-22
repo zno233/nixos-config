@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 {
   flake.modules.nixos.settings-desktop = {
     imports = with inputs.self.modules.nixos; [

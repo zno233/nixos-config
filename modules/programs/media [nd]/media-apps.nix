@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.media-apps =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       home.packages = with pkgs; [
         ## ── Image ────────────────────────────────────────────────────

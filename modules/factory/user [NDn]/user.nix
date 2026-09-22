@@ -34,7 +34,11 @@
       };
 
     darwin."${username}" =
-      { lib, pkgs, ... }:
+      {
+        lib,
+        pkgs,
+        ...
+      }:
       {
         users.users."${username}" = {
           home = "/Users/${username}";

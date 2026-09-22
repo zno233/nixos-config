@@ -1,6 +1,5 @@
 {
   inputs,
-  self,
   ...
 }:
 
@@ -10,8 +9,6 @@ in
 {
   flake.modules.nixos."${username}" =
     {
-      lib,
-      config,
       pkgs,
       ...
     }:

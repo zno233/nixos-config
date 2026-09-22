@@ -1,8 +1,6 @@
 {
-  flake.modules.nixos.appImage =
-    { ... }:
-    {
-      programs.appimage.enable = true;
-      programs.appimage.binfmt = true;
-    };
+  flake.modules.nixos.appImage = {
+    programs.appimage.enable = true;
+    programs.appimage.binfmt = true;
+  };
 }

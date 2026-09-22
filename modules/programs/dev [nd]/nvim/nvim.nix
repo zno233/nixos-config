@@ -1,5 +1,5 @@
 {
-  self,
+  inputs,
   ...
 }:
 {
@@ -10,20 +10,14 @@
     };
   };
 
-  flake.modules.homeManager.nvim =
-    {
-      config,
-      pkgs,
-      ...
-    }:
-    {
-      imports = [
-        self.inputs.lazyvim-nix.homeManagerModules.default
-      ];
+  flake.modules.homeManager.nvim = {
+    imports = [
+      inputs.lazyvim-nix.homeManagerModules.default
+    ];
 
-      programs.lazyvim = {
-        enable = true;
-        configFiles = ./lazyvim;
-      };
+    programs.lazyvim = {
+      enable = true;
+      configFiles = ./lazyvim;
     };
+  };
 }

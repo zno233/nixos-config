@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.xdg =
     {
-      config,
       lib,
       pkgs,
       ...

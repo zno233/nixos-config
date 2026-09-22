@@ -1,9 +1,4 @@
 {
-  self,
-  lib,
-  ...
-}:
-{
   flake.modules.nixos.noctalia-greeter =
     {
       pkgs,

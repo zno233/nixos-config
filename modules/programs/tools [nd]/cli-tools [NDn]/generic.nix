@@ -1,6 +1,9 @@
 let
   genericPackages =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       environment.systemPackages = with pkgs; [
         git

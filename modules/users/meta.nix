@@ -1,4 +1,8 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 let
   # 用户元数据的共享 submodule 类型
   userMeta = {

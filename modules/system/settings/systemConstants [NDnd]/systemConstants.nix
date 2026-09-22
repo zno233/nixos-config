@@ -1,6 +1,9 @@
 {
   flake.modules.generic.systemConstants =
-    { lib, ... }:
+    {
+      lib,
+      ...
+    }:
     {
       options.systemConstants = lib.mkOption {
         type = lib.types.attrsOf lib.types.unspecified;

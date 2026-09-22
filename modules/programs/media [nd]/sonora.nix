@@ -10,20 +10,16 @@
     };
   };
 
-  flake.modules.homeManager.sonora =
-    {
-      ...
-    }:
-    {
-      imports = [
-        inputs.sonora.homeManagerModules.default
-      ];
+  flake.modules.homeManager.sonora = {
+    imports = [
+      inputs.sonora.homeManagerModules.default
+    ];
 
-      programs.sonora = {
-        enable = true;
-        settings = {
-          appearance.theme = "dark";
-        };
+    programs.sonora = {
+      enable = true;
+      settings = {
+        appearance.theme = "dark";
       };
     };
+  };
 }

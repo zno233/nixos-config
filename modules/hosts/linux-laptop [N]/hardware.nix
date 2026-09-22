@@ -1,6 +1,10 @@
 {
   flake.modules.nixos.linux-laptop =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
     {
       imports = [
         ./_hardware-configuration.nix
@@ -18,7 +22,7 @@
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.latest;
       };
-      
+
       # 1.1 启用 NVIDIA 容器工具包
       hardware.nvidia-container-toolkit.enable = true;
 

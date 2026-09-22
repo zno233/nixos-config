@@ -1,5 +1,4 @@
 {
-  self,
   lib,
   ...
 }:
@@ -13,7 +12,6 @@
   flake.modules.homeManager.noctalia =
     {
       config,
-      inputs,
       pkgs,
       ...
     }:
