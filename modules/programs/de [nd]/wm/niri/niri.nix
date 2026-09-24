@@ -76,6 +76,9 @@
       xdg.configFile."niri/environment.kdl" = {
         source = ./config/environment.kdl;
       };
+      xdg.configFile."niri/clavis-shell.kdl" = {
+        source = ./config/clavis-shell.kdl;
+      };
       xdg.configFile."niri/noctalia-shell.kdl" = {
         source = ./config/noctalia-shell.kdl;
       };

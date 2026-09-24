@@ -15,8 +15,6 @@
   libgcc,
 }:
 
-let
-in
 stdenv.mkDerivation (finalAttrs: {
   pname = "fluxdown";
   version = "0.4.8";

@@ -41,8 +41,9 @@
       #waybar-niri                          # status bar
       #waypaper                    # GUI wallpaper picker
 
-      ### using shell
-      noctalia
+      ### using shell (only one active)
+      clavis
+      # noctalia
       # inir
 
       # optinal
