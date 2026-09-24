@@ -23,10 +23,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    clavis = {
-      url = "github:zno233/clavis-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     daeuniverse = {
       url = "github:daeuniverse/flake.nix";
       inputs.nixpkgs.follows = "nixpkgs";

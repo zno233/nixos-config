@@ -42,8 +42,8 @@
       #waypaper                    # GUI wallpaper picker
 
       ### using shell (only one active)
-      clavis
-      # noctalia
+      # clavis
+      noctalia
       # inir
 
       # optinal
