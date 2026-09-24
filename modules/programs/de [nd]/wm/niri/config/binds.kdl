@@ -25,8 +25,7 @@ binds {
     Alt+F             hotkey-overlay-title="下载器：fluxdown" { spawn "fluxdown"; }
     Alt+T             hotkey-overlay-title="聊天：telegram" { spawn "telegram"; }
     Alt+Z             hotkey-overlay-title="日志：zorite" { spawn "zorite"; }
-    // Mod+N 已由 clavis-shell.kdl 占用（通知侧栏）；笔记改到 Mod+Alt+N 旁请自行改键
-    // Mod+N             hotkey-overlay-title="笔记：obsidian" { spawn "obsidian"; }
+    Alt+N             hotkey-overlay-title="笔记：obsidian" { spawn "obsidian"; }
     Mod+Shift+B       hotkey-overlay-title="btop" { spawn "kitty" "btop"; }
     // Mod+Shift+C       hotkey-overlay-title="取色器：hyprpicker" { spawn-sh "hyprpicker | wl-copy"; }
 
@@ -46,10 +45,9 @@ binds {
     // XF86AudioMicMute allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
 
     // ==================== 亮度控制 ====================
-    // Clavis 无 brightness IPC；直接走 brightnessctl（随 clavis-shell runtimePath 打包）
-
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class" "backlight" "set" "+5%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class" "backlight" "set" "5%-"; }
+    // 已迁移至 noctalia-shell.kdl（noctalia brightness IPC，带 OSD）
+    // XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class" "backlight" "set" "+5%"; }
+    // XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class" "backlight" "set" "5%-"; }
 
     // ==================== 窗口管理 — 焦点 ====================
 
@@ -186,9 +184,8 @@ binds {
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    // 切换窗口浮动 — Mod+Space 已由 clavis-shell.kdl 占用（Spotlight）
-    // Mod+Space   { toggle-window-floating; }
-    Mod+Alt+Space { toggle-window-floating; }
+    // 切换窗口浮动
+    Mod+Space   { toggle-window-floating; }
     // 切换浮动 / 平铺焦点
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 

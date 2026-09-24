@@ -31,7 +31,7 @@ radius_bottom_left = 16
 radius_bottom_right = 16
 radius_top_left = 0
 radius_top_right = 0
-start = [ "launcher", "workspaces", "group:g1", "weather", "nix-monitor", "eyecare-widget", "active_window", "status" ]
+start = [ "launcher", "workspaces", "group:g1", "weather", "eyecare-widget", "active_window" ]
 thickness = 36
 
     [[bar.default.capsule_group]]
@@ -60,18 +60,12 @@ enabled = true
 
 [desktop_widgets]
 schema_version = 2
-widget_order = [
-    "desktop-widget-0000000000000001",
-    "desktop-widget-0000000000000002",
-    "desktop-widget-0000000000000003",
-    "desktop-widget-0000000000000004",
-    "desktop-widget-0000000000000005"
-]
+widget_order = [ "desktop-widget-0000000000000002", "desktop-widget-0000000000000003", "desktop-widget-0000000000000005" ]
 
     [desktop_widgets.grid]
     cell_size = 16
     major_interval = 4
-    visible = true
+    visible = false
 
     [desktop_widgets.widget.desktop-widget-0000000000000001]
     box_height = 0.0
@@ -101,13 +95,18 @@ widget_order = [
     [desktop_widgets.widget.desktop-widget-0000000000000003]
     box_height = 96.0
     box_width = 208.0
-    cx = 180.0
-    cy = 144.0
+    cx = 189.0859375
+    cy = 174.62890625
     output = "eDP-1"
     placement_height = 960.0
     placement_width = 1440.0
     rotation = 0.0
     type = "clock"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000003.settings]
+        background = false
+        background_opacity = 0.0
+        clock_style = "digital"
 
     [desktop_widgets.widget.desktop-widget-0000000000000004]
     box_height = 176.0
@@ -134,12 +133,42 @@ widget_order = [
     rotation = 0.0
     type = "yocraft/desktop-launcher:widget"
 
+        [desktop_widgets.widget.desktop-widget-0000000000000005.settings]
+        apps = [ "firefox", "foot", "nvim", "brave-origin" ]
+        grid_layout = false
+
 [dock]
 active_monitor_only = true
 auto_hide = true
+background_opacity = 0.59999998658895493
+border_width = 1.0
 enabled = true
-icon_size = 44
+icon_size = 40
+launcher_position = "start"
+margin_edge = 5
+pinned = [
+    "nemo",
+    "io.missioncenter.MissionCenter",
+    "kitty",
+    "com.mitchellh.ghostty",
+    "brave-origin",
+    "org.telegram.desktop",
+    "obsidian",
+    "dev.zed.Zed",
+    "code",
+    "com.fluxdown.app",
+    "top.imsyy.splayer_next",
+    "org.fooyin.fooyin",
+    "mpv",
+    "com.obsproject.Studio",
+    "net.lutris.Lutris",
+    "steam",
+    "calibre-gui",
+    "wps-office-prometheus"
+]
 reserve_space = false
+shadow = false
+show_dots = true
 
 [location]
 auto_locate = false
@@ -313,7 +342,7 @@ position_vertical = "center_right"
 download_dir = "/home/zno/Pictures/download/92462265"
 
 [plugins]
-enabled = [ "apex077/eyecare" ]
+enabled = [ "notfinaldev/web-search", "cleboost/ssh-launcher", "srounce/systemd" ]
 
 [shell]
 avatar_path = "/home/zno/Pictures/头像/2026-04-18_09-25-08.webp"
@@ -327,7 +356,10 @@ telemetry_enabled = false
     auto_sync = true
 
     [shell.panel]
+    launcher_position = "center"
     open_near_click_control_center = true
+    open_near_click_launcher = true
+    open_near_click_wallpaper = true
     session_placement = "floating"
     session_position = "center"
 

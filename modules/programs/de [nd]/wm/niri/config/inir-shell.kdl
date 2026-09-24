@@ -1,0 +1,50 @@
+// ============================================================
+// iNiR Shell 集成
+// IPC：spawn "inir" "<target>" "<function>"
+// 键位参照原 clavis-shell.kdl 布局 + iNiR 官方默认
+// ============================================================
+
+binds {
+    // ==================== iNiR 特有绑定 ====================
+
+    Mod+D          hotkey-overlay-title="概览 / 启动器" { spawn "inir" "overview" "toggle"; }
+    Mod+Slash          hotkey-overlay-title="快捷键速查" { spawn "inir" "cheatsheet" "toggle"; }
+    Mod+BackSpace      hotkey-overlay-title="电源菜单" { spawn "inir" "session" "toggle"; }
+    Mod+Shift+W        hotkey-overlay-title="切换面板家族" { spawn "inir" "panelFamily" "cycle"; }
+    Mod+Shift+T        hotkey-overlay-title="浮动工具" { spawn "inir" "overlay" "toggle"; }
+    Mod+Ctrl+Comma     hotkey-overlay-title="iNiR 设置" { spawn "inir" "settings"; }
+    Alt+Shift+L        hotkey-overlay-title="锁屏" allow-when-locked=true { spawn "inir" "lock" "activate"; }
+
+    // ==================== 剪贴板 / 壁纸 ====================
+
+    Mod+V              hotkey-overlay-title="剪贴板历史" repeat=false { spawn "inir" "clipboard" "toggle"; }
+    Mod+Alt+W          hotkey-overlay-title="壁纸选择" { spawn "inir" "wallpaperSelector" "toggle"; }
+
+    // ==================== 侧栏 ====================
+
+    Mod+N              hotkey-overlay-title="仪表盘（通知与信息）" { spawn "inir" "dashboard" "toggle"; }
+    Mod+A              hotkey-overlay-title="快捷设置" { spawn "inir" "controlPanel" "toggle"; }
+
+    // ==================== 区域工具 ====================
+
+    Mod+Shift+S        hotkey-overlay-title="区域截图" { spawn "inir" "region" "screenshot"; }
+    Mod+Shift+X        hotkey-overlay-title="区域 OCR" { spawn "inir" "region" "ocr"; }
+    Mod+Shift+A        hotkey-overlay-title="区域图像搜索" { spawn "inir" "region" "search"; }
+    // Mod+Shift+R 与 binds.kdl 的 switch-preset-window-height 冲突；录屏请用下方菜单
+    Ctrl+Shift+S       hotkey-overlay-title="截图 / 录屏菜单" { spawn "inir" "region" "menu"; }
+
+    // ==================== 音量 / 亮度（经 iNiR IPC，带 OSD） ====================
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "inir" "audio" "volumeUp"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "inir" "audio" "volumeDown"; }
+    XF86AudioMute        allow-when-locked=true { spawn "inir" "audio" "mute"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "inir" "audio" "micMute"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "inir" "brightness" "increment"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "inir" "brightness" "decrement"; }
+
+    // ==================== 媒体控制 ====================
+
+    XF86AudioPlay { spawn "inir" "mpris" "playPause"; }
+    XF86AudioNext  { spawn "inir" "mpris" "next"; }
+    XF86AudioPrev  { spawn "inir" "mpris" "previous"; }
+}

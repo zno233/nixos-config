@@ -8,8 +8,9 @@
 
 include "./binds.kdl"          // 按键绑定
 include "./environment.kdl"    // 环境变量
-include "./clavis-shell.kdl"   // Clavis Shell 快捷键
-// include "./noctalia-shell.kdl" // 旧桌面 shell（已切 Clavis）
+// include "./clavis-shell.kdl"   // 旧桌面 shell
+include "./noctalia-shell.kdl" // 桌面 shell
+// include "./inir-shell.kdl"     // 旧桌面 shell（已切回 Noctalia）
 include "./recent-windows.kdl" // 最近窗口切换（Alt+Tab）
 include "./patch.kdl"          // 补丁 / 特效配置
 // include "./waybar.kdl"      // 旧 Waybar 配置（已弃用，改用 Noctalia）
