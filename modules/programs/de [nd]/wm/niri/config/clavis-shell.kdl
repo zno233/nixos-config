@@ -1,0 +1,31 @@
+// ============================================================
+// Clavis Shell 集成
+// IPC：spawn "qs" "-c" "clavis" "ipc" "call" …
+// 键位与 scripts/system/niri_config.py DEFAULT_BINDINGS / docs/ipc.md 一致
+// ============================================================
+
+binds {
+    // ==================== Clavis 特有绑定 ====================
+
+    Mod+Space          hotkey-overlay-title="搜索：Spotlight" { spawn "qs" "-c" "clavis" "ipc" "call" "spotlight" "toggle"; }
+    Mod+Shift+Space    hotkey-overlay-title="网页搜索" { spawn "qs" "-c" "clavis" "ipc" "call" "spotlight" "web"; }
+    Mod+Slash          hotkey-overlay-title="快捷键地图" { spawn "qs" "-c" "clavis" "ipc" "call" "shortcut-map" "toggle"; }
+    Mod+BackSpace      hotkey-overlay-title="电源菜单" { spawn "qs" "-c" "clavis" "ipc" "call" "power-menu" "toggle"; }
+
+    // ==================== 剪贴板 / 壁纸（Spotlight 模式） ====================
+
+    Mod+V          hotkey-overlay-title="剪贴板历史" { spawn "qs" "-c" "clavis" "ipc" "call" "spotlight" "openMode" "clipboard"; }
+    Mod+Alt+W          hotkey-overlay-title="壁纸选择" { spawn "qs" "-c" "clavis" "ipc" "call" "spotlight" "openMode" "wallpapers"; }
+
+    // ==================== 侧栏 ====================
+
+    Mod+N              hotkey-overlay-title="通知与信息侧栏" { spawn "qs" "-c" "clavis" "ipc" "call" "sidebar" "toggle" "dashboard"; }
+    Mod+A              hotkey-overlay-title="快捷设置侧栏" { spawn "qs" "-c" "clavis" "ipc" "call" "sidebar" "toggle" "quicksettings"; }
+
+    // ==================== 设置中心 / Keystone / 锁屏 ====================
+
+    Mod+Ctrl+Comma     hotkey-overlay-title="设置中心" { spawn "qs" "-c" "clavis" "ipc" "call" "control-center" "toggle" "general"; }
+    Mod+Shift+W        hotkey-overlay-title="Keystone 主面板" { spawn "qs" "-c" "clavis" "ipc" "call" "keystone" "hub"; }
+    Mod+Shift+T        hotkey-overlay-title="Keystone 工具" { spawn "qs" "-c" "clavis" "ipc" "call" "keystone" "tools"; }
+    Alt+Shift+L        hotkey-overlay-title="锁屏" { spawn "qs" "-c" "clavis" "ipc" "call" "lock" "open"; }
+}
