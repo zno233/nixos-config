@@ -7,9 +7,10 @@
     imports = with inputs.self.modules.nixos; [
       ananicy
       aria2
-      dae
+      # dae
       flatpak
       greetd
+      honk
       pipewire
       scx
       # sddm
