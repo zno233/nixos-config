@@ -22,6 +22,7 @@
 
         ## ── Audio player ────────────────────────────────────────────
         fooyin # foobar2k-like
+        rox # music player using gpui
         splayer-next # music player
         # spotify
         # tauon # local music player
