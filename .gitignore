@@ -1,6 +1,6 @@
 # Log files and compiled outputs
 *.log
-result/
+result*/
 
 # agent
 .claude/
