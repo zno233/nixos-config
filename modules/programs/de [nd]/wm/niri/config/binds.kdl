@@ -18,7 +18,7 @@ binds {
     Mod+Alt+I         hotkey-overlay-title="打开 niri 配置" { spawn-sh "zeditor $HOME/zno-config/modules/programs/de/wm/niri/config.kdl"; }
     Mod+Alt+N         hotkey-overlay-title="打开 nixos 配置" { spawn-sh "zeditor $HOME/zno-config"; }
     Ctrl+Shift+Escape hotkey-overlay-title="打开任务管理器：MissionCenter" { spawn "missioncenter"; }
-    Mod+M             hotkey-overlay-title="音乐播放器：fooyin" { spawn "fooyin"; }
+    Mod+M             hotkey-overlay-title="音乐播放器：rox" { spawn "rox"; }
     Alt+M             hotkey-overlay-title="音乐播放器：SPlayer-Next" { spawn "SPlayer-Next"; }
     Mod+Alt+M         hotkey-overlay-title="音乐播放器：sonora" { spawn "sonora"; }
     Alt+L             hotkey-overlay-title="歌词：kotonoha" { spawn "kotonoha"; }

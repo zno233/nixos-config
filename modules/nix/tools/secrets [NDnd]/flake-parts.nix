@@ -7,7 +7,6 @@
       url = "github:ryantm/agenix";
       # url = "github:yaxitech/ragenix"; # rust drop-in replacment
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
     secrets = {
       url = "path:./secrets";
