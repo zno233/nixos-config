@@ -3,6 +3,8 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
+      # 易变的主机定义放本地普通文件，不进 nix/store，改动无需 rebuild
+      includes = [ "~/.ssh/local" ];
       settings = {
         "*" = {
           addKeysToAgent = "1h";
