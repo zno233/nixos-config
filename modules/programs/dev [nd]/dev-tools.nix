@@ -22,7 +22,7 @@
         llvmPackages.clang-tools
 
         ## ── Python ──────────────────────────────────────────────────
-        (python314.withPackages (
+        (python3.withPackages (
           p: with p; [
             # core
             ipython
@@ -45,7 +45,11 @@
             # utils
             opencv4
             git-filter-repo
+
+            # mark-shot‘s optional backend
             rapidocr-onnxruntime # OCR
+            zxing-cpp
+            pillow
 
             # AI
             # llm
