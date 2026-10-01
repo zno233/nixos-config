@@ -8,20 +8,32 @@
   wrapGAppsHook3,
   nix-update-script,
 
-  # direct ldd dependencies
+  # fluxdown-desktop (GPUI client) — direct ELF deps
+  libxcb,
+  libxkbcommon,
+
+  # fluxdown-agent (GTK3 tray) — direct ELF deps
   gtk3,
   glib,
-  fontconfig,
+  cairo,
+  gdk-pixbuf,
   libgcc,
+
+  # dlopen'd at runtime (GPUI/wgpu backend probing, status-notifier
+  # fallback); runtimeDependencies prepends them to the executable rpath
+  wayland,
+  libGL,
+  vulkan-loader,
+  libayatana-appindicator,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fluxdown";
-  version = "0.4.8";
+  version = "0.5.0";
 
   src = fetchurl {
     url = "https://github.com/zerx-lab/FluxDown/releases/download/v${finalAttrs.version}/FluxDown-${finalAttrs.version}-linux-x64.deb";
-    hash = "sha256-f3/fWgnLAEU8AWQgmlnOUWCWZr2M8hx4jdDXB3M6K1Y=";
+    hash = "sha256-iucLF9SAKY6g7y8KfFGlwnihuVzC7oBeyHn3+8G/W4g=";
   };
 
   nativeBuildInputs = [
@@ -31,12 +43,27 @@ stdenv.mkDerivation (finalAttrs: {
     wrapGAppsHook3
   ];
 
-  # autoPatchelfHook patches linked libraries
+  # Satisfies DT_NEEDED during autoPatchelfHook
   buildInputs = [
+    # fluxdown-desktop — GPUI client
+    libxcb
+    libxkbcommon
+    # fluxdown-agent — GTK3 tray
     gtk3
     glib
-    fontconfig
+    cairo
+    gdk-pixbuf
     libgcc
+  ];
+
+  # Prepended to the rpath of every executable for dlopen'd libraries:
+  # no .note.dlopen metadata is shipped, so autoPatchelf cannot resolve
+  # these on its own.
+  runtimeDependencies = [
+    wayland
+    libGL
+    vulkan-loader
+    libayatana-appindicator
   ];
 
   dontConfigure = true;
@@ -53,29 +80,30 @@ stdenv.mkDerivation (finalAttrs: {
     cp -a opt/fluxdown "$out/lib/fluxdown"
 
     install -Dm644 \
-      opt/fluxdown/data/com.fluxdown.app.desktop \
+      usr/share/applications/com.fluxdown.app.desktop \
       "$out/share/applications/com.fluxdown.app.desktop"
 
-    substituteInPlace "$out/share/applications/com.fluxdown.app.desktop" \
-      --replace-fail "Exec=flux_down %U" "Exec=fluxdown %U"
-
-    if [ -d opt/fluxdown/data/icons ]; then
-      cp -r opt/fluxdown/data/icons $out/share/icons
-    fi
+    cp -r usr/share/icons "$out/share/icons"
 
     runHook postInstall
   '';
 
   postFixup = ''
+    # The desktop entry runs `fluxdown-desktop`; `fluxdown` is the upstream
+    # flux_down entry script, which routes --silentStart to fluxdown-agent
+    # and execs its sibling binaries (they inherit the wrapper env).
     makeWrapper "$out/lib/fluxdown/flux_down" "$out/bin/fluxdown" \
-      "''${gappsWrapperArgs[@]}" \
-      --inherit-argv0
+      "''${gappsWrapperArgs[@]}"
+    makeWrapper "$out/lib/fluxdown/fluxdown-desktop" "$out/bin/fluxdown-desktop" \
+      "''${gappsWrapperArgs[@]}"
+    makeWrapper "$out/lib/fluxdown/fluxdown-agent" "$out/bin/fluxdown-agent" \
+      "''${gappsWrapperArgs[@]}"
   '';
 
   passthru.updateScript = nix-update-script { };
 
   meta = {
-    description = "Rust-powered multi-protocol download manager with Flutter UI";
+    description = "Rust-powered multi-protocol download manager with a GPUI interface";
     homepage = "https://fluxdown.zerx.dev";
     changelog = "https://github.com/zerx-lab/FluxDown/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.agpl3Only;

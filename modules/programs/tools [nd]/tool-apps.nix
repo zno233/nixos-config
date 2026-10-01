@@ -26,7 +26,7 @@
 
         ## ── Downloader ─────────────────────────────────────────────────
         qbittorrent-enhanced # BitTorrent client
-        fluxdown # Rust-powered multi-protocol download manager with Flutter UI
+        fluxdown # Rust-powered multi-protocol download manager with GPUI interface
 
         ## ── Proxy ─────────────────────────────────────────────
         # gui-for-singbox
