@@ -4,9 +4,11 @@
 <details>
 <summary>Noctalia-shell (EXPAND)</summary>
 
-<img width="1260" alt="Screenshot from 2026-09-03 11-11-47" src="https://github.com/user-attachments/assets/ce15442a-75ca-4da9-8c37-55ae4d6e3431" />
+<img width="1260" alt="Screenshot from 2026-10-01 10-41-51" src="https://github.com/user-attachments/assets/54cad050-82c8-40a9-9187-45001e5a00b8" />
 
-<img width="1260" alt="Screenshot from 2026-09-03 11-12-02" src="https://github.com/user-attachments/assets/c099465d-3396-4dc9-b990-920baf0b2b1c" />
+<img width="1260" alt="Screenshot from 2026-10-01 10-44-46" src="https://github.com/user-attachments/assets/a1736691-3f81-4662-9235-6f3ec0311a9f" />
+
+<img width="1260" alt="Screenshot from 2026-10-01 10-43-25" src="https://github.com/user-attachments/assets/20d305e8-a00a-4f38-8f60-903f4c0556d1" />
 
 </details>
 
@@ -27,20 +29,20 @@
 | **Kernel** | [nix-cachyos-kernel][nix-cachyos-kernel] |
 | **Window Manager** | [niri][niri] |
 | **Shell** | [zsh][zsh] + [starship][starship] |
-| **Terminal** | [kitty][kitty], [ghostty][ghostty] |
+| **Terminal** | [kitty][kitty] + [ghostty][ghostty] |
 | **Bar / Shell** | [noctalia-shell][noctalia-shell] |
 | **Input Method** | [fcitx5][fcitx5] + [rime_wanxiang][rime_wanxiang] |
-| **Text Editor** | [zed][zed] + [neovim][neovim] + [helix][helix] |
+| **Text Editor** | [zed][zed] + [lazyvim-nix][lazyvim-nix] + [helix][helix] |
 | **IDE / Code** | [zed][zed] + [VSCode][VSCode] |
-| **System Monitor** | [btop][btop], [mission-center][mission-center] |
+| **System Monitor** | [btop][btop] + [mission-center][mission-center] |
 | **File Manager** | [nemo][nemo] |
-| **Fonts** | [Maple Mono][Maple Mono] + [Asuka Fonts][Asuka Fonts] + [LXGW WenKai][LXGW WenKai] |
+| **Fonts** | [Asuka Fonts][Asuka Fonts] + [LXGW WenKai][LXGW WenKai] |
 | **Gtk & Qt Theme** | [stylix][stylix] |
 | **Cursor** | [Bibata-Modern-Ice][Bibata-Modern-Ice] |
 | **Icons** | [Papirus-Dark][Papirus-Dark] |
-| **Browser** | [brave][brave], [zen-browser][zen-browser] |
+| **Browser** | [brave][brave] + [zen-browser][zen-browser] |
 | **Media Player** | [mpv][mpv] + [vlc][vlc] |
-| **Music Player** | [fooyin][fooyin] + [splayer-next][splayer-next] + [spotify][spotify] (spicetify) |
+| **Music Player** | [rox][rox] + [splayer-next][splayer-next]|
 | **Note Taking** | [obsidian][obsidian] |
 | **Screen Recording** | [OBS Studio][OBS] |
 
@@ -177,6 +179,7 @@ Other dotfiles that I ~~copied~~ learned from:
 [mpv]: https://github.com/mpv-player/mpv
 [vlc]: https://www.videolan.org/vlc/
 [fooyin]: https://github.com/fooyin/fooyin
+[rox]: https://github.com/zealsprince/rox
 [splayer-next]: https://github.com/SPlayer-Dev/SPlayer-Next
 [spotify]: https://open.spotify.com/
 [spicetify-nix]: https://github.com/Gerg-L/spicetify-nix
@@ -190,5 +193,6 @@ Other dotfiles that I ~~copied~~ learned from:
 [network-manager-applet]: https://gitlab.gnome.org/GNOME/network-manager-applet/
 [Papirus-Dark]: https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
 [Bibata-Modern-Ice]: https://www.gnome-look.org/p/1197198
-[stylix]:https://github.com/nix-community/stylix
-[brave]:https://github.com/brave/brave-browser
+[stylix]: https://github.com/nix-community/stylix
+[brave]: https://github.com/brave/brave-browser
+[lazyvim-nix]: https://github.com/pfassina/lazyvim-nix
