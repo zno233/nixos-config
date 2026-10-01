@@ -54,10 +54,6 @@ warning_threshold = 20
 [calendar]
 enabled = true
 
-    [calendar.account.personal_google]
-    name = "8bit233"
-    type = "google"
-
 [desktop_widgets]
 schema_version = 2
 widget_order = [ "desktop-widget-0000000000000002", "desktop-widget-0000000000000003", "desktop-widget-0000000000000005" ]
@@ -158,7 +154,7 @@ pinned = [
     "code",
     "com.fluxdown.app",
     "top.imsyy.splayer_next",
-    "org.fooyin.fooyin",
+    "rox",
     "mpv",
     "com.obsproject.Studio",
     "net.lutris.Lutris",
@@ -338,8 +334,17 @@ orientation = "vertical"
 position = "top_right"
 position_vertical = "center_right"
 
+[plugin_settings."cleboost/ssh-launcher"]
+config_path = "/home/zno/.ssh/local"
+
+[plugin_settings."nightwatch75/file-search"]
+search_folder = "~"
+
 [plugin_settings."noctalia/wallhaven"]
 download_dir = "/home/zno/Pictures/download/92462265"
+
+[plugin_settings."notoxus/media-island"]
+island_placement = "attached"
 
 [plugins]
 enabled = [ "notfinaldev/web-search", "cleboost/ssh-launcher", "srounce/systemd" ]
@@ -417,7 +422,7 @@ community_palette = "Everforest Material"
 custom_palette = "anime-girls-cat-girl-white-rose-nature-kawaii-skirt-ts"
 mode = "dark"
 source = "community"
-wallpaper_scheme = "m3-fruit-salad"
+wallpaper_scheme = "m3-content"
 
     [theme.templates]
     community_ids = [ "opencode" ]
@@ -461,6 +466,12 @@ directory = "/home/zno/Pictures/wallpapers/others"
     palette_source = "community"
     path = "/home/zno/Pictures/wallpapers/others/wallhaven-d8d91l.png"
     theme_mode = "auto"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/zno/Pictures/wallpapers/others/95733473_p0.png"
+    theme_mode = "auto"
+    wallpaper_scheme = "m3-content"
 
 [widget.active_window]
 capsule = true
