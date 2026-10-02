@@ -3,7 +3,7 @@
 #
 # Declare agents under programs.agentSandbox.agents.<name>;
 # each becomes a wrapped binary (outName, default = binName) in home.packages.
-# Missing rwDirs/rwFiles refuse launch — activation pre-creates them.
+# Missing declared paths (rw or ro) refuse launch — activation pre-creates them.
 {
   inputs,
   ...
@@ -161,11 +161,22 @@
         }
       ) enabledAgents;
 
-      # Declared paths must exist at launch; create rw targets on activation.
+      # Every declared path must exist at launch — agent-sandbox refuses a
+      # launch whose roFiles/roDirs are missing too, not just rw targets.
       declaredDirs = lib.unique (
         map expandHome (
           lib.concatLists (
-            lib.mapAttrsToList (_: agent: agent.rwDirs ++ map dirOf agent.rwFiles) enabledAgents
+            lib.mapAttrsToList (
+              _: agent: agent.rwDirs ++ agent.roDirs ++ map dirOf (agent.rwFiles ++ agent.roFiles)
+            ) enabledAgents
+          )
+        )
+      );
+
+      declaredFiles = lib.unique (
+        map expandHome (
+          lib.concatLists (
+            lib.mapAttrsToList (_: agent: agent.rwFiles ++ agent.roFiles) enabledAgents
           )
         )
       );
@@ -187,9 +198,16 @@
       config = lib.mkIf cfg.enable {
         home.packages = wrappers;
 
-        # agent-sandbox refuses launch when a declared rw path is missing.
-        home.activation.createAgentSandboxDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+        # agent-sandbox refuses launch when any declared path is missing.
+        # After linkGeneration, so a file Home Manager links (the git identity
+        # from programs/dev/git.nix) already exists and the touch below is a
+        # no-op; it only backstops paths nothing else creates.
+        home.activation.createAgentSandboxPaths = lib.hm.dag.entryAfter [ "linkGeneration" ] (
           lib.concatMapStrings (dir: ''mkdir -p "${dir}"'' + "\n") declaredDirs
+          + lib.concatMapStrings (
+            file:
+            ''[ -e "${file}" ] || { mkdir -p "$(dirname "${file}")"; touch "${file}"; }'' + "\n"
+          ) declaredFiles
         );
       };
     };
