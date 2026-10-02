@@ -13,13 +13,13 @@
         browser = [ "brave-origin.desktop" ];
         text = [ "dev.zed.Zed.desktop" ];
         image = [ "imv-dir.desktop" ];
-        audio = [ "org.fooyin.fooyin" ];
+        audio = [ "rox.desktop" ];
         video = [ "mpv.desktop" ];
         directory = [ "nemo.desktop" ];
         office = [ "wps-office-wps.desktop" ];
         pdf = [ "wps-office-pdf.desktop" ];
         terminal = [ "kitty.desktop" ];
-        archive = [ "org.gnome.FileRoller.desktop" ];
+        archive = [ "peazip.desktop" ];
         discord = [ "webcord.desktop" ];
       };
 
@@ -159,8 +159,8 @@
       xdg.mimeApps.associations.added = associations;
       xdg.mimeApps.defaultApplications = associations;
 
-      # === 让系统知道 .strm 后缀属于 application/x-strm 和 video/x-strm ===
-      # 否则系统会把 .strm 当作 text/plain 文本文件而用 Zed 打开
+      # === Tell the system that .strm is application/x-strm and video/x-strm ===
+      # Otherwise it is treated as text/plain and opened with Zed
       xdg.dataFile."mime/packages/strm.xml".text = ''
         <?xml version="1.0" encoding="UTF-8"?>
         <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>

@@ -6,6 +6,12 @@
       # LIBVA_DRIVER_NAME = "iHD"; # Intel VAAPI 驱动
 
       XCURSOR_THEME = "Bibata-Modern-Ice";
+
+      TERMINAL = "kitty";
+      EDITOR = "hx";
+      VISUAL = "hx";
+      PAGER = "less";
+      BROWSER = "brave-origin";
     };
   };
 }

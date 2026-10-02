@@ -6,10 +6,7 @@ environment {
     // 启用 HiDPI 缩放
     QT_AUTO_SCREEN_SCALE_FACTOR "1"
 
-    // ==================== Electron / Firefox ====================
-
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    NIXOS_OZONE_WL "1"
+    // ====================  Firefox ====================
     MOZ_ENABLE_WAYLAND "1"
 
     // ==================== Java 应用 ====================
