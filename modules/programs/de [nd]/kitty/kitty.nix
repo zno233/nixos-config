@@ -33,18 +33,22 @@
           scrollback_lines = 10000;
           enable_audio_bell = false;
           mouse_hide_wait = 60;
-          window_padding_width = 2;
+          window_padding_width = "2";
 
           ## Tabs
-          tab_title_template = "{index}";
-          active_tab_font_style = "normal";
-          inactive_tab_font_style = "normal";
-          tab_bar_style = "powerline";
-          tab_powerline_style = "angled";
-          active_tab_foreground = "#FBF1C7";
-          active_tab_background = "#7C6F64";
-          inactive_tab_foreground = "#FBF1C7";
-          inactive_tab_background = "#3C3836";
+          tab_bar_edge = "bottom";
+          tab_bar_min_tabs = 1;
+          tab_bar_margin_height = "4 0";
+          tab_bar_style = "custom"; # 使用 tab_bar.py
+          tab_bar_background = "none"; # 让空白处透明/跟随背景
+          # tab_title_template = "{index} > {title}";
+          # tab_title_max_length = 20;
+          # active_tab_font_style = "normal";
+          # inactive_tab_font_style = "normal";
+          # active_tab_foreground = "#FBF1C7";
+          # active_tab_background = "#7C6F64";
+          # inactive_tab_foreground = "#FBF1C7";
+          # inactive_tab_background = "#3C3836";
         };
 
         keybindings = {
@@ -59,5 +63,7 @@
           "ctrl+shift+right" = "no_op";
         };
       };
+
+      xdg.configFile."kitty/tab_bar.py".source = ./tab_bar.py;
     };
 }
