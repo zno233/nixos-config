@@ -7,8 +7,8 @@
     {
       home.packages = with pkgs; [
         ## ── Core utils replacements ──────────────────────────────────
-        # eza # ls replacement
-        # fd # find replacement
+        eza # ls replacement
+        fd # find replacement
         ripgrep # grep replacement
         gtrash # rm → trash
         duf # df replacement

@@ -18,16 +18,16 @@
   wayland,
   libglvnd,
   libx11,
-  libxrender
+  libxrender,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "rox";
-  version = "1.29.3";
+  version = "1.29.4";
 
   src = fetchurl {
     url = "https://github.com/zealsprince/rox/releases/download/v${finalAttrs.version}/rox_${finalAttrs.version}_amd64.deb";
-    hash = "sha256-+HD5MZPxWbhRf9BxghoQf37xUGf+frSrFdpGahOCt+g=";
+    hash = "sha256-tFTS16GjIyZTztk71IfMu7yaz1TEqiEvNFTODTnFO7U=";
   };
 
   nativeBuildInputs = [
@@ -73,16 +73,14 @@ stdenv.mkDerivation (finalAttrs: {
     # phase cannot discover them either — hand them to the loader directly.
     wrapProgram "$out/bin/rox" \
       --prefix LD_LIBRARY_PATH : ${
-        lib.makeLibraryPath (
-          [
-            vulkan-loader
-            wayland
-            libglvnd
-            libxkbcommon
-            libx11
-            libxrender
-          ]
-        )
+        lib.makeLibraryPath ([
+          vulkan-loader
+          wayland
+          libglvnd
+          libxkbcommon
+          libx11
+          libxrender
+        ])
       }
 
     runHook postInstall

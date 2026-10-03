@@ -59,7 +59,7 @@
         gs = "git status";
         gb = "git branch";
         gm = "git merge";
-        gd = "git diff";
+        gd = "git diff"; # side-by-side = false, unlike the general `diff` alias
         gpl = "git pull";
         gplo = "git pull origin";
         gps = "git push";
@@ -68,11 +68,11 @@
         gcl = "git clone";
         gc = "git commit";
         gcm = "git commit -m";
-        gcma = "git add --all && git commit -m";
+        gcma = "git add --all && git commit -m"; # combo of gaa + gc -m
         gtag = "git tag -ma";
         gch = "git checkout";
         gchb = "git checkout -b";
-        glog = "git log --oneline --decorate --graph";
+        glog = "git log --oneline --decorate --graph"; # compact one-line log; glol below is the full pretty format
         glol = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
         glola = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all";
         glols = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat";
