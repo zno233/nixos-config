@@ -57,8 +57,8 @@
         };
       };
 
-      home.shellAliases = {
-        zed = "zeditor";
+      programs.zsh.shellAliases = {
+        zed = "zeditor"; # duplicate of `code` (defined in de/zsh/zsh_alias.nix)
       };
     };
 }

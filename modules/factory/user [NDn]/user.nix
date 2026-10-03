@@ -20,7 +20,10 @@
           ];
           shell = pkgs.zsh;
         };
-        programs.zsh.enable = true;
+        programs.zsh = {
+          enable = true;
+          enableGlobalCompInit = false;
+        };
 
         home-manager = {
           useUserPackages = true;
@@ -53,7 +56,10 @@
 
         system.primaryUser = lib.mkIf isAdmin "${username}";
 
-        programs.zsh.enable = true;
+        programs.zsh = {
+          enable = true;
+          enableGlobalCompInit = false;
+        };
       };
 
     homeManager."${username}" = {

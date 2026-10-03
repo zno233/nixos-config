@@ -45,8 +45,8 @@
           colors
 
           # Initialize completion system
-          # autoload -U compinit
-          # compinit
+          autoload -U compinit
+          compinit
           _comp_options+=(globdots)
 
           # Load edit-command-line for ZLE
