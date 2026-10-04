@@ -8,113 +8,116 @@
       ...
     }:
     let
-      # 带注释的 policies（toJSON 会自动生成纯 JSON）
+      chromeStore = "https://clients2.google.com/service/update2/crx";
+
+      # toJSON 输出纯 JSON，此处的注释不会进文件
       bravePolicies = {
-        # --- 核心隐私与安全 ---
-        BrowserSignin = 0; # 禁用登录，保护隐私
-        SyncDisabled = true; # 彻底禁用同步引擎
-        MetricsReportingEnabled = false; # 禁用指标上报
-        BackgroundModeEnabled = false; # 关闭浏览器后立即释放所有进程
+        # --- 账户、遥测与诊断 ---
+        BrowserSignin = 0; # 禁用账户登录
+        SyncDisabled = true;
+        MetricsReportingEnabled = false; # Chrome 指标上报
+        BraveStatsPingEnabled = false; # 每日用量 ping
+        BraveP3AEnabled = false; # Brave 匿名统计
+        BuiltInDnsClientEnabled = false; # 使用系统 DNS
+        UserFeedbackAllowed = false;
+        FeedbackSurveysEnabled = false;
+        SafeBrowsingExtendedReportingEnabled = false; # 基础 Safe Browsing 仍保留
+        AlternateErrorPagesEnabled = false; # 禁用纠错页
 
-        # 遥测/诊断关闭
-        BraveStatsPingEnabled = false; # 每日使用量 ping
-        UserFeedbackAllowed = false; # 禁用用户反馈邀请
-        FeedbackSurveysEnabled = false; # 禁用反馈调查
-        SafeBrowsingExtendedReportingEnabled = false; # 禁用扩展安全报告（不向 Google 上报可疑 URL；基础 Safe Browsing 仍开启）
-        TranslateEnabled = false; # 禁用翻译（减少功能面；如需翻译改回 true）
-        SpellCheckServiceEnabled = false; # 禁用拼写检查网络服务（输入内容不发送；本地词典拼写仍可用）
+        # --- 进程与功能裁剪 ---
+        BackgroundModeEnabled = false; # 关窗即退出全部进程
+        TranslateEnabled = false;
+        SpellCheckServiceEnabled = false; # 本地词典拼写仍可用
+        ExternalProtocolDialogShowAlwaysOpenCheckbox = true;
 
-        # --- Brave 专属彻底 debloat ---
-        BraveAIChatEnabled = false; # 禁用 Leo AI（1.6x+ 起 Leo 助手已并入，无独立 policy）
-        BraveWalletDisabled = true; # 禁用数字钱包 + Web3
-        BraveRewardsDisabled = true; # 禁用 Rewards / BAT / 隐私广告
-        BraveVPNDisabled = true; # 禁用 VPN
-        BraveP3AEnabled = false; # 禁用匿名统计（P3A）
-        BraveTalkDisabled = true; # 禁用 Brave Talk（视频会议）
-        BraveNewsDisabled = true; # 禁用新标签页新闻流
-        # BravePlaylistEnabled = false; # 禁用 Playlist
-        BraveSpeedreaderEnabled = false; # 禁用快速阅读
-        BraveWaybackMachineEnabled = false; # 禁用 Wayback Machine 集成
-        BraveWebDiscoveryEnabled = false; # 禁用 Web Discovery 数据收集
-        TorDisabled = true; # 禁用 Tor 窗口
+        # --- Brave debloat ---
+        BraveAIChatEnabled = false; # Leo AI
+        BraveWalletDisabled = true; # 钱包 / Web3
+        BraveRewardsDisabled = true; # Rewards / BAT
+        BraveVPNDisabled = true;
+        BraveTalkDisabled = true; # 视频会议
+        BraveNewsDisabled = true; # 新标签页新闻流
+        # BravePlaylistEnabled = false;
+        BraveSpeedreaderEnabled = false;
+        BraveWaybackMachineEnabled = false;
+        BraveWebDiscoveryEnabled = false;
+        TorDisabled = true;
 
-        # 隐私增强（而非禁用）
+        # --- 指纹与隐私增强 ---
         BraveDeAmpEnabled = true; # 剥离 AMP 重定向
         BraveDebouncingEnabled = true; # 剥离跟踪跳转
-        BraveReduceLanguageEnabled = true; # 减少语言指纹（请求头）
-        DefaultBraveFingerprintingV2Setting = 3; # 指纹防护锁定为标准（1=关闭，3=标准，无 2）
+        BraveReduceLanguageEnabled = true; # 精简请求头语言指纹
+        DefaultBraveFingerprintingV2Setting = 3; # 1=关 3=标准
 
-        # --- 禁用自动填充（交给 Bitwarden） ---
+        # --- 追踪防护与连接 ---
+        BraveGlobalPrivacyControlEnabled = true; # GPC：Do Not Sell/Share 信号
+        BraveTrackingQueryParametersFilteringEnabled = true; # 剥 utm_* 等查询参数
+        HttpsUpgradesEnabled = true;
+        BlockThirdPartyCookies = true;
+        SearchSuggestEnabled = false; # 避免按键泄漏给搜索服务
+        WebRtcIPHandling = "disable_non_proxied_udp"; # 防 WebRTC 泄露真实 IP
+
+        # 预取：0=所有网络预取，2=禁用；1 自 Chrome 52 起等同 0（即仍预取）
+        NetworkPredictionOptions = 1;
+
+        # --- 自动填充（交给 Bitwarden）---
         AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;
         PasswordManagerEnabled = false;
 
-        # --- 网络隐私与连接 ---
-        BuiltInDnsClientEnabled = false; # 使用系统 DNS
-        AlternateErrorPagesEnabled = false; # 禁用纠错页面
-        NetworkPredictionOptions = 1; # 禁用预连接/预取/预渲染（隐私优先：不泄露浏览意图、省流量；如重速度可改回 1）
-        WebRtcIPHandling = "disable_non_proxied_udp"; # 限制 WebRTC IP 泄露
-        HttpsUpgradesEnabled = true; # 强制 HTTPS 升级
-        BlockThirdPartyCookies = true; # 阻止第三方 Cookie
-        SearchSuggestEnabled = false; # 关闭搜索建议（避免按键泄漏给搜索服务）
-
-        # --- 隐私增强 ---
-        BraveGlobalPrivacyControlEnabled = true; # 全局隐私控制（GPC）：向站点发送"不要出售/共享"信号
-        BraveTrackingQueryParametersFilteringEnabled = true; # 剥离 URL 中的追踪查询参数（utm_* 等）
-
-        # --- 易用性 ---
-        ExternalProtocolDialogShowAlwaysOpenCheckbox = true;
-
-        # --- 扩展管理（Policy 方式） ---
+        # --- 扩展 ---
+        # force_installed = 装机即装且不可停用；normal_installed = 装机即装但可停用
         ExtensionSettings = {
           "*" = {
-            installation_mode = "allowed"; # 允许手动安装/开关
+            installation_mode = "allowed"; # 其余仅手动安装
           };
 
-          # 核心必需扩展（自动安装 + 锁定，无法关闭，确保始终可用）
+          # force_installed
           "nngceckbapebfimnlniiiahkandclblb" = {
             # Bitwarden
             installation_mode = "force_installed";
-            update_url = "https://clients2.google.com/service/update2/crx";
+            update_url = chromeStore;
           };
           "fnaicdffflnofjppbagibeoednhnbjhg" = {
             # Floccus（书签同步）
             installation_mode = "force_installed";
-            update_url = "https://clients2.google.com/service/update2/crx";
+            update_url = chromeStore;
           };
           "hfjbmagddngcpeloejdejnfgbamkjaeg" = {
             # Vimium C（键盘导航）
             installation_mode = "force_installed";
-            update_url = "https://clients2.google.com/service/update2/crx";
+            update_url = chromeStore;
           };
 
-          # 辅助扩展：自动安装 + 可手动开关
+          # normal_installed
           "bifgfhokfobhebifcogneljkpaaloonp" = {
             # Gesturefy（鼠标手势）
             installation_mode = "normal_installed";
-            update_url = "https://clients2.google.com/service/update2/crx";
+            update_url = chromeStore;
           };
           "jfedfbgedapdagkghmgibemcoggfppbb" = {
             # cat-catch
             installation_mode = "normal_installed";
-            update_url = "https://clients2.google.com/service/update2/crx";
+            update_url = chromeStore;
           };
           "mpkodccbngfoacfalldjimigbofkhgjn" = {
             # Aria2 Explorer
             installation_mode = "normal_installed";
-            update_url = "https://clients2.google.com/service/update2/crx";
+            update_url = chromeStore;
           };
-          # "gcalenpjmijncebpfijmoaglllgpjagf" = {
-          #   # Tampermonkey BETA
-          #   installation_mode = "normal_installed";
-          #   update_url = "https://clients2.google.com/service/update2/crx";
-          # };
           "ndcooeababalnlpkfedmmbbbgkljhpjf" = {
             # scriptcat
             installation_mode = "normal_installed";
-            update_url = "https://clients2.google.com/service/update2/crx";
+            update_url = chromeStore;
           };
-          # 其它未启用扩展
+          "oopkfefbgecikmfbbapnlpjidoomhjpl" = {
+            # BewlyCat
+            installation_mode = "normal_installed";
+            update_url = chromeStore;
+          };
+
+          # 备选（当前未启用）
+          # "gcalenpjmijncebpfijmoaglllgpjagf" # Tampermonkey BETA
           # "mpiodijhokgodhhofbcjdecpffjipkle" # SingleFile
           # "bhchdcejhohfmigjafbampogmaanbfkg" # User-Agent Switcher and Manager
           # "iifacdnjakkhjjiengaffnegbndgingi" # Voyager
@@ -125,14 +128,12 @@
           # "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
         };
       };
-
     in
     {
       home-manager.sharedModules = [
         inputs.self.modules.homeManager.chromium
       ];
 
-      # 系统级 policies
       environment.etc."brave/policies/managed/00-privacy-debloat.json".text =
         builtins.toJSON bravePolicies;
     };
@@ -147,23 +148,22 @@
         enable = true;
         package = pkgs.brave-origin;
         commandLineArgs = [
-          # 1. 平台 + GPU 加速
+          # Wayland 原生窗口
           "--ozone-platform=wayland"
-          # kDefaultEnableGpuRasterization 在 Linux 上默认 DISABLED（仅 Apple/Win/CrOS/Android 默认开）
-          # → --enable-gpu-rasterization
+          # Linux 上 kDefaultEnableGpuRasterization 默认 DISABLED，需显式打开
           "--enable-gpu-rasterization"
-          # enable_zero_copy 无 finch 实验默认（DefaultEnableZeroCopy 已不存在），GpuPreferences 默认 false
-          # → --enable-zero-copy（零拷贝光栅化，避免 CPU↔GPU 上传拷贝）
+          # GpuPreferences 默认 false；开了可省一次 CPU↔GPU 上传拷贝
           "--enable-zero-copy"
-          # Chromium 150+ 改名：VaapiVideoDecoder→AcceleratedVideoDecoder（Linux 默认开，不显式写出），
-          # VaapiVideoEncoder→AcceleratedVideoEncoder（默认关，需显式开启硬编）。
-          "--enable-features=AcceleratedVideoEncoder"
 
-          # 2. 隐私（其余由 policy 接管）
-          "--disable-crash-reporter" # 禁用崩溃上报进程
-          "--disable-speech-api" # 禁用语音识别接口
+          # 别在这里加 --enable-features：同名 switch 取最后一个（last-wins），
+          # 而本数组排在 nixpkgs wrapper 之后，会整串覆盖上游的硬解/硬编特性。
+          # 需要额外 feature 请走 chrome://flags（落在 argv 最末的 flag-switches 段）。
 
-          # 3. 极简启动（跳过首次运行引导）
+          # 关掉常驻的辅助进程
+          "--disable-crash-reporter"
+          "--disable-speech-api"
+
+          # 跳过首次运行引导
           "--no-first-run"
           "--no-default-browser-check"
         ];
