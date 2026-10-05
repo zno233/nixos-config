@@ -175,9 +175,7 @@
 
       declaredFiles = lib.unique (
         map expandHome (
-          lib.concatLists (
-            lib.mapAttrsToList (_: agent: agent.rwFiles ++ agent.roFiles) enabledAgents
-          )
+          lib.concatLists (lib.mapAttrsToList (_: agent: agent.rwFiles ++ agent.roFiles) enabledAgents)
         )
       );
     in
@@ -205,8 +203,7 @@
         home.activation.createAgentSandboxPaths = lib.hm.dag.entryAfter [ "linkGeneration" ] (
           lib.concatMapStrings (dir: ''mkdir -p "${dir}"'' + "\n") declaredDirs
           + lib.concatMapStrings (
-            file:
-            ''[ -e "${file}" ] || { mkdir -p "$(dirname "${file}")"; touch "${file}"; }'' + "\n"
+            file: ''[ -e "${file}" ] || { mkdir -p "$(dirname "${file}")"; touch "${file}"; }'' + "\n"
           ) declaredFiles
         );
       };

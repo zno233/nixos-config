@@ -67,7 +67,7 @@
             ];
 
             DNSStubListener = "yes";
-            DNSSEC = "allow-downgrade";
+            DNSSEC = "no";
             DNSOverTLS = "no";
             Cache = "yes";
             CacheFromLocalhost = "yes";

@@ -24,10 +24,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    daeuniverse = {
-      url = "github:daeuniverse/flake.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
       inputs.nixpkgs.follows = "nixpkgs";
