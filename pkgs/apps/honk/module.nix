@@ -2,10 +2,6 @@
 # Wired into service-desktop via modules/services/desktop [N]/honk.nix.
 #
 # Based on the upstream daeuniverse honk module (official style), with:
-# - namespace `services.honk-core`: nixpkgs rename.nix reserves `services.honk`
-#   (mkRemovedOptionModule) and nixpkgs `services.honk` is an unrelated
-#   ActivityPub server. Upstream itself still reads config.services.honk while
-#   declaring options under services.honk-proxy — use honk-core consistently.
 # - package via mkPackageOption pkgs "honk" (this repo's overlay)
 # - ui option and the api.dae/doona wiring from the old module
 {
@@ -37,22 +33,31 @@ let
       inherit paths;
     };
 
-  # Native API block shared by both wiring paths (inline bake / api.dae
+  # Native API block shared by both wiring paths (inline bake / config.d
   # include): honk serves doona's static UI at /ui/, same origin as /api.
-  nativeApiText =
-    ui:
-    ''
-      experimental {
-          native_api {
-              enabled: true
-              listen: '127.0.0.1:9527'
-              password_auth: true
-              # doona's config page writes sources through the engine (If-Match)
-              config_write: true
-              ui: '${ui}/share/doona'
-          }
-      }
-    '';
+  nativeApiText = ui: ''
+    # Every native_api field needs a restart; a reload rejects changes.
+    experimental {
+        native_api {
+            enabled: true
+            # Loopback only; set a LAN address (e.g. 192.168.1.1:9527) to reach doona from other hosts.
+            listen: '127.0.0.1:9527'
+            # Administrator password login. For token mode, delete this
+            # line and set secret instead; the two cannot be combined.
+            password_auth: true
+            # secret: 'replace-with-a-long-random-token'
+            # doona's config page writes sources through the engine (If-Match)
+            config_write: true
+            ui: '${ui}/share/doona'
+            # On by default; listed so the names are known.
+            record_flows: true
+            record_traffic: true
+            record_memory: true
+            record_logs: true
+            record_dns_log: true
+        }
+    }
+  '';
 
   apiDae = pkgs.writeText "api.dae" (nativeApiText cfg.ui);
 in
@@ -83,7 +88,11 @@ in
           })}/share/v2ray"
         '';
         description = ''
-          The path which contains geolocation database.
+          Directory containing `geoip.dat` / `geosite.dat` used as the
+          first-run seed: missing files are copied from here into
+          `/var/lib/honk` at service start (never overwriting files already
+          there). honk loads and updates the `/var/lib/honk` copies in place,
+          so doona's geodata updates survive restarts.
           This option will override `assets`.
         '';
       };
@@ -156,11 +165,13 @@ in
         example = "pkgs.doona";
         description = ''
           Static web UI package served by honk's native API at /ui/ (same origin as /api).
-          When set (e.g. pkgs.doona), the module writes an `api.dae` include next to
-          `configFile` with experimental.native_api enabled, and appends
-          `include { api.dae }` to `configFile` if it does not mention api.dae yet.
-          The include is a separate file so the main file stays editable from the UI's
-          config page. All native_api fields are restart-required.
+          When set (e.g. pkgs.doona), the module only places
+          `config.d/api.dae` next to `configFile` with experimental.native_api
+          enabled. The `include { config.d/*.dae }` in `configFile` is a module
+          default maintained independently of this option (a legacy
+          `include { api.dae }` is normalized to the glob form). The include is
+          a separate file so the main file stays editable from the UI's config
+          page. All native_api fields are restart-required.
         '';
       };
     };
@@ -205,36 +216,93 @@ in
 
             # Upstream calls getExe without parentheses around this derivation
             # (broken when the option is on); nixos dae module wraps it — do too.
-            TxChecksumIpGenericWorkaround = getExe (pkgs.writeShellApplication {
-              name = "disable-tx-checksum-ip-generic";
-              text = ''
-                iface=$(${pkgs.iproute2}/bin/ip route | ${getExe pkgs.gawk} '/default/ {print $5}')
-                ${getExe pkgs.ethtool} -K "$iface" tx-checksum-ip-generic off
-              '';
-            });
+            TxChecksumIpGenericWorkaround = getExe (
+              pkgs.writeShellApplication {
+                name = "disable-tx-checksum-ip-generic";
+                text = ''
+                  iface=$(${pkgs.iproute2}/bin/ip route | ${getExe pkgs.gawk} '/default/ {print $5}')
+                  ${getExe pkgs.ethtool} -K "$iface" tx-checksum-ip-generic off
+                '';
+              }
+            );
 
             configPath = if cfg.configFile != null then cfg.configFile else "/etc/honk/config.dae";
 
-            # Wire doona's native_api next to an external configFile. Runs on
-            # every start (ExecStartPre) and is idempotent. honk resolves
-            # `include { api.dae }` against the entry config's directory and
-            # rejects symlinks leaving it -> copy, don't symlink. No install -D:
-            # with UMask 0077 it would create the config dir root-owned inside
-            # the user's home when it does not exist yet.
-            wireApiDae = pkgs.writeShellScript "honk-wire-api-dae" ''
+            # ui option: only place doona's native_api fragment. Runs on every
+            # start (ExecStartPre) when ui and an external configFile are set:
+            # writes config.d/api.dae. config.d is created with the parent's
+            # owner/mode because UMask 0077 would otherwise make it
+            # root-only inside the user's home. Paths resolve against the
+            # entry config's directory and symlinks leaving it are rejected
+            # -> copy, don't symlink.
+            writeApiDae = pkgs.writeShellScript "honk-write-api-dae" ''
+              set -eu
+              cfgDir=${lib.escapeShellArg (builtins.dirOf cfg.configFile)}
+              if [ ! -d "$cfgDir" ]; then
+                echo "honk: config dir $cfgDir missing, skipping api.dae placement" >&2
+              else
+                if [ ! -d "$cfgDir/config.d" ]; then
+                  ${pkgs.coreutils}/bin/mkdir -m 0755 "$cfgDir/config.d"
+                  ${pkgs.coreutils}/bin/chown --reference="$cfgDir" "$cfgDir/config.d"
+                  ${pkgs.coreutils}/bin/chmod --reference="$cfgDir" "$cfgDir/config.d"
+                fi
+                ${pkgs.coreutils}/bin/install -m 0644 ${apiDae} "$cfgDir/config.d/api.dae"
+              fi
+            '';
+
+            # Module default (independent of ui): make sure the external
+            # configFile carries `include { config.d/*.dae }` so drop-ins in
+            # config.d/ are loaded. A zero-match glob is fine (honk's tests
+            # cover missing dirs and unmatched patterns), so this stays safe
+            # before config.d exists. Skips configs that set native_api
+            # inline (a second definition would be rejected), and rewrites a
+            # legacy `include { api.dae }` or a precise
+            # `include { config.d/api.dae }` to the glob form. Runs on every
+            # start (ExecStartPre) whenever an external configFile is set.
+            ensureInclude = pkgs.writeShellScript "honk-ensure-include" ''
               set -eu
               cfgDir=${lib.escapeShellArg (builtins.dirOf cfg.configFile)}
               mainConfig=${lib.escapeShellArg cfg.configFile}
               if [ ! -d "$cfgDir" ]; then
-                echo "honk: config dir $cfgDir missing, skipping api.dae/ui wiring" >&2
-              elif [ -f "$mainConfig" ] && ${pkgs.gnugrep}/bin/grep -q 'native_api' "$mainConfig"; then
-                echo "honk: $mainConfig already sets native_api inline, not appending include { api.dae }" >&2
+                echo "honk: config dir $cfgDir missing, skipping include wiring" >&2
+              elif [ ! -f "$mainConfig" ]; then
+                echo "honk: $mainConfig missing, skipping include wiring" >&2
+              elif ${pkgs.gnugrep}/bin/grep -q 'native_api' "$mainConfig"; then
+                echo "honk: $mainConfig already sets native_api inline, not appending include" >&2
+              elif ${pkgs.gnugrep}/bin/grep -qF 'config.d/*.dae' "$mainConfig"; then
+                # covers the single-line and the pretty-printed multi-line form
+                :
+              elif ${pkgs.gnugrep}/bin/grep -qE '(^[[:space:]]*include[[:space:]]*[{][[:space:]]*(config\.d/api\.dae|api\.dae)|^[[:space:]]*(config\.d/api\.dae|api\.dae)[[:space:]]*$)' "$mainConfig"; then
+                owner=$(${pkgs.coreutils}/bin/stat -c %u:%g "$mainConfig")
+                mode=$(${pkgs.coreutils}/bin/stat -c %a "$mainConfig")
+                ${pkgs.gnused}/bin/sed -i -E \
+                  -e 's#^[[:space:]]*include[[:space:]]*[{][[:space:]]*(config\.d/api\.dae|api\.dae).*#include {\n    config.d/*.dae\n}#' \
+                  -e 's#^([[:space:]]*)(config\.d/api\.dae|api\.dae)[[:space:]]*$#\1config.d/*.dae#' \
+                  "$mainConfig"
+                ${pkgs.coreutils}/bin/chown "$owner" "$mainConfig"
+                ${pkgs.coreutils}/bin/chmod "$mode" "$mainConfig"
+                ${pkgs.coreutils}/bin/rm -f "$cfgDir/api.dae"
+                echo "honk: normalized include to config.d/*.dae in $mainConfig" >&2
               else
-                ${pkgs.coreutils}/bin/install -m 0644 ${apiDae} "$cfgDir/api.dae"
-                if [ -f "$mainConfig" ] && ! ${pkgs.gnugrep}/bin/grep -qE '^[[:space:]]*include[[:space:]]*\{[[:space:]]*api\.dae' "$mainConfig"; then
-                  printf '\n# managed by NixOS (services.honk-core.ui): native API + doona frontend\ninclude { api.dae }\n' >> "$mainConfig"
-                fi
+                printf '\n# managed by NixOS (services.honk-core): drop-in includes\ninclude {\n    config.d/*.dae\n}\n' >> "$mainConfig"
+                echo "honk: appended include { config.d/*.dae } to $mainConfig" >&2
               fi
+            '';
+
+            # Seed geo assets into the writable data dir. DAE_LOCATION_ASSET
+            # points at /var/lib/honk, so honk loads these files and replaces
+            # them in place on a geodata update — the store copy below is only
+            # the first-run source and is never re-copied over a runtime
+            # update. Assumes the default `global.data_dir` (/var/lib/honk).
+            seedGeoAssets = pkgs.writeShellScript "honk-seed-geo-assets" ''
+              set -eu
+              state=/var/lib/honk
+              src=${lib.escapeShellArg cfg.assetsPath}
+              for name in geoip.dat geosite.dat; do
+                if [ ! -e "$state/$name" ] && [ -e "$src/$name" ]; then
+                  ${pkgs.coreutils}/bin/cp -L "$src/$name" "$state/$name"
+                fi
+              done
             '';
           in
           {
@@ -248,9 +316,13 @@ in
 
             serviceConfig = {
               Type = "notify";
-              ExecStartPre = [ "" ]
-                ++ optional cfg.disableTxChecksumIpGeneric TxChecksumIpGenericWorkaround
-                ++ optional (cfg.ui != null && cfg.configFile != null) wireApiDae;
+              ExecStartPre = [
+                ""
+              ]
+              ++ optional cfg.disableTxChecksumIpGeneric TxChecksumIpGenericWorkaround
+              ++ [ seedGeoAssets ]
+              ++ optional (cfg.ui != null && cfg.configFile != null) writeApiDae
+              ++ optional (cfg.configFile != null) ensureInclude;
               ExecStart = [
                 ""
                 "${honkBin} -c ${configPath} --disable-timestamp"
@@ -258,7 +330,11 @@ in
               # reload asks the running instance via /run/honk-core.lock and
               # ignores -c, so no configPath here.
               ExecReload = "${honkBin} reload";
-              Environment = "DAE_LOCATION_ASSET=${cfg.assetsPath}";
+              # Writable dir, not the store: honk must replace geo files in
+              # place (updates via doona) and keep loading them after a
+              # restart — a store path here makes every post-restart update
+              # fail with EEXIST against the shadow copy.
+              Environment = "DAE_LOCATION_ASSET=/var/lib/honk";
               TimeoutStartSec = 120;
               Restart = "on-failure";
               RestartSec = "2s";

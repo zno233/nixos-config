@@ -63,7 +63,7 @@
         #   v2ray-domain-list-community
         # ];
         # 可选：如果需要自定义包
-        package = pkgs.daed; # 模块默认为daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed
+        # package = pkgs.daed; # 模块默认为daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed
       };
     };
 
