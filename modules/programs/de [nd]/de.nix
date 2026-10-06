@@ -47,7 +47,6 @@
       # inir
 
       # optinal
-      #caelestia
       #fish
       #micro                       # nano replacement
     ];
