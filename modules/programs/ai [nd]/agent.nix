@@ -1,5 +1,6 @@
 # AI coding agents — declared once, installed as agent-sandbox wrappers.
 # To add an agent: one entry under programs.agentSandbox.agents (see agent-sandbox.nix).
+# Sandbox is the default; each agent also installs an unsandboxed <outName>-unwrapped.
 {
   inputs,
   ...
@@ -27,6 +28,7 @@
         claude-code = {
           pkg = agentsPkgs.claude-code;
           binName = "claude";
+          addUnwrapped.enable = true; # claude-unwrapped runs without the sandbox
           rwDirs = [ "$HOME/.claude" ];
           roFiles = [
             "$HOME/.config/git/config"
@@ -53,6 +55,7 @@
         opencode = {
           pkg = agentsPkgs.opencode;
           binName = "opencode";
+          addUnwrapped.enable = true; # opencode-unwrapped runs without the sandbox
           rwDirs = [
             "$HOME/.config/opencode"
             "$HOME/.local/share/opencode"
@@ -75,6 +78,7 @@
         dsh = {
           pkg = agentsPkgs.dsh;
           binName = "dsh";
+          addUnwrapped.enable = true; # dsh-unwrapped runs without the sandbox
           rwDirs = [ "$HOME/.dsh" ];
           roFiles = [
             "$HOME/.config/git/config"

@@ -20,7 +20,7 @@
 
 let
   # the doona release the honk-core archives are attached to
-  release = "v0.1.0-beta.15";
+  release = "v0.1.0-beta.16";
   # honk build tag; the binary reports it from `honk --version`
   version = "debug.2026.10.6.native-api.1";
 
