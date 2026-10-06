@@ -259,33 +259,57 @@ in
             # legacy `include { api.dae }` or a precise
             # `include { config.d/api.dae }` to the glob form. Runs on every
             # start (ExecStartPre) whenever an external configFile is set.
+            #
+            # Also enforces group write access: honk runs as root and its
+            # native-API config_write replaces the file by rename, preserving
+            # only the mode (never the owner), so after a doona save the main
+            # config becomes root-owned. A setgid config dir + group-writable
+            # mode keeps the config owner able to edit it: new files inherit
+            # the dir's group and honk carries the 0664 mode through the
+            # rename. config.d/api.dae stays excluded (module-managed).
             ensureInclude = pkgs.writeShellScript "honk-ensure-include" ''
               set -eu
               cfgDir=${lib.escapeShellArg (builtins.dirOf cfg.configFile)}
               mainConfig=${lib.escapeShellArg cfg.configFile}
               if [ ! -d "$cfgDir" ]; then
                 echo "honk: config dir $cfgDir missing, skipping include wiring" >&2
-              elif [ ! -f "$mainConfig" ]; then
-                echo "honk: $mainConfig missing, skipping include wiring" >&2
-              elif ${pkgs.gnugrep}/bin/grep -q 'native_api' "$mainConfig"; then
-                echo "honk: $mainConfig already sets native_api inline, not appending include" >&2
-              elif ${pkgs.gnugrep}/bin/grep -qF 'config.d/*.dae' "$mainConfig"; then
-                # covers the single-line and the pretty-printed multi-line form
-                :
-              elif ${pkgs.gnugrep}/bin/grep -qE '(^[[:space:]]*include[[:space:]]*[{][[:space:]]*(config\.d/api\.dae|api\.dae)|^[[:space:]]*(config\.d/api\.dae|api\.dae)[[:space:]]*$)' "$mainConfig"; then
-                owner=$(${pkgs.coreutils}/bin/stat -c %u:%g "$mainConfig")
-                mode=$(${pkgs.coreutils}/bin/stat -c %a "$mainConfig")
-                ${pkgs.gnused}/bin/sed -i -E \
-                  -e 's#^[[:space:]]*include[[:space:]]*[{][[:space:]]*(config\.d/api\.dae|api\.dae).*#include {\n    config.d/*.dae\n}#' \
-                  -e 's#^([[:space:]]*)(config\.d/api\.dae|api\.dae)[[:space:]]*$#\1config.d/*.dae#' \
-                  "$mainConfig"
-                ${pkgs.coreutils}/bin/chown "$owner" "$mainConfig"
-                ${pkgs.coreutils}/bin/chmod "$mode" "$mainConfig"
-                ${pkgs.coreutils}/bin/rm -f "$cfgDir/api.dae"
-                echo "honk: normalized include to config.d/*.dae in $mainConfig" >&2
               else
-                printf '\n# managed by NixOS (services.honk-core): drop-in includes\ninclude {\n    config.d/*.dae\n}\n' >> "$mainConfig"
-                echo "honk: appended include { config.d/*.dae } to $mainConfig" >&2
+                ${pkgs.coreutils}/bin/chmod g+s,g+w "$cfgDir"
+                if [ -d "$cfgDir/config.d" ]; then
+                  ${pkgs.coreutils}/bin/chmod g+s,g+w "$cfgDir/config.d"
+                  for dropIn in "$cfgDir"/config.d/*.dae; do
+                    if [ -e "$dropIn" ] && [ "$dropIn" != "$cfgDir/config.d/api.dae" ]; then
+                      ${pkgs.coreutils}/bin/chgrp --reference="$cfgDir" "$dropIn"
+                      ${pkgs.coreutils}/bin/chmod g+rw "$dropIn"
+                    fi
+                  done
+                fi
+                if [ ! -f "$mainConfig" ]; then
+                  echo "honk: $mainConfig missing, skipping include wiring" >&2
+                else
+                  ${pkgs.coreutils}/bin/chgrp --reference="$cfgDir" "$mainConfig"
+                  ${pkgs.coreutils}/bin/chmod g+rw "$mainConfig"
+                  if ${pkgs.gnugrep}/bin/grep -q 'native_api' "$mainConfig"; then
+                    echo "honk: $mainConfig already sets native_api inline, not appending include" >&2
+                  elif ${pkgs.gnugrep}/bin/grep -qF 'config.d/*.dae' "$mainConfig"; then
+                    # covers the single-line and the pretty-printed multi-line form
+                    :
+                  elif ${pkgs.gnugrep}/bin/grep -qE '(^[[:space:]]*include[[:space:]]*[{][[:space:]]*(config\.d/api\.dae|api\.dae)|^[[:space:]]*(config\.d/api\.dae|api\.dae)[[:space:]]*$)' "$mainConfig"; then
+                    owner=$(${pkgs.coreutils}/bin/stat -c %u:%g "$mainConfig")
+                    mode=$(${pkgs.coreutils}/bin/stat -c %a "$mainConfig")
+                    ${pkgs.gnused}/bin/sed -i -E \
+                      -e 's#^[[:space:]]*include[[:space:]]*[{][[:space:]]*(config\.d/api\.dae|api\.dae).*#include {\n    config.d/*.dae\n}#' \
+                      -e 's#^([[:space:]]*)(config\.d/api\.dae|api\.dae)[[:space:]]*$#\1config.d/*.dae#' \
+                      "$mainConfig"
+                    ${pkgs.coreutils}/bin/chown "$owner" "$mainConfig"
+                    ${pkgs.coreutils}/bin/chmod "$mode" "$mainConfig"
+                    ${pkgs.coreutils}/bin/rm -f "$cfgDir/api.dae"
+                    echo "honk: normalized include to config.d/*.dae in $mainConfig" >&2
+                  else
+                    printf '\n# managed by NixOS (services.honk-core): drop-in includes\ninclude {\n    config.d/*.dae\n}\n' >> "$mainConfig"
+                    echo "honk: appended include { config.d/*.dae } to $mainConfig" >&2
+                  fi
+                fi
               fi
             '';
 

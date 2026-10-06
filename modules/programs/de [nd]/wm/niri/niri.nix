@@ -82,9 +82,6 @@
       xdg.configFile."niri/noctalia-shell.kdl" = {
         source = ./config/noctalia-shell.kdl;
       };
-      xdg.configFile."niri/inir-shell.kdl" = {
-        source = ./config/inir-shell.kdl;
-      };
       xdg.configFile."niri/recent-windows.kdl" = {
         source = ./config/recent-windows.kdl;
       };

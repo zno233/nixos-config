@@ -4,6 +4,9 @@
 # Declare agents under programs.agentSandbox.agents.<name>;
 # each becomes a wrapped binary (outName, default = binName) in home.packages.
 # Missing declared paths (rw or ro) refuse launch — activation pre-creates them.
+# Unwrapped mode: each agent also gets <outName>-unwrapped, which exports the
+# same env and execs the real binary with no sandbox; addUnwrapped.enable = false
+# on an agent drops it (addUnwrapped.name renames it).
 {
   inputs,
   ...
@@ -55,6 +58,21 @@
               type = lib.types.str;
               default = config.binName;
               description = "Installed command name (wrapper replaces the raw binary).";
+            };
+            addUnwrapped = {
+              enable = lib.mkOption {
+                type = lib.types.bool;
+                default = true;
+                description = ''
+                  Whether to also install an unsandboxed companion command:
+                  same declared env, original binary, no sandbox.
+                '';
+              };
+              name = lib.mkOption {
+                type = lib.types.str;
+                default = "${config.outName}-unwrapped";
+                description = "Command name of the unsandboxed companion.";
+              };
             };
             allowedPackages = lib.mkOption {
               type = lib.types.listOf lib.types.package;
@@ -161,6 +179,43 @@
         }
       ) enabledAgents;
 
+      # Escape hatch for the occasional run that needs the normal environment:
+      # same declared env as the sandbox (values are shell expressions
+      # expanded at launch, exactly as the stub does), then a direct exec.
+      mkUnwrappedWrapper =
+        # mapAttrsToList passes name: value.
+        _name: agent:
+        pkgs.writeShellScriptBin agent.addUnwrapped.name ''
+          declare_env() {
+            local name=$1 expression=$2 value
+            if value=$(eval "printf '%s' $expression" 2>/dev/null); then
+              export "$name=$value"
+            else
+              printf '[agent-sandbox] %s = %s did not resolve; left unset\n' \
+                "$name" "$expression" >&2
+            fi
+          }
+          ${lib.concatStrings (
+            lib.mapAttrsToList (
+              name: value:
+              "declare_env ${lib.escapeShellArg name} ${lib.escapeShellArg (builtins.toJSON value)}\n"
+            ) agent.env
+          )}
+          exec ${lib.getExe' agent.pkg agent.binName} "$@"
+        '';
+
+      unwrappedAgents = lib.filterAttrs (_: agent: agent.addUnwrapped.enable) enabledAgents;
+
+      # profile buildEnv would only say "collision"; fail at eval instead.
+      unwrappedClashes = lib.filterAttrs (
+        _: agent: agent.addUnwrapped.name == agent.outName
+      ) unwrappedAgents;
+
+      unwrappedWrappers =
+        assert lib.assertMsg (unwrappedClashes == { })
+          "[agent-sandbox] addUnwrapped.name must differ from outName for: ${lib.concatStringsSep ", " (lib.attrNames unwrappedClashes)}";
+        lib.mapAttrsToList mkUnwrappedWrapper unwrappedAgents;
+
       # Every declared path must exist at launch — agent-sandbox refuses a
       # launch whose roFiles/roDirs are missing too, not just rw targets.
       declaredDirs = lib.unique (
@@ -194,7 +249,7 @@
       };
 
       config = lib.mkIf cfg.enable {
-        home.packages = wrappers;
+        home.packages = wrappers ++ unwrappedWrappers;
 
         # agent-sandbox refuses launch when any declared path is missing.
         # After linkGeneration, so a file Home Manager links (the git identity
