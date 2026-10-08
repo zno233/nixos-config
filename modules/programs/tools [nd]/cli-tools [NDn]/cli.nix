@@ -30,6 +30,7 @@
 
         ## ── Network / Download ──────────────────────────────────────
         wget # downloader
+        curl # downloader / DoH 查询（dnstest 依赖）
         gping # ping with graph
         yt-dlp-light # youtube-dl fork
 

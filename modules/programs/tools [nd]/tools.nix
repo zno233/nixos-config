@@ -22,7 +22,7 @@
       cli
       mark-shot
       nix-tools
-      rclone
+      # rclone
       ssh
       tool-apps
       yazi
