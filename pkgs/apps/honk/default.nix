@@ -20,9 +20,9 @@
 
 let
   # the doona release the honk-core archives are attached to
-  release = "v0.1.0-beta.16";
+  release = "v0.1.0-beta.17";
   # honk build tag; the binary reports it from `honk --version`
-  version = "debug.2026.10.6.native-api.1";
+  version = "debug.2026.10.7.native-api.1";
 
   arch =
     let
@@ -36,8 +36,8 @@ let
 
   # sha256 of honk-core-debug-<arch>-unknown-linux-gnu.tar.gz, from SHA256SUMS
   hashes = {
-    x86_64 = "sha256-ZGyPckahmyMBQaAGf4hl92LRfLleNV1rbq8auW3gCTQ=";
-    aarch64 = "sha256-u3d19+0BYh8od9p0adxopjvK7/d+1bh+X7WnwFh8Hw4=";
+    x86_64 = "sha256-abUnOgZlRV3+0VY6FsSNcZE6J5iGPnSbicGcBZwyylA=";
+    aarch64 = "sha256-YJuXPEj1vlqwrlfgkzyv1GLEJiuUWeIfuivDZ8xK73E=";
   };
 
   target = "${arch}-unknown-linux-gnu";
