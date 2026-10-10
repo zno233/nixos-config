@@ -5,7 +5,7 @@
 }:
 
 let
-  version = "0-unstable-2026-09-19";
+  version = "0-unstable-2026-10-10";
 in
 stdenvNoCC.mkDerivation {
   pname = "fcitx5-theme-collect";
@@ -14,8 +14,8 @@ stdenvNoCC.mkDerivation {
   src = fetchFromGitHub {
     owner = "zno233";
     repo = "fcitx5-theme-collect";
-    rev = "808ff68";
-    hash = "sha256-XTmdbNsoB4HpHgRvT9AXOz/AyeXr6Eqe4gzS67Wk5cc=";
+    rev = "aae53f7";
+    hash = "sha256-fZzmKiCCvJboc/55xUVHvZSVR7Z4/5puK3RraE32ZiQ=";
   };
 
   installPhase = ''
