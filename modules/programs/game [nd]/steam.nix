@@ -30,7 +30,7 @@
             "--expose-wayland"
           ];
         };
-        # gamemode.enable = true; # 自动激活以动态提升游戏性能，与ananicy-cpp重复，关闭
+        gamemode.enable = true;
       };
 
       # 启用 ntsync 模块，此为 Wine 的同步优化补丁

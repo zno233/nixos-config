@@ -6,7 +6,6 @@
   flake.modules.nixos.game = {
     imports = with inputs.self.modules.nixos; [
       steam
-      game-performance
     ];
   };
 
