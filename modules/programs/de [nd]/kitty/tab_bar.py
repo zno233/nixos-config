@@ -1,6 +1,9 @@
 """Custom kitty tab bar.
 
-Layout:  [cwd]        [tab] [tab] [tab]        [hostname] [clock]
+Catppuccin-style layout (colors still come from the kitty theme):
+two-tone pills for info modules, plain title text + number pill for tabs.
+
+Layout:  [host] [tab] [tab] [tab]          [cwd] [clock]
 
 Put this file at ~/.config/kitty/tab_bar.py and set `tab_bar_style custom`.
 """
@@ -39,14 +42,13 @@ except ImportError:
 
 MAX_PATH_DEPTH = 3
 CLOCK_FORMAT = "%H:%M"
-GAP = 1
+GAP = 2
 LEFT_MARGIN = 0
 RIGHT_MARGIN = 0
 
-# Nerd Font glyphs (Solid Style)
+# Nerd Font glyphs
 LEFT_CAP = "\ue0b6"  # 
 RIGHT_CAP = "\ue0b4"  # 
-SEPARATOR = "\ue0b0"  # 
 FOLDER_ICON = "\U000f024b "  # 󰉋
 CLOCK_ICON = "\U000f0150 "  # 󰅐
 HOST_ICON = "\U000f018d "  # 󰆍
@@ -64,11 +66,12 @@ def _theme_color(name: str, fallback: int) -> int:
 
 
 DEFAULT = 0
-BG = _theme_color("color19", 0x3C3836)
+BG = _theme_color("color0", 0x3C3836)
 FG = _theme_color("color15", 0xEBDBB2)
 COLOR_TAB = _theme_color("color3", 0xD79921)
 COLOR_TAB_ACTIVE = _theme_color("color5", 0xB16286)
 COLOR_CWD = _theme_color("color4", 0x458588)
+COLOR_HOST = _theme_color("color2", 0x98971A)
 COLOR_INFO = _theme_color("color4", 0x458588)
 
 # --------------------------------------------------------------------------- #
@@ -130,11 +133,19 @@ def _shorten_path(raw: str, max_width: int) -> str | None:
 # --------------------------------------------------------------------------- #
 
 
-def _paint(screen: Screen, text: str, fg: int, bg: int, bold: bool = False) -> None:
+def _paint(
+    screen: Screen,
+    text: str,
+    fg: int,
+    bg: int,
+    bold: bool = False,
+    dim: bool = False,
+) -> None:
     cursor = screen.cursor
     cursor.fg = fg
     cursor.bg = bg
     cursor.bold = bold
+    cursor.dim = dim
     screen.draw(text)
 
 
@@ -152,7 +163,7 @@ _UNSET = object()
 
 @cache
 def _metrics(icon: str) -> tuple[int, int]:
-    overhead = wcswidth(LEFT_CAP + icon + SEPARATOR + RIGHT_CAP) + 1
+    overhead = wcswidth(LEFT_CAP + icon + RIGHT_CAP) + 1
     return overhead, wcswidth(LEFT_CAP + icon + RIGHT_CAP)
 
 
@@ -203,9 +214,55 @@ class Cell:
         if text == "":
             _paint(screen, RIGHT_CAP, self.color, DEFAULT)
         else:
-            _paint(screen, SEPARATOR, self.color, self.bg)
             _paint(screen, f" {text}", self.fg, self.bg)
             _paint(screen, RIGHT_CAP, self.bg, DEFAULT)
+        _reset_style(screen)
+
+
+# --------------------------------------------------------------------------- #
+# Tab cell (plain title + number pill, catppuccin window style)
+# --------------------------------------------------------------------------- #
+
+
+@dataclass
+class TabCell:
+    index: int
+    tab: TabBarData
+    active: bool
+
+    _raw: object = field(init=False, repr=False, default=_UNSET)
+    _titles: dict[int, str] = field(init=False, repr=False, default_factory=dict)
+    _pill_width: int = field(init=False, repr=False, default=0)
+
+    def __post_init__(self) -> None:
+        self._pill_width = wcswidth(f" {self.index}") + wcswidth(RIGHT_CAP)
+
+    def _title(self, max_size: int) -> str:
+        budget = max_size - self._pill_width - GAP
+        if budget in self._titles:
+            return self._titles[budget]
+        if self._raw is _UNSET:
+            self._raw = _tab_source(self.tab) or ""
+        title = _ellipsize(self._raw, budget)  # type: ignore[arg-type]
+        self._titles[budget] = title
+        return title
+
+    def width(self, max_size: int) -> int:
+        title = self._title(max_size)
+        if not title:
+            return self._pill_width
+        return self._pill_width + GAP + wcswidth(title)
+
+    def draw(self, screen: Screen, max_size: int) -> None:
+        title = self._title(max_size)
+        color = COLOR_TAB_ACTIVE if self.active else COLOR_TAB
+
+        _reset_style(screen)
+        if title:
+            _paint(screen, title, FG, DEFAULT, bold=self.active, dim=not self.active)
+            screen.draw(" " * GAP)
+        _paint(screen, f" {self.index}", BG, color, bold=True)
+        _paint(screen, RIGHT_CAP, color, DEFAULT)
         _reset_style(screen)
 
 
@@ -252,15 +309,14 @@ def _fit_hostname(text: str, width: int) -> str | None:
 # Layout
 # --------------------------------------------------------------------------- #
 
-Plan = list[tuple[Cell, int]]
+Plan = list[tuple["Cell | TabCell", int]]
 
 
 def _plan_width(plan: Plan) -> int:
     return sum(cell.width(size) for cell, size in plan) + GAP * (len(plan) - 1)
 
 
-def _plan_center(cells: list[Cell], active: int, columns: int) -> tuple[Plan, int]:
-    usable = columns - LEFT_MARGIN - RIGHT_MARGIN
+def _plan_tabs(cells: list[TabCell], active: int, usable: int) -> tuple[Plan, int]:
     plans: list[Plan] = [
         [(cell, usable) for cell in cells],
         [(cell, usable if i == active else 0) for i, cell in enumerate(cells)],
@@ -275,7 +331,7 @@ def _plan_center(cells: list[Cell], active: int, columns: int) -> tuple[Plan, in
     return fallback, _plan_width(fallback)
 
 
-def _draw_center(screen: Screen, plan: Plan) -> list[TabExtent]:
+def _draw_tabs(screen: Screen, plan: Plan) -> list[TabExtent]:
     extents: list[TabExtent] = []
     for i, (cell, size) in enumerate(plan):
         if i:
@@ -291,54 +347,51 @@ def _draw_center(screen: Screen, plan: Plan) -> list[TabExtent]:
 def _draw_right(screen: Screen, active_tab: TabBarData | None) -> None:
     available = screen.columns - screen.cursor.x - GAP - RIGHT_MARGIN
     clock = Cell(CLOCK_ICON, _clock_source, _fit_clock, color=COLOR_INFO)
-    host = Cell(
-        HOST_ICON, _hostname_source, _fit_hostname, active_tab, color=COLOR_INFO
-    )
+    path = Cell(FOLDER_ICON, _cwd_source, _shorten_path, active_tab, color=COLOR_CWD)
 
     clock_width = clock.width(available)
-    host_max = max(0, available - clock_width - GAP)
-    host_width = host.width(host_max)
+    path_max = max(0, available - clock_width - GAP)
+    path_width = path.width(path_max)
 
-    total = clock_width + (host_width + GAP if host_width else 0)
+    total = clock_width + (path_width + GAP if path_width else 0)
     if total == 0:
         return
 
     padding = max(0, screen.columns - RIGHT_MARGIN - screen.cursor.x - total)
     screen.draw(" " * padding)
-    if host_width:
-        host.draw(screen, host_max)
+    if path_width:
+        path.draw(screen, path_max)
         screen.draw(" " * GAP)
     clock.draw(screen, available)
 
 
-def _draw_bar(screen: Screen, cells: list[Cell]) -> list[TabExtent]:
-    active = next((i for i, c in enumerate(cells) if c.tab and c.tab.is_active), 0)
-    active_tab = cells[active].tab
+def _draw_bar(screen: Screen, cells: list[TabCell]) -> list[TabExtent]:
+    active = next((i for i, c in enumerate(cells) if c.active), 0)
 
-    plan, width = _plan_center(cells, active, screen.columns)
-    usable = screen.columns - LEFT_MARGIN - RIGHT_MARGIN
-    center_offset = max(0, (usable - width) // 2)
-    start = LEFT_MARGIN + center_offset
+    # --- Left: host pill ---
+    screen.cursor.x = LEFT_MARGIN
+    host = Cell(HOST_ICON, _hostname_source, _fit_hostname, color=COLOR_HOST)
+    host.draw(screen, max(0, screen.columns // 4))
 
-    # --- Left: margin + cwd + gap ---
-    screen.cursor.x = 0
-
-    # 【修复】用 CWD 的背景色填充左边距，而非 DEFAULT
-    # 避免 LEFT_CAP 的 bg=DEFAULT 被终端解析为异色方块
-    _paint(screen, " " * LEFT_MARGIN, COLOR_CWD, COLOR_CWD)
-
-    cwd = Cell(FOLDER_ICON, _cwd_source, _shorten_path, active_tab, color=COLOR_CWD)
-    cwd_max = max(0, start - LEFT_MARGIN - GAP)
-    cwd.draw(screen, cwd_max)
-
+    # --- Tabs: left-aligned right after the host pill ---
+    # Reserve room for the right-side pills so they never get squeezed out.
     _reset_style(screen)
-    screen.draw(" " * max(0, start - screen.cursor.x))
+    tabs_start = screen.cursor.x + GAP
+    clock = Cell(CLOCK_ICON, _clock_source, _fit_clock, color=COLOR_INFO)
+    path = Cell(
+        FOLDER_ICON, _cwd_source, _shorten_path, cells[active].tab, color=COLOR_CWD
+    )
+    clock_w = clock.width(screen.columns)
+    path_w = path.width(max(0, screen.columns - clock_w - GAP))
+    right_w = clock_w + (path_w + GAP if path_w else 0)
 
-    # --- Center: tabs ---
-    extents = _draw_center(screen, plan)
+    tabs_usable = max(0, screen.columns - tabs_start - right_w - GAP)
+    plan, _ = _plan_tabs(cells, active, tabs_usable)
+    screen.cursor.x = tabs_start
+    extents = _draw_tabs(screen, plan)
 
-    # --- Right: hostname + clock + margin ---
-    _draw_right(screen, active_tab)
+    # --- Right: cwd path pill + clock pill ---
+    _draw_right(screen, cells[active].tab)
     return extents
 
 
@@ -347,7 +400,7 @@ def _draw_bar(screen: Screen, cells: list[Cell]) -> list[TabExtent]:
 # --------------------------------------------------------------------------- #
 
 _timer_id: int | None = None
-_tab_cells: list[Cell] = []
+_tab_cells: list[TabCell] = []
 _pending_extents: list[TabExtent] | None = None
 
 
@@ -437,8 +490,7 @@ def draw_tab(
     if index == 1:
         _tab_cells.clear()
 
-    color = COLOR_TAB_ACTIVE if tab.is_active else COLOR_TAB
-    _tab_cells.append(Cell(str(index), _tab_source, _ellipsize, tab, color=color))
+    _tab_cells.append(TabCell(index, tab, tab.is_active))
 
     if is_last:
         try:
