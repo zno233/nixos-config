@@ -23,18 +23,9 @@
               96000
             ];
             "default.clock.rate" = 48000; # Fixed rate avoids resampling latency
-            "default.clock.quantum" = 128; # ~5ms latency at 48kHz
-            "default.clock.min-quantum" = 64; # ~2.5ms latency at 48kHz
-            "default.clock.max-quantum" = 512;
-          };
-        };
-
-        # Crucial: Match low-latency for PulseAudio clients (browsers, Steam/Rocksmith)
-        extraConfig.pipewire-pulse."92-low-latency" = {
-          "pulse.properties" = {
-            "pulse.min.req" = "64/48000"; # Start with 64, not 32, for stability
-            "pulse.default.req" = "64/48000";
-            "pulse.max.req" = "128/48000";
+            "default.clock.quantum" = 128; # 2.7ms at 48kHz
+            "default.clock.min-quantum" = 64; # 1.3ms at 48kHz
+            "default.clock.max-quantum" = 512; # 10.7ms at 48kHz
           };
         };
       };
@@ -59,7 +50,7 @@
           domain = "@audio";
           item = "nice";
           type = "-";
-          value = "-10";
+          value = "-19";
         }
       ];
 

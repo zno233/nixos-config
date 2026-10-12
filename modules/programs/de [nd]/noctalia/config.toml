@@ -491,7 +491,8 @@ show_label = false
 show_label = false
 
 [widget.clock]
-format = "{:%H:%M %A, %m/%d}"
+format = "{:%H:%M %A, %D}"
+tooltip_format = "{:%Y-%m-%d %A %H:%M:%S}"
 
 [widget.cpu]
 capsule = true
