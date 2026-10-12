@@ -37,10 +37,10 @@
 
           ## Tabs
           tab_bar_edge = "bottom";
-          tab_bar_min_tabs = 1;
+          tab_bar_min_tabs = 2;
           tab_bar_margin_height = "4 0";
           tab_bar_style = "custom"; # 使用 tab_bar.py
-          tab_bar_background = "none"; # 让空白处透明/跟随背景
+          tab_bar_background = "none"; # 跟随终端背景色，不单独设色
           # tab_title_template = "{index} > {title}";
           # tab_title_max_length = 20;
           # active_tab_font_style = "normal";
