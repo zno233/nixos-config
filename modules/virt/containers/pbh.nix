@@ -22,7 +22,7 @@ in
       Requires=network-online.target
 
       [Container]
-      Image=ghostchu/peerbanhelper:latest
+      Image=docker.io/ghostchu/peerbanhelper:latest
       ContainerName=peerbanhelper
       Volume=${homeDir}/pbh-data:/app/data:rw
       Network=host

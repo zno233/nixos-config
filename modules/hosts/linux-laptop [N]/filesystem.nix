@@ -34,6 +34,7 @@
         "gid=100" # 将 100 替换为你自己的主用户组 ID
         "umask=007" # 设置权限
         "x-gvfs-show" # 告诉 Nemo/GVFS 显示该设备
+        "x-systemd.before=user@1000.service"# 关机时：先结束用户会话（释放对挂载点的占用），再卸载，避免 "target is busy"
       ];
     };
 
