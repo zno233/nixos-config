@@ -21,6 +21,12 @@
         # prismlauncher
         hmcl
 
+        ## Deadlock
+        deadlock-mod-manager
+
+        ## toolkit
+        watt-toolkit
+
         ## Cli games
         # _2048
         # _2048-in-terminal

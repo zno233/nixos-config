@@ -52,8 +52,8 @@ input {
     mouse {
         // off（关闭）
         // natural-scroll（自然滚动）
-        // accel-speed 0.2（加速度）
-        // accel-profile "flat"（加速度配置文件）
+        accel-speed -0.1
+        // accel-profile "flat"
         // scroll-method "no-scroll"（滚动方法）
     }
 

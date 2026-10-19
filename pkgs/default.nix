@@ -64,6 +64,7 @@ in
   harmonyos-sans = pkgs.callPackage ./apps/harmonyos-sans { };
   fluxdown = pkgs.callPackage ./apps/fluxdown { };
   rox = pkgs.callPackage ./apps/rox { };
+  watt-toolkit = pkgs.callPackage ./apps/watt-toolkit { };
   # zorite = pkgs.callPackage ./apps/zorite { };
   # mark-shot = pkgs.callPackage ./apps/mark-shot { };
 
