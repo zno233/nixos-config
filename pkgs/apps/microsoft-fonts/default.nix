@@ -8,7 +8,6 @@ stdenvNoCC.mkDerivation {
     owner = "pjobson";
     repo = "Microsoft-Fonts";
     rev = "main";
-    # 第一次运行会报错，届时替换为终端输出的真实哈希
     hash = "sha256-KeCVN5q0MGKMJHeqaI3Oyb5/6bNjGC33s0Gv9gqS2Yk=";
   };
 
