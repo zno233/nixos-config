@@ -37,6 +37,9 @@
               ;
           })
 
+          # nix-packages — personal packages
+          inputs.nix-packages.overlays.default
+
           # pkgs
           (
             final: prev:

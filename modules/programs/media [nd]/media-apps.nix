@@ -34,7 +34,7 @@
 
         ## ── Recording / Editing ─────────────────────────────────────
         obs-studio # screen recording/streaming
-        audacity # audio editor
+        # audacity # audio editor
 
         ## ── Misc ────────────────────────────────────────────────────
         # media-downloader

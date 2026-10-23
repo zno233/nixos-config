@@ -65,6 +65,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-packages = {
+      url = "github:zno233/nix-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpak = {
       url = "github:nixpak/nixpak";
       inputs = {

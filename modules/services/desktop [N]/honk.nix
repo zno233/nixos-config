@@ -1,5 +1,5 @@
-# Enable honk — module definition lives with the package: pkgs/apps/honk/module.nix
-{ config, ... }:
+# Enable honk — module now lives upstream: github:zno233/nix-packages (nixosModules.honk)
+{ config, inputs, ... }:
 let
   homeDir = config.flake.meta.mainUser.homeDirectory;
 in
@@ -7,7 +7,7 @@ in
   flake.modules.nixos.honk =
     { pkgs, ... }:
     {
-      imports = [ ../../../pkgs/apps/honk/module.nix ];
+      imports = [ inputs.nix-packages.nixosModules.honk ];
 
       services.honk-core = {
         enable = true;

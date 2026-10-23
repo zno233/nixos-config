@@ -9,12 +9,62 @@
 
   flake.modules.nixos.systemd-boot =
     {
+      lib,
       pkgs,
       ...
     }:
     {
       nixpkgs = {
-        overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
+        overlays = [
+          inputs.nix-cachyos-kernel.overlays.pinned
+
+          # 新版 nixpkgs 的 aggregateModules 无条件合并 modules.cer 与外部模块的
+          # .ko.cer 文件，而 release 分支的 pinned CachyOS 内核及其模块包
+          # （nvidia、acpi_call 等）都不生成它们，导致聚合构建失败
+          # （xddxdd/nix-cachyos-kernel#111）。此处：
+          # 1) 聚合前为缺失的 modules.cer 建一个指向 /dev/null 的软链
+          #    （stock 的 cp --remove-destination 随后会把它替换成空的普通文件）；
+          # 2) 把合并外部 .ko.cer 的 xargs cat 换成跳过不存在文件的循环。
+          # 若 nixpkgs 改写了 xargs 那一行会 throw 提醒更新本 workaround。
+          (final: prev: {
+            aggregateModules =
+              modules:
+              let
+                patch =
+                  drv:
+                  drv.overrideAttrs (
+                    old:
+                    let
+                      orig = old.postBuild or "";
+                      search = "xargs -d'\\n' cat >> modules.cer";
+                      repl = "while IFS= read -r _f; do if [ -e \"$_f\" ]; then cat \"$_f\"; fi; done >> modules.cer";
+                      patched = builtins.replaceStrings [ search ] [ repl ] orig;
+                    in
+                    if !lib.hasInfix search orig then
+                      throw "zno-config: aggregateModules 的 xargs cat 代码段已变动，请更新或删除 systemd-boot.nix 中的 modules.cer workaround（xddxdd/nix-cachyos-kernel#111）"
+                    else
+                      {
+                        postBuild = ''
+                          if [ -d "$out/lib/modules" ]; then
+                            for _d in "$out"/lib/modules/*; do
+                              [ -d "$_d" ] || continue
+                              if [ ! -e "$_d/modules.cer" ] && [ ! -L "$_d/modules.cer" ]; then
+                                ln -s /dev/null "$_d/modules.cer"
+                              fi
+                            done
+                          fi
+                        ''
+                        + patched;
+                      }
+                  );
+                base = prev.aggregateModules modules;
+              in
+              (patch base)
+              // {
+                override = args: patch (base.override args);
+              };
+          })
+        ];
       };
 
       boot = {
