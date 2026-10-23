@@ -41,7 +41,7 @@ zno-config/
 │   │   └── system-types/ # Layered types: 1-minimal → 2-default → 3-cli → 4-desktop
 │   ├── users/            # User configurations (user flake-parts + meta.nix for metadata)
 │   └── virt/              # Virtualization configs
-├── pkgs/                 # Custom packages (imported via nixpkgs overlay in system-minimal)
+├── pkgs/                 # Local-only custom packages (imported via nixpkgs overlay in system-minimal; shared packages moved to github:zno233/nix-packages via the `nix-packages` input/overlay)
 ├── secrets/              # Age-encrypted secrets (agenix)
 ├── wallpapers/           # Wallpaper assets
 └── syscheck.sh           # System health/audit script
@@ -70,7 +70,7 @@ Tags reflect *usage contexts*, not necessarily the registration class: e.g. `sys
 
 ### Module Layers (System Types)
 System builds compose layers via `modules/system/system-types/`:
-1. **`system-minimal`** — base nixpkgs config, overlays (CachyOS kernel, niri, NUR, custom pkgs), substituters, stateVersion
+1. **`system-minimal`** — base nixpkgs config, overlays (CachyOS kernel, niri, NUR, `nix-packages` input, custom pkgs), substituters, stateVersion
 2. **`system-default`** — imports system-minimal
 3. **`system-cli`** — imports system-default
 4. **`system-desktop`** — imports system-cli + service-desktop + settings-desktop (nixos); system-cli (darwin); system-cli + programs (home-manager)

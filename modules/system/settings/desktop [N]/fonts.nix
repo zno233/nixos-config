@@ -1,11 +1,4 @@
 {
-  # flake-file.inputs = {
-  #   apple-fonts = {
-  #     url = "github:Lyndeno/apple-fonts.nix";
-  #     inputs.nixpkgs.follows = "nixpkgs";
-  #   };
-  # };
-
   flake.modules.nixos.fonts =
     {
       pkgs,
@@ -92,11 +85,12 @@
           lxgw-wenkai
           lxgw-wenkai-screen
 
-          # windows字体
-          win11-fonts
+          # windows字体：来自 nix-packages 的 microsoft scope，按需挑选。
+          # 大体等价 Win11 zh-CN 安装的 C:\Windows\Fonts（西文基底 + 简中 FOD）。
+          microsoftPackages.windows-fonts-zh-cn-slim
 
-          # 鸿蒙字体
-          harmonyos-sans
+          # 鸿蒙字体：官方 HarmonyOS Sans 简中
+          huaweiPackages.harmonyos-sans-sc
 
           # Maple Mono
           maple-mono.NF
@@ -114,9 +108,6 @@
           # joypixels
           # twemoji-color-font # Twitter 风格的 Emoji。
           # fantasque-sans-mono # 手写风格的等宽字体
-
-          # 苹果字体
-          # inputs.apple-fonts.packages.${stdenv.hostPlatform.system}.sf-pro
         ];
       };
     };

@@ -11,6 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # personal nix packages repo
+    nix-packages = {
+      url = "github:zno233/nix-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Utilities / packages
     # nix-colors.url = "github:Misterio77/nix-colors";
 

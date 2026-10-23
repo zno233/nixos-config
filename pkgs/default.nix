@@ -53,18 +53,9 @@ let
     };
 in
 {
-  # 非 nixpak 包
+  # 非 nixpak 包（大部分已迁移至 github:zno233/nix-packages，作为 overlay 引入）
   # _2048 = pkgs.callPackage ./apps/2048 { };
   # maple-mono-custom = pkgs.callPackage ./apps/maple-mono { inherit inputs; };
-  asuka-fonts = pkgs.callPackage ./apps/asuka-fonts { };
-  doona = pkgs.callPackage ./apps/doona { };
-  honk = pkgs.callPackage ./apps/honk { };
-  fcitx5-theme-collect = pkgs.callPackage ./apps/fcitx5-theme-collect { };
-  win11-fonts = pkgs.callPackage ./apps/microsoft-fonts { };
-  harmonyos-sans = pkgs.callPackage ./apps/harmonyos-sans { };
-  fluxdown = pkgs.callPackage ./apps/fluxdown { };
-  rox = pkgs.callPackage ./apps/rox { };
-  watt-toolkit = pkgs.callPackage ./apps/watt-toolkit { };
   # zorite = pkgs.callPackage ./apps/zorite { };
   # mark-shot = pkgs.callPackage ./apps/mark-shot { };
 
