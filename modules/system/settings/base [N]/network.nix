@@ -36,17 +36,7 @@
         firewall = {
           enable = true;
           backend = "nftables";
-          allowedTCPPorts = [
-            22 # SSH
-            80 # HTTP
-            443 # HTTPS
-            59010
-            59011
-          ];
-          allowedUDPPorts = [
-            59010
-            59011
-          ];
+          allowedTCPPorts = [ 22 ];
         };
       };
 
@@ -57,18 +47,19 @@
             # 搜索域配置
             # Domains = [ "~." ];
 
-            # aliyun dns
-            DNS = [ "223.6.6.6" ];
+            DNS = [
+              "223.5.5.5#dns.alidns.com"
+              "223.6.6.6#dns.alidns.com"
+            ];
 
-            # 备用 DNS
             FallbackDNS = [
-              "1.1.1.1" # Cloudflare DNS
-              "8.8.8.8" # Google DNS
+              "1.1.1.1#cloudflare-dns.com"
+              "8.8.8.8#dns.google"
             ];
 
             DNSStubListener = "yes";
             DNSSEC = "no";
-            DNSOverTLS = "no";
+            DNSOverTLS = "opportunistic";
             Cache = "yes";
             CacheFromLocalhost = "yes";
             LLMNR = "no";

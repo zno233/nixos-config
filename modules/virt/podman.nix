@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   ...
 }:
@@ -28,8 +29,8 @@
 
       };
 
-      # 为用户 zno 配置 subuid/subgid（必须）
-      users.users."zno" = {
+      # 为用户配置 subuid/subgid（必须）
+      users.users.${config.flake.meta.mainUserName} = {
         subUidRanges = [
           {
             startUid = 100000;

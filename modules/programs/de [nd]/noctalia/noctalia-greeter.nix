@@ -1,4 +1,8 @@
 {
+  config,
+  ...
+}:
+{
   flake.modules.nixos.noctalia-greeter =
     {
       pkgs,
@@ -15,7 +19,7 @@
           session.default = "niri";
 
           # ── User ─────────────────────────────────────────────────────
-          user.default = "zno";
+          user.default = config.flake.meta.mainUserName;
 
           # ── Appearance ───────────────────────────────────────────────
           appearance = {

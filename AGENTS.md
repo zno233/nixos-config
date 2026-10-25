@@ -11,12 +11,12 @@ zno-config/
 │   ├── factory/          # Reusable module templates
 │   │   ├── mount-cifs-nixos [N]/
 │   │   └── user [NDn]/
-│   ├── hosts/            # Host-specific configurations (one per machine)
-│   │   ├── linux-desktop [N]/
+│   ├── hosts/            # Host configs; `_`-prefixed placeholder dirs are ignored
 │   │   ├── linux-laptop [N]/
-│   │   ├── homeserver [N]/
-│   │   └── macbook [D]/
-│   ├── nix/              # Nix tooling (flake-parts wiring, home-manager, impermanence, homebrew, agenix secrets, pkgs-by-name)
+│   │   ├── _homeserver [N]/
+│   │   ├── _linux-desktop [N]/
+│   │   └── _macbook [D]/
+│   ├── nix/              # Nix tooling (flake-parts wiring, home-manager, impermanence, homebrew, agenix secrets)
 │   ├── programs/         # Application configurations (flat, tagged category dirs)
 │   │   ├── ai [nd]/      # claude-code, opencode, reasonix, agent
 │   │   ├── browsers [nd]/# brave, zen
@@ -37,56 +37,55 @@ zno-config/
 │   │   ├── printing [N]/  #   CUPS
 │   │   └── ssh [ND]/
 │   ├── system/           # System-level settings
-│   │   ├── settings/     # base [N]/, desktop [N]/, firmware [N]/, systemConstants [NDnd]/, systemd-boot [N]/, _network [N]/
+│   │   ├── settings/     # base [N]/, desktop [N]/, firmware [N]/, systemConstants [NDnd]/, systemd-boot [N]/
 │   │   └── system-types/ # Layered types: 1-minimal → 2-default → 3-cli → 4-desktop
-│   ├── users/            # User configurations (user flake-parts + meta.nix for metadata)
+│   ├── users/            # User configurations + meta.nix for metadata
 │   └── virt/              # Virtualization configs
 ├── pkgs/                 # Local-only custom packages (imported via nixpkgs overlay in system-minimal; shared packages moved to github:zno233/nix-packages via the `nix-packages` input/overlay)
 ├── secrets/              # Age-encrypted secrets (agenix)
-├── wallpapers/           # Wallpaper assets
-└── syscheck.sh           # System health/audit script
+└── wallpapers/           # Wallpaper assets
 ```
 
 **Directory naming conventions (dendritic tags):**
 
 | Tag | Meaning | Used by |
 | --- | --- | --- |
-| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `services/desktop`, `services/fs`, `settings/base`, `settings/_network`, `bluetooth`, `firmware`, `systemd-boot`, `factory/mount-cifs-nixos`, `nix/tools/impermanence` |
-| `[D]` | Darwin/macOS only | `hosts/macbook`, `users/alice`, `nix/tools/determinate`, `nix/tools/homebrew` |
+| `[N]` | NixOS only | `hosts/linux-laptop`, `services/desktop`, `services/fs`, `settings/base`, `bluetooth`, `firmware`, `systemd-boot`, `factory/mount-cifs-nixos`, `nix/tools/impermanence` |
+| `[D]` | Darwin/macOS only | `nix/tools/determinate`, `nix/tools/homebrew` |
 | `[ND]` | NixOS + Darwin | `services/ssh`, `nix/tools/home-manager` |
 | `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs (`ai [nd]`, `de [nd]`, …) |
-| `[NDn]` | NixOS + Darwin + home-manager | `users/zno` (with standalone `homeConfigurations`), `factory/user`, `programs/tools/cli-tools` |
+| `[NDn]` | NixOS + Darwin + home-manager | `users/zno`, `factory/user`, `programs/tools/cli-tools` |
 | `[NDnd]` | all contexts | `nix/tools/secrets`, `settings/systemConstants`, `system-types/*` |
-| `[G]` | generic (class-independent) | `nix/tools/pkgs-by-name` |
 | `[]` | flake-parts meta wiring (no aspects) | `nix/flake-parts []` |
-| `[networkInterfaces]` | custom DRY class | `settings/_network/subnet-A\|B` |
 | *(no tag)* | grouping dir only, not a feature | `hosts/`, `users/`, `programs/`, `services/`, `system/`, `nix/`, `nix/tools/` |
 
 Tags describe the directory's *primary* context. Program categories are self-contained units that may expose **paired nixos/homeManager aggregators** — e.g. `game.nix` registers both `nixos.game` and `homeManager.game`; the nixos side reaches hosts via `programs.nix` → `nixos.programs` → `system-desktop`. The tag reflects the primary (home-manager) surface; individual files may additionally register one-off other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`).
 
-Tags reflect *usage contexts*, not necessarily the registration class: e.g. `systemConstants [NDnd]` registers under `flake.modules.generic` but is imported into all three contexts, while `pkgs-by-name [G]` stays class-independent infrastructure.
+Tags reflect *usage contexts*, not necessarily the registration class: e.g. `systemConstants [NDnd]` registers under `flake.modules.generic` but is imported into all three contexts.
+
+`import-tree` ignores any path containing `/_`. Directories and files prefixed with `_` are intentionally inactive and are not imported. Placeholder hosts/users (`_linux-desktop`, `_homeserver`, `_macbook`, `_alice`, `_eve`) follow this rule.
 
 ## Architecture
 
 ### Module Layers (System Types)
 System builds compose layers via `modules/system/system-types/`:
-1. **`system-minimal`** — base nixpkgs config, overlays (CachyOS kernel, niri, NUR, `nix-packages` input, custom pkgs), substituters, stateVersion
+1. **`system-minimal`** — base nixpkgs config, overlays (NUR, `nix-packages` input, custom pkgs), substituters, stateVersion
 2. **`system-default`** — imports system-minimal
 3. **`system-cli`** — imports system-default
 4. **`system-desktop`** — imports system-cli + service-desktop + settings-desktop (nixos); system-cli (darwin); system-cli + programs (home-manager)
 
+Only `linux-laptop` is actively maintained. Placeholder hosts/users are `_`-prefixed and ignored by import-tree, so no placeholder outputs are exposed.
+
 ### Flake Wiring (Dendritic Pattern)
 - `modules/nix/flake-parts []/dendritic-tools.nix` — imports flake-parts + flake-file + import-tree modules; defines all `systems`
-- `modules/nix/flake-parts []/lib.nix` — defines `flake.lib` helpers: `mkNixos`, `mkDarwin`, `mkHomeManager`
-- Each host/user adds a `flake-parts.nix` that calls one of the `mk*` helpers
+- `modules/nix/flake-parts []/lib.nix` — defines `flake.lib` helpers: `mkNixos`, `mkDarwin`
+- Each host adds a `flake-parts.nix` that calls `mkNixos` or `mkDarwin`
 - Modules register themselves under `flake.modules.nixos.<name>`, `flake.modules.darwin.<name>`, or `flake.modules.homeManager.<name>` depending on target
 
 ### User Registration Pattern
 - `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUserName` (selector string) + `flake.meta.mainUser` (resolved metadata record)
 - Factory `modules/factory/user [NDn]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
-- Two coexisting styles:
-  - **Standalone** (`zno [NDn]`): `flake-parts.nix` registers `homeConfigurations.<name>` via `mkHomeManager`; the user is also wired into hosts via `hosts/<host>/users/<name>.nix`
-  - **Host-attached** (`alice [D]`, `eve [N]`): no `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
+- All users are **host-attached**: no standalone `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
 
 ### Program Aggregation Pattern
 - Each category dir `modules/programs/<category> [nd]/` has a `<category>.nix` that registers `flake.modules.homeManager.<category>` and imports that category's app modules.
@@ -116,15 +115,7 @@ Relative path strings that also depend on directory depth (update together with 
 
 ```bash
 # Build NixOS
-sudo nixos-rebuild switch --flake .#linux-desktop
 sudo nixos-rebuild switch --flake .#linux-laptop
-sudo nixos-rebuild switch --flake .#homeserver
-
-# Build darwin
-darwin-rebuild switch --flake .#macbook
-
-# Home-manager standalone
-home-manager switch --flake .#zno@linux-laptop
 
 # Regenerate flake.nix (after adding/removing inputs in flake-parts)
 nix run .#write-flake
@@ -141,10 +132,7 @@ nix flake update nixpkgs
 ### Testing / Dry-run
 ```bash
 # Dry-run (NixOS)
-nixos-rebuild dry-run --flake .#linux-desktop
-
-# Dry-build (darwin)
-darwin-rebuild dry-build --flake .#macbook
+nixos-rebuild dry-run --flake .#linux-laptop
 
 # Check evaluation
 nix flake check --no-build
@@ -167,7 +155,7 @@ Secrets use [agenix](https://github.com/ryantm/agenix) with age encryption.
 - **Indentation:** 2 spaces
 - Every module goes in a directory: `modules/<category>/<module-name> [tags]/` with at least one `.nix` file
 - Module definitions register under `flake.modules.<target>.<name>` (nixos / darwin / homeManager)
-- Configuration entry points (`flake-parts.nix`) are kept minimal — just calls `inputs.self.lib.mkNixos/mkDarwin/mkHomeManager`
+- Configuration entry points (`flake-parts.nix`) are kept minimal — just calls `inputs.self.lib.mkNixos/mkDarwin`
 
 ### Nix Expression Formatting
 ```nix
@@ -194,8 +182,8 @@ Secrets use [agenix](https://github.com/ryantm/agenix) with age encryption.
 ### Naming Conventions
 - **Modules**: `kebab-case.nix` (e.g., `system-desktop.nix`)
 - **Options**: `config.flake.<name>.<option>` or `config.programs.<programName>`
-- **Hosts**: lowercase (e.g., `linux-laptop`, `homeserver`)
-- **Users**: lowercase usernames matching system accounts
+- **Hosts**: lowercase (e.g., `linux-laptop`); ignored placeholders are prefixed with `_`
+- **Users**: lowercase usernames matching system accounts; ignored placeholders are prefixed with `_`
 
 ### Option Definitions
 ```nix
@@ -228,9 +216,8 @@ options.flake.factory.user = lib.mkOption {
 3. The category aggregator is already pulled in via `programs.nix` → `homeManager.programs` (no per-host wiring needed)
 
 ### Adding a user
-1. Standalone: `modules/users/<name> [NDn]/` with `<name>.nix` + `flake-parts.nix` calling `inputs.self.lib.mkHomeManager "<system>" "<name>"`
-2. Host-attached: `modules/users/<name> [N|D]/` with `configuration.nix` + `homeManager.nix`, wired in via `hosts/<host>/users/<name>.nix`
-3. Register metadata in `modules/users/meta.nix`
+1. Host-attached: `modules/users/<name> [N|D]/` with `configuration.nix` + `homeManager.nix`, wired in via `hosts/<host>/users/<name>.nix`
+2. Register metadata in `modules/users/meta.nix`
 
 ### Factory modules
 Factory modules in `modules/factory/` create reusable templates:

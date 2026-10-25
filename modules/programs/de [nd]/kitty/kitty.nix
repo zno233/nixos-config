@@ -1,7 +1,6 @@
 {
   flake.modules.homeManager.kitty =
     {
-      lib,
       ...
     }:
     {
@@ -29,7 +28,7 @@
           auto_reload_config = -1;
 
           confirm_os_window_close = 0;
-          background_opacity = lib.mkForce "0.8";
+          background_opacity = "0.8";
           scrollback_lines = 10000;
           enable_audio_bell = false;
           mouse_hide_wait = 60;

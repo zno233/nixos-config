@@ -52,10 +52,9 @@
 
 | Host | Arch | Type | Tag |
 | --- | --- | --- | --- |
-| `linux-desktop` | x86_64-linux | NixOS | `[N]` |
 | `linux-laptop` | x86_64-linux | NixOS | `[N]` |
-| `homeserver` | x86_64-linux | NixOS | `[N]` |
-| `macbook` | aarch64-darwin | nix-darwin | `[D]` |
+
+Only `linux-laptop` is actively maintained. Placeholder hosts (`_linux-desktop`, `_homeserver`, `_macbook`) and users (`_alice`, `_eve`) are prefixed with `_` and ignored by import-tree, so they expose no outputs.
 
 ## Nix Evaluation Flow
 
@@ -69,11 +68,11 @@ flowchart TD
     
     F["hosts/*/flake-parts.nix"] -->|"mkNixos"| G["nixpkgs.lib.nixosSystem"]
     F -->|"mkDarwin"| H["nix-darwin.lib.darwinSystem"]
-    I["users/*/flake-parts.nix"] -->|"mkHomeManager"| J["home-manager.lib.homeManagerConfiguration"]
     
     G -->|"modules"| C
     H -->|"modules"| D
-    J -->|"modules"| E
+    G -->|"home-manager"| E
+    H -->|"home-manager"| E
     
     K["hosts/*/configuration.nix"] -->|"imports"| L["system-types"]
     L --> L1["1-system-minimal"]
@@ -90,20 +89,20 @@ Bracket suffixes in directory names are literal and describe the feature's usage
 
 | Tag | Meaning | Used by |
 | --- | --- | --- |
-| `[N]` | NixOS only | `hosts/linux-*`, `homeserver`, `services/desktop`, `services/fs`, `settings/base`, `settings/_network`, `bluetooth`, `firmware`, `systemd-boot` |
-| `[D]` | Darwin/macOS only | `hosts/macbook`, `users/alice`, `nix/tools/determinate`, `homebrew` |
+| `[N]` | NixOS only | `hosts/linux-laptop`, `services/desktop`, `services/fs`, `settings/base`, `bluetooth`, `firmware`, `systemd-boot` |
+| `[D]` | Darwin/macOS only | `nix/tools/determinate`, `nix/tools/homebrew` |
 | `[ND]` | NixOS + Darwin | `services/ssh`, `nix/tools/home-manager` |
 | `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs |
-| `[NDn]` | NixOS + Darwin + home-manager | `users/zno` (with standalone `homeConfigurations`), `factory/user`, `programs/tools/cli-tools` |
+| `[NDn]` | NixOS + Darwin + home-manager | `users/zno`, `factory/user`, `programs/tools/cli-tools` |
 | `[NDnd]` | all contexts | `nix/tools/secrets`, `systemConstants`, `system-types/*` |
-| `[G]` | generic (class-independent) | `nix/tools/pkgs-by-name` |
 | `[]` | flake-parts meta wiring (no aspects) | `nix/flake-parts []` |
-| `[networkInterfaces]` | custom DRY class | `settings/_network/subnet-*` |
 | *(no tag)* | grouping dir only, not a feature | `hosts/`, `users/`, `programs/`, `services/`, `system/`, `nix/`, `virt/` |
 
 Tags describe the directory's *primary* context. Program categories are self-contained units that may expose **paired nixos/homeManager aggregators** — e.g. `game.nix` registers both `nixos.game` and `homeManager.game`; the nixos side reaches hosts via `programs.nix` → `nixos.programs` → `system-desktop`. The tag reflects the primary (home-manager) surface; individual files may additionally register one-off other-class aspects (e.g. `browsers [nd]/brave.nix` also registers `nixos.brave`).
 
-Tags reflect *usage contexts*, not necessarily the registration class: e.g. `systemConstants [NDnd]` registers under `flake.modules.generic` but is imported into all three contexts, while `pkgs-by-name [G]` stays class-independent infrastructure.
+Tags reflect *usage contexts*, not necessarily the registration class: e.g. `systemConstants [NDnd]` registers under `flake.modules.generic` but is imported into all three contexts.
+
+`import-tree` ignores any path containing `/_`. Directories and files prefixed with `_` are intentionally inactive and are not imported. Placeholder hosts/users (`_linux-desktop`, `_homeserver`, `_macbook`, `_alice`, `_eve`) follow this rule.
 
 ## Architecture
 
@@ -117,8 +116,8 @@ System builds compose layers via `modules/system/system-types/`:
 ### Flake Wiring (Dendritic Pattern)
 - `flake.nix` uses `import-tree ./modules` to auto-discover and import all modules
 - `modules/nix/flake-parts []/dendritic-tools.nix` — imports flake-parts + flake-file + import-tree; defines all systems
-- `modules/nix/flake-parts []/lib.nix` — defines `flake.lib` helpers: `mkNixos`, `mkDarwin`, `mkHomeManager`
-- Each host/user adds a `flake-parts.nix` that calls one of the `mk*` helpers
+- `modules/nix/flake-parts []/lib.nix` — defines `flake.lib` helpers: `mkNixos`, `mkDarwin`
+- Each host adds a `flake-parts.nix` that calls `mkNixos` or `mkDarwin`
 - Modules register themselves under `flake.modules.nixos.<name>`, `flake.modules.darwin.<name>`, or `flake.modules.homeManager.<name>`
 
 ### User Registration Pattern
@@ -130,12 +129,7 @@ System builds compose layers via `modules/system/system-types/`:
 
 ```bash
 # Build NixOS
-sudo nixos-rebuild switch --flake .#linux-desktop
 sudo nixos-rebuild switch --flake .#linux-laptop
-sudo nixos-rebuild switch --flake .#homeserver
-
-# Build darwin
-darwin-rebuild switch --flake .#macbook
 
 # Regenerate flake.nix (after adding/removing inputs in flake-parts)
 nix run .#write-flake

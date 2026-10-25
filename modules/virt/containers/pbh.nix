@@ -38,11 +38,8 @@ in
 
     # 声明式创建数据目录
     systemd.tmpfiles.rules = [
-      "d ${homeDir}/pbh-data 0755 zno users -"
+      "d ${homeDir}/pbh-data 0700 ${config.flake.meta.mainUserName} users -"
     ];
-
-    # 防火墙开放 Web 界面
-    networking.firewall.allowedTCPPorts = [ 9898 ];
   };
 
   flake.modules.homeManager.pbh = {

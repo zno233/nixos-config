@@ -15,8 +15,6 @@ let
         useUserPackages = true;
         useGlobalPkgs = true;
         backupFileExtension = "hm-backup";
-        backupCommand = "rm";
-        overwriteBackup = true;
         extraSpecialArgs = {
           inherit pkgs-stable;
         };

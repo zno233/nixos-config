@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   ...
 }:
@@ -15,8 +16,8 @@
       environment.systemPackages = [ inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default ];
       age.secrets."deepseek-token" = {
         file = "${inputs.self}/secrets/deepseek-token.age";
-        # 系统级解密后的文件默认所有者是 root，为了让用户 zno 读取，必须修改 owner
-        owner = "zno";
+        # 系统级解密后的文件默认所有者是 root，为了让主用户读取，必须修改 owner
+        owner = config.flake.meta.mainUserName;
         mode = "0400";
       };
       age.secrets."aria2-rpc-secret" = {
