@@ -12,9 +12,9 @@
 
 </details>
 
-### Waybar
+### Waybar (archived)
 <details>
-<summary>Waybar (EXPAND)</summary>
+<summary>Waybar (archived, EXPAND)</summary>
 
 <img width="1260" alt="Screenshot from 2025-12-19 21-16-32" src="https://github.com/user-attachments/assets/37ce7c1f-c7bb-4a6f-b8b9-e5738f9f06e7" />
 
@@ -33,7 +33,7 @@
 | **Bar / Shell** | [noctalia-shell][noctalia-shell] |
 | **Input Method** | [fcitx5][fcitx5] + [rime_wanxiang][rime_wanxiang] |
 | **Text Editor** | [zed][zed] + [lazyvim-nix][lazyvim-nix] + [helix][helix] |
-| **IDE / Code** | [zed][zed] + [VSCode][VSCode] |
+| **IDE / Code** | [zed][zed] + [vscode-fhs][VSCode] |
 | **System Monitor** | [btop][btop] + [mission-center][mission-center] |
 | **File Manager** | [nemo][nemo] |
 | **Fonts** | [Asuka Fonts][Asuka Fonts] + [LXGW WenKai][LXGW WenKai] |
@@ -42,7 +42,7 @@
 | **Icons** | [Papirus-Dark][Papirus-Dark] |
 | **Browser** | [brave][brave] + [zen-browser][zen-browser] |
 | **Media Player** | [mpv][mpv] + [vlc][vlc] |
-| **Music Player** | [rox][rox] + [splayer-next][splayer-next]|
+| **Music Player** | [fooyin][fooyin] + [rox][rox] + [splayer-next][splayer-next] + [sonora][sonora] |
 | **Note Taking** | [obsidian][obsidian] |
 | **Screen Recording** | [OBS Studio][OBS] |
 
@@ -54,7 +54,7 @@
 | --- | --- | --- | --- |
 | `linux-laptop` | x86_64-linux | NixOS | `[N]` |
 
-Only `linux-laptop` is actively maintained. Placeholder hosts (`_linux-desktop`, `_homeserver`, `_macbook`) and users (`_alice`, `_eve`) are prefixed with `_` and ignored by import-tree, so they expose no outputs.
+Only `linux-laptop` is actively maintained. Placeholder hosts and users are moved under `archive/` with `_`-prefixed names (`_linux-desktop`, `_homeserver`, `_macbook`, `_alice`, `_eve`). Paths containing `/_` are ignored by import-tree, so they expose no outputs.
 
 ## Nix Evaluation Flow
 
@@ -102,26 +102,26 @@ Tags describe the directory's *primary* context. Program categories are self-con
 
 Tags reflect *usage contexts*, not necessarily the registration class: e.g. `systemConstants [NDnd]` registers under `flake.modules.generic` but is imported into all three contexts.
 
-`import-tree` ignores any path containing `/_`. Directories and files prefixed with `_` are intentionally inactive and are not imported. Placeholder hosts/users (`_linux-desktop`, `_homeserver`, `_macbook`, `_alice`, `_eve`) follow this rule.
+`import-tree` ignores any path containing `/_`. Directories and files prefixed with `_` are intentionally inactive and are not imported. Placeholder hosts/users live under `*/archive/_...` and follow this rule.
 
 ## Architecture
 
 ### System Types
 System builds compose layers via `modules/system/system-types/`:
-1. **`1-system-minimal`** — base nixpkgs config, overlays (NUR, custom pkgs, lix tools), substituters, stateVersion
+1. **`1-system-minimal`** — base nixpkgs config, overlays (NUR, `nix-packages`, custom pkgs, lix package set), substituters, stateVersion
 2. **`2-system-default`** — imports system-minimal + home-manager + secrets + systemConstants (+ determinate + homebrew on darwin)
-3. **`3-system-cli`** — imports system-default + system-base + ssh + cli-tools + virt
-4. **`4-system-desktop`** — imports system-cli + service-desktop + settings-desktop (nixos); system-cli (darwin); system-cli + programs (home-manager)
+3. **`3-system-cli`** — imports system-default + system-base + ssh + cli-tools + virt (nixos); system-default + ssh + cli-tools (darwin); system-default (home-manager)
+4. **`4-system-desktop`** — imports system-cli + service-desktop + settings-desktop + programs (nixos); system-cli (darwin); system-cli + programs (home-manager)
 
 ### Flake Wiring (Dendritic Pattern)
 - `flake.nix` uses `import-tree ./modules` to auto-discover and import all modules
 - `modules/nix/flake-parts []/dendritic-tools.nix` — imports flake-parts + flake-file + import-tree; defines all systems
-- `modules/nix/flake-parts []/lib.nix` — defines `flake.lib` helpers: `mkNixos`, `mkDarwin`
+- `modules/nix/flake-parts []/lib.nix` — defines `flake.lib` helpers: `mkNixos`, `mkDarwin`, `mkHomeManager`
 - Each host adds a `flake-parts.nix` that calls `mkNixos` or `mkDarwin`
 - Modules register themselves under `flake.modules.nixos.<name>`, `flake.modules.darwin.<name>`, or `flake.modules.homeManager.<name>`
 
 ### User Registration Pattern
-- `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUser`
+- `modules/users/meta.nix` — defines `flake.meta.users` option (homeDirectory, email, configDirectory per user) + `flake.meta.mainUserName` (selector) + `flake.meta.mainUser` (resolved record)
 - Factory `modules/factory/user [NDn]/user.nix` — creates user with nixos + darwin + home-manager config via `config.flake.factory.user`
 - All users are **host-attached**: no standalone `flake-parts.nix`; pulled in only by `hosts/<host>/users/<name>.nix`
 
@@ -175,6 +175,7 @@ Other dotfiles that I ~~copied~~ learned from:
 [fooyin]: https://github.com/fooyin/fooyin
 [rox]: https://github.com/zealsprince/rox
 [splayer-next]: https://github.com/SPlayer-Dev/SPlayer-Next
+[sonora]: https://github.com/sonorahq/sonora
 [spotify]: https://open.spotify.com/
 [spicetify-nix]: https://github.com/Gerg-L/spicetify-nix
 [obsidian]: https://obsidian.md/
