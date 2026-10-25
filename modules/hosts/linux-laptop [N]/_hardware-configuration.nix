@@ -29,7 +29,7 @@
     fsType = "btrfs";
     options = [
       "subvol=root"
-      "compress=zstd"
+      "compress-force=zstd"
       "noatime"
       "ssd"
       "discard=async"
@@ -41,7 +41,7 @@
     fsType = "btrfs";
     options = [
       "subvol=home"
-      "compress=zstd"
+      "compress-force=zstd"
       "noatime"
       "ssd"
       "discard=async"
@@ -53,7 +53,7 @@
     fsType = "btrfs";
     options = [
       "subvol=nix"
-      "compress=zstd"
+      "compress-force=zstd"
       "noatime"
       "ssd"
       "discard=async"

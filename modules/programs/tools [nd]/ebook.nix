@@ -6,7 +6,7 @@
     }:
     {
       home.packages = with pkgs; [
-        # calibre
+        calibre
         # koodo-reader
         readest
       ];

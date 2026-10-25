@@ -18,7 +18,6 @@
           "splash"
           "console=tty1"
         ];
-        initrd.verbose = false;
         loader = {
           systemd-boot.enable = false;
           grub = {

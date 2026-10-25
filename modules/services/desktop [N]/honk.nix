@@ -13,7 +13,7 @@ in
         enable = true;
         configFile = "${homeDir}/.config/honk/config.dae"; # 任意绝对路径
         # serves doona at http://127.0.0.1:9527/ui/ (native_api include auto-wired)
-        ui = pkgs.doona;
+        ui = "embedded";
         assets = with pkgs; [
           v2ray-geoip
           v2ray-domain-list-community
