@@ -30,10 +30,23 @@
         "vm.dirty_writeback_centisecs" = "1500"; # 15 秒回写间隔
         # VFS 缓存压力：50 是合理值，保护 inode/dentry 缓存
         "vm.vfs_cache_pressure" = "50";
+        # 水位系数：125 让 kswapd 在高内存压力下渐进提前回收（默认 10 过晚）
+        # 消除 alloc stall 和 kcompactd 抖动，与 MGLRU 配合良好
+        "vm.watermark_scale_factor" = "125";
+        # mmap 映射数上限：Steam 重度游戏 / JVM / 模拟器易打满默认 65530
+        # SteamOS 同款值，无副作用
+        "vm.max_map_count" = "1048576";
       };
       # 显式禁用磁盘 swap
       swapDevices = lib.mkForce [ ];
       # 禁用 Zswap
       boot.kernelParams = [ "zswap.enabled=0" ];
+      # THP 优化（对齐 CachyOS thp.conf / thp-shrinker.conf）
+      # THP=always 下默认 511 会过度分配大页导致内存虚耗；409（80% 空洞即拆分）
+      # 使内存占用接近 madvise 水平而性能不降
+      systemd.tmpfiles.rules = [
+        "w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409"
+        "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"
+      ];
     };
 }

@@ -36,6 +36,9 @@
           # Restrict exposure of kernel pointers.
           "kernel.kptr_restrict" = 2;
 
+          # 允许挂死时安全重启（对齐 CachyOS）
+          "kernel.sysrq" = 1;
+
           # Increase network device receive backlog.
           # Useful mainly under bursty/high-throughput traffic.
           "net.core.netdev_max_backlog" = 4096;
@@ -72,8 +75,9 @@
           # "loglevel=3"
           # "splash"
           "console=tty1"
-          # "lru_gen=y" # 启用 MGLRU
-          # "transparent_hugepage=madvise" # 允许使用大页
+          # 无需手动启用 lru_gen / transparent_hugepage，
+          # CachyOS 内核已默认开启 MGLRU（0x0007）与 THP=always（defer+madvise）
+          # split_lock_mitigate=0、watermark_boost_factor=0 亦为内核默认
         ];
         consoleLogLevel = 3;
         # initrd.kernelModules = [ "nvidia" ];
@@ -91,5 +95,17 @@
 
         plymouth.enable = true;
       };
+
+      # 对齐 CachyOS blacklist.conf：拉黑硬件 watchdog，省电且减少中断负担
+      # （nmi_watchdog 已关，模块级 watchdog 一并屏蔽；sp5100 为 AMD 通用规则）
+      boot.blacklistedKernelModules = [
+        "iTCO_wdt"
+        "wdat_wdt"
+        "sp5100_tco"
+      ];
+
+      # 进程 fd 上限对齐 CachyOS 10-limits.conf：soft 2048 → hard 2097152
+      # 大型 dev 工具链/多 fd 服务不再受 hard limit 克制
+      systemd.settings.Manager.DefaultLimitNOFILE = "2048:2097152";
     };
 }
