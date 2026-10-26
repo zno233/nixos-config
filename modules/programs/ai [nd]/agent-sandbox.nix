@@ -3,6 +3,8 @@
 #
 # Declare agents under programs.agentSandbox.agents.<name>;
 # each becomes a wrapped binary (outName, default = binName) in home.packages.
+# programs.agentSandbox.extraTools appends shared packages to every agent's
+# allowedPackages (upstream commonTools stays first).
 # Missing declared paths (rw or ro) refuse launch — activation pre-creates them.
 # Unwrapped mode: each agent also gets <outName>-unwrapped, which exports the
 # same env and execs the real binary with no sandbox; addUnwrapped.enable = false
@@ -77,7 +79,10 @@
             allowedPackages = lib.mkOption {
               type = lib.types.listOf lib.types.package;
               default = sbx.commonTools;
-              description = "Binaries on the agent PATH inside the sandbox.";
+              description = ''
+                Binaries on the agent PATH inside the sandbox, replacing the
+                default; programs.agentSandbox.extraTools is appended on top.
+              '';
             };
             rwDirs = lib.mkOption {
               type = lib.types.listOf lib.types.str;
@@ -164,7 +169,6 @@
             pkg
             binName
             outName
-            allowedPackages
             rwDirs
             rwFiles
             roDirs
@@ -176,6 +180,7 @@
             publishedPorts
             allowNix
             ;
+          allowedPackages = agent.allowedPackages ++ cfg.extraTools;
         }
       ) enabledAgents;
 
@@ -240,6 +245,14 @@
           type = lib.types.bool;
           default = true;
           description = "Install sandboxed wrappers for declared agents.";
+        };
+        extraTools = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          default = [ ];
+          description = ''
+            Shared CLI tools exposed to every agent's sandbox PATH, on top of
+            each agent's allowedPackages (default = upstream commonTools).
+          '';
         };
         agents = lib.mkOption {
           type = lib.types.attrsOf (lib.types.submodule agentModule);

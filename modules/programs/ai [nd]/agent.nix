@@ -22,6 +22,19 @@
       agentsPkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
     in
     {
+      # Shared with every agent's sandbox PATH — only the agent's runtime
+      # essentials on top of upstream commonTools (coreutils/curl/git/rg/fd/
+      # sed/grep/find/diff/less/awk/jq + a norc bash it binds itself), all
+      # already installed on the host so nothing new is pulled in.
+      programs.agentSandbox.extraTools = with pkgs; [
+        nix # eval/fmt over local expressions; daemon ops still need allowNix
+        nixfmt # `nix fmt` shells out to this
+        gh # GITHUB_TOKEN is exported for the PR/issue/review flow
+        python3 # ad-hoc scripting / data transforms (no interpreter otherwise)
+        file # magic type probe after downloads
+        unar # universal extractor (zip/tar.gz/rar/…)
+      ];
+
       # Optional host tokens/aliases (claude-ds, etc.) must be listed here or
       # they never enter the sandbox. Unset vars use ''${VAR:-} so launch still works.
       programs.agentSandbox.agents = {
