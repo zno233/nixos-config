@@ -49,7 +49,7 @@ zno-config/
 | Tag | Meaning | Used by |
 | --- | --- | --- |
 | `[N]` | NixOS only | `hosts/linux-laptop`, `services/desktop`, `services/fs`, `settings/base`, `bluetooth`, `firmware`, `systemd-boot`, `factory/mount-cifs-nixos`, `nix/tools/impermanence` |
-| `[D]` | Darwin/macOS only | `nix/tools/determinate`, `nix/tools/homebrew` |
+| `[D]` | Darwin/macOS only | `nix/tools/homebrew` |
 | `[ND]` | NixOS + Darwin | `services/ssh`, `nix/tools/home-manager` |
 | `[nd]` | home-manager only (lowercase) | all `programs/<category>` dirs (`ai [nd]`, `de [nd]`, …) |
 | `[NDn]` | NixOS + Darwin + home-manager | `users/zno`, `factory/user`, `programs/tools/cli-tools` |
@@ -68,7 +68,7 @@ Tags reflect *usage contexts*, not necessarily the registration class: e.g. `sys
 ### Module Layers (System Types)
 System builds compose layers via `modules/system/system-types/`:
 1. **`system-minimal`** — base nixpkgs config, overlays (NUR, `nix-packages`, custom pkgs, lix package set), substituters, stateVersion
-2. **`system-default`** — imports system-minimal + home-manager + secrets + systemConstants (+ determinate + homebrew on darwin)
+2. **`system-default`** — imports system-minimal + determinate + home-manager + secrets + systemConstants (+ homebrew receiver on darwin)
 3. **`system-cli`** — imports system-default + system-base + ssh + cli-tools + virt (nixos); system-default + ssh + cli-tools (darwin); system-default (home-manager)
 4. **`system-desktop`** — imports system-cli + service-desktop + settings-desktop + programs (nixos); system-cli (darwin); system-cli + programs (home-manager)
 

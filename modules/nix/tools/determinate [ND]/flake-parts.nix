@@ -4,9 +4,10 @@
   # https://docs.determinate.systems/guides/nix-darwin/
 
   flake-file.inputs = {
-    # Determinate 3.* module
+    # Determinate module — semver selector "*": auto-latest across majors,
+    # chasing eval-perf improvements (lazy-trees/parallel-eval) upstream.
     determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

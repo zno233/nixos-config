@@ -27,15 +27,15 @@
           #   };
           # })
 
-          # inputs.lix-module.overlays.default
-          (final: prev: {
-            inherit (prev.lixPackageSets.stable)
-              nixpkgs-review
-              nix-eval-jobs
-              nix-fast-build
-              colmena
-              ;
-          })
+          # lix — https://lix.systems/add-to-config
+          # (final: prev: {
+          #   inherit (prev.lixPackageSets.stable)
+          #     nixpkgs-review
+          #     nix-eval-jobs
+          #     nix-fast-build
+          #     colmena
+          #     ;
+          # })
 
           # nix-packages — personal packages
           inputs.nix-packages.overlays.default
@@ -57,6 +57,9 @@
       nix.settings = {
         auto-optimise-store = true;
         substituters = [
+          # high priority — determinate's own cache keeps their nix components warm
+          "https://install.determinate.systems?priority=20"
+          # dual nix mirrors (and silence tools that drag in CppNix)
           # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
           # "https://mirrors.ustc.edu.cn/nix-channels/store"
           "https://mirrors.cernet.edu.cn/nix-channels/store?priority=30"
@@ -77,6 +80,7 @@
         ];
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+          "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM"
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
           # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
@@ -108,7 +112,10 @@
         warn-dirty = false
       '';
 
-      nix.package = pkgs.lixPackageSets.stable.lix;
+      # Determinate's nixos module sets nix.package itself (priority 750).
+      # A plain `nix.package` set here (priority 100) would override it and
+      # make det-nixd daemonize lix by mistake — never set both.
+      # nix.package = pkgs.lixPackageSets.stable.lix;
 
     };
 }

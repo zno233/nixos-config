@@ -10,6 +10,7 @@
       with inputs.self.modules.nixos;
       [
         system-minimal
+        determinate
         home-manager
         secrets
       ]
