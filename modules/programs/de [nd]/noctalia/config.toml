@@ -35,14 +35,14 @@ start = [ "launcher", "workspaces", "group:g1", "weather", "eyecare-widget", "ac
 thickness = 36
 
     [[bar.default.capsule_group]]
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g1"
     members = [ "cpu", "temp", "ram" ]
     opacity = 0.40000000596046448
     padding = 6.0
 
     [[bar.default.capsule_group]]
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g2"
     members = [ "media" ]
     opacity = 0.40000000596046448
@@ -199,7 +199,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.0
         background_radius = 12.0
         center_password_text = false
@@ -210,6 +210,7 @@ widget_order = [
         show_keyboard_layout = true
         show_login_button = false
         show_media = false
+        show_password_reveal = true
         show_session_buttons = false
         show_unlock_hint = false
         show_weather = false
@@ -226,7 +227,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@winit".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -237,6 +238,7 @@ widget_order = [
         show_keyboard_layout = true
         show_login_button = true
         show_media = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
@@ -336,6 +338,7 @@ position_vertical = "center_right"
 
 [plugin_settings."cleboost/ssh-launcher"]
 config_path = "/home/zno/.ssh/local"
+terminal = ""
 
 [plugin_settings."nightwatch75/file-search"]
 search_folder = "~"
@@ -359,6 +362,11 @@ telemetry_enabled = false
 
     [shell.greeter_sync]
     auto_sync = true
+
+    [shell.launcher]
+    category_icons_only = true
+    layout = "simple"
+    width = 700
 
     [shell.panel]
     launcher_position = "center"
@@ -422,7 +430,7 @@ community_palette = "Everforest Material"
 custom_palette = "anime-girls-cat-girl-white-rose-nature-kawaii-skirt-ts"
 mode = "dark"
 source = "community"
-wallpaper_scheme = "m3-content"
+wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
     community_ids = [ "opencode" ]

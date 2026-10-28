@@ -57,14 +57,12 @@
       nix.settings = {
         auto-optimise-store = true;
         substituters = [
-          # high priority — determinate's own cache keeps their nix components warm
-          "https://install.determinate.systems?priority=20"
-          # dual nix mirrors (and silence tools that drag in CppNix)
           # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
           # "https://mirrors.ustc.edu.cn/nix-channels/store"
           "https://mirrors.cernet.edu.cn/nix-channels/store?priority=30"
           "https://cache.nixos.org?priority=40"
           "https://nix-community.cachix.org?priority=50"
+          "https://install.determinate.systems?priority=50"
           # "https://nix-gaming.cachix.org"
           # "https://hyprland.cachix.org"
           # "https://ghostty.cachix.org"
@@ -80,8 +78,8 @@
         ];
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM"
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM"
           # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
           # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
           # "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="

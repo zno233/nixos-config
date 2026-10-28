@@ -13,5 +13,13 @@
   # and sets nix.package itself — do NOT set nix.package anywhere else.
   flake.modules.nixos.determinate = {
     imports = [ inputs.determinate.nixosModules.default ];
+
+    # Opt out of Determinate telemetry (device check-ins, feature stats).
+    systemd.services.nix-daemon.environment.DETSYS_IDS_TELEMETRY = "disabled";
+
+    # Disable crash reports to Determinate's Sentry.
+    environment.etc."determinate/config.json".text = builtins.toJSON {
+      telemetry.sentry.endpoint = null;
+    };
   };
 }
