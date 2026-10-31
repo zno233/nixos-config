@@ -65,9 +65,12 @@
           # allowedDomains = null (open). Tighten per README when needed.
         };
 
+        # OpenCode 2 (llm-agents.nix `opencode2`, v2.x line). Installed as
+        # `opencode`; the unsandboxed companion stays `opencode-unwrapped`.
         opencode = {
-          pkg = agentsPkgs.opencode;
-          binName = "opencode";
+          pkg = agentsPkgs.opencode2;
+          binName = "opencode2";
+          outName = "opencode";
           addUnwrapped.enable = true; # opencode-unwrapped runs without the sandbox
           rwDirs = [
             "$HOME/.config/opencode"
