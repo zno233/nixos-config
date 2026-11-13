@@ -5,6 +5,7 @@
   mkNixPak,
   mkAppWrapper,
   makeDesktopItem,
+  ...
 }:
 let
   appId = "cn.feishu.Feishu";
@@ -13,9 +14,8 @@ let
       { ... }:
       {
         imports = [
-          ./modules/gui-base.nix
+          ./modules/desktop-base.nix
           ./modules/network.nix
-          ./modules/common.nix
         ];
         app.package = mkAppWrapper feishu {
           binPath = "opt/bytedance/feishu/feishu";
@@ -27,15 +27,33 @@ let
         flatpak = {
           appId = appId;
         };
+        portalGroups = {
+          fileChooser = true;
+          openUri = true;
+          notifications = true;
+          inputMethod = true;
+          # Meetings: camera and screen sharing go through the portals.
+          screenCast = true;
+          camera = true;
+          print = true;
+        };
+        desktopIntegration = {
+          notifications = true;
+          tray = true;
+        };
+        bubblewrap = {
+          bind.ro = [ "/etc/passwd" ];
+          env = {
+            GTK_IM_MODULE = "fcitx";
+            QT_IM_MODULE = "fcitx";
+            XMODIFIERS = "@im=fcitx";
+          };
+        };
         dbus = {
-          enable = true;
           policies = {
             "org.freedesktop.secrets" = "talk";
             "org.gnome.keyring" = "talk";
             "org.gnome.ScreenSaver" = "talk";
-            "org.freedesktop.StatusNotifierItem.*" = "talk";
-            "org.freedesktop.Notifications" = "talk";
-            "org.kde.StatusNotifierWatcher" = "talk";
             "com.canonical.AppMenu.Registrar" = "talk";
             "com.canonical.indicator.application" = "talk";
             "org.ayatana.indicator.application" = "talk";

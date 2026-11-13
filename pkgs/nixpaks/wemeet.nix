@@ -5,6 +5,7 @@
   mkAppWrapper,
   mkNixPak,
   makeDesktopItem,
+  ...
 }:
 let
   appId = "com.tencent.wemeet";
@@ -13,22 +14,34 @@ let
       { ... }:
       {
         imports = [
-          ./modules/gui-base.nix
+          ./modules/desktop-base.nix
           ./modules/network.nix
-          ./modules/common.nix
         ];
         app.package = mkAppWrapper wemeet { binPath = "bin/wemeet-xwayland"; };
         flatpak = { inherit appId; };
-        bubblewrap = {
-          sockets = {
-            wayland = lib.mkForce false;
-            x11 = true;
-          };
+        portalGroups = {
+          fileChooser = true;
+          openUri = true;
+          notifications = true;
+          inputMethod = true;
+          screenCast = true;
+          camera = true;
         };
-        dbus.policies = {
-          "org.gnome.Shell.Screencast" = "talk";
-          "org.freedesktop.Notifications" = "talk";
-          "org.kde.StatusNotifierWatcher" = "talk";
+        desktopIntegration = {
+          notifications = true;
+          tray = true;
+        };
+        bubblewrap = {
+          sockets.wayland = lib.mkForce false;
+          env = {
+            XDG_SESSION_TYPE = lib.mkForce "x11";
+            GTK_IM_MODULE = "fcitx";
+            QT_IM_MODULE = "fcitx";
+            XMODIFIERS = "@im=fcitx";
+          };
+          bind.ro = [ "/etc/passwd" ];
+          # Webcam access for meetings.
+          bind.dev = map (id: "/dev/video${toString id}") (lib.range 0 9);
         };
       };
   };

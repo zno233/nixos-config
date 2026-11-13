@@ -1,11 +1,18 @@
 # Enable honk — module now lives upstream: github:zno233/nix-packages (nixosModules.honk)
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  ...
+}:
 let
   homeDir = config.flake.meta.mainUser.homeDirectory;
 in
 {
   flake.modules.nixos.honk =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
     {
       imports = [ inputs.nix-packages.nixosModules.honk ];
 

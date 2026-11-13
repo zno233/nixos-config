@@ -64,7 +64,7 @@ in
     qq = wrapper pkgs ./nixpaks/qq.nix;
     wechat = wrapper pkgs ./nixpaks/wechat.nix;
     # feishu = wrapper pkgs ./nixpaks/feishu.nix;
-    # telegram = wrapper pkgs ./nixpaks/telegram.nix;
+    # telegram-desktop = wrapper pkgs ./nixpaks/telegram-desktop.nix;
     # spotify = wrapper pkgs ./nixpaks/spotify.nix;
     # wemeet = wrapper pkgs ./nixpaks/wemeet.nix;
     # wpsoffice = wrapper pkgs ./nixpaks/wpsoffice.nix;

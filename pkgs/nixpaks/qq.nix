@@ -26,12 +26,34 @@ let
         flatpak.appId = appId;
 
         imports = [
-          ./modules/gui-base.nix
+          ./modules/desktop-base.nix
           ./modules/network.nix
-          ./modules/common.nix
         ];
 
+        portalGroups = {
+          fileChooser = true;
+          openUri = true;
+          notifications = true;
+          screenCast = true;
+          camera = true;
+          inhibit = true;
+          inputMethod = true;
+        };
+        desktopIntegration = {
+          notifications = true;
+          tray = true;
+          mpris = true;
+          accessibility = true;
+        };
+
         bubblewrap = {
+          # QQ renders through Wayland but still uses the X11 clipboard; like WeChat,
+          # keep an X11 fallback so copying does not lose its X connection.
+          sockets.x11 = true;
+          env = {
+            DISPLAY = sloth.envOr "DISPLAY" "";
+            XAUTHORITY = sloth.envOr "XAUTHORITY" (sloth.concat' sloth.homeDir "/.Xauthority");
+          };
           # To trace all the home files QQ accesses, you can use the following nushell command:
           #   just trace-access qq
           # See the Justfile in the root of this repository for more information.
@@ -42,11 +64,6 @@ let
             sloth.xdgVideosDir
             sloth.xdgPicturesDir
           ];
-          sockets = {
-            x11 = false;
-            wayland = true;
-            pipewire = true;
-          };
         };
       };
   };

@@ -13,21 +13,32 @@ let
       { ... }:
       {
         imports = [
-          ./modules/gui-base.nix
+          ./modules/desktop-base.nix
           ./modules/network.nix
-          ./modules/common.nix
         ];
         app.package = spotify;
         flatpak = {
           appId = appId;
         };
-        dbus = {
-          enable = true;
-          policies = {
-            "org.gnome.SettingsDaemon.MediaKeys" = "talk";
-            "org.gnome.SessionManager" = "talk";
-            "org.kde.StatusNotifierWatcher" = "talk";
-            "org.mpris.MediaPlayer2.spotify" = "own";
+        # Playback controls and the tray icon are handled by
+        # `desktopIntegration`; login links open through the URI portal.
+        portalGroups = {
+          fileChooser = true;
+          openUri = true;
+          notifications = true;
+          inputMethod = true;
+        };
+        desktopIntegration = {
+          notifications = true;
+          tray = true;
+          mpris = true;
+        };
+        bubblewrap = {
+          bind.ro = [ "/etc/passwd" ];
+          env = {
+            GTK_IM_MODULE = "fcitx";
+            QT_IM_MODULE = "fcitx";
+            XMODIFIERS = "@im=fcitx";
           };
         };
       };

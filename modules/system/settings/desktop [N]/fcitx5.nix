@@ -1,4 +1,8 @@
 {
+  inputs,
+  ...
+}:
+{
   flake.modules.nixos.fcitx5 =
     {
       pkgs,
@@ -26,6 +30,10 @@
           catppuccin-fcitx5
         ];
       };
+
+      # imports = [ inputs.nix-packages.nixosModules.windinput ];
+
+      # programs.windinput.enable = true;
 
       # environment.variables = {
       #   GTK_IM_MODULE = "fcitx";

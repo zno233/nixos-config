@@ -6,6 +6,7 @@
   mkNixPak,
   mkAppWrapper,
   makeDesktopItem,
+  ...
 }:
 let
   appId = "cn.wps.app";
@@ -14,9 +15,8 @@ let
       { sloth, ... }:
       {
         imports = [
-          ./modules/gui-base.nix
+          ./modules/desktop-base.nix
           ./modules/network.nix
-          ./modules/common.nix
         ];
         app.package = mkAppWrapper wpsoffice-cn {
           binPath = "bin/wps";
@@ -31,19 +31,24 @@ let
         flatpak = {
           inherit appId;
         };
-        dbus.enable = true;
+        portalGroups = {
+          fileChooser = true;
+          openUri = true;
+          notifications = true;
+          inputMethod = true;
+          print = true;
+        };
+        desktopIntegration = {
+          notifications = true;
+          tray = true;
+        };
         bubblewrap = {
-          sockets = {
-            wayland = lib.mkForce false;
-            x11 = true;
-          };
+          sockets.wayland = lib.mkForce false;
           shareIpc = true;
-          dieWithParent = true;
-          newSession = true;
           tmpfs = [ "/var/tmp" ];
           bind.ro = [
-            "/etc/passwd"
             "/etc/machine-id"
+            "/etc/passwd"
           ];
           bind.rw = with sloth; [
             [
@@ -56,6 +61,7 @@ let
             xdgVideosDir
           ];
           env = {
+            XDG_SESSION_TYPE = lib.mkForce "x11";
             GTK_IM_MODULE = "fcitx";
             QT_IM_MODULE = "fcitx";
             XMODIFIERS = "@im=fcitx";

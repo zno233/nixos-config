@@ -13,9 +13,8 @@ let
       { sloth, ... }:
       {
         imports = [
-          ./modules/gui-base.nix
+          ./modules/desktop-base.nix
           ./modules/network.nix
-          ./modules/common.nix
         ];
         app.package = telegram-desktop;
         flatpak = {
@@ -30,6 +29,22 @@ let
           };
         };
 
+        portalGroups = {
+          fileChooser = true;
+          openUri = true;
+          notifications = true;
+          screenCast = true;
+          camera = true;
+          inhibit = true;
+          inputMethod = true;
+        };
+        desktopIntegration = {
+          notifications = true;
+          tray = true;
+          mpris = true;
+          accessibility = true;
+        };
+
         bubblewrap = {
           # nixpak exposes /.flatpak-info, so Telegram uses FLATPAK_ID as its Wayland app ID.
           env.FLATPAK_ID = appId;
@@ -40,11 +55,6 @@ let
             sloth.xdgVideosDir
             sloth.xdgPicturesDir
           ];
-          sockets = {
-            x11 = false;
-            wayland = true;
-            pipewire = true;
-          };
         };
       };
   };

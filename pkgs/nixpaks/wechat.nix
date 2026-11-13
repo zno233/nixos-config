@@ -1,86 +1,52 @@
 {
   lib,
   wechat,
-  buildEnv,
   mkNixPak,
-  mkAppWrapper,
+  buildEnv,
   makeDesktopItem,
+  runCommandLocal,
+  ...
 }:
 let
   appId = "com.tencent.WeChat";
+
   wrapped = mkNixPak {
-    config =
-      { sloth, ... }:
-      {
-        imports = [
-          ./modules/gui-base.nix
-          ./modules/network.nix
-          ./modules/common.nix
-        ];
-        app.package = mkAppWrapper wechat { };
-        flatpak = {
-          appId = appId;
-        };
-        dbus = {
-          enable = true;
-          policies = {
-            "org.freedesktop.FileManager1" = "talk";
-            "org.freedesktop.Notifications" = "talk";
-            "org.kde.StatusNotifierWatcher" = "talk";
-          };
-        };
-        bubblewrap = {
-          sockets = {
-            wayland = lib.mkForce false;
-            x11 = true;
-          };
-          bind.ro = [
-            "/etc/passwd"
-            "/etc/machine-id"
-          ];
-          bind.rw = with sloth; [
-            xdgDownloadDir
-            [
-              (mkdir (concat' appDir "/xwechat_files"))
-              (concat' homeDir "/xwechat_files")
-            ]
-          ];
-          env = {
-            QT_QPA_PLATFORM = "xcb";
-            QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-            QT_IM_MODULE = "fcitx";
-            GTK_IM_MODULE = "fcitx";
-          };
-        };
+    config = {
+      imports = [ ./modules/wechat-policy.nix ];
+      app = {
+        package = wechat;
+        binPath = "bin/wechat";
       };
+      flatpak = { inherit appId; };
+    };
   };
-  exePath = lib.getExe wrapped.config.script;
+  exe = lib.getExe wrapped.config.script;
+  assets = runCommandLocal "wechat-desktop-assets" { } ''
+    mkdir -p $out/share
+    ln -s ${wechat}/share/icons $out/share/icons
+  '';
 in
 buildEnv {
-  inherit (wrapped.config.script) name meta passthru;
+  inherit (wrapped.config.script) name passthru;
+  meta = wrapped.config.script.meta // {
+    mainProgram = "wechat";
+  };
   paths = [
     wrapped.config.script
+    assets
     (makeDesktopItem {
-      name = appId;
+      name = "wechat";
       desktopName = "WeChat";
-      genericName = "WeChat";
-      comment = "WeChat, is a messaging and calling app developed by the Chinese technology company Tencent.";
-      exec = "${exePath} %U";
-      startupNotify = true;
-      terminal = false;
+      exec = "${exe} %U";
       icon = "${wechat}/share/icons/hicolor/256x256/apps/wechat.png";
-      type = "Application";
+      terminal = false;
+      startupWMClass = "wechat";
       categories = [
-        "InstantMessaging"
         "Network"
+        "InstantMessaging"
       ];
-      keywords = [
-        "wechat"
-        "weixin"
-      ];
-      extraConfig = {
-        X-Flatpak = appId;
-      };
+      mimeTypes = [ "x-scheme-handler/weixin" ];
+      extraConfig.X-Flatpak = appId;
     })
   ];
 }

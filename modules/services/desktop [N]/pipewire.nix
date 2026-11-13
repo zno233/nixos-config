@@ -11,7 +11,8 @@
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        jack.enable = true;
+        # JACK 支持已不再通过 LD_LIBRARY_PATH 全局注入（`jack.enable` 已废弃），
+        # 需要 JACK 客户端的程序请用 `pw-jack <program>` 启动。
         wireplumber.enable = true;
 
         # 日常使用推荐的平衡设置（稳定 + 较低延迟）
