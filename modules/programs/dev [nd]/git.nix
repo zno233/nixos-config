@@ -21,11 +21,9 @@
           pull.ff = "only";
           color.ui = true;
 
+          # SSH shorthands: gh:owner/repo, fp:repo
           url = {
-            "git@github.com:".insteadOf = [
-              "gh:"
-              "https://github.com/"
-            ];
+            "git@github.com:".insteadOf = "gh:";
             "git@github.com:zno233/".insteadOf = "fp:";
           };
 
