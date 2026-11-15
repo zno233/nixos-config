@@ -87,10 +87,6 @@
       url = "path:./secrets";
       flake = false;
     };
-    sonora = {
-      url = "github:sonorahq/sonora";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";

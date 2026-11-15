@@ -7,7 +7,7 @@
     imports = with inputs.self.modules.homeManager; [
       # audacious
       media-apps
-      sonora
+      # sonora
       # spotify
     ];
   };
