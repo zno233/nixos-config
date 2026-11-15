@@ -47,9 +47,9 @@
             git-filter-repo
 
             # mark-shot‘s optional backend
-            rapidocr-onnxruntime # OCR
-            zxing-cpp
-            pillow
+            # rapidocr-onnxruntime # OCR
+            # zxing-cpp
+            # pillow
 
             # AI
             # llm

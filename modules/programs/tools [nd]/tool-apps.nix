@@ -20,6 +20,7 @@
         font-manager # font management
         zenity # dialog boxes
         localsend # local file sharing
+        mark-shot # screenshot, annotation and screen recording tool
 
         ## ── Calculator ──────────────────────────────────────────────
         qalculate-qt # scientific calculator

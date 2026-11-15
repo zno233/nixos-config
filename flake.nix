@@ -44,10 +44,6 @@
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mark-shot = {
-      url = "github:jswysnemc/mark-shot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     niri = {
       url = "github:epireyn/niri-flake";
       inputs = {
