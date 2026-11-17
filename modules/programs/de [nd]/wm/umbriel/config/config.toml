@@ -1,0 +1,92 @@
+# ============================================================
+# Umbriel 主配置（入口）
+# 文档：https://docs.noctalia.dev/umbriel/
+# 校验：umbriel config validate
+# ============================================================
+
+# ============================================================
+# 子配置（路径相对于本文件，按顺序合并，本文件最后应用）
+# ============================================================
+
+[include]
+files = [
+  "outputs.toml",        # 显示器（输出）
+  "keybinds.toml",       # 按键绑定
+  "environment.toml",    # 环境变量
+  "window-rule.toml",    # 窗口规则
+  "noctalia-shell.toml", # 桌面 shell（Noctalia）
+  "patch.toml",          # 补丁 / 特效
+]
+
+# ============================================================
+# 常规
+# ============================================================
+
+[general]
+# 启动 Noctalia shell（等价于 niri 的 spawn-at-startup "noctalia"）
+autostart = [ "noctalia" ]
+mod_key = "Super"
+show_cheatsheet = false
+# xwayland_native_resolution = true
+# attach_modal_dialogs = true
+# focus_on_activate = false
+
+# ============================================================
+# 输入设备
+# ============================================================
+
+[input]
+# middle_click_paste = false
+
+[input.keyboard]
+layout = "us"
+numlock_toggle = true
+repeat_rate = 25
+repeat_delay = 600
+
+[input.touchpad]
+tap = true
+natural_scroll = true
+scroll_factor = 0.3
+# click_method = "clickfinger"
+# disable_while_typing = true
+# accel_profile = "flat"
+# sensitivity = 0.2
+
+[input.mouse]
+# accel_profile = "flat"
+sensitivity = -0.1
+
+[input.cursor]
+size = 24
+hardware_cursor = true
+hide_when_typing = false
+
+# ============================================================
+# 布局
+# ============================================================
+
+[layout]
+mode = "scrolling"
+gap = 8
+extent_presets = [ 0.333, 0.5, 0.667 ]
+client_maximize = "column"
+
+[layout.scrolling]
+default_extent_fraction = 0.5
+
+# ============================================================
+# 外观
+# ============================================================
+
+[appearance]
+border_width = 2
+corner_radius = 10
+drag_opacity = 0.75
+prefer_no_csd = true
+
+[appearance.shadow]
+enabled = true
+softness = 10
+offset_x = 2
+offset_y = 2

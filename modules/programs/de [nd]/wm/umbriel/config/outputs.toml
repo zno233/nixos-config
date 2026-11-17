@@ -1,0 +1,44 @@
+# ============================================================
+# 显示器（输出）
+# 文档：https://docs.noctalia.dev/umbriel/outputs/
+#
+# 在内核里查真实连接器名与可用模式：
+#   umbriel outputs          # 人类可读
+#   umbriel outputs --json   # 机器可读
+#
+# 键名说明：`mode` 是显示模式（分辨率@刷新率），不是布局模式；
+# 布局模式在 [output.<名字>.layout] 下。
+# ============================================================
+
+# 笔记本内屏（对应 niri 的 output "eDP-1"）
+[output.eDP-1]
+mode = "2520x1680@120"
+position = [ 0, 0 ]
+scale = 1.75
+# niri 的 max-bpc 10：这里只请求合成器用 10bit 渲染格式（XR30/XB30），
+# 实际到面板的位深仍取决于 EDID / 线材 / 驱动。HDR 时独立使用 10bit。
+bit_depth = 10
+# 开机把光标放到这块屏（niri 配置里是注释状态，这里保持一致）
+# focus_at_startup = true
+# 旋转：normal / 90 / 180 / 270 / flipped / flipped-90 / flipped-180 / flipped-270
+# transform = "normal"
+# 可变刷新率：disabled / always / fullscreen / fullscreen_any
+# vrr = "fullscreen"
+# HDR：off / on / auto / fullscreen
+# hdr = "auto"
+# sdr_transfer = "gamma22"
+# 允许全屏窗口撕裂（省一点延迟，按需打开）
+# tearing = true
+# 全屏缓冲绕过合成；出现黑屏/闪烁时设为 false
+# direct_scanout = true
+
+# 备用外接显示器（已注释，与 niri 配置保持对称）
+# [output.HDMI-A-1]
+# mode = "1920x1080@60"
+# position = [ -1442, 0 ]   # 主屏逻辑宽度 2520 / 1.75 = 1440
+# scale = 1.0
+
+# 用显示器身份而不是接口名（换接口后设置仍跟随该显示器）：
+#   umbriel outputs 里找 "Config name"，形如
+# [output."Microstep MSI G2712F CD6T084401192"]
+# mode = "1920x1080@180"

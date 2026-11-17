@@ -1,0 +1,121 @@
+# ============================================================
+# 全局窗口规则（对照 niri 的 window-rule.kdl 迁移）
+# 规则按顺序叠加，后设置的字段覆盖先前的
+# 文档：https://docs.noctalia.dev/umbriel/window-rules/
+# ============================================================
+
+# ============================================================
+# 浮动窗口（通用工具 / 播放器）
+# ============================================================
+
+[[window_rule]]
+match.app_id = [
+  '^gnome-calculator$',
+  '^galculator$',
+  # 系统工具 / 桌面门户
+  '^blueman-manager$',
+  '^xdg-desktop-portal$',
+  '^xdg-desktop-portal-gtk$',
+  '^dynamic_power_user$',
+  '^com\.network\.manager$',
+  # 音量控制
+  '^org\.pulseaudio\.pavucontrol$',
+  '^com\.saivert\.pwvucontrol$',
+  # 文件管理器
+  '^org\.gnome\.Nautilus$',
+  # 媒体播放器
+  '^mpv$',
+  '^vlc$',
+  '^imv$',
+]
+default_floating = true
+
+# ============================================================
+# 画中画 / 会议窗口
+# ============================================================
+
+[[window_rule]]
+match.title = '^(Picture-in-Picture|Picture in picture)$'
+default_floating = true
+default_maximize = false
+default_position = { x = 20, y = 20, anchor = "bottom_right" }
+
+# ============================================================
+# 整列显示（打开时占满整列宽度）
+# ============================================================
+
+[[window_rule]]
+match.app_id = [
+  # 浏览器
+  '^google-chrome$',
+  '^chromium-browser$',
+  '^brave-origin$',
+  # 编辑器 / IDE
+  '^code$',
+  '^jetbrains-idea$',
+  '^md\.obsidian\.Obsidian$',
+  '^dev\.zed\.Zed$',
+  '^zorite$',
+  # 办公
+  '^wpsoffice$',
+  # 聊天
+  '^org\.telegram\.desktop$',
+  # 媒体 / 播放器
+  '^moe\.tsuna\.tsukimi$',
+  '^top\.imsyy\.splayer_next$',
+  '^spotify$',
+  '^sonora$',
+  '^rox$',
+  # 游戏
+  '^steam$',
+  # 其他
+  '^electron$',
+  '^pix$',
+  '^kitty$',
+]
+default_scrolling_extent = 1.0
+
+# ============================================================
+# Noctalia 设置 / 屏幕共享选择器
+# ============================================================
+
+[[window_rule]]
+match.app_id = '^dev\.noctalia\.Noctalia$'
+default_floating = true
+default_floating_size_px = { width = 1020, height = 900 }
+
+[[window_rule]]
+match.app_id = '^dev\.noctalia\.UmbrielSharePicker$'
+default_floating = true
+default_floating_size_px = { width = 800, height = 600 }
+
+# ============================================================
+# 特殊窗口
+# ============================================================
+
+# Steam 通知弹窗：右下角、不抢焦点
+[[window_rule]]
+match.title = '^notificationtoasts_.+_desktop$'
+default_position = { x = 0, y = 0, anchor = "bottom_right" }
+default_focused = false
+default_pinned = true
+
+# QQ / fluxdown：浮动 + 75% 尺寸
+[[window_rule]]
+match.app_id = [ '^QQ$', '^com\.fluxdown\.app$' ]
+default_floating = true
+default_floating_size = { width = 0.75, height = 0.75 }
+
+# SPlayer-next 桌面歌词：底部浮动
+[[window_rule]]
+match.app_id = '^top\.imsyy\.splayer_next$'
+match.title = '^SPlayer-Next - Desktop Lyric$'
+default_floating = true
+default_floating_size = { width = 0.75, height = 0.75 }
+default_position = { x = 0, y = 32, anchor = "bottom" }
+
+# GNOME 设置 / 网络连接编辑器：半屏宽、不浮动
+[[window_rule]]
+match.app_id = [ '^gnome-control-center$', '^nm-connection-editor$' ]
+default_scrolling_extent = 0.5
+default_floating = false

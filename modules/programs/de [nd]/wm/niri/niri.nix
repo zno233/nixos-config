@@ -28,6 +28,32 @@
       };
 
       services.displayManager.sessionPackages = [ pkgs.niri-unstable ];
+
+      # niri 不提供自己的 portal：截图 / 屏幕共享 / 远程桌面走 GNOME 实现，
+      # Secret 走 gnome-keyring；其余接口交给 gtk（gtk 由 nixos.xdg 提供）。
+      # 这样只有启用 niri 时才会装上 xdg-desktop-portal-gnome。
+      xdg.portal = {
+        extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+        config.niri = {
+          # Use xdg-desktop-portal-gtk for every portal interface...
+          default = [
+            "gtk"
+            "gnome"
+          ];
+          "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+          "org.freedesktop.impl.portal.Screenshot" = "gnome";
+          "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
+          "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+        };
+      };
+
+      # niri-flake 的二进制缓存
+      nix.settings = {
+        substituters = [ "https://niri-epireyn.cachix.org?priority=60" ];
+        trusted-public-keys = [
+          "niri-epireyn.cachix.org-1:tlVyFN7CtsDT+ZcLPS+ekFWeT1X6X4OqvWqbBMyIzFA="
+        ];
+      };
     };
 
   flake.modules.homeManager.niri =

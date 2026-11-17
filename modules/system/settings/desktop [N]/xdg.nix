@@ -24,7 +24,6 @@
               "com.raggesilver.BlackBox.desktop"
               "org.gnome.Terminal.desktop"
             ];
-            niri = my_terminal_desktop;
             default = my_terminal_desktop;
           };
       };
@@ -35,22 +34,13 @@
         icons.enable = lib.mkDefault true;
       };
 
+      # 这里只放所有会话共用的 portal 部分。
+      # 每种桌面自己的实现（ScreenCast / Screenshot / RemoteDesktop …）跟着
+      # 各自的会话模块走，避免在全局给一个已停用的合成器装 portal：
+      #   modules/programs/de [nd]/wm/niri/niri.nix       → xdg.portal.config.niri
+      #   modules/programs/de [nd]/wm/umbriel/umbriel.nix → xdg.portal.config.umbriel
       xdg.portal = {
         enable = true;
-
-        config = {
-          niri = {
-            # Use xdg-desktop-portal-gtk for every portal interface...
-            default = [
-              "gtk"
-              "gnome"
-            ];
-            "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-            "org.freedesktop.impl.portal.Screenshot" = "gnome";
-            "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
-            "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
-          };
-        };
 
         # Sets environment variable NIXOS_XDG_OPEN_USE_PORTAL to 1
         # This will make xdg-open use the portal to open programs,
@@ -61,11 +51,7 @@
         xdgOpenUsePortal = true;
         extraPortals = with pkgs; [
           xdg-desktop-portal-gtk # for provides file picker / OpenURI
-          #xdg-desktop-portal-wlr
-          #xdg-desktop-portal-hyprland # for Hyprland
-          xdg-desktop-portal-gnome # for screensharing
         ];
       };
-
     };
 }

@@ -1,0 +1,33 @@
+# ============================================================
+# Noctalia Shell 集成（对照 niri 的 noctalia-shell.kdl 迁移）
+# 启动由 config.toml 的 [general] autostart 负责
+# ============================================================
+
+[keybinds]
+
+# ==================== Noctalia 面板 ====================
+
+"Mod+D" = { action = "spawn noctalia msg panel-toggle launcher", repeat = false }
+"Mod+S" = { action = "spawn noctalia msg panel-toggle control-center", repeat = false }
+"Mod+V" = { action = "spawn noctalia msg panel-toggle clipboard", repeat = false }
+"Super+Alt+L" = { action = "spawn noctalia msg session lock", repeat = false }
+"Mod+Ctrl+Escape" = { action = "spawn noctalia msg panel-toggle session", repeat = false }
+# "Mod+Shift+W" = { action = "spawn noctalia ipc call desktopWidgets toggle", repeat = false }
+
+# ==================== 媒体控制 ====================
+
+"Mod+Alt+Space" = { action = "spawn noctalia msg media toggle", repeat = false }
+"Mod+Alt+H" = "spawn noctalia msg media previous"
+"Mod+Alt+L" = "spawn noctalia msg media next"
+
+# ==================== 音量与亮度 ====================
+
+"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false }
+# Umbriel 默认的媒体键（niri 配置里没有，这里补上）
+"XF86AudioPlay" = { action = "spawn noctalia msg media toggle", allow_when_locked = true, repeat = false }
+"XF86AudioNext" = { action = "spawn noctalia msg media next", allow_when_locked = true }
+"XF86AudioPrev" = { action = "spawn noctalia msg media previous", allow_when_locked = true }
+"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true }

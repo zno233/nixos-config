@@ -6,6 +6,7 @@
   flake.modules.nixos.wm = {
     imports = with inputs.self.modules.nixos; [
       niri
+      umbriel
     ];
   };
 

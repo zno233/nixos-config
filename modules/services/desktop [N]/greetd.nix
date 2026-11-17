@@ -17,7 +17,7 @@
     };
     # 登录时解锁 GPG keyring
     security.pam.services.greetd.enableGnomeKeyring = true;
-    # 创建目录链接，将 niri 会话添加到 Wayland 会话列表中
+    # 创建目录链接，将合成器会话添加到 Wayland 会话列表中
     environment.pathsToLink = [ "/share/wayland-sessions" ];
   };
 }

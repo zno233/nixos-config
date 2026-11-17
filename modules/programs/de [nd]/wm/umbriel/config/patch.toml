@@ -1,0 +1,59 @@
+# ============================================================
+# 补丁 / 特效配置（对照 niri 的 patch.kdl）
+# ============================================================
+
+[keybinds]
+
+# ==================== 截图 ====================
+
+# mark-shot（截图 + 标注）
+"Mod+Shift+S" = { action = "spawn mark-shot", repeat = false }
+
+# 全屏截图直接进剪贴板
+"Print" = { action = "spawn grim - | wl-copy", repeat = false }
+
+# ============================================================
+# 模糊
+# ============================================================
+
+[appearance.blur]
+enabled = true
+optimized = true
+passes = 2
+radius = 3
+noise = 0.02
+brightness = 0.9
+contrast = 0.9
+saturation = 1.2
+
+# 透明窗口背景模糊
+[[window_rule]]
+match.app_id = [ '^kitty$', '^com\.mitchellh\.ghostty$' ]
+blur = true
+
+# ============================================================
+# Noctalia 层规则（面板 / 通知 / Dock / OSD 模糊）
+# ============================================================
+
+[[layer_rule]]
+match.namespace = '^noctalia-(bar-[^"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^"]*)$'
+blur = true
+blur_ignore_alpha = 0.5
+blur_popups = true
+
+[[layer_rule]]
+match.namespace = '^noctalia-(notification|dock|panel|attached-panel|osd)$'
+blur_optimized = false
+
+# ============================================================
+# 效果预设（可选）
+# 启用需要先 include 预设文件，再把名字写进 [effects]。
+# 系统路径由 NixOS 模块链接：/run/current-system/sw/share/umbriel/effects
+# ============================================================
+
+# [effects]
+# border = "pulse"
+# border_unfocused = true
+#
+# 并在 config.toml 的 [include] files 里追加：
+#   "/run/current-system/sw/share/umbriel/effects/border/pulse/effect.toml"
