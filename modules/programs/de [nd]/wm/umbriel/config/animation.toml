@@ -1,0 +1,56 @@
+# ============================================================
+# 动画（移植 niri 的 animations/dissolve.kdl）
+#
+# 时间线 / 曲线在这里；效果本体（shader 预设）在
+# effects/animation/dissolve/effect.toml，由 config.toml include。
+# 文档：https://docs.noctalia.dev/umbriel/animation/
+#
+# 关于 spring 与贝塞尔：
+#   niri 的 spring 有第三个参数 epsilon（终止容差 0.0001），Umbriel 没有，
+#   它用内部固定容差把进度钳死，末段那几像素位移会被瞬间吃掉 —— 表现为
+#   动画「最后顿一下」。所以把最容易暴露这个问题的几个事件换成贝塞尔：
+#   定长曲线、末尾速度连续归零，不存在截断点，下面每条都是按对应 niri
+#   spring 逐帧拟合的（最大偏差 3% 上下）。
+# ============================================================
+
+[animation]
+# niri 里有、Umbriel 没有等价事件的部分：
+#   horizontal-view-movement / config-notification / exit-confirmation /
+#   recent-windows / screenshot-ui —— 保持 Umbriel 默认。
+enabled = true
+
+# 打开：从上方 30% 落位 + 回弹（niri window-open 0.80/600）
+# 偏差 3.7%，过冲 1.6%
+[animation.windows_in]
+effect = "dissolve_in"
+curve = "0.339,0.667,0.092,1.107"
+duration_ms = 340
+
+# 关闭：先溶解后加速下落（niri window-close 800 ms linear）
+[animation.windows_out]
+effect = "dissolve_out"
+curve = "linear"
+duration_ms = 800
+
+[animation.windows_move]
+enabled = true
+curve = "spring:1,800"
+
+# 窗口尺寸变化（niri window-resize 0.80/700）
+# niri 用 shader 采样「新纹理」，Umbriel 无此输入，按默认拉伸旧帧。
+# 偏差 3.6%，过冲 1.2%
+[animation.windows_resize]
+curve = "0.340,0.594,0.081,1.097"
+duration_ms = 310
+
+# 工作区切换（niri workspace-switch 0.80/523）
+# 偏差 3.7%，过冲 1.1%
+[animation.workspaces]
+curve = "0.319,0.547,0.062,1.095"
+duration_ms = 360
+
+# Overview 开合 + 内部工作区平移（niri overview-open-close 1.0/800，
+# 平滑不回弹）
+[animation.overview]
+curve = "spring:1,800"
+workspace_curve = "spring:1,800"

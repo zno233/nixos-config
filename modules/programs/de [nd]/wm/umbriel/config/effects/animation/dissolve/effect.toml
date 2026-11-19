@@ -1,0 +1,19 @@
+# ============================================================
+# dissolve 动画预设（移植自 niri 的 animations/dissolve.kdl）
+#
+# 这里只定义「效果本体」（shader），时间线和曲线在 animation.toml 里，
+# 通过 effect = "dissolve_in" / "dissolve_out" 选中。
+#
+# 布局与包里自带的效果一致：share/umbriel/effects/animation/<name>/
+# shader 路径相对于本文件。
+# ============================================================
+
+# 窗口打开：从上方 30% 落位 + 回弹
+[effects.preset.dissolve_in]
+kind = "animation"
+shader = "in.glsl"
+
+# 窗口关闭：先溶解、后加速下落
+[effects.preset.dissolve_out]
+kind = "animation"
+shader = "out.glsl"

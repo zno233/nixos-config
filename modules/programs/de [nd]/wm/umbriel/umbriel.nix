@@ -42,6 +42,7 @@
         wl-clipboard # 核心剪贴板工具
         cliphist # 剪贴板历史记录
         grim # Wayland 截图工具
+        slurp # 区域截图选区
       ];
 
       # config/ 目录里的东西全部 store 拷贝（新增文件不用改这里）；

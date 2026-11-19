@@ -40,6 +40,11 @@ default_floating = true
 default_maximize = false
 default_position = { x = 20, y = 20, anchor = "bottom_right" }
 
+# Zoom 会议窗口（niri 里与 PiP 同组）
+[[window_rule]]
+match.app_id = '^zoom$'
+default_floating = true
+
 # ============================================================
 # 整列显示（打开时占满整列宽度）
 # ============================================================
@@ -95,6 +100,7 @@ default_floating_size_px = { width = 800, height = 600 }
 
 # Steam 通知弹窗：右下角、不抢焦点
 [[window_rule]]
+match.app_id = '^steam$'
 match.title = '^notificationtoasts_.+_desktop$'
 default_position = { x = 0, y = 0, anchor = "bottom_right" }
 default_focused = false
@@ -106,16 +112,35 @@ match.app_id = [ '^QQ$', '^com\.fluxdown\.app$' ]
 default_floating = true
 default_floating_size = { width = 0.75, height = 0.75 }
 
-# SPlayer-next 桌面歌词：底部浮动
+# SPlayer-next 桌面歌词：底部浮动（无边框，对应 niri 的 border { off }）
 [[window_rule]]
 match.app_id = '^top\.imsyy\.splayer_next$'
 match.title = '^SPlayer-Next - Desktop Lyric$'
 default_floating = true
 default_floating_size = { width = 0.75, height = 0.75 }
 default_position = { x = 0, y = 32, anchor = "bottom" }
+border_width = 0
 
 # GNOME 设置 / 网络连接编辑器：半屏宽、不浮动
 [[window_rule]]
 match.app_id = [ '^gnome-control-center$', '^nm-connection-editor$' ]
 default_scrolling_extent = 0.5
 default_floating = false
+
+# 壁纸工具：固定尺寸浮动（niri: 850x660）
+[[window_rule]]
+match.app_id = '^waypaper$'
+default_floating = true
+default_floating_size_px = { width = 850, height = 660 }
+
+# nemo 的「打开方式」对话框：固定尺寸浮动
+[[window_rule]]
+match.app_id = '^nemo$'
+match.title = '^Open with$'
+default_floating = true
+default_floating_size_px = { width = 850, height = 660 }
+
+# waydroid：禁止打开时最大化（niri: open-maximized false）
+[[window_rule]]
+match.app_id = '^waydroid$'
+default_maximize = false

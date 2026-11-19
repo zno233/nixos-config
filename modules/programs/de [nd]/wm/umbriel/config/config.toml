@@ -15,6 +15,8 @@ files = [
   "environment.toml",    # 环境变量
   "window-rule.toml",    # 窗口规则
   "noctalia-shell.toml", # 桌面 shell（Noctalia）
+  "effects/animation/dissolve/effect.toml", # shader 预设
+  "animation.toml",      # 动画时间线 / 曲线
   "patch.toml",          # 补丁 / 特效
 ]
 
@@ -23,8 +25,13 @@ files = [
 # ============================================================
 
 [general]
-# 启动 Noctalia shell（等价于 niri 的 spawn-at-startup "noctalia"）
-autostart = [ "noctalia" ]
+# 等价于 niri 的 spawn-at-startup（走 shell，可带参数）
+autostart = [
+  "noctalia",                              # 桌面 shell
+  "udiskie --automount --notify --smart-tray", # 磁盘挂载
+  "nm-applet",                             # 网络托盘
+  "blueman-applet",                        # 蓝牙托盘
+]
 mod_key = "Super"
 show_cheatsheet = false
 # xwayland_native_resolution = true
@@ -58,9 +65,16 @@ scroll_factor = 0.3
 sensitivity = -0.1
 
 [input.cursor]
-size = 24
+# 与 niri 的 cursor { xcursor-theme "Bibata-Modern-Ice"; xcursor-size 20; } 对齐
+theme = "Bibata-Modern-Ice"
+size = 20
 hardware_cursor = true
 hide_when_typing = false
+
+# 焦点跟随鼠标（niri: focus-follows-mouse max-scroll-amount="0%"）
+[input.focus]
+follows_mouse = true
+follows_mouse_max_scroll = 0.0
 
 # ============================================================
 # 布局
@@ -87,6 +101,34 @@ prefer_no_csd = true
 
 [appearance.shadow]
 enabled = true
-softness = 10
-offset_x = 2
-offset_y = 2
+softness = 15
+offset_x = 0
+offset_y = 5
+
+# ============================================================
+# 颜色
+# ============================================================
+
+[colors]
+# 阴影颜色（对应 niri 的 shadow color；Umbriel 阴影只有这一个全局色值，没有 spread）
+shadow = "#00000044"
+
+# 边框颜色（对应 niri 的 border active-color / inactive-color）
+# focused = 焦点窗口，unfocused = 其余窗口；outer 只在 outer_border_width > 0 时绘制。
+# niri 的 urgent-color 在 Umbriel 中没有对应项（只有 focused/unfocused/outer 三个色）。
+[colors.border]
+focused = "#DACDAA"
+unfocused = "#444C2E"
+# outer = "#1A1A1F"
+
+# ============================================================
+# 热角
+# 鼠标在指定角落停留 delay_ms 后执行一个 action。
+# 可选：top_left / top_right / bottom_left / bottom_right
+# 全屏窗口聚焦时热角不触发（与 niri 行为类似）。
+# ============================================================
+
+[hot_corners.top_left]
+enabled = true
+delay_ms = 150
+action = "overview-toggle"

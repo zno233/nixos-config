@@ -2,25 +2,17 @@
 # 补丁 / 特效配置（对照 niri 的 patch.kdl）
 # ============================================================
 
-[keybinds]
-
-# ==================== 截图 ====================
-
-# mark-shot（截图 + 标注）
-"Mod+Shift+S" = { action = "spawn mark-shot", repeat = false }
-
-# 全屏截图直接进剪贴板
-"Print" = { action = "spawn grim - | wl-copy", repeat = false }
-
 # ============================================================
 # 模糊
 # ============================================================
 
 [appearance.blur]
 enabled = true
+# 全局 optimized = true：共享一份「壁纸缓存模糊」，几乎不耗 GPU。
+# 需要模糊「真实背景」的表面，在各自规则里用 blur_optimized = false 单独覆盖。
 optimized = true
 passes = 2
-radius = 3
+radius = 5
 noise = 0.02
 brightness = 0.9
 contrast = 0.9
@@ -30,6 +22,7 @@ saturation = 1.2
 [[window_rule]]
 match.app_id = [ '^kitty$', '^com\.mitchellh\.ghostty$' ]
 blur = true
+blur_optimized = false
 
 # ============================================================
 # Noctalia 层规则（面板 / 通知 / Dock / OSD 模糊）
@@ -38,12 +31,9 @@ blur = true
 [[layer_rule]]
 match.namespace = '^noctalia-(bar-[^"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^"]*)$'
 blur = true
+blur_optimized = false
 blur_ignore_alpha = 0.5
 blur_popups = true
-
-[[layer_rule]]
-match.namespace = '^noctalia-(notification|dock|panel|attached-panel|osd)$'
-blur_optimized = false
 
 # ============================================================
 # 效果预设（可选）

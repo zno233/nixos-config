@@ -29,16 +29,14 @@
 "Alt+Z" = { action = "spawn zorite", repeat = false }
 "Alt+N" = { action = "spawn obsidian", repeat = false }
 "Mod+Shift+B" = { action = "spawn kitty btop", repeat = false }
-
-# ⚠️ 冲突：官方 Mod+M 是 window-toggle-maximize-to-edges，按"应用程序优先"保留 rox。
-#    想要官方语义就把下一行注释掉、并放开再下一行。
 "Mod+M" = { action = "spawn rox", repeat = false }
-# "Mod+M" = { action = "window-toggle-maximize-to-edges", repeat = false }
 
 # ==================== 会话与系统 ====================
 
-# 官方用单按 Mod 开启动器（Noctalia 的 Mod+D 也在 noctalia-shell.toml 里）
-"Mod" = "spawn noctalia msg panel-toggle launcher"
+# 快捷键表（niri: Mod+Shift+Slash show-hotkey-overlay）
+"Mod+Shift+Slash" = { action = "cheatsheet-toggle", repeat = false }
+# 关闭显示器（niri: Mod+Shift+P power-off-monitors）
+"Mod+Shift+P" = { action = "dpms-off", repeat = false }
 "Mod+Q" = { action = "window-close", repeat = false }
 "Mod+Escape" = "session-quit"
 "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
@@ -57,12 +55,47 @@
 
 "Mod+F1" = "window-focus-next"
 
+# 列首 / 列尾（niri: focus-column-first / focus-column-last）
+"Mod+Home" = "column-focus-first"
+"Mod+End" = "column-focus-last"
+"Mod+Ctrl+Home" = "column-move-to-first"
+"Mod+Ctrl+End" = "column-move-to-last"
+
 # ==================== 窗口移动 ====================
 
-"Mod+Shift+Left" = "column-move-left"
-"Mod+Shift+Down" = "window-move-down"
-"Mod+Shift+Up" = "window-move-up"
-"Mod+Shift+Right" = "column-move-right"
+"Mod+Ctrl+Left" = "column-move-left"
+"Mod+Ctrl+Down" = "window-move-down"
+"Mod+Ctrl+Up" = "window-move-up"
+"Mod+Ctrl+Right" = "column-move-right"
+
+"Mod+Ctrl+H" = "column-move-left"
+"Mod+Ctrl+J" = "window-move-down"
+"Mod+Ctrl+K" = "window-move-up"
+"Mod+Ctrl+L" = "column-move-right"
+
+# ==================== 显示器（输出） ====================
+
+# 焦点在显示器之间切换（niri: focus-monitor-*）
+"Mod+Shift+Left" = "output-focus-left"
+"Mod+Shift+Down" = "output-focus-down"
+"Mod+Shift+Up" = "output-focus-up"
+"Mod+Shift+Right" = "output-focus-right"
+
+"Mod+Shift+H" = "output-focus-left"
+"Mod+Shift+J" = "output-focus-down"
+"Mod+Shift+K" = "output-focus-up"
+"Mod+Shift+L" = "output-focus-right"
+
+# 把列移到另一块显示器（niri: move-column-to-monitor-*）
+"Mod+Shift+Ctrl+Left" = "column-move-to-output-left"
+"Mod+Shift+Ctrl+Down" = "column-move-to-output-down"
+"Mod+Shift+Ctrl+Up" = "column-move-to-output-up"
+"Mod+Shift+Ctrl+Right" = "column-move-to-output-right"
+
+"Mod+Shift+Ctrl+H" = "column-move-to-output-left"
+"Mod+Shift+Ctrl+J" = "column-move-to-output-down"
+"Mod+Shift+Ctrl+K" = "column-move-to-output-up"
+"Mod+Shift+Ctrl+L" = "column-move-to-output-right"
 
 # ==================== 窗口状态与布局 ====================
 
@@ -81,21 +114,63 @@
 "Mod+Equal" = "window-modify-primary-extent +0.02"
 "Mod+Ctrl+Minus" = "window-modify-secondary-extent -0.02"
 "Mod+Ctrl+Equal" = "window-modify-secondary-extent +0.02"
+# 窗口高度复位（niri: Mod+Ctrl+R reset-window-height）
+"Mod+Ctrl+R" = { action = "window-set-secondary-extent 1.0", repeat = false }
 
 "Mod+Comma" = "window-consume-left"
 "Mod+Period" = "window-consume-right"
 "Mod+Ctrl+Comma" = "window-consume-from-left"
 "Mod+Ctrl+Period" = "window-consume-from-right"
+# niri: consume-or-expel-window-left / -right
+"Mod+BracketLeft" = "window-consume-or-expel-left"
+"Mod+BracketRight" = "window-consume-or-expel-right"
+# niri: Mod+C center-column
+"Mod+C" = { action = "column-center", repeat = false }
 
 "Mod+W" = { action = "column-toggle-tabbed", repeat = false }
 "Mod+Alt+Right" = "column-focus-tab-next"
 "Mod+Alt+Left" = "column-focus-tab-previous"
 
-"Mod+WheelUp" = "window-focus-left"
-"Mod+WheelDown" = "window-focus-right"
+"Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 150 }
+"Mod+WheelDown" = { action = "workspace-next", cooldown_ms = 150 }
+"Mod+Ctrl+WheelUp" = { action = "column-move-to-workspace-previous", cooldown_ms = 150 }
+"Mod+Ctrl+WheelDown" = { action = "column-move-to-workspace-next", cooldown_ms = 150 }
+"Mod+WheelLeft" = "window-focus-left"
+"Mod+WheelRight" = "window-focus-right"
+"Mod+Ctrl+WheelLeft" = "column-move-left"
+"Mod+Ctrl+WheelRight" = "column-move-right"
+"Mod+Shift+WheelUp" = "window-focus-left"
+"Mod+Shift+WheelDown" = "window-focus-right"
+"Mod+Ctrl+Shift+WheelUp" = "column-move-left"
+"Mod+Ctrl+Shift+WheelDown" = "column-move-right"
 "Mod+O" = { action = "overview-toggle", repeat = false }
 
+# ==================== 最近窗口（niri: recent-windows Alt+Tab） ====================
+
+"Alt+Tab" = { action = "window-focus-last", repeat = false }
+"Alt+Shift+Tab" = { action = "window-focus-previous", repeat = false }
+
 # ==================== 工作区 ====================
+
+# 导航（niri: focus-workspace-down / focus-workspace-up / focus-workspace-previous）
+"Mod+Page_Down" = "workspace-next"
+"Mod+Page_Up" = "workspace-previous"
+"Mod+U" = "workspace-next"
+"Mod+I" = "workspace-previous"
+# 切回上一个（最近使用的）工作区
+"Mod+Tab" = { action = "workspace-focus-last", repeat = false }
+
+# 移动列到工作区（niri: move-column-to-workspace-down / -up）
+"Mod+Ctrl+Page_Down" = "column-move-to-workspace-next"
+"Mod+Ctrl+Page_Up" = "column-move-to-workspace-previous"
+"Mod+Ctrl+U" = "column-move-to-workspace-next"
+"Mod+Ctrl+I" = "column-move-to-workspace-previous"
+
+# 移动整个工作区（niri: move-workspace-down / move-workspace-up）
+"Mod+Shift+Page_Down" = "workspace-move-down"
+"Mod+Shift+Page_Up" = "workspace-move-up"
+"Mod+Shift+U" = "workspace-move-down"
+"Mod+Shift+I" = "workspace-move-up"
 
 "Mod+1" = "workspace-switch 1"
 "Mod+2" = "workspace-switch 2"
@@ -117,9 +192,43 @@
 "Mod+Shift+8" = "window-move-to-workspace 8"
 "Mod+Shift+9" = "window-move-to-workspace 9"
 
+# 移动整列到工作区（niri: move-column-to-workspace N）
+"Mod+Ctrl+1" = "column-move-to-workspace 1"
+"Mod+Ctrl+2" = "column-move-to-workspace 2"
+"Mod+Ctrl+3" = "column-move-to-workspace 3"
+"Mod+Ctrl+4" = "column-move-to-workspace 4"
+"Mod+Ctrl+5" = "column-move-to-workspace 5"
+"Mod+Ctrl+6" = "column-move-to-workspace 6"
+"Mod+Ctrl+7" = "column-move-to-workspace 7"
+"Mod+Ctrl+8" = "column-move-to-workspace 8"
+"Mod+Ctrl+9" = "column-move-to-workspace 9"
+
+# ==================== 工作区布局模式 ====================
+# 只作用于当前焦点工作区，不写回配置（重启后回到 [layout] mode = "scrolling"）
+
+"Mod+Alt+1" = { action = "workspace-set-layout scrolling", repeat = false }
+"Mod+Alt+2" = { action = "workspace-set-layout dwindle", repeat = false }
+"Mod+Alt+3" = { action = "workspace-set-layout master", repeat = false }
+"Mod+Alt+4" = { action = "workspace-set-layout stacking", repeat = false }
+"Mod+Alt+T" = { action = "workspace-set-layout toggle", repeat = false }
+
+# ==================== 截图 ====================
+# Umbriel 没有内置截图 action（niri 有 screenshot/screenshot-screen/screenshot-window），
+# 这里用 grim + slurp 复刻，结果进剪贴板。
+
+# 区域截图
+"Print" = { action = 'spawn grim -g "$(slurp)" - | wl-copy', repeat = false }
+# 整屏 / 当前输出（niri: Mod+Print screenshot-screen）
+"Mod+Print" = { action = 'spawn grim - | wl-copy', repeat = false }
+# 焦点窗口（niri: Ctrl+Print screenshot-window），用 umbriel 报告的窗口几何裁切
+"Ctrl+Print" = { action = '''spawn grim -g "$(umbriel focused-window --json | jq -r '"\(.w)x\(.h)+\(.x)+\(.y)"')" - | wl-copy''', repeat = false }
+# mark-shot（截图 + 标注）
+"Mod+Shift+S" = { action = "spawn mark-shot", repeat = false }
+
 # ==================== Scratchpad ====================
 
 "Mod+Shift+Space" = { action = "window-move-to-scratchpad", repeat = false }
 "Mod+Space" = "scratchpad-toggle"
 "Mod+Ctrl+Space" = { action = "window-restore-from-scratchpad", repeat = false }
-"Mod+Tab" = "scratchpad-focus-next"
+# 官方默认的 Mod+Tab 在这里让给了"切回上一个工作区"，scratchpad 焦点循环挪到 Mod+Grave
+"Mod+Grave" = "scratchpad-focus-next"
