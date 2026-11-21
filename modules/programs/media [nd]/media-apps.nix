@@ -7,7 +7,8 @@
     {
       home.packages = with pkgs; [
         ## ── Image ────────────────────────────────────────────────────
-        gimp # image editor
+        # gimp # image editor
+        photocraft # native image editor with layered PSD/PSB support
         pix # image viewer (Linux Mint)
         imv # image viewer (Wayland)
         # digikam # photo manager

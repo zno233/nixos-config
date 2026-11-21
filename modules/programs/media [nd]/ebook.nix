@@ -9,6 +9,7 @@
         calibre
         # koodo-reader
         readest
+        venera-next
       ];
     };
 }

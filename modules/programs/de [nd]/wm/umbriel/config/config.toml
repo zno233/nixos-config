@@ -73,7 +73,7 @@ hide_when_typing = false
 
 # 焦点跟随鼠标（niri: focus-follows-mouse max-scroll-amount="0%"）
 [input.focus]
-follows_mouse = true
+follows_mouse = "always"
 follows_mouse_max_scroll = 0.0
 
 # ============================================================
