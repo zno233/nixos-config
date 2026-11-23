@@ -41,7 +41,6 @@ in
           "enable-dht" = true;
           "enable-peer-exchange" = true;
           "bt-enable-lpd" = true;
-          "bt-enable-metadata-only" = false;
           "follow-torrent" = true;
 
           # HTTP 多线程：16 是大多数 CDN 的兼容上限

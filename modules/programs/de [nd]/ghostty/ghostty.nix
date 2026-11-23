@@ -18,6 +18,7 @@
         ##### Theme #####
         theme = "gruvbox";
         background-opacity = 0.8;
+        background-blur = true;
         adjust-cursor-thickness = 1;
 
         selection-clear-on-copy = true;
